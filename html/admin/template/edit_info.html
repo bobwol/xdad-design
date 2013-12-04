@@ -1,0 +1,430 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>编辑内容 - 现代设计集团统一后台管理系统</title>
+<link rel="shortcut icon" href="favicon.ico">
+<script type="text/javascript" src="../js/jquery-1.8.1.min.js"></script>
+<!--[if lt ie 9]>
+<script type="text/javascript" src="../js/html5.js"></script>
+<script type="text/javascript" src="../js/selectivizr.js"></script>
+<![endif]-->
+<!-- bootstrap start -->
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" media="all">
+<link type="text/css" href="../css/bootstrap.min.patch.css" rel="stylesheet" media="all">
+<!-- bootstrap end -->
+<!-- nanoscroll start -->
+<script type="text/javascript" src="../js/jquery.nanoscroller.min.js"></script>
+<link type="text/css" href="../css/nanoscroller.css" rel="stylesheet" media="all">
+<!-- nanoscroll end -->
+<script type="text/javascript" src="../js/base.js"></script>
+<link type="text/css" href="../css/style.css" rel="stylesheet" media="all">
+<link type="text/css" href="../css/typo.css" rel="stylesheet" media="all">
+</head>
+<body class="detail content-management edit-info">
+<div class="ui-layout">
+  <div class="ui-layout-top">
+    <div class="adminbar">
+      <ul class="quicklinks">
+        <li class="logo menu-mod">
+          <div class="menu-hd"><span class="logo-icon"></span><span>现代设计集团统一后台管理系统</span></div>
+          <div class="menu-bd">
+            <ul>
+              <li><a href="../../admin/template/@entrance.html">后台入口</a></li>
+              <li><a href="../../site/template/welcome.html">集团网站</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="addnew menu-mod">
+          <div class="menu-hd"><a href="#">新建</a></div>
+          <div class="menu-bd">
+            <ul>
+              <li><a href="#">教材</a>
+                <ul>
+                  <li><a href="#">流式布局</a></li>
+                  <li><a href="#">版式布局</a></li>
+                </ul>
+              </li>
+              <li><a href="#">专题</a></li>
+              <li><a href="#">组件</a></li>
+              <li><a href="#">素材</a>
+                <ul>
+                  <li><a href="#">IMAGE</a></li>
+                  <li><a href="#">SLIDESHOW</a></li>
+                  <li><a href="#">AUDIO</a></li>
+                  <li><a href="#">VIDEO</a></li>
+                  <li><a href="#">3D</a></li>
+                </ul>
+              </li>
+              <li><a href="#">文档</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="tip-update"><a href="#" title="0条更新提醒"><span class="count count-0">0</span></a></li>
+        <li class="tip-notice"><a href="#" title="7条评论"><span class="count">7</span></a></li>
+      </ul>
+      <ul class="userinfo">
+        <li><a href="#">帮助</a></li>
+        <li><a href="#">Jason</a></li>
+        <li><a href="#">注销</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- ui-layout-top end -->
+  <div class="ui-layout-center">
+    <div class="ui-layout-center-hd">
+      <h1 class="page-title">编辑内容</h1>
+      <div class="tabview">
+        <ul>
+          <li class="active"><a href="edit_info.html">基本信息</a></li>
+          <li><a href="edit_richtext.html">内容</a></li>
+        </ul>
+      </div>
+      <button class="btn btn-small btn-primary action-save" type="button">保存</button>
+      <button class="btn btn-small action-preview" type="button" data-target="#preview">预览</button>
+      <a class="del" href="#confirmModal">删除条目</a> </div>
+    <div class="ui-layout-center-bd">
+      <div class="main-column">
+        <div class="column-hd">
+          <h3>编辑基本信息 <span class="content-type">类型：PDF</span></h3>
+          <select class="language">
+            <option>中文</option>
+            <option>English</option>
+          </select>
+        </div>
+        <div class="column-bd nanoscrollbar"> 
+          <!--<div class="search-tip">更新提醒：以下内容与发布版本有变更<a href="#" class="action--cancel" style="margin-left:10px; font-size:12px; color:#c00; text-decoration:underline;" rel="tooltip" data-original-title="取消更新">复原变更</a><a href="#" class="action-cancel" rel="tooltip" data-original-title="取消提醒">取消提醒</a> </div>-->
+          <form method="post" action="">
+            <div class="upload" style="position:relative; margin:0; background:#fafafa url('../img/icon_pdf.png') no-repeat 75px 25px; padding:25px 20px 55px 180px; border-bottom:1px solid #f0f0f0;">
+              <h4 style="margin-bottom:5px; font-size:14px;">文件名：60周年纪念册.pdf</h4>
+              <div class="time">上传时间：2012年6月11日</div>
+              <button class="btn btn-small" type="button" onmousemove="f2.style.pixelLeft=event.x; f2.style.pixelTop=this.offsetTop;" onclick="f2.click()" style="position:absolute; left:70px; bottom:20px;">上传</button>
+              <input type="file" id="f2" name="f2" size="1" onchange="txt.value=this.value" hidefocus="true" class="hide">
+            </div>
+          </form>
+          <form class="form-horizontal" style="margin:40px 0;">
+            <div class="control-group">
+              <label class="control-label" for="title"><em>*</em> 标题：</label>
+              <div class="controls">
+                <input type="text" id="title" value="集团概况">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="author">作者：</label>
+              <div class="controls">
+                <input type="text" id="author" value="">
+              </div>
+            </div>
+            <div class="control-group thumb">
+              <label class="control-label">缩略图：</label>
+              <div class="controls">
+                <div class="action">
+                  <button class="btn btn-small" type="button" onmousemove="f.style.pixelLeft=event.x; f.style.pixelTop=this.offsetTop;" onclick="f.click()">设置</button>
+                  <input type="file" id="f" name="f" size="1" onchange="txt.value=this.value" hidefocus="true" class="hide">
+                </div>
+                <div class="cover"><img src="../public/thumb.png" alt=""></div>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="selectStyle">下拉框示例：</label>
+              <div class="controls">
+                <select id="selectStyle">
+                  <option>默认样式</option>
+                  <option>样式一</option>
+                  <option>样式二</option>
+                </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="description">描述：</label>
+              <div class="controls">
+                <textarea rows="4" id="description">上海现代建筑设计(集团)有限公司是一家以建筑设计为主的现代科技型企业，集团旗下拥有华东建筑设计研究院和上海建筑设计研究院等20余家专业公司和机构。</textarea>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="tags">Tag标签：</label>
+              <div class="controls">
+                <input type="text" id="tags" value="">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ui-layout-center end -->
+  <div class="ui-layout-right nanoscrollbar">
+    <div class="mod publish-mod">
+      <div class="mod-hd">通道设定</div>
+      <div class="mod-bd">
+        <ul>
+          <li>
+            <input type="checkbox" checked>
+            <span class="platform-web">Web</span>
+            <select>
+              <option>模板</option>
+              <option>模板 1</option>
+              <option>模板 2</option>
+              <option>模板 3</option>
+            </select>
+          </li>
+          <li>
+            <input type="checkbox">
+            <span class="platform-ipad">iPad</span>
+            <select>
+              <option>模板</option>
+              <option>模板 1</option>
+              <option>模板 2</option>
+              <option>模板 3</option>
+            </select>
+          </li>
+          <li>
+            <input type="checkbox">
+            <span class="ontop">内容置顶</span> </li>
+          <li><span class="quoted">引用源：资源库 <a href="#">建筑设计作品</a></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mod cat-mod">
+      <div class="mod-hd">分类设定</div>
+      <div class="mod-bd">
+        <div class="categories">
+          <ul>
+            <li>
+              <h4>
+                <input type="checkbox">
+                分类 1</h4>
+              <ul>
+                <li>
+                  <h4>
+                    <input type="checkbox">
+                    分类 1.1</h4>
+                </li>
+                <li>
+                  <h4>
+                    <input type="checkbox">
+                    分类 1.2</h4>
+                </li>
+                <li>
+                  <h4>
+                    <input type="checkbox">
+                    分类 1.3</h4>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <h4>
+                <input type="checkbox">
+                分类 2</h4>
+              <ul>
+                <li>
+                  <h4>
+                    <input type="checkbox">
+                    分类 2.1</h4>
+                  <ul>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.1.1</h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.1.2</h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.1.3</h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.1.4</h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.1.5</h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.1.6</h4>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>
+                    <input type="checkbox">
+                    分类 2.2</h4>
+                  <ul>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.2.1</h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.2.2</h4>
+                      <ul>
+                        <li>
+                          <h4>
+                            <input type="checkbox">
+                            分类 2.2.2.1</h4>
+                        </li>
+                        <li>
+                          <h4>
+                            <input type="checkbox">
+                            分类 2.2.2.2</h4>
+                        </li>
+                        <li>
+                          <h4>
+                            <input type="checkbox">
+                            分类 2.2.2.3</h4>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.2.3</h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.2.4</h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.2.5</h4>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>
+                    <input type="checkbox">
+                    分类 2.3</h4>
+                  <ul>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.3.2.1 </h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.3.2.2 </h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.3.2.3 </h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.3.2.4 </h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.3.2.5 </h4>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>
+                    <input type="checkbox">
+                    分类 2.3.3 </h4>
+                </li>
+                <li>
+                  <h4>
+                    <input type="checkbox">
+                    分类 2.3.4 </h4>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          </li>
+          </ul>
+        </div>
+        <!-- categories --> 
+      </div>
+    </div>
+    <!-- mod --> 
+  </div>
+  <!-- ui-layout-right end -->
+  <div class="ui-layout-left">
+    <nav>
+      <li class="menu-dashboard">
+        <div class="wraparea">
+          <h4><a href="#">工作台</a></h4>
+        </div>
+      </li>
+      <li class="active unfold">
+        <div class="wraparea">
+          <div class="hitarea"></div>
+          <h4><a href="list_2col.html">内容管理</a></h4>
+        </div>
+        <ul>
+          <li><a href="list_2col.html" class="active">所有内容</a></li>
+          <li> <a href="#">新建内容</a>
+            <ul>
+              <li><a href="#">流式布局</a></li>
+              <li><a href="#">版式布局</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <div class="wraparea">
+          <div class="hitarea"></div>
+          <h4><a href="list_1col.html">组件</a></h4>
+        </div>
+        <ul>
+          <li><a href="#">所有</a></li>
+          <li><a href="#">新建组件</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="wraparea">
+          <div class="hitarea"></div>
+          <h4><a href="#">素材</a></h4>
+        </div>
+        <ul>
+          <li><a href="#">所有</a></li>
+          <li><a href="#">新建素材</a></li>
+          <li><a href="cat_management.html">分类目录</a></li>
+          <li><a href="#">收藏夹</a></li>
+        </ul>
+      </li>
+      <li class="menu-lib">
+        <div class="wraparea">
+          <h4><a href="#">资源库</a></h4>
+        </div>
+      </li>
+      <li class="menu-org">
+        <div class="wraparea">
+          <h4><a href="content_organization.html">内容组织</a></h4>
+        </div>
+      </li>
+      <li class="menu-user">
+        <div class="wraparea">
+          <h4><a href="#">用户管理</a></h4>
+        </div>
+      </li>
+      <li class="menu-publish">
+        <div class="wraparea">
+          <h4><a href="#">发布管理</a></h4>
+        </div>
+      </li>
+    </nav>
+  </div>
+  <!-- ui-layout-left end --> 
+</div>
+</body>
+</html>

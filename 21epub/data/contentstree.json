@@ -1,0 +1,36 @@
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "numspage": 1,
+    "results": [
+      {
+        "id": "1957",
+        "title": "1957-1958",
+        "type_categorized": "category_id_1"
+      },
+      {
+        "id": "category_2",
+        "title": "1959-1963",
+        "type_categorized": "category_id_2"
+      },
+      {
+        "id": "category_3",
+        "title": "1964-1972",
+        "type_categorized": "category_id_3"
+      },
+      {
+        "id": "category_4",
+        "title": "1973-1983",
+        "type_categorized": "category_id_4"
+      },
+      {
+        "id": "category_5",
+        "title": "1984-1988",
+        "type_categorized": "category_id_5"
+      }
+    ],
+    "sum": 5,
+    "page": 1
+  }
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>窗口模拟--Author:Vibo Email:vibo_cn@hotmail.com</title>
+<style type="text/css">
+<!--
+body,td,th {
+font-family: Arial, 宋体;
+font-size: 12px;
+}
+.webWinFrame {
+position: absolute;
+left:15px;
+top:15px;
+padding: 3px;
+background-color: #EEEEEE;
+}
+.webWin {
+width: 300px;
+border: 1px solid #80C65A;
+background-color: #FFFFFF;
+}
+.webWin .wTitle{
+line-height: 18px;
+padding: 2px;
+font-weight: bold;
+cursor:move;
+background-color: #DDF8CC;
+/*display:inline-block;*/
+white-space: nowrap;
+overflow:hidden;
+text-overflow:ellipsis
+}
+.webWin .wContent {
+overflow:hidden;
+}
+.webWin .wResizeBox {
+background-color: #80C65A;
+height: 5px;
+width: 5px;
+position: absolute;
+right: 5px;
+bottom: 5px;
+overflow:hidden;
+cursor:se-resize;
+}
+body {
+margin-left: 0px;
+margin-top: 0px;
+margin-right: 0px;
+margin-bottom: 0px;
+}
+-->
+</style>
+</head>
+<body>
+<div class="webWinFrame" id="testWinA"><div class="webWin"><div class="wTitle">TitleA-ViboStudio</div><div class="wContent">
+<!---->
+<div style="width:300px;height:200px;padding:2px;">
+此处显示新 Div 标签的内容此处显示新 Div 标签的内容<br>
+此处显示新 Div 标签的内容此处显示新 Div 标签的内容<br>
+此处显示新 Div 标签的内容<br>
+此处显示新 Div 标签的内容此处显示新 Div 标签的内容<br>
+此处显示新 Div 标签的内容此处显示新 Div 标签的内容<br>
+此处显示新 Div 标签的内容此处显示新 Div 标签的内容<br>
+此处显示新 Div 标签的内容此处显示新 Div 标签的内容<br>
+</div>
+<!---->
+</div><div class="wResizeBox"></div></div></div>
+<div class="webWinFrame" id="testWinB" style="top:110px;"><div class="webWin"><div class="wTitle">TitleB</div><div class="wContent">
+<!---->
+此处显示新 Div 标签的内容
+此处显示新 Div 标签的内容
+此处显示新 Div 标签的内容
+资源来自：烈火学院 veryhuo.com
+<!---->
+</div><div class="wResizeBox"></div></div></div>
+</body>
+</html>
+<script>
+window.$ = function(obj){return (document.getElementById)?document.getElementById(obj):(document.all)?document.all[obj]:obj}
+window.isIE = window.Event?false:true;
+window.getMouseCoords=function(e){return {x:isIE?e.clientX+Math.max(document.body.scrollLeft, document.documentElement.scrollLeft):e.pageX,y:isIE?e.clientY+Math.max(document.body.scrollTop, document.documentElement.scrollTop):e.pageY};}
+window.vWinZIndex = 1;
+function vDrag(o,ho,initArr){
+ho=ho||o;
+o.style.position="absolute";
+if(!isIE){ho.firstChild.onmousedown=function(){return false;}}
+ho.onmousedown=function(a){
+o.style.zIndex = window.vWinZIndex;
+window.vWinZIndex++;
+var d=document;if(!a)a=window.event;
+var x=a.layerX?a.layerX:a.offsetX,y=a.layerY?a.layerY:a.offsetY;
+if(ho.setCapture)
+ho.setCapture();
+else if(window.captureEvents)
+window.captureEvents(Event.MOUSEMOVE|Event.MOUSEUP);
+d.onmousemove=function(a){
+if(!a)a=window.event;
+var mus=getMouseCoords(a)
+if(!a.pageX)a.pageX=mus.x;
+if(!a.pageY)a.pageY=mus.y;
+var tx=a.pageX-x,ty=a.pageY-y;
+if(initArr){
+o.style.left=(tx<initArr[0]?initArr[0]:tx>initArr[2]?initArr[2]:tx)+"px";
+o.style.top=(ty<initArr[1]?initArr[1]:ty>initArr[3]?initArr[3]:ty)+"px";
+}else{
+o.style.left = tx+"px";
+o.style.top = ty+"px";
+}
+};
+d.onmouseup=function(){
+if(ho.releaseCapture)
+ho.releaseCapture();
+else if(window.captureEvents)
+window.captureEvents(Event.MOUSEMOVE|Event.MOUSEUP);
+d.onmousemove=null;
+d.onmouseup=null;
+};
+};
+}
+function createWebWindow(o,intW,intH){
+o.style.zIndex = window.vWinZIndex;
+window.vWinZIndex++;
+var winSelf = o.childNodes[0];
+var winTitle = o.childNodes[0].childNodes[0];
+var winContent = o.childNodes[0].childNodes[1];
+var winDbox = o.childNodes[0].childNodes[2];
+var minW =50,minH = 40;
+var _self = this;
+var wX = winSelf.offsetWidth-winContent.offsetWidth;
+var wH = winSelf.offsetHeight-winContent.offsetHeight;
+winDbox.onmousedown = function(e){
+o.style.zIndex = window.vWinZIndex;
+window.vWinZIndex++;
+var d=document;if(!e)e=window.event;
+var x=e.layerX?e.layerX:e.offsetX,y=e.layerY?e.layerY:e.offsetY;
+var MCD=window.getMouseCoords(e)
+winSelf.startX=MCD.x;
+winSelf.startY=MCD.y;
+winSelf.startW=winSelf.offsetWidth;
+winSelf.startH=winSelf.offsetHeight;
+if(winDbox.setCapture)
+winDbox.setCapture();
+else if(window.captureEvents)
+window.captureEvents(Event.MOUSEMOVE|Event.MOUSEUP);
+d.onmousemove =function(e){
+if(!e)e=window.event;
+var mus=getMouseCoords(e)
+var newW = (winSelf.startW +(mus.x-winSelf.startX));
+var newH = (winSelf.startH +(mus.y-winSelf.startY))
+resizeWin(newW,newH);
+}
+d.onmouseup=function(){
+if(winDbox.releaseCapture)
+winDbox.releaseCapture();
+else if(window.captureEvents)
+window.captureEvents(Event.MOUSEMOVE|Event.MOUSEUP);
+d.onmousemove=null;
+d.onmouseup=null;
+}
+}
+// 烈火網 VeryHuo.Com 欢迎复制,拒绝恶意采集 ｌｉｅｈｕｏ．ｎｅｔ
+function resizeWin(newW,newH){
+newW = newW < minW?minW:newW;
+newH = newH < minH?minH:newH;
+winSelf.style.width = newW+"px";
+winSelf.style.height = newH+"px";
+winTitle.style.width = isIE?newW+"px":(newW-4)+"px";
+winContent.style.width = (newW-wX)+"px";
+winContent.style.height = (newH-wH)+"px";
+}
+{
+resizeWin(intW,intH);
+vDrag(o,winTitle);
+}
+}
+createWebWindow($("testWinA"),300,75);
+createWebWindow($("testWinB"),300,100);
+</script> <br /><center>如不能显示效果，请按Ctrl+F5刷新本页，更多网页代码：<a href='http://www.veryhuo.com/' target='_blank'>http://www.veryhuo.com/</a></center>

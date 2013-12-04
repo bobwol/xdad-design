@@ -1,0 +1,6 @@
+2013/8/17
+	_g module的建立，是为了整合之前的global库等脚本资源，使得代码有更多的灵活性，复用性，可扩展性，方便和高效的代码。
+	change.log将即时记录版本的更新
+	
+	conf.js 基本的path和shim设定for requirejs ，使得主程序可以进行js的调用以及requirejs的一些基本设定
+	base.js 核心库，定义_g 变量，和全局范围内的变量。

@@ -1,0 +1,291 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    vertical-align: baseline;
+}
+body {
+    color: #404040;
+    overflow-y: scroll;
+}
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}
+.drsElement {
+	cursor: move;
+	position: absolute;
+}
+.drsElement[state~="siteSegment"] {
+    cursor: default;
+}
+
+.drsMoveHandle {
+
+}
+
+.dragresize {
+
+}
+
+.drsElement-minHeightMark {
+    background-image: url("../minimum_line_prt.png");
+    background-repeat: repeat-x;
+    height: 6px;
+    left: 0;
+    margin-left: 5px;
+    margin-right: 3px;
+    position: absolute;
+    right: 0;
+}
+.dragresize-tl {
+    height: 20px;
+    left: -18px;
+    position: absolute;
+    top: -18px;./images
+    width: 20px;
+}
+.dragresize-tl .knob {
+    background-image: url("../images/hendles-sprite.png");
+    background-repeat: no-repeat;
+    height: 8px;
+    left: 13px;
+    position: absolute;
+    top: 13px;
+    width: 8px;
+}
+.drsElement[state~="masterPage"] .dragresize-tl .knob {
+    background-position: 0 -8px;
+}
+.drsElement[topLeftEnabled="true"] .dragresize-tl {
+    cursor: nw-resize;
+}
+.dragresize-tm {
+    background-image: url("../images/bb-default-top.png");
+    background-position: center bottom;
+    background-repeat: repeat-x;
+    height: 10px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: -10px;
+}
+.drsElement[state~="masterPage"] .dragresize-tm {
+    background-image: url("../images/bb-master-page-top.png");
+}
+.dragresize-tm .knob {
+    background-image: url("../images/hendles-sprite.png");
+    background-repeat: no-repeat;
+    height: 8px;
+    left: 50%;
+    margin-left: -4px;
+    position: absolute;
+    top: 5px;
+    width: 8px;
+}
+.drsElement[state~="masterPage"] .dragresize-tm .knob {
+    background-position: 0 -8px;
+}
+.drsElement[topEnabled="true"] .dragresize-tm {
+    cursor: n-resize;
+}
+.dragresize-tr {
+    height: 20px;
+    position: absolute;
+    right: -18px;
+    top: -18px;
+    width: 20px;
+}
+.dragresize-tr .knob {
+    background-image: url("../images/hendles-sprite.png");
+    background-repeat: no-repeat;
+    height: 8px;
+    position: absolute;
+    right: 13px;
+    top: 13px;
+    width: 8px;
+}
+.drsElement[state~="masterPage"] .dragresize-tr .knob {
+    background-position: 0 -8px;
+}
+.drsElement[topRightEnabled="true"] .dragresize-tr {
+    cursor: ne-resize;
+}
+.dragresize-lm {
+	background-image: url("../images/bb-default-left.png");
+	background-position: right center;
+	background-repeat: repeat-y;
+	bottom: 0;
+	left: -10px;
+	position: absolute;
+	top: 0;
+	width: 10px;
+}
+.drsElement[state~="masterPage"] .dragresize-lm {
+    background-image: url("../images/bb-master-page-left.png");
+}
+.dragresize-lm .knob {
+    background-image: url("../images/hendles-sprite.png");
+    background-repeat: no-repeat;
+    height: 8px;
+    left: 5px;
+    margin-top: -4px;
+    position: absolute;
+    top: 50%;
+    width: 8px;
+}
+.drsElement[state~="masterPage"] .dragresize-lm .knob {
+    background-position: 0 -8px;
+}
+.drsElement[leftEnabled="true"] .dragresize-lm {
+    cursor: w-resize;
+}
+
+.dragresize-rm {
+    background-image: url("../images/bb-default-right.png");
+    background-repeat: repeat-y;
+    bottom: 0;
+    position: absolute;
+    right: -10px;
+    top: 0;
+    width: 10px;
+}
+.drsElement[state~="masterPage"] .dragresize-rm {
+    background-image: url("../images/bb-master-page-right.png");
+}
+.dragresize-rm .knob {
+    background-image: url("../images/hendles-sprite.png");
+    background-repeat: no-repeat;
+    height: 8px;
+    margin-top: -4px;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    width: 8px;
+}
+.drsElement[state~="masterPage"] .dragresize-rm .knob {
+    background-position: 0 -8px;
+}
+.drsElement[rightEnabled="true"] .dragresize-rm {
+    cursor: e-resize;
+}
+
+
+.dragresize-bl {
+	bottom: -18px;
+	height: 20px;
+	left: -18px;
+	position: absolute;
+	width: 20px;
+}
+.dragresize-bl .knob {
+    background-image: url("../images/hendles-sprite.png");
+    background-repeat: no-repeat;
+    bottom: 13px;
+    height: 8px;
+    left: 13px;
+    position: absolute;
+    width: 8px;
+}
+.drsElement[state~="masterPage"] .dragresize-bl .knob {
+    background-position: 0 -8px;
+}
+.drsElement[bottomLeftEnabled="true"] .dragresize-bl {
+    cursor: sw-resize;
+}
+.dragresize-bm {
+	background-image: url("../images/bb-default-bottom.png");
+	background-repeat: repeat-x;
+	bottom: -10px;
+	height: 10px;
+	left: 0;
+	position: absolute;
+	right: 0;
+}
+.drsElement[state~="masterPage"] .dragresize-bm {
+    background-image: url("../images/bb-master-page-bottom.png");
+}
+.dragresize-bm .knob {
+    background-image: url("../images/hendles-sprite.png");
+    background-repeat: no-repeat;
+    height: 8px;
+    left: 50%;
+    margin-left: -4px;
+    position: absolute;
+    top: -3px;
+    width: 8px;
+}
+.drsElement[state~="masterPage"] .dragresize-bm .knob {
+    background-position: 0 -8px;
+}
+.drsElement[bottomEnabled="true"] .dragresize-bm {
+    cursor: s-resize;
+}
+
+.dragresize-bm-pushKnob {
+    background-image: url("../images/pusher.png");
+    background-position: 0 -21px;
+    background-repeat: no-repeat;
+    cursor: s-resize;
+    height: 21px;
+    margin-right: 30px;
+    margin-top: -10px;
+    position: absolute;
+    right: 55%;
+    top: -1px;
+    width: 23px;
+}
+.dragresize-bm-pushKnob:hover {
+    background-position: 0 -42px;
+}
+.dragresize-bm-pushKnob:active {
+    background-position: 0 -63px;
+}
+
+.dragresize-tm-dragHandle {
+    background-image: url("../images/smart_drag.png");
+    background-position: 0 -21px;
+    background-repeat: no-repeat;
+    cursor: n-resize;
+    height: 21px;
+    margin-right: 30px;
+    margin-top: -10px;
+    position: absolute;
+    right: 55%;
+    top: 6px;
+    width: 23px;
+}
+.dragresize-tm-dragHandle:hover {
+    background-position: 0 -42px;
+}
+.dragresize-tm-dragHandle:active {
+    background-position: 0 -63px;
+}
+
+.dragresize-br {
+    bottom: -18px;
+    height: 20px;
+    position: absolute;
+    right: -18px;
+    width: 20px;
+}
+.dragresize-br .knob {
+    background-image: url("../images/hendles-sprite.png");
+    background-repeat: no-repeat;
+    bottom: 13px;
+    height: 8px;
+    position: absolute;
+    right: 13px;
+    width: 8px;
+}
+.drsElement[state~="masterPage"] .dragresize-br .knob {
+    background-position: 0 -8px;
+}
+.drsElement[bottomRightEnabled="true"] .dragresize-br {
+    cursor: se-resize;
+}
+.drsElement.knob *:hover {
+    background-position: 0 100%;
+}

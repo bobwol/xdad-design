@@ -1,0 +1,1 @@
+<img src="<%=file%>" width="1" height="1" id="<%=id%>"/>

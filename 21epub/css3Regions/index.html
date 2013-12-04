@@ -1,0 +1,1102 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>pageEdit demo</title>
+<link rel="stylesheet" href="http://v3.bootcss.com/dist/css/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="./htmleditor/1/css/layout-iframe-1.1.css" />
+<link rel="stylesheet" type="text/css" href="http://kenshin54.github.io/popline/font-awesome/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="http://kenshin54.github.io/popline/themes/default.css" />
+<link rel="stylesheet" href="ruler_for_zip/css/ruler.css" type="text/css" />
+<link rel="stylesheet" href="index.css" type="text/css" />
+<style type="text/css">
+    
+   
+</style>
+</head>
+<body >
+
+    <div class="drsElement drsMoveHandle" id="drsbox"  style="visibility: visible; left: -999px; top: -999px; width: 0px; min-height: 50px;height:0px;">
+        <div class="dragresize-tm">
+            <p class="knob "> </p>
+        </div>
+        <div class="dragresize-bm">
+            <p class="knob "> </p>
+        </div>
+        <div class="dragresize-rm" >
+            <p class="knob "></p>
+        </div>
+        <div  class="dragresize-lm">
+            <p class="knob "> </p>
+        </div>
+        <div  class="dragresize-tl">
+            <p class="knob " > </p>
+        </div>
+        <div  class="dragresize-bl">
+            <p class="knob " > </p>
+        </div>
+        <div class="dragresize-br">
+            <p class="knob " > </p>
+        </div>
+        <div  class="dragresize-tr">
+            <p class="knob " > </p>
+        </div>
+    </div>
+    <div style="position:relative;margin:20px auto;width:1000px;height:100%;">
+        
+        <div class="explain"> 
+            <table class="table ">
+                <thead>
+                <tr>
+                <th>#</th>
+                <th>图表</th>
+                <th>说明</th>
+                <th>可点击</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <td>1</td>
+                <td><a class="c_close no" href="javascript:;" style="left:auto;top:auto;bottom:auto;right:auto;position:absolute;">1</a></td>
+                <td>实际建的页数</td>
+                <td>否</td>
+                </tr>
+                <tr>
+                <td>2</td>
+                <td><a class="c_close add" href="javascript:;" style="left:auto;top:auto;bottom:auto;right:auto;position:absolute;">+</a></td>
+                <td>当内容溢出时显示，点击可添加新页</td>
+                <td>是</td>
+                </tr>
+                <tr>
+                <td>3</td>
+                <td><a class="c_close delete" href="javascript:;" style="left:auto;top:auto;bottom:auto;right:auto;position:absolute;">x</a></td>
+                <td>点击，则删除改页</td>
+                <td>是</td>
+                </tr>
+                <tr>
+                <td>4</td>
+                <td><a class="c_close noRegion" href="javascript:;" style="left:auto;top:auto;bottom:auto;right:auto;position:absolute;">!r</a></td>
+                <td>表明该页为region页，点击可将该页设置成非region页</td>
+                <td>是</td>
+                </tr>
+                <tr>
+                <td>5</td>
+                <td><a class="c_close isRegion" href="javascript:;" style="left:auto;top:auto;bottom:auto;right:auto;position:absolute;">r</a></td>
+                <td>表明该页为非region页，点击可将该页设置成region页</td>
+                <td>是</td>
+                </tr>
+                <tr>
+                <td>6</td>
+                <td><a class="c_close orderRegion" href="javascript:;" style="left:auto;top:auto;bottom:auto;right:auto;position:absolute;">1</a></td>
+                <td>代表region页面排序</td>
+                <td>否</td>
+                </tr>
+
+                <tr>
+                <td>7</td>
+                <td><a class="c_close edit" href="javascript:;" style="left:auto;top:auto;bottom:auto;right:auto;position:absolute;">e</a></td>
+                <td>代表处于编辑状态</td>
+                <td>否</td>
+                </tr>
+                <tr>
+                <td>8</td>
+                <td><a class="c_close move" href="javascript:;" style="left:auto;top:auto;bottom:auto;right:auto;position:absolute;">m</a></td>
+                <td>代表处于拖地状态</td>
+                <td>否</td>
+                </tr>
+                <tr>
+                <td>9</td>
+                <td><a class="c_close html" href="javascript:;" style="left:auto;top:auto;bottom:auto;right:auto;position:absolute;">h</a></td>
+                <td>点击提取当前页面html,目前还未开发完</td>
+                <td>是</td>
+                </tr>
+                <tr>
+                
+
+                </tbody>
+            </table>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="" checked="" id="check1">
+                显示流向箭头(编辑时尽量不要显示流向箭头，以免编辑区域被流向箭头区域挡住)
+              </label>
+            </div>
+            <button type="button" class="btn btn-primary" id='btn1' style="display:inline-block;">+ region</button>
+            <div class="well well-sm">注释：单击region进入位置编辑，双击region进入内容编辑</div>
+        </div>  
+        <div class="content">
+            <div class="containment">
+                
+
+            </div>
+
+        </div>  
+
+    </div>
+    
+    <script type="text/javascript">
+        
+    </script>
+
+    <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="raphael-min.js"></script>
+
+    <script type="text/javascript" src="http://kenshin54.github.io/popline/build/jquery.popline.min.js"></script>
+    <script type="text/javascript" src="ruler_for_zip/js/jquery.zxxPageRuler.1.1.js"></script>
+    
+    <script type="text/javascript" src="./htmleditor/1/js/modules/dragresize-1.1.js"></script>
+    <script type="text/javascript">
+        // !function(){  
+    
+            function CSSRegions(){}
+            
+            // basic feature detection 
+            CSSRegions.prototype.isSupported = (function(prop){
+
+                var el = document.body,
+                    style
+
+                if (!el){
+                    return false
+                }   
+
+                style = window.getComputedStyle(el, null)
+
+                if (!style){
+                    return false
+                }
+
+                // intentional bias towards -webkit because the prototype uses 
+                // code under prefixed notation that is still being debated in the W3C
+                return (style['webkitFlowInto'] && style['webkitFlowFrom'])
+            })()
+            
+            CSSRegions.prototype.hasOversetProperty = (function(){
+                var test = document.createElement("span"),
+                    hasOverset = false,
+                    flow
+                    
+                test.style['-webkit-flow-into'] = 'testflow'
+                    
+                document.body.appendChild(test) 
+
+                // Make sure we don't bork if regions methods are missing
+                try {
+                    flow = document.webkitGetNamedFlows()['testflow']
+                    // older implementations used to have overflow not overset
+                    hasOverset = (typeof flow.overset !== 'undefined')
+                } catch(e) {
+                } finally {
+                    // cleanup                                 
+                    test.style['-webkit-flow-into'] = 'none'
+                    test.parentNode.removeChild(test)
+                    flow = null
+                    return !!hasOverset
+                }
+
+            })()
+            
+            
+            var CSSRegions = new CSSRegions()
+            
+            var checkSupport = function(){
+                if (CSSRegions.isSupported && CSSRegions.hasOversetProperty){
+                    return false
+                }
+                else{
+                    var target = document.body;
+
+                    if (target){
+                        target.innerHTML = createWarning()
+                    }
+                    return true;
+                }
+            }
+            
+            var createWarning = function(){
+                var h = [],
+                    p = function(){ h.push.apply(h, arguments) }
+                    
+                p('<p class="unsupported error">')
+                    p('<strong>Warning:</strong> You need to use a <a href="http://nightly.webkit.org/" target="_blank">WebKit nightly</a> browser build to see this example working correctly.')
+                p('</p>')
+
+                return h.join('')
+            }
+            
+           
+        // }();
+
+        function dragdropresize($obj){
+            $(function(){
+                var css = {
+                    dra:"dragdropresize",
+                    drs:"drsElement",
+                    hide:{
+                        visibility: "visible",
+                        left: "-999px",
+                        top:  "-999px",
+                        width:  0,
+                        height:  0,
+                        minHeight:"50px"
+                    },
+                    zIndex:10
+                    
+
+                }
+                var p = $obj.offset();
+                var l = p.left;
+                var t = p.top;
+                var w = $obj.width();
+                var h = $obj.height()
+                // console.log({ minWidth: 120, minHeight: 50, minLeft: l, minTop: t, maxLeft: l+w, maxTop: t+h })
+                var dragresize = new DragResize('dragresize', { minWidth: 160, minHeight: 50, minLeft: l, minTop: t, maxLeft: l+w, maxTop: t+h });
+                function log(msg){
+                    console.log(msg)
+                }
+                var contains = function(root, el) {
+                    if (root.compareDocumentPosition)
+                        return root === el || !!(root.compareDocumentPosition(el) & 16);
+                    if (root.contains && el.nodeType === 1){
+                        return root.contains(el) && root !== el;
+                    }
+                    while ((el = el.parentNode))
+                        if (el === root) return true;
+                    return false;
+                } 
+                /*
+                
+                
+                */
+                var drsbox = $("#drsbox");
+                var dashbox = $("#dashbox");
+                $.belowthefold = function(element, settings) {
+                    var fold;
+                    var $container = $(settings.container);
+                    fold = $container.offset().top + $container.height();
+                    return fold <= $(element).offset().top;
+                };
+                function getDims(elems) {
+                    var dims = [], i = 0, offset;
+                    offset = $(elems).offset();
+                    dims = [
+                        offset.top,
+                        offset.left,
+                        elems.offsetWidth,
+                        elems.offsetHeight
+                    ];
+                    return dims;
+                }
+                function checkOverlap(collection1,collection2) {
+                    var dims1 = getDims(collection1),
+                        dims2 = getDims(collection2),
+                        x1 = dims1[1], y1 = dims1[0],
+                        w1 = dims1[2], h1 = dims1[3],
+                        x2 = dims2[1], y2 = dims2[0],
+                        w2 = dims2[2], h2 = dims2[3];
+                        
+                    return x1>x2&&x1<x2+w2&&y1>y2&&y1<y2+h2&&x1+w1>x2&&x1+w1<x2+w2&&y1+h1>y2&&y1+h1<y2+h2;
+                }
+                $.rightoffold = function(element, settings) {
+                    var fold;
+                    var $container = $(settings.container);
+                    fold = $container.offset().left + $container.width();
+                    return fold <= $(element).offset().left;
+                };
+                    
+                $.abovethetop = function(element, settings) {
+                    var fold;
+                    var $container = $(settings.container);
+                    fold = $container.offset().top;
+                    return fold >= $(element).offset().top + $(element).height();
+                };
+                
+                $.leftofbegin = function(element, settings) {
+                    var fold;
+                    var $container = $(settings.container);
+                    fold = $container.offset().left;
+                    return fold >= $(element).offset().left + $(element).width();
+                };
+
+                $.inviewport = function(element, settings) {
+                     return !$.rightoffold(element, settings) && !$.leftofbegin(element, settings) && 
+                            !$.belowthefold(element, settings) && !$.abovethetop(element, settings);
+                 };
+                $.isOverlap = function(idOne,idTwo){
+                    var objOne=$(idOne),
+                        objTwo=$(idTwo),
+                        offsetOne = objOne.offset(),
+                        offsetTwo = objTwo.offset(),
+                        topOne=offsetOne.top,
+                        topTwo=offsetTwo.top,
+                        leftOne=offsetOne.left,
+                        leftTwo=offsetTwo.left,
+                        widthOne = objOne.width(),
+                        widthTwo = objTwo.width(),
+                        heightOne = objOne.height(),
+                        heightTwo = objTwo.height();
+                    var leftTop = leftTwo > leftOne && leftTwo < leftOne+widthOne 
+                            && topTwo > topOne && topTwo < topOne+heightOne,
+                        rightTop = leftTwo+widthTwo > leftOne && leftTwo+widthTwo < leftOne+widthOne 
+                            && topTwo > topOne && topTwo < topOne+heightOne,
+                        leftBottom = leftTwo > leftOne && leftTwo < leftOne+widthOne 
+                            && topTwo+heightTwo > topOne && topTwo+heightTwo < topOne+heightOne,
+                        rightBottom = leftTwo+widthTwo > leftOne && leftTwo+widthTwo < leftOne+widthOne 
+                            && topTwo+heightTwo > topOne && topTwo+heightTwo < topOne+heightOne;
+                    return leftTop || rightTop || leftBottom || rightBottom;
+                }
+                dragresize.isElement = function(elm) {
+                    if (elm.className && elm.className.indexOf('drsElement') > -1) return true;
+                };
+                dragresize.isHandle = function(elm) {
+                    if (elm.className && elm.className.indexOf('drsMoveHandle') > -1) return true;
+                };
+                dragresize.ondragfocus = function() { };
+                dragresize.ondragstart = function(isResize) {};
+                dragresize.ondragmove = function(isResize) {
+                    if(!isResize){
+                        ins.doupdateLayout();
+                    }
+                    
+                    $(".zxxRefLine_v").remove()
+                    $(".zxxRefLine_h").remove()
+
+                    var $drsbox = $('#drsbox');
+                    var $content = $('.content');
+                    var drsbox_offset = $drsbox.offset();
+                    var content_offset = $content.offset();
+                    var drsbox_h = $drsbox.height()
+                    var drsbox_w = $drsbox.width()
+                    
+                    var sub_left = (drsbox_offset.left-content_offset.left);
+                    var sub_top = (drsbox_offset.top-content_offset.top);
+                    
+                    $.pageRuler.f.crtv([sub_left,sub_left+drsbox_w/2,sub_left+drsbox_w]);
+                    $.pageRuler.f.crth([sub_top,sub_top+drsbox_h/2,sub_top+drsbox_h]);
+                    
+                    
+                };
+                dragresize.ondragend = function(isResize) {
+                    $(".zxxRefLine_v").remove()
+                    $(".zxxRefLine_h").remove()
+                    
+                };
+                dragresize.ondragblur = function() {};
+                dragresize.updateref = function(elm) {this.ref = elm,this.refID = elm.id};
+                dragresize.updatezindex = function(zIndex) {drsbox[0].style.zIndex = zIndex};
+                dragresize.apply(document);
+                dragresize.show = function (elm){
+                    var $box = $(dragresize.ref);
+                    if($box.length){
+                        $box.find('.mask').show();
+                        ins.move($box[0],'delete')
+                        ins.edit($box[0],'delete')
+                    }
+                    
+                    var pos = $(elm).offset();
+                    // console.log($(elm).css("position"))
+
+                    if($(elm).css("position")!="absolute"){
+                        $(elm).css({
+                            position:"absolute",
+                            left:pos.left,
+                            top:pos.top
+                        })
+                    }
+                    var elmX = parseInt(pos.left);
+                    var elmY = parseInt(pos.top);
+                    var elmW = elm.offsetWidth;
+                    var elmH = elm.offsetHeight;
+                    // console.log(elmX,elmY)
+                    css.zIndex++;
+                    drsbox.css({
+                        left: elmX,
+                        top:  elmY,
+                        width:  elmW,
+                        height:  elmH
+                        
+                    })
+                    $(elm)[0].style.zIndex = css.zIndex;
+                    
+                    dragresize.minWidth = parseInt($(elm).css("minwidth"),10)||dragresize.o_minWidth;
+                    dragresize.minHeight = parseInt($(elm).css("minHeight"),10)||dragresize.o_minHeight;
+                    dragresize.updateref(elm);
+                    css.zIndex++
+                    dragresize.updatezindex(css.zIndex);
+                    ins.move($(elm)[0])
+                }
+                
+                dragresize.hide = function(){
+                    drsbox.css(css.hide);
+                    var $box = $(dragresize.ref);
+                    if($box[0])ins.move($box[0],'delete')
+                };
+                
+                
+                $(document).bind('mousedown',function (e){
+                    if(e.which==3)return;
+                    var elm = e.target || e.srcElement,
+                    newElement = null,
+                    isDrs = null,
+                    isElm = null;
+                    while (elm) {
+                        var $elm = $(elm);
+                        var $elm = $(elm);
+                        if ($elm.hasClass("c_close")) {
+                                break;
+                        }else if ($elm.hasClass(css.dra)) {
+                            isElm = true;
+                            newElement = elm;
+                            break
+                        }else if($elm.hasClass(css.drs)){
+                            isDrs = true;
+                            newElement = elm;
+                            break
+                        }
+                        elm = elm.parentNode;
+                    }
+                    if(isElm){
+                    
+                        dragresize.show(elm);
+                    }else if (isDrs){
+                    
+                    }else {
+                        dragresize.hide();
+                    }
+                    
+                });
+                $('#drsbox').bind('dblclick',function(e){
+                    var $box = $(dragresize.ref);
+                    $box.find('.mask').hide();
+                    dragresize.hide();
+                    ins.edit($box[0])
+
+                })
+                $('article').bind('blur',function(e){
+                    var $box = $(dragresize.ref);
+                    $('.mask').show();
+                    ins.edit($box[0],'delete')
+                })
+
+            })
+        }
+
+    </script>
+    
+    <!--
+         添加自动流向
+         添加指定流向
+    -->
+    <script type="text/javascript">
+    /*
+        
+        //实例化
+        var ins = new pageEidt({
+            templates:{
+                region:''//自动生成region的模板   
+
+            },
+            infoSelecter:'',//容器
+        });
+            动态创建一个容器
+            创建自动创建第一个region
+
+        //增加一个region
+            newRegion = ins.addRegion();
+        //region中需要支持的功能
+            内容有溢出时显示＋号
+            内容没溢出时显示－号
+            ＋ 点击添加一个region 同时＋号变－号
+            - 点击删除一个redion
+            !r 变成非region
+            ins.deleteRegion(region)
+        //支持普通div变region的功能
+            newRegion = ins.toRegion()
+            变region后添加－号
+        //region变普通div的功能
+            ins.toNoRegion(region)
+        //region排序
+        //添加导出每个region的html
+        //添加标尺
+        //添加网格
+        //添加标尺
+        //添加拖拽
+
+        
+    */
+
+    String.prototype.replaceWith=function (d) { 
+        return this.replace(/\{\$(\w+)\}/g, function (a, c) {if (c in d) {return d[c];} else {return a;}}); 
+    };
+    function getLeftOrTop(i){
+        if(i>6){
+            i = i%6
+        }else{
+
+        }
+        var i = i-1;
+        var r1 = parseInt(i/3,10);
+        var r2 = (i%3);
+       
+        
+        
+        var top = 20+r1*300+r1*20;
+        var left =10+ r2*300+r2*20;
+           
+
+        
+        var ret = {
+            left:left,
+            top:top
+        }
+        return ret;
+    }
+
+    
+
+    function PageEdit(opt){
+        this.setOptions(opt);
+    }
+    
+ 
+    
+
+    PageEdit.defaults = {
+        infoClass:"PageEdit_article",
+        regionClass:"PageEdit_region",//region_"+time;
+        pageBreakClass:"PageEdit_break",
+
+        infoSelecter:[
+            '<article>',
+            '上海斯迪尔电子交易市场经营管理有限公司（以下简称：斯迪尔）于2003年成立，斯迪尔业务开展之初，便在上海钢贸圈内引起强烈反响。',
+
+            '2012年11月1日，淮矿现代物流有限责任公司（以下简称“淮矿物流”）正式入驻上海斯迪尔电子交易市场经营管理有限公司。凭借淮矿物流多年来从事供应链物流和仓储物流积累的丰富经验和丰厚资源，借助淮矿物流作为大型国有企业拥有的良好信用，斯迪尔与淮矿物流正共同打造专业化、标准化、多元化的电子商务公共服务平台。',
+
+            '2006年和2007年，斯迪尔交易量达到鼎盛，日交易量最高超过100万吨。年最高交易量达490万吨，年最高净盈利达500多万元。2009年1月，作为国内第一家钢材电子商务领域中的现货电子超市及网上竞拍交易模式，斯迪尔"电子超市"项目通过了由上海市经济和信息化委员会组成的专家组的验收评审，并获得了项目专项资金支持。',
+
+            '随着上期所螺纹钢交易品种的上市，斯迪尔开始探索新的发展之路。 通过对钢材市场发展历史和发展趋势的分析研究，斯迪尔提出"钢材电子期货逐步向钢材电子现货发展"的经营思路，在调整与完善经营方式后，相继推出"现货即期交易、现货择期交易、现货中远期交易"三个交易品种，旨在为钢材现货交易提供更公开、公正、公平、便捷的电子商务服务。 斯迪尔以"高度开放，广泛合作"为经营理念，秉承"始于客户需求，终于客户满意"的核心价值观，努力"建一流队伍，办一流企业，做一流产品，创一流品牌"。',
+
+            '</article>'
+       ].join(''),
+        regionContainer:'<div class="regionContainer grid"></div>',
+
+        regionSelecter:'.region',
+        noSelecter:'.no',
+        addSelecter:'.add',
+        deleteSelecter:'.delete',
+        noRegionSelecter:'.noRegion',
+        isRegionSelecter:'.isRegion',
+        orderRegionSelecter:'.orderRegion',
+        
+        editSelecter:'.edit',
+        moveSelecter:'.move',
+        htmlSelecter:'.html',
+        
+        
+
+        templates:{
+            region:[
+                '<div class="box dragdropresize drsElement">',
+                '    <div class="box_tools" style="z-index:5;"></div> ',
+                '    <div class="mask" style="position:absolute;width:100%;height:100%;z-index:100;"></div>',
+                '    <div class="region" style="width:100%;height:100%;"></div>',
+                '</div>'
+                ].join(''),
+            no:'<a class="c_close no" href="javascript:;" >{$no}</a>',
+            add:'<a class="c_close add" href="javascript:;" >+</a>',
+            delete:'<a class="c_close delete" href="javascript:;" >X</a>',
+            noRegion:'<a class="c_close noRegion" href="javascript:;" >!r</a>',
+            isRegion:'<a class="c_close isRegion" href="javascript:;" >r</a>',
+            orderRegion:'<a class="c_close orderRegion" href="javascript:;" ></a>',
+            edit:'<a class="c_close edit" href="javascript:;" >e</a>',
+            move:'<a class="c_close move" href="javascript:;" >m</a>',
+            html:'<a class="c_close html" href="javascript:;" >h</a>'
+
+
+        }
+
+    }
+    PageEdit.prototype = {
+        setOptions:function(opt){
+            this.opt = $.extend(true,{},PageEdit.defaults,opt||{});//合并所有的参数
+            this.init();
+        }, 
+        init:function(){
+            this.checked = $('#check1').is(":checked");
+            this.infoClass = this.opt.infoClass;
+            this.regionClass = this.opt.regionClass;//region_"+time;
+            this.pageBreakClass = this.opt.pageBreakClass;
+
+            this.$infoSelecter = $(this.opt.infoSelecter);//生成infoselecter容器
+            this.$regionContainer = $(this.opt.regionContainer);
+            
+            // if(this.$regionContainer.length<1){
+                $('.containment')[0].appendChild(this.$regionContainer[0]);
+
+            // }
+            // if(this.$infoSelecter.length<1){
+                $('body')[0].appendChild(this.$infoSelecter[0]);
+
+            // }
+
+            this.$infoSelecter.attr('contentEditable',true);//设置可编辑属性
+            this.$infoSelecter.popline();
+            
+            $.pageRuler({
+                container:$('.content')
+                 // ,v: [100]  
+
+            });  
+           
+
+            this.$infoSelecter.addClass(this.infoClass);//添加可以流动的类
+            dragdropresize(this.$regionContainer)
+             var time = (+new Date())
+            var id = this.$infoSelecter.attr('id');
+            if(!id){    
+                id = "article_"+time;
+                this.$infoSelecter.attr('id',id);
+            }
+            this.infoSelecterId = id;
+
+            this.$template = $(this.opt.templates.region);
+            this.$template.find(this.opt.regionSelecter).addClass(this.regionClass);
+          
+            this.page = 1;//初始化页数
+            this.pages = {};
+            this.papers = []
+            //缺少对别的浏览器的支持
+           
+             var css = [
+                    '.'+this.infoClass+'{',
+                    '    -webkit-flow-into: article;',
+                    '    -moz-flow-into: article;',
+                    '    -ms-flow-into: article;',
+                    '    -o-flow-into: article;',
+                    '    flow-into: article;',
+                    '}',
+                    '.'+this.regionClass+'{',
+                    '    flow-from: article;',
+                    '    -webkit-flow-from: article;',
+                    '    -moz-flow-from: article;',
+                    '    -ms-flow-from: article;',
+                    '    -o-flow-from: article;',
+                   
+                    '    region-fragment: break;',
+                    '    -webkit-region-fragment: break;',
+                    '    -moz-region-fragment: break;',
+                    '    -ms-region-fragment: break;',
+                    '    -o-region-fragment: break;',
+                    
+                    '    region-overflow: break;',
+                    '    -webkit-region-overflow: break;',
+                    '    -moz-region-overflow: break;',
+                    '    -ms-region-overflow: break;',
+                    '    -o-region-overflow: break;',
+                    '    overflow: hidden;',
+                    '   -webkit-shape-inside: circle(50%, 50%, 50%);',
+                    '}',
+                    '.'+this.pageBreakClass+'{',
+                    '   page-break-before:always;',
+                    '}'
+                ].join('');
+            this.creatStyle(css);
+            var namedFlows = document.webkitGetNamedFlows();
+            this.namedFlow = namedFlows.namedItem("article");
+            this.bindEvent();
+            this.render();
+        },
+        creatStyle:function(str){
+            if(document.all){
+                window.style=str;
+                document.createStyleSheet("javascript:style");
+            }else{
+                var style = document.createElement('style');
+                style.type = 'text/css';
+                style.innerHTML=str;
+                document.getElementsByTagName('HEAD').item(0).appendChild(style);
+            }
+        },
+        bindEvent:function(){
+            var self = this;
+            this.namedFlow.addEventListener("webkitregionlayoutupdate", this.updateLayout.bind(this))
+            this.$regionContainer.delegate('.c_close','click',function(){
+                
+                if($(this).hasClass('add')){
+                    self.addPage();
+                }else if($(this).hasClass('delete')){
+                    self.delPage($(this)[0].parentNode);
+                }else if($(this).hasClass('noRegion')){
+                    self.noRegion($(this)[0].parentNode);
+                }else if($(this).hasClass('isRegion')){
+                    self.isRegion($(this)[0].parentNode);
+                }else if($(this).hasClass('html')){
+                    self.ohtml($(this)[0].parentNode);
+                }
+
+
+
+            })
+        },
+        doupdateLayout:function(){
+            this.updateLayout({
+                target:this.namedFlow
+            })
+        },
+
+        updateLayout:function(e){   
+            
+             var lastRegion, newRegion, emptyRegion,
+            
+                // the named flow instance
+                namedFlow = e.target,      
+                
+                // get a collection of regions associated with this named flow
+                regions = namedFlow.getRegions();
+                for(var i=0;i<regions.length;i++){
+                    this.oversetAdd(regions[i])
+                    this.orderRegion((regions[i]),i)
+                }
+                this.line(regions)
+                
+        },
+        render:function(){
+            
+            
+            this.addPage();
+        },
+        
+        isOverset:function(){
+            return this.namedFlow.overset;
+        },
+        addPage:function(){
+            
+            var $page = this.$template.clone();
+            var id = 'page_'+this.page;
+
+            $page.find("."+this.opt.regionClass).attr('id',id)
+
+            // var orderStr = [
+            //     '.order'+this.page+'{',
+            //     '    -webkit-region-order:'+this.page,
+            //     '}'
+            // ].join('');
+            // this.creatStyle(orderStr);
+
+            if($(this.opt.noSelecter,$page[0]).length>0){
+                $(this.opt.noSelecter,$page[0]).remove();
+            }
+            $page.find('.box_tools')[0].appendChild($(this.opt.templates.no.replaceWith({no:this.page}))[0]);
+
+            if($(this.opt.orderRegionSelecter,$page[0]).length>0){
+                $(this.opt.orderRegionSelecter,$page[0]).remove();
+            }
+            $page.find('.box_tools')[0].appendChild($(this.opt.templates.orderRegion)[0]);
+
+            
+            if($(this.opt.deleteSelecter,$page[0]).length>0){
+                $(this.opt.deleteSelecter,$page[0]).remove();
+            }
+            $page.find('.box_tools')[0].appendChild($(this.opt.templates.delete)[0]);
+
+            if($(this.opt.noRegionSelecter,$page[0]).length>0){
+                $(this.opt.noRegionSelecter,$page[0]).remove();
+            }
+            $page.find('.box_tools')[0].appendChild($(this.opt.templates.noRegion)[0]);
+
+            if($(this.opt.htmlSelecter,$page[0]).length>0){
+                $(this.opt.htmlSelecter,$page[0]).remove();
+            }
+            $page.find('.box_tools')[0].appendChild($(this.opt.templates.html)[0]);
+
+
+            this.pages[id] = $page;
+            // $page.attr('contentEditable',true);//设置可编辑属性
+            this.$regionContainer.append($page);
+            // $page.find("."+this.opt.regionClass).attr('tabIndex',this.page)
+            // $page.find("."+this.opt.regionClass).addClass('order'+this.page);
+            
+
+            var pos = getLeftOrTop(this.page);
+           
+            $page.css({
+                left:pos.left+"px",
+                top:pos.top+"px"
+            })
+
+            this.page++;
+            var myRegion = $('#'+id)
+            // classes = ['empty', 'fit', 'overflow'],
+            // console.log(myRegion[0].webkitRegionOverset)
+            this.oversetAdd(myRegion[0])
+
+        },
+        oversetAdd:function(myRegion){
+            if(myRegion.webkitRegionOverset=='overset'){
+                // console.log(myRegion)
+                if($(this.opt.addSelecter,myRegion.parentNode).length>0){
+                    // $(this.opt.addSelecter).remove();
+                }else{
+                    $(myRegion.parentNode).find('.box_tools')[0].appendChild($(this.opt.templates.add)[0]);
+                }
+                
+            }else{
+                if($(this.opt.addSelecter,myRegion.parentNode).length>0){
+                    $(this.opt.addSelecter,myRegion.parentNode).remove();
+                }
+            }
+
+        },
+        orderRegion:function(myRegion,i){
+            $(this.opt.orderRegionSelecter,myRegion.parentNode).html(i+1)   ;
+        },
+        line:function(regions){
+            
+            for(var i=0;i<this.papers.length;i++){
+                this.papers[i].remove();
+            }
+            if(!regions.length)return;
+            for(var i=0;i<regions.length;i++){
+                if(i+1<regions.length){
+                    var r1= regions[i];
+                    var r2= regions[i+1];
+                    var p1 = r1.parentNode;
+                    var p2 = r2.parentNode;
+                    var offset1 = $(p1).offset()
+                    var w1 = p1.offsetWidth;
+                    var h1 = p1.offsetHeight;
+                    var offset2 = $(p2).offset()
+                    var x,y,width,height;
+                    offset1.x = offset1.left+w1;
+                    offset1.y = offset1.top+h1;
+                    offset2.x = offset2.left;
+                    offset2.y = offset2.top;
+                    if(offset1.x<offset2.x){
+                        x=offset1.x
+                    }else{
+                         x=offset2.x
+                    }
+                    if(offset1.y<offset2.y){
+                        y=offset1.y
+                    }else{
+                        y=offset2.y
+                    }
+                    width=Math.abs(offset1.x-offset2.x)
+                    height=Math.abs(offset1.y-offset2.y)
+                    function line(paper,x1,y1,x2,y2){
+                         paper.path("M"+x1+","+y1+"L"+x2+","+y2).attr({ stroke: "#0096DD", fill: "#0096DD",'stroke-width': 1 });
+                    }
+                    // 画箭头，箭头初始方向为垂直向下，即偏移角度不设置，或设置为0度。
+                　　// paper: raphael画布
+                　　// x, y: 箭头点位置(x,y)
+                　　// len: 箭头总长度
+                　　// deltaAngle: 箭头从初始垂直向下位置开始的偏移角度(注意：是度数，不是弧度，正数表示顺时针，负数表示逆时针)，默认为不偏移，及为0度
+                　　// fAngle: 箭头开口的角度(注意：是度数，不是弧度)
+                　　// sLen: 箭头短轴长度(注意：若和len相等，则箭头就是一个三角形，底部没有凹陷形成尾翼；若为0，则箭头的尾翼就是两根直线)
+                    function DrawArrow(paper, x, y, len, deltaAngle, fAngle, sLen) {
+                    　　deltaAngle = deltaAngle && typeof (deltaAngle) == "number" ? deltaAngle : 0;
+                    　　len = len && typeof (len) == "number" && len > 0 ? len : 12;
+                    　　fAngle = fAngle && typeof (fAngle) == "number" && fAngle > 0 ? fAngle : 50;
+                    　　sLen = sLen && typeof (sLen) == "number" && sLen > 0 ? sLen : 4;
+
+                    　　var ltLen = Math.tan(Raphael.rad(fAngle / 2)) * len;
+                    　　var ltX = x - ltLen;
+                    　　var ltY = y - len;
+
+                    　　var rtLen = ltLen;
+                    　　var rtX = x + rtLen;
+                    　　var rtY = ltY;
+
+                    　　var ctX = x;
+                    　　var ctY = ltY + sLen;
+                       var arrowPath = "M" + x + "," + y + "L" + ltX + "," + ltY + "L" + ctX + "," + ctY + "L" + rtX + "," + rtY + "L" + x + "," + y + "Z";
+                    　　var arrow = paper.path(arrowPath).attr({ stroke: "#0096DD", fill: "#0096DD" });
+                    　　arrow.rotate(deltaAngle, x, y);
+                    　　return arrow;
+                    };
+                    
+                    var paper = Raphael(x, y,width,height);
+                    if(this.checked){
+                    }else{
+                        $(paper.canvas).hide()
+                    }
+
+                    line(paper,offset1.x-x,offset1.y-y,offset2.x-x,offset2.y-y)
+                    function getAngle(x1, y1, x2, y2) {
+                        // 直角的边长
+                        var x = Math.abs(x1 - x2);
+                        var y = Math.abs(y1 - y2);
+                        // 斜边长
+                        var z = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+                        // 余弦
+                        var cos = y / z;
+                        // 弧度
+                        var radina = Math.acos(cos);
+                        // 角度
+                        var angle =  180 / (Math.PI / radina);
+                        return angle;
+                    }
+                    var angle = getAngle(offset1.x-x,offset1.y-y,offset2.x-x,offset2.y-y);
+                    if((offset1.x-x)<(offset2.x-x)){
+                        if((offset1.y-y)<(offset2.y-y)){
+                           
+                            angle=360-angle;
+                        }else{
+                            angle=angle+180;
+                        }
+                    }else{
+                        if((offset1.y-y)>=(offset2.y-y)){
+                             
+                            angle=180-angle;
+                        }else{
+                            
+                            angle=angle;
+                        }
+                    }
+                    
+                    DrawArrow(paper, Math.abs((offset2.x-offset1.x)/2), Math.abs((offset2.y-offset1.y)/2), 10, (angle), 50, 1)
+                    this.papers.push(paper)
+                    
+                   
+                    
+                }
+            }
+        },
+        ohtml:function(node){
+            alert('功能暂未开发！')
+        },
+        delPage:function(node){
+            
+            $(node.parentNode).remove();
+        },
+        noRegion:function(node){
+            console.log(node)
+            
+            if($(this.opt.noRegionSelecter,node).length>0){
+                $(this.opt.noRegionSelecter,node).remove();
+            }
+            if($(this.opt.orderRegionSelecter,node).length>0){
+                $(this.opt.orderRegionSelecter,node).remove();
+            }
+            if($(this.opt.isRegionSelecter,node).length>0){
+               
+            }else{
+                node.appendChild($(this.opt.templates.isRegion)[0]);
+
+            }
+            $(node.parentNode).find(this.opt.regionSelecter).removeClass(this.regionClass);
+            if($(this.opt.addSelecter,node).length>0){
+                $(this.opt.addSelecter,node).remove();
+            }
+        },
+        edit:function(node,flag){
+            console.log(node)
+            node = $(node).find('.box_tools')[0];
+            if(flag){
+                if($(this.opt.editSelecter,node).length>0){
+                    $(this.opt.editSelecter,node).remove();
+                }
+            }else{
+                if($(this.opt.editSelecter,node).length>0){
+                   
+                }else{
+                    console.log(node);
+                    node.appendChild($(this.opt.templates.edit)[0]);
+
+                }
+
+            }
+            
+            
+        },
+         move:function(node,flag){
+            console.log(node,flag)
+             node = $(node).find('.box_tools')[0];
+            if(flag){
+                if($(this.opt.moveSelecter,node).length>0){
+                    $(this.opt.moveSelecter,node).remove();
+                }
+            }else{
+                console.log($(this.opt.moveSelecter,node)[0])
+                if($(this.opt.moveSelecter,node).length>0){
+                   
+                }else{
+
+                    node.appendChild($(this.opt.templates.move)[0]);
+
+                }
+                
+            }
+            
+            
+        },
+        isRegion:function(node){
+            
+            if($(this.opt.isRegionSelecter,node).length>0){
+                $(this.opt.isRegionSelecter,node).remove();
+            }
+            if($(this.opt.noRegionSelecter,node).length>0){
+               
+            }else{
+                node.appendChild($(this.opt.templates.noRegion)[0]);
+
+            }
+            if($(this.opt.orderRegionSelecter,node).length>0){
+               
+            }else{
+                node.appendChild($(this.opt.templates.orderRegion)[0]);
+
+            }
+            var $node = $(node.parentNode);
+            $parent = $node.parent();
+
+            $node.find(this.opt.regionSelecter).addClass(this.regionClass);
+            
+            // $node.find("."+this.opt.regionClass).attr('tabIndex',++this.page)
+
+            $parent.append($node); 
+        },
+        handleChecked:function(){
+            if(this.checked){
+                for(var i=0;i<this.papers.length;i++){
+                    
+                    $(this.papers[i].canvas).show()
+                }
+            }else{
+                for(var i=0;i<this.papers.length;i++){
+
+                    $(this.papers[i].canvas).hide()
+                }
+            }
+        }
+    }
+    if(checkSupport()){
+        
+    }else{
+         window.ins = new PageEdit({
+        
+        });
+        $("#check1").click(function(){
+            
+            if ($(this).is(":checked")) {
+               
+                ins.checked =  1;
+            }else{
+                
+                ins.checked =  0;
+            }
+            ins.handleChecked();
+        });
+        $("#btn1").click(function(){
+            ins.addPage();
+        });
+    }
+
+    
+   
+    
+
+    </script>
+</body>
+</html>

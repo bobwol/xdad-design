@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <script type="text/javascript" src="/ca/html/site/js/jquery-1.8.1.min.js"></script>
+        <script src="TweenMax.min.js"></script>
+        <script src="jquery.gsap.min.js"></script>
+        <link href="css3.css" rel="stylesheet" type="text/css">
+        <script typoe="text/javascript">
+			$(document).ready(function(){
+				var $boxes = $('.box');
+				var continue_click = false;
+
+				function box5(){
+					// TweenLite.set('#box5', {css:{transformPerspective:400}});
+					var t = TweenLite.to('#box5',5, {css:{backgroundColor:"#ff0022",rotationX:180, top:-250,display:"block"}});
+				}
+				function continueAnimation(t){
+					$('#box1').html('1. <span style="font-size:18px;">点击黑色区域内任意位置继续...</span>');
+					if (continue_click){
+
+					}else{
+						$(document).live('click',function(){
+							continue_click = true;
+							$('#box1').html('1');
+							t.to("#box2", 3, {autoAlpha:0});
+							t.to("#box3", 3, {backgroundColor:"#00ffff", color:"red", display:"block", width:"20%", top:"20px", ease:Power2.easeInOut, onComplete:box5});
+							t.to("#box4", 8, {display:"block", bezier: {curviness:1.7, type:"thru", autoRotate:true, values:[{x:105-55, y:199-130}, {x:172-55, y:128-130}, {x:232-55, y:182-130},{x:385-55, y:155-130}, {x:502-55, y:265-130} ]}, ease:Bounce.easeOut, immediateRender:true});
+						});
+					}
+				}
+
+				$('#tp_play_btn').live('click',function(){
+					// tween = TweenMax.to('#box1', 2, {css:{rotationY:360}, ease:Linear.easeNone});
+					var tl = new TimelineLite();
+					tl.to("#box1", 5, {backgroundColor:"#ff0000", display:"block", width:"50%", top:"100px", left:"150px", ease:Power2.easeInOut, onComplete:continueAnimation, onCompleteParams:[tl]});
+				});
+			})
+        </script>
+        <style>
+        .box { font-size: 25pt; font-weight: bold; display:none; }
+        #box1 { background-color: green;}
+        #box2 { background-color: yellow; color: black; display:block;}
+        #box3 { background-color: red; color: white;}
+        #box4 { background-color: gray; color: green;}
+        #box5 { left:200px;background:#00ff00; display:none; color: red; }
+        </style>
+    </head>
+    <body>
+		<div class="demoWrapper hideIE9">
+		  <div class="stage">
+		    <div class="tp_boxWrapper">
+		      <div id="box1" class="box">1</div>
+		    </div>
+		    <div class="tp_boxWrapper">
+		      <div id="box2" class="box">2</div>
+		    </div>
+		    <div class="tp_boxWrapper">
+		      <div id="box3" class="box">3</div>
+		    </div>
+		    <div class="tp_boxWrapper">
+		      <div id="box4" class="box">4</div>
+		    </div>
+		    <div class="tp_boxWrapper" >
+		      <div id="box5" class="box" >5</div>
+		    </div>
+		  </div>
+		  <div class="demoNav">
+		    <div id="tp_slider" class="demoSlider"></div>
+		    <button id="tp_play_btn" class="play">play</button>
+		  </div>
+		</div>
+    </body>
+</html>

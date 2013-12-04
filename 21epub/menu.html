@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset = "utf8"/>
+<title>jQuery有动画淡出的二级折叠菜单代码</title>
+<SCRIPT src="jquery-git.js" type=text/javascript></SCRIPT>
+<script type="text/javascript">
+    (function($){
+      
+        $.fn.extend({
+            dropMenu: function(menuItem, subMenuItem){
+                var root = $(this), // 首先找到菜单（的根节点） 
+                 CLS_HAS_MENU = 'has-sub-menu', isIE = false, // 是否为 IE 浏览器
+                 version = 11; // 浏览器的版本
+                // 没有找到菜单则退出
+                // root.find(':first') 都是得到 document.getElementById('top-navigation')
+                if (!root[0]) {
+                    return false;
+                }
+                
+                // 默认的菜单标签为 li 标签（选择器）
+                if (!menuItem) {
+                    menuItem = 'li';
+                }
+                
+                // 默认的子菜单标签为 ul 标签（选择器）
+                if (!subMenuItem) {
+                    subMenuItem = 'ul';
+                }
+                
+                // $(root).find(menuItem) 找到导航菜单下所有的 li 节点
+                // 通过 each() 遍历添加相应的处理事件 mouseover,mouseout 和 tab 操作的支持
+                $(root).find(menuItem).each(function(i, li){
+
+                    var curMenu = $(li),                // 找到 li 下的第一个 a 标签，添加 tab 键的支持时需要用到的
+                    curLink = curMenu.is('a') ? curMenu : $(curMenu.find('a:first')),                // 找到当前 li 标签下的子菜单
+                    subMenus = $(subMenuItem, curMenu),                // 判断是否有子菜单节点
+                    hasMenu = subMenus.length >= 1,                // 当前 li 标签下的子菜单
+                    curSubMenu = null,                // 当前子菜单的最后一项（a 标签） 
+                    curSubMenuLastItem = null,                // 显示子菜单
+                    show = function(){
+
+                        // show sub menu 发现 IE6 中使用 show() 方无法显示二级以下的子菜单
+                        // 所以很无赖的 hack 了一下
+                        if (!isIE || (isIE && version > 6)) {
+                            curSubMenu.show(200);
+                        }
+                        else {
+                            curSubMenu.css('display', 'block');
+                        }
+                    },                // 隐藏子菜单
+                    hide = function(){
+                        // hide sub menu
+                        if (!isIE || (isIE && version > 6)) {
+                            curSubMenu.hide(150);
+                        }
+                        else {
+                            curSubMenu.css('display', 'none');
+                        }
+                    };
+                    
+                    // 只在有子菜单的时候才做相应的处理
+                    if (hasMenu) {
+                        // 无赖 WordPress 的输出没有 .has-sub-menu
+                        // 只要自己手动加上了
+                        curMenu.addClass(CLS_HAS_MENU);
+                        // 找到当前 li 对应的子菜单，而不是把更次级的子菜单都找到
+                        // 不习惯用 subMenus.get(0)
+                        curSubMenu = $(subMenus[0]);
+                        // 当前子菜单的最后一项（a 标签） 
+                        curSubMenuLastItem = curSubMenu.find('a:last');
+                        
+                        // mouse event
+                        curMenu.hover(show, hide);
+                        // key(tab key) event
+                        // 获得焦点是在当前 li 下的第一个A标签上处理
+                        curLink.focus(show);
+                        // 失去焦点则需要是tab让子菜单的最后一个菜单项都走过了，才关闭子菜单
+                        curSubMenuLastItem.blur(hide);
+                    }
+                });
+            }
+        });
+       
+        
+        
+    })(jQuery);
+    $(function(){
+           console.log($('#menu-top-navigation'))
+        $('#menu-top-navigation').dropMenu();
+    })
+
+</script>
+<style type="text/css"> 
+    ul{
+        padding:0;
+    }
+    #menu-top-navigation {
+        /*
+        margin: 10px auto 600px;
+        width:960px;
+        */
+        
+        width:121px;
+        height:36px;
+    }
+    .menu {
+        margin: 0;
+    }
+    .menu-item {
+        position: relative;
+        z-index: 2;
+        float: left;
+        margin-left: 3px;
+        font-size: 14px;
+        width: 115px;
+        line-height: 36px;
+        list-style-type: none;
+        text-align: center;
+        display: inline;
+    }
+    .menu .has-sub-menu {
+        /*border-top: 3px solid #369;*/
+        border-right: 3px solid #369;
+
+        line-height: 36px;
+    }
+    .sub-menu .has-sub-menu {
+        border-top: none;
+        line-height: 36px;
+        border-right: 3px solid #369;
+        width: 112px;
+    }
+    .menu-item a:link, .menu-item a:visited, .menu-item a:hover {
+        font-weight: bold;
+        display: block;
+        width: 100%;
+        background-color: #3B3939;
+        color: #fff;
+        overflow: hidden;
+    }
+    .menu-item a:hover {
+        color: #009FBC;
+        background-color: #FFF;
+        text-decoration: none;
+    }
+
+    .menu-item .sub-menu {
+        display: none;
+        position: absolute;
+        z-index: 3;
+        /*top: 36px;
+        left: 0;*/
+        top: 0;
+        left: 115px;
+
+        margin: 0;
+        box-shadow: 0 3px 10px #333;
+        width: 115px;
+    }
+
+    .sub-menu li {
+        margin-left: 0;
+    }
+
+    .sub-menu .sub-menu {
+        top: 0;
+        left: 115px;
+        z-index: 4;
+    }
+</style>
+</head>
+<body>
+<ul class="menu" id="menu-top-navigation">
+  
+    <li class="menu-item  has-sub-menu">
+        <a href="http://www.yaohaixiao.com/category/frontend/">Frontend</a>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+                <a href="###">CSS 3</a>
+            </li>
+            <li class="menu-item has-sub-menu">
+                <a href="http://www.yaohaixiao.com/category/frontend/javascript/">JavaScript</a>
+                <ul class="sub-menu">
+                   <li class="menu-item has-sub-menu">
+                        <a href="http://www.yaohaixiao.com/category/frontend/javascript/">JavaScript</a>
+                        <ul class="sub-menu">
+                            <li class="menu-item">
+                                <a href="http://www.yaohaixiao.com/category/frontend/jquery/">jQuery</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="http://www.yaohaixiao.com/category/frontend/yui/">YUI</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="http://www.yaohaixiao.com/category/frontend/yui/">YUI</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="menu-item has-sub-menu">
+                <a href="http://www.yaohaixiao.com/category/frontend/javascript/">JavaScript</a>
+                <ul class="sub-menu">
+                   <li class="menu-item has-sub-menu">
+                        <a href="http://www.yaohaixiao.com/category/frontend/javascript/">JavaScript</a>
+                        <ul class="sub-menu">
+                            <li class="menu-item">
+                                <a href="http://www.yaohaixiao.com/category/frontend/jquery/">jQuery</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="http://www.yaohaixiao.com/category/frontend/yui/">YUI</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="http://www.yaohaixiao.com/category/frontend/yui/">YUI</a>
+                    </li>
+                </ul>
+            </li>
+           
+        </ul>
+    </li>
+   
+  
+</ul>
+</body>
+</html>

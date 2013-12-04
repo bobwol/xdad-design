@@ -1,0 +1,4 @@
+#vakata-dragged.jstree-default ins { background:transparent !important; }
+#vakata-dragged.jstree-default .jstree-ok { background:url("d.png") -2px -53px no-repeat !important; }
+#vakata-dragged.jstree-default .jstree-invalid { background:url("d.png") -18px -53px no-repeat !important; }
+#jstree-marker.jstree-default { background:url("d.png") -41px -57px no-repeat !important; text-indent:-100px; }

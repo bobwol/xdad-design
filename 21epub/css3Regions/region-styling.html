@@ -1,0 +1,115 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CSS Regions - Region styling demo</title>
+    <link rel="stylesheet" type="text/css" href="shared-style.css" media="all" />
+    <meta charset="UTF-8">
+    <style type="text/css">
+    .page {
+        width: 70%;
+        margin: 5% auto;
+        padding: 50px;
+        min-width: 500px;
+    }
+    .wide {
+        width: 100%;
+        height: 10em;
+    }
+    .cell {
+        box-sizing: border-box;
+        width: 55%;
+        height: 250px;
+        margin: 0 1% 20px;
+        padding: 15px;   
+        border: thin solid lightgray;
+        float: left;
+    }
+    .region {
+        -webkit-flow-from: article;
+        -webkit-region-overflow: break;
+        overflow: hidden;
+    }
+
+    article {
+        -webkit-flow-into: article;
+    }
+    article aside {
+        -webkit-flow-into: asides;
+        -webkit-region-break-after: always;
+    }
+    aside p {
+        color: gray;
+        font-style: italic;
+        margin-bottom: 0;
+    }
+    .cell-caption {
+        -webkit-flow-from: asides;
+        width: 40%;
+        height: 250px;
+        float:left;
+        color: gray;
+        font-style: italic;
+    }
+
+    @-webkit-region #region1 {
+        p {
+            color: crimson;
+        }
+    }
+    @-webkit-region #region2 {
+        p {
+            background-color: lightblue;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="wide region"></div>
+        <div class="cell region" id="region1"></div>
+        <div class="cell-caption"></div>
+        <div class="cell region" id="region2"></div>
+        <div class="cell-caption"></div>
+    </div>
+    <article>
+        <h1>Styling content when it flows into a region</h1>
+        <p class="tip">
+            <strong>Tip: </strong>resize the browser window so that content flows through the regions.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <aside>
+            <p>&larr; Text in this region should be <span style="color: crimson;">red</span>. Here's the CSS that achieves that:</p>
+            <pre>@region #region1 {
+    p {
+        color: crimson;
+    }
+}</pre>
+        </aside>
+        <aside>
+            <p>&larr; Text in this region should be on a <span style="color: lightblue;">blue</span> background. Here's the CSS that achieves that:</p>
+            <pre>@region #region2 {
+    p {
+        background-color: lightblue;
+    }
+}</pre>
+        </aside>
+    </article>
+    <script type="text/javascript" src="shared-script.js"></script>
+</body>
+</html>

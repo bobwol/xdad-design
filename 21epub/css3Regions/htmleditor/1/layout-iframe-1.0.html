@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link href="css/layout-iframe-1.0.css" rel="stylesheet" type="text/css" />   
+<link href="css/right-menu-1.1.css" rel="stylesheet" type="text/css" />  
+<link href="css/editor-1.0.css" rel="stylesheet" type="text/css" />   
+<script type="text/javascript" src="js/lib/jquery-1.6.1.js"></script>
+<script type="text/javascript" src="js/modules/dragresize-1.1.js"></script>
+<script type="text/javascript" src="js/modules/layoutiframe-1.0.js"></script>
+<script type="text/javascript" src="js/modules/rightmenu-1.0.js"></script>
+<script type="text/javascript"> 
+
+</script>
+</head>
+
+<body>
+<div id="tools" style="width:100%;height:100px;display:none;">
+<form action=""> 
+	<select>
+	  <option value ="volvo">选择模板</option>
+	  <option value ="volvo">Volvo</option>
+	  <option value ="saab">Saab</option>
+	  <option value="opel">Opel</option>
+	  <option value="audi">Audi</option>
+	</select>
+	<input type="button" value="预览"/>
+	<input type="button" value="获取当前json"/>
+</form>
+
+
+</div>
+
+ <div class="drsElement drsMoveHandle" id="drsbox"  style="visibility: visible; left: -999px; top: -999px; width: 0px; min-height: 50px;height:0px;" state="normalEdit masterPage notSiteSegment"  topenabled="true" rightenabled="true" bottomenabled="true"  leftenabled="true"  toprightenabled="true" bottomrightenabled="true" bottomleftenabled="true" topleftenabled="true" >
+	<!-- <div class="drsElement-minHeightMark " style="bottom: 1px;" > </div> -->
+	<div class="dragresize-tm">
+		<!-- <div class="dragresize-tm-dragHandle pushKnob"> </div> -->
+		<p class="knob "> </p>
+	</div>
+	<div class="dragresize-bm">
+		<p class="knob "> </p>
+		<!-- <p  class="dragresize-bm-pushKnob pushKnob"> </p> -->
+	</div>
+	<div class="dragresize-rm" >
+		<p class="knob "></p>
+	</div>
+	<div  class="dragresize-lm">
+		
+		<p class="knob "> </p>
+	</div>
+	<div  class="dragresize-tl">
+		<p class="knob " > </p>
+	</div>
+	<div  class="dragresize-bl">
+		<p class="knob " > </p>
+	</div>
+	<div class="dragresize-br">
+		<p class="knob " > </p>
+	</div>
+	<div  class="dragresize-tr">
+		<p class="knob " > </p>
+	</div>
+</div>
+<!-- <div id= "dashbox" style="position:absolute;visibility: visible; left: -999px; top: -999px; width: 0px; min-height: 50px;height:0px;border:dashed 2px green;"> </div> -->
+<div name="image" id="dropbox" style="width:100px;height:30px;border:3px dashed red;color:black;size:14px;"><strong>图片拖入此处</strong></div>  
+<div class="kitjs-editor-command" id="kitjs">
+	<button class="editor-command-bold" command="bold">加粗</button>
+	<button class="editor-command-highlight" command="highlight">高亮</button>
+	<button class="editor-command-italic" command="italic">斜体</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+	"results":[
+		{
+			"calssa":"single",
+			"img":"../public/cover_focus_01.jpg",
+			"desc":	"<h4><a href='javascript:void(0);'>《秦琼卖马（兴唐传之一）》</a></h4><ul><li>出版社：四川人民出版社</li><li>出版日期：1981年出版</li><li>页数：54P</li></ul>"
+		},
+		{
+			"calssa":"series",
+			"img":"../public/cover_focus_01.jpg",
+			"desc":	"<h4><a href='javascript:void(0);'>《秦琼卖马（兴唐传之一）》</a></h4><ul><li>出版社：四川人民出版社</li><li>出版日期：1981年出版</li><li>页数：54P</li></ul>"
+		},
+		{
+			"calssa":"single",
+			"img":"../public/cover_focus_01.jpg",
+			"desc":	"<h4><a href='javascript:void(0);'>《秦琼卖马（兴唐传之一）》</a></h4><ul><li>出版社：四川人民出版社</li><li>出版日期：1981年出版</li><li>页数：54P</li></ul>"
+		},
+		{
+			"calssa":"series",
+			"img":"../public/cover_focus_01.jpg",
+			"desc":	"<h4><a href='javascript:void(0);'>《秦琼卖马（兴唐传之一）》</a></h4><ul><li>出版社：四川人民出版社</li><li>出版日期：1981年出版</li><li>页数：54P</li></ul>"
+		}	
+	],
+	"numpages":11
+}

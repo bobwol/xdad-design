@@ -1,0 +1,1185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>Document Viewer</title>
+		<style type="text/css">
+            /*mini reset*/
+            html, body, div, form, fieldset, legend, label { margin: 0; padding: 0; }
+            table { border-collapse: collapse; border-spacing: 0; }
+            th, td { text-align: left; vertical-align: top; }
+            h1, h2, h3, h4, h5, h6, th, td, caption { font-weight:normal; }
+            img { border: 0; }
+
+            /*basics*/
+            html, body { margin:0; padding:0; height:100%; width:100%; overflow:hidden; font-size:12px; font-family:Arial; }
+
+            h1 { font-family: "Trebuchet MS"; font-size: 20px; font-weight: bold;
+                margin: 16px 0; color: #333333; text-shadow: 1px 1px 0 #ccc; }
+            h3 { margin:16px 0 8px; font-weight:bold; font-size:14px; }
+            h4 { margin:12px 0 8px; font-weight:bold; }
+            a { color:#296CCF; }
+            button {
+                font-family:Arial;
+                white-space:nowrap;
+                cursor:pointer; background:#f8f8f8; border:1px solid #ccc; border-radius:3px; margin:0; padding:4px 12px;
+                box-shadow:inset 0px 1px 3px #f5f5f5; color:#296ccf; font-size:12px; font-weight:bold;
+                box-shadow:0 1px 1px #555;
+                text-align:center; text-shadow:0 1px 0px #eee;
+                background:-moz-linear-gradient(0% 100% 90deg, #eaeaea, #fff);
+                background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#eaeaea));
+            }
+            button:hover { border-color:#aaa; }
+            button:active {
+                background:#f8f8f8; color:#296ccf;
+                background: -moz-linear-gradient(0% 100% 90deg, #fff, #eaeaea);
+                background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#eaeaea), to(#fff));
+            }
+
+            /*page borders*/
+            .docviewer .doc .page {
+                outline:none;
+                box-shadow:1px 1px 3px #AAA;
+                border-style: solid; border-width: 1px; border-color: #DDD #BBB #BBB #DDD; top:-1px; left:-1px;
+            }
+        </style>
+		<style type="text/css">
+			/*Layout*/
+			.docviewer { position:absolute; top:36px; bottom:0; left:0; right:0; }
+			.annotation-toolbar {
+				cursor:default; position:absolute; top:0px; left:0; right:0; z-index:10;
+				-moz-border-radius:0 0 6px 6px; -webkit-border-radius:0 0 6px 6px; border-radius:0 0 6px 6px;
+				-webkit-user-select:none; -moz-user-select:none; user-select:none;
+				background:#f7f7f7 url("./images/viewer/annotation-toolbar-bg.gif") repeat-x 0 -58px;
+
+				margin: 0;/* 30px;*/
+				padding: 0 5px 0;
+				height:28px;
+				white-space:nowrap;
+				overflow:hidden;
+				border-bottom: 1px solid #D1D1D1; border-left: 1px solid #D1D1D1; border-right: 1px solid #D1D1D1;
+			}
+
+			/*Annotation button styles*/
+			.annotation-toolbar span.btn { color:#222; margin:3px 4px; cursor:pointer; display:inline-block; float:left; border:1px solid transparent; border-radius:4px; }
+			.annotation-toolbar span.btn:hover,
+			.annotation-toolbar span.btn.selected { background-color:#eee; border-color:#ccc; }
+			.annotation-toolbar span.btn.active { background-color:#eee; border-color:#999; }
+			.annotation-toolbar span.btn.disabled { background-color:transparent; border-color:transparent; cursor:default; opacity: .3; filter: alpha(opacity=30); -ms-filter: "alpha(opacity=30)"; -khtml-opacity: .3; -moz-opacity: .3; }
+
+			.annotation-toolbar .icon-btn { height:20px; width:26px; }
+			.annotation-toolbar .text-btn { height:14px; line-height:14px; font-size:14px;  padding:4px 3px 2px 23px; }
+
+			.annotation-toolbar .split-btn .label { display:inline-block; height:14px; line-height:14px; font-size:14px; padding:4px 3px 2px 25px; vertical-align:top; }
+			.annotation-toolbar .split-btn .arrow {
+				background:url("./images/viewer/sprites.png") no-repeat -9px -155px;
+				display:inline-block; vertical-align:top; height:20px; width:18px; border-left:1px solid transparent;
+			}
+			.annotation-toolbar .split-btn:hover .arrow { border-color:#ccc; }
+			.annotation-toolbar .split-btn.active .arrow { border-color:#aaa; }
+
+			/*Annotation Buttons*/
+			.annotation-btns {}
+
+			.comment-btn[mode=comment-point] .label { background:url("./images/viewer/sprites.png") no-repeat -6px -226px; }
+			.comment-btn[mode=comment-area] .label { background:url("./images/viewer/sprites.png") no-repeat -6px -262px; }
+			.comment-btn[mode=comment-text] .label { background:url("./images/viewer/sprites.png") no-repeat -6px -298px; }
+			.drawing-btn { background:url("./images/viewer/sprites.png") no-repeat -7px -335px; }
+			.highlight-btn { background:url("./images/viewer/sprites.png") no-repeat -8px -372px; }
+			.textbox-btn { background:url("./images/viewer/sprites.png") no-repeat -7px -488px; }
+			.strikeout-btn { background:url("./images/viewer/sprites.png") no-repeat -7px -525px; }
+
+			/*Comment Dropdown*/
+			.dropdown { background:#f5f5f5; border:1px solid silver; left:85px; position:fixed; z-index:10; width:125px; display:none; }
+			.dropdown div { padding:8px 6px 8px 28px; cursor:pointer; }
+			.dropdown div[mode]:hover { background-color:#e5e5e5; }
+			.dropdown div[mode=comment-point] { background:url("./images/viewer/sprites.png") no-repeat -4px -220px; }
+			.dropdown div[mode=comment-area] { background:url("./images/viewer/sprites.png") no-repeat -4px -256px; }
+			.dropdown div[mode=comment-text] { background:url("./images/viewer/sprites.png") no-repeat -4px -292px; }
+
+			/*Annotation Settings*/
+			.settings-container {}
+			.annotation-settings { display:none; float:left;  overflow:visible; position:relative; }
+			.annotation-settings > div { white-space:nowrap; height:28px; line-height:30px;
+				font-size:14px; background:#edf3ff; border:1px solid #dbdbdb; border-style:none solid; margin-left:5px; padding:0 10px; }
+			.annotation-settings div > div { vertical-align:top; float:left; }
+			.annotation-settings .label { display:inline-block; vertical-align:top; padding-right:3px; }
+			.annotation-settings .colors { display:inline-block; padding-top:5px; width:88px; }
+			.annotation-settings .color { display:inline-block; width:16px; height:16px; border:1px solid #888; margin:0 2px; cursor:pointer; }
+			.annotation-settings .color.selected { outline:2px solid #F0D577; *border-color:#F0D577; }
+			.annotation-settings .size { display:inline-block; vertical-align:top; }
+			.annotation-settings .size select { margin:4px 0 4px 8px; }
+			.annotation-settings .fill { display:inline-block; padding:1px 2px 0 8px; }
+			.annotation-settings .fill .color { border-color:transparent; border-radius:3px; padding:2px; position:relative; top:2px; }
+			.annotation-settings .fill div.color:hover { border-color:#aaa; background-color:#eee; }
+			.annotation-settings .fill .color[color] { background:url("./images/viewer/sprites.png") no-repeat -8px -562px; }
+			.annotation-settings .fill .color[color="FFFFFF"] { background:url("./images/viewer/sprites.png") no-repeat -8px -598px; }
+
+			@media
+			only screen and (-webkit-min-device-pixel-ratio: 2),
+			only screen and (   min--moz-device-pixel-ratio: 2), /* weird ff version */
+			only screen and (   -moz-min-device-pixel-ratio: 2),
+			only screen and (     -o-min-device-pixel-ratio: 2/1),
+			only screen and (        min-device-pixel-ratio: 2),
+			only screen and (                min-resolution: 192dpi),
+			only screen and (                min-resolution: 2dppx) {
+				.annotation-toolbar .split-btn .arrow { background:url("./images/viewer/sprites@2x.png") no-repeat -9px -155px; background-size: 108px auto; }
+
+				.comment-btn[mode=comment-point] .label { background:url("./images/viewer/sprites@2x.png") no-repeat -6px -226px; background-size: 108px auto; }
+				.comment-btn[mode=comment-area] .label { background:url("./images/viewer/sprites@2x.png") no-repeat -6px -262px; background-size: 108px auto; }
+				.comment-btn[mode=comment-text] .label { background:url("./images/viewer/sprites@2x.png") no-repeat -6px -298px; background-size: 108px auto; }
+				.drawing-btn { background:url("./images/viewer/sprites@2x.png") no-repeat -7px -335px; background-size: 108px auto; }
+				.highlight-btn { background:url("./images/viewer/sprites@2x.png") no-repeat -8px -372px; background-size: 108px auto; }
+				.textbox-btn { background:url("./images/viewer/sprites@2x.png") no-repeat -7px -488px; background-size: 108px auto; }
+				.strikeout-btn { background:url("./images/viewer/sprites@2x.png") no-repeat -7px -525px; background-size: 108px auto; }
+
+				/*Comment Dropdown*/
+				.dropdown div[mode=comment-point] { background:url("./images/viewer/sprites@2x.png") no-repeat -4px -220px; background-size: 108px auto; }
+				.dropdown div[mode=comment-area] { background:url("./images/viewer/sprites@2x.png") no-repeat -4px -256px; background-size: 108px auto; }
+				.dropdown div[mode=comment-text] { background:url("./images/viewer/sprites@2x.png") no-repeat -4px -292px; background-size: 108px auto; }
+
+				/*Annotation Settings*/
+				.annotation-settings .fill .color[color] { background:url("./images/viewer/sprites@2x.png") no-repeat -8px -562px; background-size: 108px auto; }
+				.annotation-settings .fill .color[color="FFFFFF"] { background:url("./images/viewer/sprites@2x.png") no-repeat -8px -598px; background-size: 108px auto; }
+			}
+		</style>
+		<style type="text/css">
+			.toolbar .btn.narrow .text { font-size:0; padding-left:24px; margin-left:2px; }
+			.annotation-toolbar.narrow .text-btn { font-size:0; }
+			.annotation-toolbar.narrow .split-btn .label { font-size:0; padding-right:0; }
+			.annotation-toolbar.narrow .annotation-settings .label { display:none; }
+
+			/*tipsy*/
+			.tipsy { padding: 5px; font-size: 13px; position: absolute; z-index: 100000; }
+			.tipsy-inner { padding: 4px 8px 5px 8px; background-color: #FFFAB5; color: #333; max-width: 200px; text-align:left; }
+			.tipsy-inner { border-radius: 3px; -moz-border-radius:3px; -webkit-border-radius:3px; }
+			.tipsy-arrow {
+				position: absolute;
+				background: url('data:image/gif;base64,R0lGODlhCQAJAIABAAAAAAAAACH5BAEAAAEALAAAAAAJAAkAAAIRjAOnwIrcDJxvwkplPtchVQAAOw==') no-repeat top left; width: 9px; height: 5px;
+				*background:none; /*data URIs cause warnings in IE7*/ }
+			.tipsy-n    .tipsy-arrow { top: 0; left: 50%; margin-left: -4px; }
+			.tipsy-nw   .tipsy-arrow { top: 0; left: 10px; }
+			.tipsy-ne   .tipsy-arrow { top: 0; right: 10px; }
+			.tipsy-s    .tipsy-arrow { bottom: 0; left: 50%; margin-left: -4px; background-position: bottom left; }
+			.tipsy-sw   .tipsy-arrow { bottom: 0; left: 10px; background-position: bottom left; }
+			.tipsy-se   .tipsy-arrow { bottom: 0; right: 10px; background-position: bottom left; }
+			.tipsy-e    .tipsy-arrow { top: 50%; margin-top: -4px; right: 0; width: 5px; height: 9px; background-position: top right; }
+			.tipsy-w    .tipsy-arrow { top: 50%; margin-top: -4px; left: 0; width: 5px; height: 9px; }
+
+			/*tooltip*/
+			.btn-tooltip.tipsy-inner { padding:8px 8px 7px 8px; background-color:black; color:white; max-width:200px; text-align:center;
+				border-radius: 3px; -moz-border-radius:3px; -webkit-border-radius:3px; }
+		</style>
+		<link rel="stylesheet" type="text/css" href="./css/docviewer.css">
+		<style type="text/css">
+			.docviewer {
+				padding: 0;
+			}
+			.docviewer .doc {
+				margin: 0;
+				padding: 0;
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				overflow: auto;
+				overflow-y: scroll;
+			}
+			.docviewer .doc {
+				font-size: 10px;
+			}
+			.docviewer .font-loader {
+				position: fixed;
+				top: 0;
+				right: 0;
+				height: 1px;
+				overflow: hidden;
+			}
+			.docviewer .font-loader span {
+				display: inline-block;
+				width: 1px;
+				height: 1px;
+			}
+			.docviewer .page-outer {
+				margin: 15px auto;
+				padding: 5px 18px;
+				position: relative;
+			}
+			.docviewer .page {
+				background: white;
+				position: relative;
+				overflow: hidden;
+			}
+			.docviewer .page .loading-msg {
+				display: block;
+				position: absolute;
+				top: 33%;
+				width: 100%;
+				text-align: center;
+				margin-top: -7px;
+				z-index: 10;
+				font-weight: bold;
+				color: #aaa;
+				font-size: 14px;
+			}
+			.docviewer .inc-loading {
+				position: absolute;
+				bottom: 10px;
+				right: 24px;
+				width: 200px;
+				text-align: center;
+				z-index: 10;
+			}
+			.docviewer .inc-loading .bar {
+				height: 4px;
+				width: 180px;
+				margin: 2px auto;
+			}
+			.docviewer .inc-loading .bar .progress {
+				height: 100%;
+				width: 0%;
+				float: left;
+			}
+			.docviewer .conversion-overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				text-align: center;
+				font-family: Arial,Helvetica,sans-serif;
+			}
+			.docviewer .conversion-overlay .msg {
+				position: absolute;
+				top: 45%;
+				left: 50%;
+				height: 20px;
+				width: 200px;
+				margin: -10px 0 0 -100px;
+			}
+			.docviewer .conversion-overlay .msg span {
+				font-size: 16px;
+				padding-left: 24px;
+				background: url("data: image/gif;
+				base64,R0lGODlhEAALAPQAAP///wAAANra2tDQ0Orq6gYGBgAAAC4uLoKCgmBgYLq6uiIiIkpKSoqKimRkZL6+viYmJgQEBE5OTubm5tjY2PT09Dg4ONzc3PLy8ra2tqCgoMrKyu7u7gAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCwAAACwAAAAAEAALAAAFLSAgjmRpnqSgCuLKAq5AEIM4zDVw03ve27ifDgfkEYe04kDIDC5zrtYKRa2WQgAh+QQJCwAAACwAAAAAEAALAAAFJGBhGAVgnqhpHIeRvsDawqns0qeN5+y967tYLyicBYE7EYkYAgAh+QQJCwAAACwAAAAAEAALAAAFNiAgjothLOOIJAkiGgxjpGKiKMkbz7SN6zIawJcDwIK9W/HISxGBzdHTuBNOmcJVCyoUlk7CEAAh+QQJCwAAACwAAAAAEAALAAAFNSAgjqQIRRFUAo3jNGIkSdHqPI8Tz3V55zuaDacDyIQ+YrBH+hWPzJFzOQQaeavWi7oqnVIhACH5BAkLAAAALAAAAAAQAAsAAAUyICCOZGme1rJY5kRRk7hI0mJSVUXJtF3iOl7tltsBZsNfUegjAY3I5sgFY55KqdX1GgIAIfkECQsAAAAsAAAAABAACwAABTcgII5kaZ4kcV2EqLJipmnZhWGXaOOitm2aXQ4g7P2Ct2ER4AMul00kj5g0Al8tADY2y6C+4FIIACH5BAkLAAAALAAAAAAQAAsAAAUvICCOZGme5ERRk6iy7qpyHCVStA3gNa/7txxwlwv2isSacYUc+l4tADQGQ1mvpBAAIfkECQsAAAAsAAAAABAACwAABS8gII5kaZ7kRFGTqLLuqnIcJVK0DeA1r/u3HHCXC/aKxJpxhRz6Xi0ANAZDWa+kEAA7AAAAAAAAAAAA") no-repeat left center;
+				*padding-left: 0;
+				*background: none;
+			}
+			.docviewer .error-overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				text-align: center;
+				font-family: Arial,Helvetica,sans-serif;
+				z-index: 2;
+				background: #fff;
+			}
+			.docviewer .error-overlay .msg {
+				position: absolute;
+				top: 45%;
+				left: 50%;
+				height: 20px;
+				width: 290px;
+				margin: -10px 0 0 -145px;
+			}
+			.docviewer .error-overlay .msg h3 {
+				font-size: 16px;
+				font-weight: bold;
+				margin: 0;
+			}
+			.docviewer .error-overlay .msg p {
+				font-size: 13px;
+				margin: 5px 0;
+			}
+			.doc.mobile {
+				-webkit-overflow-scrolling: touch;
+			}
+			.doc.mobile.no-inertia {
+				-webkit-overflow-scrolling: auto;
+			}
+			.doc.mobile .ln.x span {
+				white-space: nowrap;
+			}
+			.doc.mobile .page.hidden .layer {
+				display: none;
+			}
+			.docviewer .doc {
+				background: #eee;
+			}
+			.docviewer .page {
+				outline: 1px solid #BBB;
+			}
+			.docviewer .inc-loading {
+				text-shadow: 1px 1px 0 #fff;
+			}
+			.docviewer .inc-loading .bar {
+				border: 1px solid #999;
+				background: #fff;
+			}
+			.docviewer .inc-loading .bar .progress {
+				background-color: #ccc;
+			}
+		</style>
+	</head>
+	<body class="">
+	<div class="annotation-toolbar" style="display: ;">
+		<!--Annotation Buttons-->
+		<div class="annotation-btns">
+			<span original-title="Comment" class="btn split-btn comment-btn" mode="comment-point">
+				<span class="label">Comment</span>
+				<span class="arrow"></span>
+			</span>
+			<span original-title="Draw" class="btn text-btn drawing-btn" mode="drawing">Draw</span>
+			<span original-title="Highlight" class="btn text-btn highlight-btn" mode="highlight">Highlight</span>
+			<span original-title="Text" class="btn text-btn textbox-btn" mode="textbox">Text</span>
+			<span original-title="Strikeout" class="btn text-btn strikeout-btn" mode="strikeout">Strikeout</span>
+		</div>
+
+		<!--Annotation Settings-->
+		<div class="settings-container">
+			<div style="display: none;" class="annotation-settings">
+				<div type="highlight comment-text">
+					<div class="label">Highlight tool:</div>
+					<div class="colors">
+						<div class="color" color="FFF688" style="background-color:#FFF688;"></div>
+						<div class="color" color="FCCC6A" style="background-color:#FCCC6A;"></div>
+						<div class="color" color="BFF694" style="background-color:#BFF694;"></div>
+						<div class="color" color="98DDFF" style="background-color:#98DDFF;"></div>
+					</div>
+				</div>
+				<div type="textbox">
+					<div class="label">Text tool:</div>
+					<div class="colors">
+						<div class="color" color="000000" style="background-color:#000000;"></div>
+						<div class="color" color="FF0000" style="background-color:#FF0000;"></div>
+						<div class="color" color="0000FF" style="background-color:#0000FF;"></div>
+						<div class="color" color="00AA00" style="background-color:#00AA00;"></div>
+					</div>
+					<div class="size">
+						<select>
+							<option value="8">8pt</option>
+							<option value="10">10pt</option>
+							<option value="12">12pt</option>
+							<option value="14">14pt</option>
+							<option value="18">18pt</option>
+							<option value="24">24pt</option>
+							<option value="36">36pt</option>
+						</select>
+					</div>
+					<div class="fill">
+						<div class="color" color=""></div>
+						<div class="color" color="FFFFFF" style="display:none;"></div>
+					</div>
+				</div>
+				<div type="drawing">
+					<div class="label">Draw tool:</div>
+					<div class="colors">
+						<div class="color" color="000000" style="background-color:#000000;"></div>
+						<div class="color" color="FF0000" style="background-color:#FF0000;"></div>
+						<div class="color" color="0000FF" style="background-color:#0000FF;"></div>
+						<div class="color" color="00AA00" style="background-color:#00AA00;"></div>
+					</div>
+				</div>
+				<!--<div type="point comment-point">point options</div>-->
+				<!--<div type="area comment-area">area options</div>-->
+				<!--<div type="strikeout">strikeout options</div>-->
+			</div>
+		</div>
+	</div>
+	<!--Dropdown-->
+	<div class="dropdown">
+		<div mode="comment-point">Point Comment</div>
+		<div mode="comment-area">Area Comment</div>
+		<div mode="comment-text">Text Comment</div>
+	</div>
+	<div id="DocViewer">
+
+	</div>
+	<script src="./js/jquery.js"></script>
+	<script src="./js/socket.js"></script>
+	<!--jquery.draggable-->
+	<script src="./js/jquery-ui.js"></script>
+	<!--detect narrow mode-->
+	<script type="text/javascript">
+		(function() {
+			var jAnnoToolbar = $('.annotation-toolbar');
+			var onresize = function() {
+				var width = $(document.body).width();
+				jAnnoToolbar.toggleClass('narrow', width < 765);
+			}
+			$(window).resize(onresize);
+			onresize();
+		})();
+	</script>
+	<script type="text/javascript" src="./js/docviewer.js"></script>
+	<script type="text/javascript">
+		String.prototype.escapeHTML = function() {
+			return $('<div />').text(this+"").html();
+		}
+		String.prototype.unescapeHTML = function() {
+			return $('<div />').html(this+"").text();
+		}
+		 //Doc parameters
+    var _doc = {
+		"status": 3,
+		"socketioHost": "//socket.crocodoc.com:5555/",
+		"objects": [{
+				"name": "Demo User",
+				"created": 1372083902.0,
+				"unsaved": true,
+				"modified": 1372083902.0,
+				"class": "User",
+				"id": 1,
+				"uuid": "f87230db-0869-301f-8f53-db687c799774"
+			}
+		],
+		"pageStatuses": "",
+		"demo": true,
+		"editable": true,
+		"webserviceUrl": "//crocodoc.com/webservice/",
+		"step": "DONE",
+		"session": "Ru4Bd9NdL1wOrphaMFW2NXIMeg5MrDkuwDSocFkLHB8A6rrMjTVIHdzVIALTYsrUlrpzALzIuurd3is4oE1iCLh8QQFvMIZXosfnouoyu3Z8brqVLrBRCu9jFCbX8XB4ork1lbDctm8hAMFOFjeVyJadb6S-ur8pbu_AFsqjTpmi03y7-NBuRQgfh9ifMetgqzU8bh4",
+		"user": "f87230db-0869-301f-8f53-db687c799774",
+		"assetsLocation": "//proxy-v2.crocodoc.com/1wr12zcTmCacDn39sw7IPawNpgNgLShqI63r3f6xKduiXUnl6fsirEJIHAXTUOlBKYG9hBhfUGJOUJnPKdlkeSpcMkUaLpQZxB2jPPYFSWQ4-sbh-UEp5UBUyze5uODr1Z3u9gLCQ7uNASnKl_pyyorp5dMqWSRQFZOJg2VvZrU0xLpNrjPp0DqwsB3j1PDfNcLq_Z6f_0pzDlq5yj8IZbehL_nCHOn7h6OFgEXawmWXKRrfe9Hkt_aH0iqfrv7I/Ru4Bd9NdL1wOrphaMFW2NXIMeg5MrDkuwDSocFkLHB8A6rrMjTVIHdzVIALTYsrUlrpzALzIuurd3is4oE1iCLh8QQFvMIZXosfnouoyu3Z8brqVLrBRCu9jFCbX8XB4ork1lbDctm8hAMFOFjeVyJadb6S-ur8pbu_AFsqjTpmi03y7-NBuRQgfh9ifMetgqzU8bh4/",
+		"metadata": {
+			"numpages": 13,
+			"fonts": [{
+					"last": 13,
+					"id": 497,
+					"first": 1
+				}, {
+					"last": 1,
+					"id": 516,
+					"first": 1
+				}, {
+					"last": 1,
+					"id": 542,
+					"first": 1
+				}, {
+					"last": 1,
+					"id": 635,
+					"first": 1
+				}, {
+					"last": 1,
+					"id": 735,
+					"first": 1
+				}, {
+					"last": 1,
+					"id": 777,
+					"first": 1
+				}, {
+					"last": 1,
+					"id": 857,
+					"first": 1
+				}, {
+					"last": 11,
+					"id": 336,
+					"first": 2
+				}, {
+					"last": 11,
+					"id": 357,
+					"first": 2
+				}, {
+					"last": 11,
+					"id": 402,
+					"first": 2
+				}, {
+					"last": 2,
+					"id": 406,
+					"first": 2
+				}, {
+					"last": 2,
+					"id": 462,
+					"first": 2
+				}, {
+					"last": 6,
+					"id": 491,
+					"first": 2
+				}, {
+					"last": 11,
+					"id": 558,
+					"first": 2
+				}, {
+					"last": 6,
+					"id": 569,
+					"first": 2
+				}, {
+					"last": 11,
+					"id": 608,
+					"first": 2
+				}, {
+					"last": 10,
+					"id": 631,
+					"first": 2
+				}, {
+					"last": 2,
+					"id": 739,
+					"first": 2
+				}, {
+					"last": 11,
+					"id": 788,
+					"first": 2
+				}, {
+					"last": 11,
+					"id": 817,
+					"first": 2
+				}, {
+					"last": 2,
+					"id": 828,
+					"first": 2
+				}, {
+					"last": 3,
+					"id": 340,
+					"first": 3
+				}, {
+					"last": 7,
+					"id": 365,
+					"first": 3
+				}, {
+					"last": 11,
+					"id": 414,
+					"first": 3
+				}, {
+					"last": 11,
+					"id": 424,
+					"first": 3
+				}, {
+					"last": 10,
+					"id": 465,
+					"first": 3
+				}, {
+					"last": 3,
+					"id": 483,
+					"first": 3
+				}, {
+					"last": 7,
+					"id": 512,
+					"first": 3
+				}, {
+					"last": 7,
+					"id": 527,
+					"first": 3
+				}, {
+					"last": 3,
+					"id": 639,
+					"first": 3
+				}, {
+					"last": 6,
+					"id": 646,
+					"first": 3
+				}, {
+					"last": 8,
+					"id": 686,
+					"first": 3
+				}, {
+					"last": 7,
+					"id": 693,
+					"first": 3
+				}, {
+					"last": 3,
+					"id": 724,
+					"first": 3
+				}, {
+					"last": 3,
+					"id": 853,
+					"first": 3
+				}, {
+					"last": 4,
+					"id": 387,
+					"first": 4
+				}, {
+					"last": 4,
+					"id": 487,
+					"first": 4
+				}, {
+					"last": 4,
+					"id": 500,
+					"first": 4
+				}, {
+					"last": 4,
+					"id": 604,
+					"first": 4
+				}, {
+					"last": 6,
+					"id": 361,
+					"first": 5
+				}, {
+					"last": 5,
+					"id": 372,
+					"first": 5
+				}, {
+					"last": 5,
+					"id": 379,
+					"first": 5
+				}, {
+					"last": 5,
+					"id": 383,
+					"first": 5
+				}, {
+					"last": 9,
+					"id": 435,
+					"first": 5
+				}, {
+					"last": 6,
+					"id": 443,
+					"first": 5
+				}, {
+					"last": 5,
+					"id": 504,
+					"first": 5
+				}, {
+					"last": 6,
+					"id": 546,
+					"first": 5
+				}, {
+					"last": 6,
+					"id": 554,
+					"first": 5
+				}, {
+					"last": 6,
+					"id": 565,
+					"first": 5
+				}, {
+					"last": 5,
+					"id": 616,
+					"first": 5
+				}, {
+					"last": 8,
+					"id": 660,
+					"first": 5
+				}, {
+					"last": 5,
+					"id": 675,
+					"first": 5
+				}, {
+					"last": 5,
+					"id": 682,
+					"first": 5
+				}, {
+					"last": 5,
+					"id": 701,
+					"first": 5
+				}, {
+					"last": 5,
+					"id": 750,
+					"first": 5
+				}, {
+					"last": 5,
+					"id": 824,
+					"first": 5
+				}, {
+					"last": 6,
+					"id": 841,
+					"first": 5
+				}, {
+					"last": 6,
+					"id": 849,
+					"first": 5
+				}, {
+					"last": 5,
+					"id": 861,
+					"first": 5
+				}, {
+					"last": 6,
+					"id": 325,
+					"first": 6
+				}, {
+					"last": 6,
+					"id": 332,
+					"first": 6
+				}, {
+					"last": 6,
+					"id": 439,
+					"first": 6
+				}, {
+					"last": 9,
+					"id": 472,
+					"first": 6
+				}, {
+					"last": 6,
+					"id": 479,
+					"first": 6
+				}, {
+					"last": 6,
+					"id": 508,
+					"first": 6
+				}, {
+					"last": 6,
+					"id": 720,
+					"first": 6
+				}, {
+					"last": 6,
+					"id": 784,
+					"first": 6
+				}, {
+					"last": 6,
+					"id": 832,
+					"first": 6
+				}, {
+					"last": 11,
+					"id": 347,
+					"first": 7
+				}, {
+					"last": 7,
+					"id": 391,
+					"first": 7
+				}, {
+					"last": 7,
+					"id": 410,
+					"first": 7
+				}, {
+					"last": 11,
+					"id": 428,
+					"first": 7
+				}, {
+					"last": 7,
+					"id": 456,
+					"first": 7
+				}, {
+					"last": 11,
+					"id": 523,
+					"first": 7
+				}, {
+					"last": 7,
+					"id": 534,
+					"first": 7
+				}, {
+					"last": 7,
+					"id": 576,
+					"first": 7
+				}, {
+					"last": 7,
+					"id": 590,
+					"first": 7
+				}, {
+					"last": 7,
+					"id": 594,
+					"first": 7
+				}, {
+					"last": 7,
+					"id": 612,
+					"first": 7
+				}, {
+					"last": 7,
+					"id": 620,
+					"first": 7
+				}, {
+					"last": 7,
+					"id": 624,
+					"first": 7
+				}, {
+					"last": 7,
+					"id": 664,
+					"first": 7
+				}, {
+					"last": 7,
+					"id": 697,
+					"first": 7
+				}, {
+					"last": 7,
+					"id": 705,
+					"first": 7
+				}, {
+					"last": 7,
+					"id": 713,
+					"first": 7
+				}, {
+					"last": 7,
+					"id": 731,
+					"first": 7
+				}, {
+					"last": 11,
+					"id": 764,
+					"first": 7
+				}, {
+					"last": 11,
+					"id": 806,
+					"first": 7
+				}, {
+					"last": 7,
+					"id": 810,
+					"first": 7
+				}, {
+					"last": 8,
+					"id": 351,
+					"first": 8
+				}, {
+					"last": 8,
+					"id": 450,
+					"first": 8
+				}, {
+					"last": 9,
+					"id": 538,
+					"first": 8
+				}, {
+					"last": 8,
+					"id": 771,
+					"first": 8
+				}, {
+					"last": 9,
+					"id": 795,
+					"first": 8
+				}, {
+					"last": 9,
+					"id": 550,
+					"first": 9
+				}, {
+					"last": 9,
+					"id": 802,
+					"first": 9
+				}, {
+					"last": 9,
+					"id": 838,
+					"first": 9
+				}, {
+					"last": 10,
+					"id": 319,
+					"first": 10
+				}, {
+					"last": 10,
+					"id": 418,
+					"first": 10
+				}, {
+					"last": 10,
+					"id": 580,
+					"first": 10
+				}, {
+					"last": 10,
+					"id": 598,
+					"first": 10
+				}, {
+					"last": 10,
+					"id": 654,
+					"first": 10
+				}, {
+					"last": 11,
+					"id": 743,
+					"first": 11
+				}, {
+					"last": 11,
+					"id": 845,
+					"first": 11
+				}, {
+					"last": 13,
+					"id": 398,
+					"first": 13
+				}, {
+					"last": 13,
+					"id": 586,
+					"first": 13
+				}, {
+					"last": 13,
+					"id": 650,
+					"first": 13
+				}, {
+					"last": 13,
+					"id": 668,
+					"first": 13
+				}, {
+					"last": 13,
+					"id": 709,
+					"first": 13
+				}, {
+					"last": 13,
+					"id": 757,
+					"first": 13
+				}
+			],
+			"pages": {},
+			"defaults": {
+				"width": 522.0,
+				"height": 792.0
+			}
+		}
+	};
+
+    
+
+		//Initial parameters
+		var viewerParams = {
+			"id": "DocViewer",
+			"page": 1,
+			"zoom": "auto"
+		};
+
+		//Initialize core
+		var docViewer = new DocViewer(viewerParams);
+		docViewer.ready(function(e) {
+			console.log('docViewer.ready')
+			//Button events -----------------------------
+			$('.btn').mousedown(function(){
+				var jBtn = $(this);
+				if (!jBtn.hasClass('disabled')) {
+					jBtn.addClass('active');
+				}
+			});
+			$(document.body).mouseup(function(){
+				$('.btn.active').removeClass('active');
+			});
+		})
+	</script>
+	<script type="text/javascript" src="./js/jquery_003.js"></script>
+	<script type="text/javascript">
+		//Viewer state
+		var selected = null; //currently selected annotation
+		var settings = null;
+		var currentMode = null;
+		var prevMode = 'comment-point'; //tracks which mode should be triggered when the annotate button is clicked
+		var focusedMode = null; //TODO: should just use selected.annotation.type instead of this
+		var keepAnnoTBOpen = $.cookie('annotation-toolbar.show') === 'true' || false; //indicates if the annotation toolbar should still be open when no mode is selected or annotation selected
+		var annoTBOpen = false; //helper variable to help with animations
+		var currentSettingsMode = null;
+		//Wait until viewer is ready
+		docViewer.ready(function(e) {
+			keepAnnoTBOpen = true;
+			$.cookie('annotation-toolbar.show', keepAnnoTBOpen, {expires:365});
+			docViewer.mode(prevMode);
+			function updateAnnotationToolbar (dontAnimate) {
+				updateSettings(dontAnimate);
+			}
+			function updateSettings(dontAnimate) {
+				var jSettings = $('.annotation-settings');
+				var jAnnoBtns = $('.annotation-btns');
+				var newSettingsMode = focusedMode || currentMode;
+				jAnnoBtns.find('.selected').removeClass('selected');
+				if (newSettingsMode) {
+					//no settings?
+					if (jSettings.find('div[type~='+newSettingsMode+']').length == 0) {
+						//hide flyout menu
+						if (currentSettingsMode) {
+							dontAnimate ? jSettings.hide() : jSettings.hide('slide', { direction: 'left' }, 200);
+							currentSettingsMode = null;
+						}
+					//new settings?
+					} else if (newSettingsMode != currentSettingsMode) {
+						var menu1 = jSettings.find('div[type~='+currentSettingsMode+']').get(0);
+						var menu2 = jSettings.find('div[type~='+newSettingsMode+']').get(0);
+						//new menu?
+						if(menu1 != menu2) {
+							//update flyout menu
+							jSettings.hide()
+							.find('div[type]').hide().end()
+							.find('div[type~='+newSettingsMode+']').show();
+							dontAnimate ? jSettings.show() : jSettings.show('slide', { direction: 'left' }, 200);
+							currentSettingsMode = newSettingsMode;
+						}
+					}
+
+					//Emphasize an annotation tool button.
+					//comment?
+					if(newSettingsMode == 'area' || newSettingsMode == 'point') {
+						jAnnoBtns.find('.comment-btn').addClass('selected');
+					}
+					//comment text?
+					else if(newSettingsMode == 'highlight' && selected && selected.waiting) {
+						jAnnoBtns.find('.comment-btn').addClass('selected');
+					}
+					//other
+					else {
+						jAnnoBtns.find('.btn[mode='+newSettingsMode+']').addClass('selected');
+					}
+
+				} else {
+					//hide flyout menu
+					if (currentSettingsMode) {
+						dontAnimate ? jSettings.hide() : jSettings.hide('slide', { direction: 'left' }, 200);
+						currentSettingsMode = null;
+					}
+					return;
+				}
+				//update settings
+				jSettings.find('.colors .color.selected').removeClass('selected');
+
+				//selected annotation?
+				if(selected) {
+					//has color?
+					if(selected.color) {
+						jSettings.find('.colors .color:visible').each(function(){
+							if($(this).attr('color') == selected.color) {
+								//select color
+								$(this).addClass('selected');
+							}
+						});
+					}
+					//has size?
+					if(selected.size) {
+						jSettings.find('.size select').val(selected.size);
+					}
+					//has fill?
+					if(focusedMode == 'textbox') {
+						var fill = selected.fill || '';
+						jSettings.find('.fill .color').hide();
+						jSettings.find('.fill .color[color="'+fill+'"]').show();
+					}
+				}
+				//show current defaults
+				else {
+					//set color
+					var color = null;
+					if(newSettingsMode == 'highlight' || newSettingsMode == 'comment-text') {
+						color = settings.highlight.color;
+					}
+					else if(newSettingsMode == 'textbox') {
+						color = settings.textbox.color;
+					}
+					else if(newSettingsMode == 'drawing') {
+						color = settings.drawing.color;
+					}
+					if(color) {
+						jSettings.find('.colors .color:visible').each(function(){
+							if($(this).attr('color') == color) {
+								//select color
+								$(this).addClass('selected');
+							}
+						});
+
+					}
+					if(newSettingsMode == 'textbox') {
+						//set size
+						jSettings.find('.size select').val(settings.textbox.size);
+
+						//set fill
+						var fill = settings.textbox.fill || '';
+						jSettings.find('.fill .color').hide();
+						jSettings.find('.fill .color[color="'+fill+'"]').show();
+					}
+				}
+			}
+			 //Toolbar state ----------------
+			settings = docViewer.settings();
+			updateAnnotationToolbar(true);
+
+			$('.annotation-btns span[mode]').click(function(e){
+				keepAnnoTBOpen = true; //if a user ever clicks on an annotation button, make sure toolbar stays open
+
+				if ($(this).hasClass('selected')) {
+					docViewer.mode(null);
+				} else {
+					docViewer.mode($(this).attr('mode'));
+				}
+			});
+			//Comment button events ---------------------
+			$('.split-btn .arrow').bind('mousedown click mouseup', function(){
+				return false;
+			});
+			$('.split-btn .arrow').mousedown(function(){
+				$(this).parent().addClass('active');
+			});
+			$('.split-btn .arrow').click(function(){
+				var jDropdown = $('.dropdown');
+				if(jDropdown.is(':hidden')) {
+					var offset = $(this).parent().offset();
+					var height = $(this).parent().outerHeight();
+					jDropdown.css({
+						'top': offset.top+height+'px',
+						'left': offset.left+'px'
+					}).show();
+				}
+				else {
+					jDropdown.hide();
+					$('.btn.active').removeClass('active');
+				}
+			});
+			$('.dropdown div[mode]').click(function(){
+				var mode = $(this).attr('mode');
+				docViewer.mode(mode);
+				$('.dropdown').hide();
+			});
+			$('.dropdown').mousedown(function(){
+				return false;
+			});
+			$(document.body).mousedown(function(){
+				if($('.dropdown').is(':visible')) {
+					$('.dropdown').hide();
+					$('.split-btn.active').removeClass('active');
+				}
+			});
+			//Viewer events -----------------------------
+			docViewer.bind({
+				'modechange': function(e) {
+					console.log('modechange')
+					currentMode = e.mode;
+
+					//update toolbar
+					if(currentMode && currentMode.split('-')[0] == 'comment') {
+						//update comment mode
+						$('.comment-btn').attr('mode', currentMode);
+					}
+
+					//if the use clicks an annotation button (e.g. Draw), always keep toolbar open
+					if (currentMode) {
+						keepAnnoTBOpen = true;
+					}
+
+					updateAnnotationToolbar();
+				},
+				'select': function(e) {
+					console.log('select')
+					selected = e.object;
+					focusedMode = selected.type;
+					updateAnnotationToolbar();
+				},
+				'deselect': function(e) {
+					console.log('deselect')
+					selected = null;
+					focusedMode = null;
+
+					//This timeout eliminates some unnecessary animations
+					setTimeout(function(){ updateAnnotationToolbar(); }, 0);
+				}
+			});
+			 //Settings events ---------------------------
+			$('.colors .color').click(function(){
+				//not selected?
+				if(!$(this).is('.selected')) {
+					$('.colors .color.selected').removeClass('selected');
+					$(this).addClass('selected');
+					var color = $(this).attr('color');
+
+					//change color setting
+					var type = (selected ? selected.type : currentMode);
+					if(type == 'highlight' || type == 'comment-text') {
+						docViewer.settings('highlight.color', color);
+					}
+					else if(type == 'textbox') {
+						docViewer.settings('textbox.color', color);
+					}
+					else if(type == 'drawing') {
+						docViewer.settings('drawing.color', color);
+					}
+				}
+			});
+
+			$('.fill .color').click(function(){
+				//change fill color setting
+				$('.fill .color').toggle();
+				var color = $('.fill .color:visible').attr('color') || null;
+				docViewer.settings('textbox.fill', color);
+			});
+
+			$('.size select').change(function(){
+				//set size setting
+				var size = Number($(this).val());
+				docViewer.settings('textbox.size', size);
+			});
+		})
+	</script>
+	<!--tooltips-->
+	<script type="text/javascript">
+		var setupTooltips = function() {
+			$('.btn').tipsy({ className:'btn-tooltip', opacity:0.75, noArrow:false, voffset:1, trigger:'manual' });
+			$('.annotation-toolbar').on({
+				'mouseenter': function() {$(this).tipsy('show'); },
+				'mouseleave mousedown': function() { $(this).tipsy('hide'); }
+			}, '.narrow .btn[original-title], .btn.narrow[original-title]:not(.selected)');
+			$('.btn[original-title] .arrow').mousedown(function(){
+				$(this).closest('.narrow .btn[original-title]').tipsy('hide');
+			});
+		};
+	</script>
+	<script type="text/javascript" src="./js/jquery_002.js" defer="defer" onload="setupTooltips()"></script>
+
+	</body>
+</html>

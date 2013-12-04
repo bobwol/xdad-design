@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../pageedit.css"/>
+<!--[if IE 9]><script src="../shim/shim.js"></script><![endif]-->
+<style type="text/css">
+	body {
+		margin: 4em 2em;
+		font-family: droid sans, sans-serif;
+		font-size: 14px;
+		line-height: 1.25em;
+	}
+	body
+	{
+		 overflow:auto;
+		 text-align:left;
+		 white-space:normal; 
+		 word-break:break-all;
+		/* margin:0px;
+		 padding:0px;*/
+		 background-color:rgb(128,128,128);
+		 font-size:10.5pt;
+	}
+
+	#Content
+	{
+	    text-align:left;
+	    background-color:white;
+	    font-size:10.5pt;
+	}
+
+	h1, h2, h3 {
+		line-height: 1.25em;
+	}
+	.imageblock {
+		text-align: left;
+	}
+	.edit_current .imageblock,
+	.imageblock.dragging {
+		cursor: move;
+	}
+	.imageblock.dragging {
+		position: absolute;
+	}
+	.edit_block .draggingholder {
+		background-color: #eee;
+	}
+	.alignleft {
+		float: left;
+		margin: 0 1em 1em 0;
+	}
+	.aligncenter {
+		display: block;
+		margin: 1em auto;
+	}
+	.alignright {
+		float: right;
+		margin: 0 0 1em 1em;
+	}
+	#output {
+		white-space: pre-wrap;
+	}
+</style>
+</head>
+<body>
+<div style="margin-left: 65%;display:none;" >
+	<button onclick="output();">Display HTML</button>
+	<pre id="output"></pre>
+</div>
+
+<div style="clear: both;"></div>
+<div class="keyboard" style = "display:none;">
+    <section>
+        <div class="row">
+            <div class="key" id="key_accent"><em>~</em><br><strong>`</strong></div>
+            <div class="key" id="key_one"><em>!</em><br><strong>1</strong></div>
+            <div class="key" id="key_two"><em>@</em><br><strong>2</strong></div>
+            <div class="key" id="key_three"><em>#</em><br><strong>3</strong></div>
+            <div class="key" id="key_four"><em>$</em><br><strong>4</strong></div>
+            <div class="key" id="key_five"><em>%</em><br><strong>5</strong></div>
+            <div class="key" id="key_six"><em>^</em><br><strong>6</strong></div>
+            <div class="key" id="key_seven"><em>&amp;</em><br><strong>7</strong></div>
+            <div class="key" id="key_eight"><em>*</em><br><strong>8</strong></div>
+            <div class="key" id="key_nine"><em>(</em><br><strong>9</strong></div>
+            <div class="key" id="key_zero"><em>)</em><br><strong>0</strong></div>
+            <div class="key" id="key_hyphen"><em>_</em><br><strong>-</strong></div>
+            <div class="key" id="key_equals"><em>+</em><br><strong>=</strong></div>
+            <div class="key wide_2" id="key_backspace"><span class="right"><strong>backspace</strong></span></div>
+        </div>
+        <div class="row">
+            <div class="key wide_2" id="key_tab"><span class="left"><strong>tab</strong></span></div>
+            <div class="key single" id="key_q"><strong>Q</strong></div>
+            <div class="key single" id="key_w"><strong>W</strong></div>
+            <div class="key single" id="key_e"><strong>E</strong></div>
+            <div class="key single" id="key_r"><strong>R</strong></div>
+            <div class="key single" id="key_t"><strong>T</strong></div>
+            <div class="key single" id="key_y"><strong>Y</strong></div>
+            <div class="key single" id="key_u"><strong>U</strong></div>
+            <div class="key single" id="key_i"><strong>I</strong></div>
+            <div class="key single" id="key_o"><strong>O</strong></div>
+            <div class="key single" id="key_p"><strong>P</strong></div>
+            <div class="key" id="key_left_bracket"><em>{</em><br><strong>[</strong></div>
+            <div class="key" id="key_right_bracket"><em>}</em><br><strong>]</strong></div>
+            <div class="key" id="key_backslash"><em>|</em><br><strong>\</strong></div>
+        </div>
+        <div class="row">
+            <div class="key wide_3" id="key_caps_lock"><span class="left"><strong>caps lock</strong></span></div>
+            <div class="key single" id="key_a"><strong>A</strong></div>
+            <div class="key single" id="key_s"><strong>S</strong></div>
+            <div class="key single" id="key_d"><strong>D</strong></div>
+            <div class="key single" id="key_f"><strong>F</strong></div>
+            <div class="key single" id="key_g"><strong>G</strong></div>
+            <div class="key single" id="key_h"><strong>H</strong></div>
+            <div class="key single" id="key_j"><strong>J</strong></div>
+            <div class="key single" id="key_k"><strong>K</strong></div>
+            <div class="key single" id="key_l"><strong>L</strong></div>
+            <div class="key" id="key_semicolon"><em>:</em><br><strong>;</strong></div>
+            <div class="key" id="key_apostrophe"><em>"</em><br><strong>'</strong></div>
+            <div class="key wide_3" id="key_enter"><span class="right"><strong>enter</strong></span></div>
+        </div>
+        <div class="row">
+            <div class="key wide_4" id="key_left_shift"><span class="left"><strong>shift</strong></span></div>
+            <div class="key single" id="key_z"><strong>Z</strong></div>
+            <div class="key single" id="key_x"><strong>X</strong></div>
+            <div class="key single" id="key_c"><strong>C</strong></div>
+            <div class="key single" id="key_v"><strong>V</strong></div>
+            <div class="key single" id="key_b"><strong>B</strong></div>
+            <div class="key single" id="key_n"><strong>N</strong></div>
+            <div class="key single" id="key_m"><strong>M</strong></div>
+            <div class="key" id="key_comma"><em>&lt;</em><br><strong>,</strong></div>
+            <div class="key" id="key_period"><em>&gt;</em><br><strong>.</strong></div>
+            <div class="key" id="key_forwardslash"><em>?</em><br><strong>/</strong></div>
+            <div class="key wide_4" id="key_right_shift"><span class="right"><strong>shift</strong></span></div>
+        </div>
+        <div class="row">
+            <div class="key wide_1" id="key_left_ctrl"><span class="left"><strong>ctrl</strong></span></div>
+            <div class="key wide_1" id="key_left_alt"><span class="left"><strong>alt</strong></span></div>
+            <div class="key wide_1" id="key_left_cmd"><span class="left"><strong>cmd</strong></span></div>
+            <div class="key wide_5" id="key_space"></div>
+            <div class="key wide_1" id="key_right_cmd"><span class="right"><strong>cmd</strong></span></div>
+            <div class="key wide_1" id="key_right_alt"><span class="right"><strong>alt</strong></span></div>
+            <div class="key wide_1" id="key_right_ctrl"><span class="right"><strong>ctrl</strong></span></div>
+        </div>
+        <p class="message">224 keyUp</p>
+    </section>
+    <section>
+        <div class="row">
+            <div class="key" id="key_print"><span><strong>print</strong></span></div>
+            <div class="key" id="key_scroll_lock" style="opacity: 0.5;"><span><strong>scroll lock</strong></span></div>
+            <div class="key" id="key_pause_break" style="opacity: 0.5;"><span><strong>pause break</strong></span></div>
+        </div>
+        <div class="row">
+            <div class="key" id="key_insert" style="opacity: 0.5;"><span><strong>insert</strong></span></div>
+            <div class="key" id="key_home"><span><strong>home</strong></span></div>
+            <div class="key" id="key_page_up"><span><strong>page up</strong></span></div>
+        </div>
+        <div class="row">
+            <div class="key" id="key_delete"><span><strong>delete</strong></span></div>
+            <div class="key" id="key_end"><span><strong>end</strong></span></div>
+            <div class="key" id="key_page_down"><span><strong>page down</strong></span></div>
+        </div>
+        <div class="row">
+            <div class="key_filler"></div>
+            <div class="key" id="key_up"><div class="triangle up"></div></div>
+            <div class="key_filler"></div>
+        </div>
+        <div class="row">
+            <div class="key" id="key_left"><div class="triangle left"></div></div>
+            <div class="key" z="" id="key_down"><div class="triangle down"></div></div>
+            <div class="key" id="key_right"><div class="triangle right"></div></div>
+        </div>
+    </section>
+    <section>
+        <div class="row">
+            <div class="key" id="key_num_lock"><span><strong>num lock</strong></span></div>
+            <div class="key single" id="key_divide"><strong>/</strong></div>
+            <div class="key single" id="key_multiply"><strong>*</strong></div>
+            <div class="key single" id="key_subtract"><strong>-</strong></div>
+        </div>
+        <div class="row">
+            <div class="key" id="key_num_7"><strong>7</strong><span>home</span></div>
+            <div class="key" id="key_num_8"><strong>8</strong><br><div class="triangle up"></div></div>
+            <div class="key" id="key_num_9"><strong>9</strong><span>pgup</span></div>
+            <div class="key tall" id="key_add"><strong>+</strong></div>
+        </div>
+        <div class="row">
+            <div class="key" id="key_num_4"><strong>4</strong><br><div class="triangle left"></div></div>
+            <div class="key" id="key_num_5"><strong>5</strong></div>
+            <div class="key" id="key_num_6"><strong>6</strong><br><div class="triangle right"></div></div>
+        </div>
+        <div class="row">
+            <div class="key" id="key_num_1"><strong>1</strong><span>end</span></div>
+            <div class="key" id="key_num_2"><strong>2</strong><br><div class="triangle down"></div></div>
+            <div class="key" id="key_num_3"><strong>3</strong><span>pgdn</span></div>
+            <div class="key tall" id="key_num_enter"><span><strong>enter</strong></span></div>
+        </div>
+        <div class="row">
+            <div class="key wide_6" id="key_num_0"><strong>0</strong><span class="right">insert</span></div>
+            <div class="key" id="key_num_decimal"><strong>.</strong><br>del</div>
+        </div>
+        <p class="note">
+            Some browsers do not distinguish some or all of the numpad keys.
+        </p>
+    </section>
+</div>
+
+<div style="display:none;" id="newsletterContent"></div>
+<script type="text/javascript">
+var epub = {};
+epub.log = console.log;
+</script>
+
+<script src="../jquery-1.9.1.min.js"></script>
+<script src="../temp.js"></script>
+<script src="../debounce.js"></script>
+
+<script src="../extend/extend.js"></script>
+<script src="../dragdrop/dragdrop.js"></script>
+<script src="../serialize.js"></script>
+<script src="../pageedit.js"></script>
+<script src="../editblocks.js"></script>
+
+
+<script src="../keypress-1.0.4.js"></script>
+
+
+<script src="../jquery.columnizer.js"></script>
+
+
+<script>
+
+
+
+function output() {
+	$('#output').textContent = editables[0].editArea.output();
+}
+
+function setCursor(node,container){
+	console.log('setCursor::node',node)
+	console.log('setCursor::container',container)
+	var rg=window.getSelection().getRangeAt(0);
+	rg.setStart(node,0);//获得当前range strat所在节点和偏移
+	container.focus();
+	console.log('setCursor::focus','focus')
+}
+
+function buildNewsletter(pageNo,node,savedRange,cmd){
+	epub.log('buildNewsletter');
+	epub.log('buildNewsletter.running',buildNewsletter.running);
+	epub.log('buildNewsletter(pageNo)',pageNo);
+	if(buildNewsletter.running)return;
+	buildNewsletter.running  = true;
+	epub.log('buildNewsletter.running start');
+	var page = 0;
+	var $obj = $('#newsletterContent');
+	if(pageNo){
+		//var html = "";
+		
+		var pageNo = pageNo.replace('page_','');
+		pageNo = parseInt(pageNo,10);
+		epub.log('buildNewsletter(pageNo) parseInt',pageNo);
+		var editables = $('.editme');
+
+		if(editables.length>1){
+			if(pageNo==editables.length){
+				var $editables = $(editables[pageNo-1]);
+				if($editables.text()=="Edit this text"||!$.trim($editables.text())){
+					$editables.parents('center').remove();
+					cmd = "del-all"
+					callback();
+					return;
+				}
+			}
+		}
+		// return;
+		// for (var i = 0; i < editables.length; i++) {
+		// 	var $editables = $(editables[i]);
+		// 	var id = $editables.parents('center').attr('id').replace('page_','');
+			
+		// 	id = parseInt(id,10);
+			
+		// 	if(id>pageNo)$editables.parents('center').remove();
+
+		// 	if(id==pageNo){
+				
+		// 		// console.log('node', node,index,$editables.children())
+		// 		var range = Edit.getRange();
+		// 		var parentNode = range.commonAncestorContainer.parentNode;
+		// 		var startContainer = range.startContainer;
+		// 		var startOffset = range.startOffset;
+		// 			node = startContainer[startOffset];
+				
+		// 		var index = $editables.children().index(node);
+		// 		console.log("cmd",cmd)
+		// 		console.log('range',range)
+		// 		console.log('node',node)
+
+
+		// 		$editables.children().each(function(i,element){
+		// 			if(cmd=='del'){
+		// 				if(i>index){
+		// 					$obj.append($(element));
+		// 				}
+		// 			}else{
+		// 				if(i>=index){
+		// 					$obj.append($(element));
+		// 				}
+		// 			}
+					
+		// 		})
+		// 	}
+		// 	else $obj.append($editables.children());
+		// }
+		setTimeout(function(){
+			buildNewsletter.running  = false;
+			epub.log('buildNewsletter.running end');
+			
+		},500)
+		// console.log("$obj",$obj)
+		// return
+		
+	}
+	//if(html)$obj.html(html);
+	
+	//console.log('newsletterContent.html',html);
+
+	var template = [
+		'<center style="display:none;">',
+		'    <div  style="font-family:\'\';background-color:#ffffcc;zoom:1;font-size:10.5pt;text-align:left;background-color:white;white-space:normal;word-break:break-all; word-wrap:break-word;width:14.5cm; height:23.97cm; padding-top:96px; padding-right:120px; padding-bottom:96px; padding-left:120px;">',
+		'        <div style="padding:0px;border:dotted 2px #cccccc;width:100%;height:100%;overflow:hidden;">',
+		'		    <div class="${editme}" style="width:100%;max-height:906px;overflow:scroll;overflow-x:hidden;overflow-y:hidden;">',
+		'			</div>',
+		'		</div>',
+		'	</div>',
+		'</center>'
+	].join("");
+
+
+	var $template = $.tmpl(template,{ "editme":"editme" })
+	
+	function callback(){
+
+		var editables = $('.editme');
+		for (var i = 0; i < editables.length; i++) {
+			var editable = editables[i];
+			if(editable.editArea)continue;
+			new Edit.EditArea(editable);
+		}
+
+		
+		
+
+		setTimeout(function(){
+			buildNewsletter.running  = false;
+			epub.log('buildNewsletter.running end');
+
+			// node,savedRange
+			console.log('callback::cmd',cmd)
+			console.log('callback::pageNo',pageNo)
+			if (cmd=="add"){
+				console.log('next',$(node).next())
+				if($(node).next().length){
+					var current = $('#page_'+(pageNo)).find('.editme')[0];
+					setCursor($(node).next()[0],current)
+				}else{
+					var current = $('#page_'+(pageNo+1)).find('.editme')[0];
+					setCursor(current.firstChild,current)
+				}
+				
+
+				
+			}else if(cmd=="del-all"){
+				
+				var current = $('#page_'+(pageNo-1)).find('.editme')[0];
+				setCursor(current.lastChild,current)
+
+			}else if(!cmd){
+				var current = $('#page_1').find('.editme')[0];
+				setCursor($('h1')[2],current)
+			}
+			
+		},500)
+		
+	}
+
+	(function(){
+		var fn = arguments.callee;
+		var len = $obj.contents().length;
+		if(!len){
+			if(callback)callback(page);
+			return;	
+		}
+		page++;
+
+		var $page = $('#page_'+page);
+		if(!$page.length){
+			$page = $template.clone().css("display", "block").attr('id','page_'+page);
+			$("body").append($page);
+			$("body").append($('<br/>'));
+		}
+
+		$obj.columnize({
+			columns: 1,
+			target: "#"+'page_'+page+" .editme",
+			overflow: {
+				height: 906,
+				id: "#"+$obj.attr('id'),
+				doneFunc: function(){
+					console.log("done with page::"+page);
+					fn();
+				}
+			}
+		})	
+	})();
+};
+buildNewsletter.running = false;
+jQuery(function(){
+	var html = [];
+	for(var i=0;i<18;i++){
+		// html.push('<div id="div_'+i+'">')
+		// html.push('<ul id="ul_'+i+'">')
+		// for(var j=0;j<12-i;j++){
+		// 	html.push('<li id="h_'+(i)+"_"+(j+1)+'">'+(i)+"_"+(j+1)+'</li>')
+		// }	
+		// html.push('</ul>')
+		// html.push('</div>')
+		html.push('<h1>'+(i+1)+'</h1>')
+	}
+	$('#newsletterContent').html(html.join("\n"));
+	buildNewsletter()
+	
+})
+
+
+
+</script>
+</body>
+</html>

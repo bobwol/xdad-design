@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Features - Epub360</title>
+<link rel="shortcut icon" href="favicon.ico">
+<script type="text/javascript" src="./site-xdad/js/jquery-1.8.1.min.js"></script>
+<!--[if lt ie 9]>
+<script type="text/javascript" src="./site-xdad/js/html5.js"></script>
+<script type="text/javascript" src="./site-xdad/js/selectivizr.js"></script>
+<![endif]-->
+<!-- bootstrap start -->
+<script type="text/javascript" src="./site-xdad/js/bootstrap.js"></script>
+<link type="text/css" href="./site-xdad/css/bootstrap.min.css" rel="stylesheet" media="all">
+<link type="text/css" href="./site-xdad/css/bootstrap.min.patch.css" rel="stylesheet" media="all">
+<!-- bootstrap end -->
+<script type="text/javascript" src="./site-xdad/js/base.js"></script>
+<link type="text/css" href="./site-xdad/css/style.css" rel="stylesheet" media="all">
+<link type="text/css" href="./site-xdad/css/typo.css" rel="stylesheet" media="all">
+<style type="text/css" media="screen">.uv-icon{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:inline-block;cursor:pointer;position:relative;-webkit-transition:all 300ms;-moz-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms;width:39px;height:39px;position:fixed;z-index:100002;opacity:0.8;-webkit-transition:opacity 100ms;-moz-transition:opacity 100ms;-o-transition:opacity 100ms;transition:opacity 100ms}.uv-icon.uv-bottom-right{bottom:10px;right:12px}.uv-icon.uv-top-right{top:10px;right:12px}.uv-icon.uv-bottom-left{bottom:10px;left:12px}.uv-icon.uv-top-left{top:10px;left:12px}.uv-icon.uv-is-selected{opacity:1}.uv-icon svg{width:39px;height:39px}.uv-popover{font-family:sans-serif;font-weight:100;font-size:13px;color:black;position:fixed;z-index:100001}.uv-popover-content{-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px;border-radius:5px;background:white;position:relative;width:325px;height:325px;-webkit-transition:background 200ms;-moz-transition:background 200ms;-o-transition:background 200ms;transition:background 200ms}.uv-bottom .uv-popover-content{-webkit-box-shadow:rgba(0,0,0,0.3) 0 -10px 60px,rgba(0,0,0,0.1) 0 0 20px;-moz-box-shadow:rgba(0,0,0,0.3) 0 -10px 60px,rgba(0,0,0,0.1) 0 0 20px;box-shadow:rgba(0,0,0,0.3) 0 -10px 60px,rgba(0,0,0,0.1) 0 0 20px}.uv-top .uv-popover-content{-webkit-box-shadow:rgba(0,0,0,0.3) 0 10px 60px,rgba(0,0,0,0.1) 0 0 20px;-moz-box-shadow:rgba(0,0,0,0.3) 0 10px 60px,rgba(0,0,0,0.1) 0 0 20px;box-shadow:rgba(0,0,0,0.3) 0 10px 60px,rgba(0,0,0,0.1) 0 0 20px}.uv-left .uv-popover-content{-webkit-box-shadow:rgba(0,0,0,0.3) 10px 0 60px,rgba(0,0,0,0.1) 0 0 20px;-moz-box-shadow:rgba(0,0,0,0.3) 10px 0 60px,rgba(0,0,0,0.1) 0 0 20px;box-shadow:rgba(0,0,0,0.3) 10px 0 60px,rgba(0,0,0,0.1) 0 0 20px}.uv-right .uv-popover-content{-webkit-box-shadow:rgba(0,0,0,0.3) -10px 0 60px,rgba(0,0,0,0.1) 0 0 20px;-moz-box-shadow:rgba(0,0,0,0.3) -10px 0 60px,rgba(0,0,0,0.1) 0 0 20px;box-shadow:rgba(0,0,0,0.3) -10px 0 60px,rgba(0,0,0,0.1) 0 0 20px}.uv-ie8 .uv-popover-content{position:relative}.uv-ie8 .uv-popover-content .uv-popover-content-shadow{display:block;background:black;content:'';position:absolute;left:-15px;top:-15px;width:100%;height:100%;filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius=15,MakeShadow=true,ShadowOpacity=0.30);z-index:-1}.uv-popover-tail{border:8px solid transparent;width:0;z-index:10;position:absolute;-webkit-transition:border-top-color 200ms;-moz-transition:border-top-color 200ms;-o-transition:border-top-color 200ms;transition:border-top-color 200ms}.uv-top .uv-popover-tail{bottom:-20px;border-top:12px solid white}.uv-bottom .uv-popover-tail{top:-20px;border-bottom:12px solid white}.uv-left .uv-popover-tail{right:-20px;border-left:12px solid white}.uv-right .uv-popover-tail{left:-20px;border-right:12px solid white}.uv-popover-loading{background:white;-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px;border-radius:5px;position:absolute;width:100%;height:100%;left:0;top:0}.uv-popover-loading-text{position:absolute;top:50%;margin-top:-0.5em;width:100%;text-align:center}.uv-popover-iframe-container{height:100%}.uv-popover-iframe{-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px;border-radius:5px;overflow:hidden}.uv-is-hidden{display:none}.uv-is-invisible{display:block !important;visibility:hidden !important}.uv-is-transitioning{display:block !important}.uv-no-transition{-moz-transition:none !important;-webkit-transition:none !important;-o-transition:color 0 ease-in !important;transition:none !important}.uv-fade{opacity:1;-webkit-transition:opacity 200ms ease-out;-moz-transition:opacity 200ms ease-out;-o-transition:opacity 200ms ease-out;transition:opacity 200ms ease-out}.uv-fade.uv-is-hidden{opacity:0}.uv-scale-top,.uv-scale-top-left,.uv-scale-top-right,.uv-scale-bottom,.uv-scale-bottom-left,.uv-scale-bottom-right,.uv-scale-right,.uv-scale-right-top,.uv-scale-right-bottom,.uv-scale-left,.uv-scale-left-top,.uv-scale-left-bottom,.uv-slide-top,.uv-slide-bottom,.uv-slide-left,.uv-slide-right{opacity:1;-webkit-transition:all 80ms ease-out;-moz-transition:all 80ms ease-out;-o-transition:all 80ms ease-out;transition:all 80ms ease-out}.uv-scale-top.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateY(-15%);-moz-transform:scale(0.8) translateY(-15%);-ms-transform:scale(0.8) translateY(-15%);-o-transform:scale(0.8) translateY(-15%);transform:scale(0.8) translateY(-15%)}.uv-scale-top-left.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateY(-15%) translateX(-10%);-moz-transform:scale(0.8) translateY(-15%) translateX(-10%);-ms-transform:scale(0.8) translateY(-15%) translateX(-10%);-o-transform:scale(0.8) translateY(-15%) translateX(-10%);transform:scale(0.8) translateY(-15%) translateX(-10%)}.uv-scale-top-right.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateY(-15%) translateX(10%);-moz-transform:scale(0.8) translateY(-15%) translateX(10%);-ms-transform:scale(0.8) translateY(-15%) translateX(10%);-o-transform:scale(0.8) translateY(-15%) translateX(10%);transform:scale(0.8) translateY(-15%) translateX(10%)}.uv-scale-bottom.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateY(15%);-moz-transform:scale(0.8) translateY(15%);-ms-transform:scale(0.8) translateY(15%);-o-transform:scale(0.8) translateY(15%);transform:scale(0.8) translateY(15%)}.uv-scale-bottom-left.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateY(15%) translateX(-10%);-moz-transform:scale(0.8) translateY(15%) translateX(-10%);-ms-transform:scale(0.8) translateY(15%) translateX(-10%);-o-transform:scale(0.8) translateY(15%) translateX(-10%);transform:scale(0.8) translateY(15%) translateX(-10%)}.uv-scale-bottom-right.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateY(15%) translateX(10%);-moz-transform:scale(0.8) translateY(15%) translateX(10%);-ms-transform:scale(0.8) translateY(15%) translateX(10%);-o-transform:scale(0.8) translateY(15%) translateX(10%);transform:scale(0.8) translateY(15%) translateX(10%)}.uv-scale-right.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateX(15%);-moz-transform:scale(0.8) translateX(15%);-ms-transform:scale(0.8) translateX(15%);-o-transform:scale(0.8) translateX(15%);transform:scale(0.8) translateX(15%)}.uv-scale-right-top.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateX(15%) translateY(-10%);-moz-transform:scale(0.8) translateX(15%) translateY(-10%);-ms-transform:scale(0.8) translateX(15%) translateY(-10%);-o-transform:scale(0.8) translateX(15%) translateY(-10%);transform:scale(0.8) translateX(15%) translateY(-10%)}.uv-scale-right-bottom.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateX(15%) translateY(10%);-moz-transform:scale(0.8) translateX(15%) translateY(10%);-ms-transform:scale(0.8) translateX(15%) translateY(10%);-o-transform:scale(0.8) translateX(15%) translateY(10%);transform:scale(0.8) translateX(15%) translateY(10%)}.uv-scale-left.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateX(-15%);-moz-transform:scale(0.8) translateX(-15%);-ms-transform:scale(0.8) translateX(-15%);-o-transform:scale(0.8) translateX(-15%);transform:scale(0.8) translateX(-15%)}.uv-scale-left-top.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateX(-15%) translateY(-10%);-moz-transform:scale(0.8) translateX(-15%) translateY(-10%);-ms-transform:scale(0.8) translateX(-15%) translateY(-10%);-o-transform:scale(0.8) translateX(-15%) translateY(-10%);transform:scale(0.8) translateX(-15%) translateY(-10%)}.uv-scale-left-bottom.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateX(-15%) translateY(10%);-moz-transform:scale(0.8) translateX(-15%) translateY(10%);-ms-transform:scale(0.8) translateX(-15%) translateY(10%);-o-transform:scale(0.8) translateX(-15%) translateY(10%);transform:scale(0.8) translateX(-15%) translateY(10%)}.uv-slide-top.uv-is-hidden{-webkit-transform:translateY(-100%);-moz-transform:translateY(-100%);-ms-transform:translateY(-100%);-o-transform:translateY(-100%);transform:translateY(-100%)}.uv-slide-bottom.uv-is-hidden{-webkit-transform:translateY(100%);-moz-transform:translateY(100%);-ms-transform:translateY(100%);-o-transform:translateY(100%);transform:translateY(100%)}.uv-slide-left.uv-is-hidden{-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-ms-transform:translateX(-100%);-o-transform:translateX(-100%);transform:translateX(-100%)}.uv-slide-right.uv-is-hidden{-webkit-transform:translateX(100%);-moz-transform:translateX(100%);-ms-transform:translateX(100%);-o-transform:translateX(100%);transform:translateX(100%)}
+</style>
+<style type="text/css" media="screen">.uv-icon:hover{opacity:1}</style>
+<style type="text/css" media="print">#uvTab,.uv-tray,.uv-icon,.uv-popover,.uv-bubble{display:none!important}</style>
+</head>
+<body>
+<header>
+  <div class="inner-header">
+    <div class="logo"><a href="index.html">Epub360</a></div>
+  </div>
+</header>
+<div class="features typo">
+  <div class="nocoding" style="position:relative; width:960px; height:178px; border-bottom:1px solid #ccc;">
+    <div class="element richtext" style="position:absolute; top:25px; left:360px; width:300px; height:96px;">
+      <h2 style="height:96px; line-height:96px; padding-left:100px; color:#000; font-family:'DINWeb-Cond'; font-size:36px; font-weight:normal;">No Coding</h2>
+    </div>
+    <div class="element richtext" style="position:absolute; top:121px; left:0; width:100%;">
+      <h3 style="height:60px; font-size:22px; width:100%; text-align:center;">无需编程，我的创意我做主！</h3>
+    </div>
+  </div>
+  <div class="cloud" style="position:relative; width:960px; height:332px; border-bottom:1px solid #ccc;">
+    <div class="element richtext" style="position:absolute; top:25px; left:25px; width:300px; height:96px;">
+      <h2 style="height:96px; line-height:96px; padding-left:110px; color:#000; font-family:'DINWeb-Cond'; font-size:36px; font-weight:normal;">Cloud</h2>
+    </div>
+    <div class="element richtext" style="position:absolute; top:125px; left:15px; width:460px;">
+      <h3 style="height:60px; font-size:22px; line-height:60px; border-radius:8px; background:#59c3fa; color:#fff; text-align:center;">强大的在线编辑器，无需下载应用程序</h3>
+    </div>
+    <div class="element richtext" style="position:absolute; top:210px; left:20px; width:450px;">
+      <p>Epub360采用Html5标准，只要能上网，便可随时随地编辑交互内容，所有操作基于云端，便于实时协作与分享，同时，系统升级自动完成，您无需为系统升级更新应用程式，持续享用不断扩充的最新功能。</p>
+    </div>
+  </div>
+  <div class="multimedia" style="position:relative; width:960px; height:320px; border-bottom:1px solid #ccc;">
+    <div class="element richtext" style="position:absolute; top:25px; left:410px; width:300px; height:96px;">
+      <h2 style="height:96px; line-height:96px; padding-left:110px; color:#000; font-family:'DINWeb-Cond'; font-size:36px; font-weight:normal;">Multimedia</h2>
+    </div>
+    <div class="element richtext" style="position:absolute; top:125px; left:400px; width:520px;">
+      <h3 style="height:60px; font-size:22px; line-height:60px; border-radius:8px; background:#59c3fa; color:#fff; text-align:center;">丰富的多媒体组件支持，支持您的无限创意</h3>
+    </div>
+    <div class="element richtext" style="position:absolute; top:210px; left:405px; width:510px;">
+      <p>支持全面的多媒体组件，富文本、视频、音频、序列帧、循环动画、360旋转等多类型交互素材的使用，您无需将创意打折。</p>
+    </div>
+    <div class="element image" style="position:absolute; top:35px; left:25px; width:323px; height:246px;">  </div>
+  </div>
+  <div class="animation" style="position:relative; width:960px; height:381px; border-bottom:1px solid #ccc;">
+    <div class="element richtext" style="position:absolute; top:25px; left:25px; width:300px; height:96px;">
+      <h2 style="height:96px; line-height:96px; padding-left:110px; color:#000; font-family:'DINWeb-Cond'; font-size:36px; font-weight:normal;">Animation</h2>
+    </div>
+    <div class="element richtext" style="position:absolute; top:125px; left:15px; width:460px;">
+      <h3 style="height:60px; font-size:22px; line-height:60px; border-radius:8px; background:#59c3fa; color:#fff; text-align:center;">完善的交互动画设定，创造无限可能</h3>
+    </div>
+    <div class="element richtext" style="position:absolute; top:210px; left:20px; width:450px;">
+      <p>熟悉的动画设定模型，轻松上手添加各种动画效果。<br>
+        渐隐、渐现、飞入、直线运动、自定义路径运动、放大缩小、旋转……<br>
+        多类型动画组合创造复杂特效。<br>
+        支持触发动画及隐形时间抽：<br>
+        每个动画都可单独控制，通过设定触发条件，实现各类触发式交互功能。<br>
+        通过隐形的时间抽概念，让交互设计变得简单有趣。</p>
+    </div>
+  </div>
+  <div class="multichannel" style="position:relative; width:960px; height:363px; border-bottom:0px solid #ccc;">
+    <div class="element richtext" style="position:absolute; top:45px; left:550px; width:300px; height:96px;">
+      <h2 style="height:96px; line-height:96px; padding-left:110px; color:#000; font-family:'DINWeb-Cond'; font-size:36px; font-weight:normal;">Multichannel</h2>
+    </div>
+    <div class="element richtext" style="position:absolute; top:145px; left:550px; width:400px;">
+      <h3 style="height:60px; font-size:22px; line-height:60px; border-radius:8px; background:#59c3fa; color:#fff; text-align:center;">一次编辑，多平台发布</h3>
+    </div>
+    <div class="element richtext" style="position:absolute; top:230px; left:555px; width:390px;">
+      <p>Epub360采用Html5及原生的ios动画渲染引擎，使您可以一次编辑，同时发布到桌面及ipad终端，告别跨平台开发烦恼，ios端采用原生代码渲染，保证了交互动画的流畅运行。</p>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="inner-footer">
+    <div class="contact-mod">
+      <div class="contact-hd">
+        <h4>CONTACT</h4>
+      </div>
+      <div class="contact-bd clearfix">
+        <ul>
+          <li class="address">上海市静安区延平路121号三和大厦20C.D座</li>
+          <li class="phone">(86)21-62462677</li>
+          <li class="email">jason@21epub.com</li>
+        </ul>
+        <ul>
+          <li>新浪微博：Epub360</li>
+          <li>微信：Epub360</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">Copyright © 2013 Shanghai 21Epub Digital Technology Co.,Ltd. All rights reserved.</div>
+  </div>
+</footer>
+
+
+<div data-html2canvas-ignore="true" class="uv-icon uv-bottom-right" id="test"><svg version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="39px" height="39px" viewBox="0 0 39 39" enable-background="new 0 0 39 39" xml:space="preserve">
+<g>
+	<path class="uv-bubble-background" fill="rgba(46, 49, 51, 0.6)" d="M31.425,34.514c-0.432-0.944-0.579-2.007-0.591-2.999c4.264-3.133,7.008-7.969,7.008-13.409
+		C37.842,8.658,29.594,1,19.421,1S1,8.658,1,18.105c0,9.446,7.932,16.79,18.105,16.79c1.845,0,3.94,0.057,5.62-0.412
+		c0.979,1.023,2.243,2.3,2.915,2.791c3.785,2.759,7.571,0,7.571,0S32.687,37.274,31.425,34.514z" style="fill: rgba(46, 49, 51, 0.6);"></path>
+	<g>
+		<g>
+			<path class="uv-bubble-foreground" fill="#FFFFFF" d="M16.943,19.467c0-3.557,4.432-3.978,4.432-6.058c0-0.935-0.723-1.721-2.383-1.721
+				c-1.508,0-2.773,0.725-3.709,1.87l-2.441-2.743c1.598-1.9,4.01-2.924,6.602-2.924c3.891,0,6.271,1.959,6.271,4.765
+				c0,4.4-5.037,4.732-5.037,7.265c0,0.481,0.243,0.994,0.574,1.266l-3.316,0.965C17.303,21.459,16.943,20.522,16.943,19.467z
+				 M16.943,26.19c0-1.326,1.114-2.441,2.44-2.441c1.327,0,2.442,1.115,2.442,2.441c0,1.327-1.115,2.441-2.442,2.441
+				C18.058,28.632,16.943,27.518,16.943,26.19z" style="fill: #ffffff;"></path>
+		</g>
+	</g>
+</g>
+</svg>
+</div>
+
+<script type="text/javascript">
+
+// Include the UserVoice JavaScript SDK (only needed once on a page)
+UserVoice=window.UserVoice||[];
+(function(){var uv=document.createElement('script');
+	uv.type='text/javascript';
+	uv.async=true;uv.src='http://widget.uservoice.com/BncglR1GkY3Q0phOWHuHWw.js';
+	var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+
+//
+// UserVoice Javascript SDK developer documentation:
+// https://www.uservoice.com/o/javascript-sdk
+//
+
+
+// Set colors
+// UserVoice.push(['set', {
+  // target: '#test', // 'none' for toaster popups, #id for a specific element on the page
+  // position: 'top', //
+  // accent_color: '#448dd6',
+  // trigger_color: 'white',
+  // trigger_background_color: 'rgba(46, 49, 51, 0.6)'
+// }]);
+
+// Identify the user and pass traits
+// To enable, replace sample data with actual user traits and uncomment the line
+// UserVoice.push(['identify', {
+  //email:      'john.doe@example.com', // User’s email address
+  //name:       'John Doe', // User’s real name
+  //created_at: 1364406966, // Unix timestamp for the date the user signed up
+  //id:         123, // Optional: Unique id of the user (if set, this should not change)
+  //type:       'Owner', // Optional: segment your users by type
+  //account: {
+  //  id:           123, // Optional: associate multiple users with a single account
+  //  name:         'Acme, Co.', // Account name
+  //  created_at:   1364406966, // Unix timestamp for the date the account was created
+  //  monthly_rate: 9.99, // Decimal; monthly rate of the account
+  //  ltv:          1495.00, // Decimal; lifetime value of the account
+  //  plan:         'Enhanced' // Plan name for the account
+  //}
+// }]);
+
+
+;(function(){
+	var timer = setInterval(function () {
+	    
+	    if(!$(".uv-popover-loading").length){
+
+	    	console.log('等待 loading');
+	        
+	    }else{
+	    	clearInterval(timer);
+            console.log('loading已经加载完毕');
+
+            var uv = $('#uv-1')
+            uv.css({
+				opacity: 0
+			});
+	    	var timer1 = setInterval(function () {
+
+	    		if(!$(".uv-popover-loading").length){
+			    	
+			    	clearInterval(timer1);
+			        console.log('loading消失');
+			        // UserVoice.push(['hide']);
+			        $('#test').trigger('click');
+			        console.log()
+			        uv.find('iframe').find('.icon.close-icon').click(function(){
+			        	$('#test').trigger('click');
+			        })
+			
+					uv.css({
+						opacity: 1
+					});
+					 $('.uv-icon.uv-bottom-right').css({
+						opacity: 1
+					});			 
+					
+
+			    }else{
+			    	console.log('内容在加载中');
+			    }
+			    
+			}, 100);
+	    }
+	    
+	}, 100);
+
+})();
+$('#test').click(function(){
+	var uv = $('#uv-1')
+	if(uv.length){
+		if(uv.hasClass('uv-is-hidden')){
+			uv.removeClass('uv-is-hidden');
+		}else{
+			uv.addClass('uv-is-hidden');
+		}
+	}else{
+		UserVoice.push(['show', {
+		  target: '#test'
+		  ,
+		  mode: 'contact'
+		}]);
+	}
+	
+})
+
+// UserVoice.push(['addTrigger', '#test', { mode: 'contact'}]);
+// UserVoice.push(['show']);
+// UserVoice.push(['show', {
+//   target: '#test'
+//   ,
+//   mode: 'contact'
+// }]);
+
+$('.uv-icon.uv-bottom-right').css({
+	opacity: 0
+});
+$('#test').trigger('click');
+</script>
+<!--script>
+// Add default trigger to the bottom-right corner of the window:
+
+// Or, use your own custom trigger:
+//UserVoice.push(['addTrigger', '#id', { mode: 'contact' }]);
+
+// Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
+UserVoice.push(['autoprompt', {}]);
+UserVoice.push(['show', {}])
+</script>
+<script type="text/javascript">
+
+// Wait for the uservoice JS object to load, fire _autoPopupUserVoice when it is finished.
+if ((typeof window['UserVoice'] == 'undefined')) {
+
+    console.log('start...');
+    var timer = setInterval(function () {
+        console.log('...');
+        ok = false;
+        try { ok = (typeof window['UserVoice'] != 'undefined');} catch (e) {}
+
+        if (ok) {
+
+        	
+            clearInterval(timer);
+            console.log('Done');
+        }
+    }, 100);
+}else{
+	console.log(window.UserVoice)
+	UserVoice.push(['hide', {}])
+}
+</script-->
+</body>
+</html>

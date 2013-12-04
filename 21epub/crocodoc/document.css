@@ -1,0 +1,88 @@
+/*Fundamental document rules (required for text and annotation layers) */
+#Doc { font-size:10px; } /*1em = 10px*/  
+.page { position:relative; overflow:hidden; }
+.layer { position:absolute; top:0; left:0; }
+.layer.text { font-size:0; *zoom:0.0001; } /*hides text until all CSS is loaded. */
+
+/*Webkit Patch: Documents converted between March 19th and March 29th (< 1.3702) used scale3d*/
+.page .layer.text { -webkit-transform:scale(0.1); }
+
+/* Temporary Text Rendering Patch */
+.subpx .layer.text { -moz-transform:none; -webkit-transform:none; font-size:1em;  }
+.no-subpx .layer.text { }
+
+/*Annotations*/
+#Doc.annotating { pointer-events:all; } 
+#Doc.annotating .page { -moz-user-select:none; -webkit-user-select:none; }
+/* Annotation cursors (re-declared for IE in document-ie.css)*/
+.drw_cursor { cursor:url(./drawing_cursor.cur) 1 15, url(./drawing_cursor.cur), crosshair !important; }
+.hl_yellow_cursor { cursor:url(./hl_cursor_yellow.cur) 3 12, url(./hl_cursor_yellow.cur), text !important; }
+.hl_orange_cursor { cursor:url(./hl_cursor_orange.cur) 3 12, url(./hl_cursor_orange.cur), text !important; }
+.hl_green_cursor { cursor:url(./hl_cursor_green.cur) 3 12,url(./hl_cursor_green.cur),text !important; }
+.hl_blue_cursor { cursor:url(./hl_cursor_blue.cur) 3 12,url(./hl_cursor_blue.cur),text !important; }
+.tb_cursor { cursor:url(./textbox_cursor.cur) 9 9,url(./textbox_cursor.cur),crosshair !important; }
+.strikeout_cursor { cursor:url(./strikeout_cursor.cur) 3 7,url(./strikeout_cursor.cur),text !important; }
+.canchor_cursor { cursor:url(./comment_anchor_cursor.cur) 8 15,url(./comment_anchor_cursor.cur),crosshair !important; }
+.carea_cursor { cursor:url(./comment_area_cursor.cur) 9 9,url(./comment_area_cursor.cur),crosshair !important; }
+.ctext_cursor { cursor:url(./comment_text_cursor.cur) 3 14,url(./comment_text_cursor.cur),text !important; }
+.nw_resize_cursor { cursor:url(./nw_resize_cursor.cur) 8 8,url(./nw_resize_cursor.cur),nwse-resize !important; }
+.ne_resize_cursor { cursor:url(./ne_resize_cursor.cur) 8 8,url(./ne_resize_cursor.cur),nesw-resize !important; }
+.drag_cursor_open { cursor:url(./hand_cursor.cur) 8 8,url(./hand_cursor.cur), move !important; }
+.drag_cursor_close { cursor:url(./grabbing_cursor.cur) 8 8,url(./grabbing_cursor.cur), -moz-grabbing !important; }
+
+.layer { overflow:hidden; } /*prevents annotations and comments from overflowing*/
+.layer.highlight { width:100%; height:100%; z-index:9; } /* needs to be between the image and text layers */
+.layer.strikeout { width:100%; height:100%; z-index:11; pointer-events:none; } /* sits at the same level as the anno layer*/
+.layer.anno { z-index: 11; width:100%; height:100%; pointer-events:none; } /*needs to be the top layer */
+.layer.img { z-index: 8; } /* needs to be below the highlight and text layers */
+.layer.text { z-index: 10; overflow:visible; } /* needs to be above the highlight and image layers */
+.layer.commentline { z-index:11; width:100%; height:100%; pointer-events:none; }
+.comment-pane { z-index:12; } /* keeps comments above commentline layer (needed until Chrome SVG bug is fixed */
+
+.annotating .layer.anno { pointer-events: all; }
+.vector { pointer-events: visiblePainted; }
+.boundingbox { position:absolute; display:none; pointer-events:none; border:solid #AAAAAA 1px; z-index:-1; }
+.boundingbox.hovered { border:dashed #AAAAAA 1px; }
+.hlrect { position:absolute; }
+
+.layer.anno .textbox { pointer-events:all; position:absolute;
+    text-shadow:
+        -1px -1px 0 #FFF,
+        1px -1px 0 #FFF,
+        -1px 1px 0 #FFF,
+         1px 1px 0 #FFF;
+}
+.layer.anno .textbox.normal { padding:5px; -moz-user-select:none; -webkit-user-select:none; user-select:none; }
+.layer.anno .textbox.normal.hovered { border: 1px dashed #AAAAAA; padding:4px; } /* we set the hover class manually, so don't use :hover */
+.layer.anno .textbox.focused { border: 1px solid #AAAAAA; padding:4px; }
+
+.layer.anno .textbox-inner { width:100%; min-width:0.25em; min-height:1em; line-height:1em; padding:0; margin:0; border:0; outline:0; }
+.layer.anno .textbox.editmode .textbox-inner { cursor:auto !important; }
+/*.textbox-inner::selection, .textbox-inner *::selection { background:#B4D5FE !important; }*/
+
+.comment { display:none; position:absolute; left:20px; font-size:13px; /*z-index:1; causes submenu to be covered */ }
+.comment .commentbody { pointer-events:all; width:178px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; }
+
+.comment.normal .commentbody { padding:4px; background-color:#FFFCD6; border:solid 1px #E7C054; }
+.comment.active .commentbody { margin: -1px auto auto -1px; padding:4px; background-color:#FFFAB5; border:solid 2px #E5B438; }
+
+.comment .commentmenu { pointer-events:all; position:absolute; right:4px; z-index:1; height:20px; margin-top:-1px; border:solid 1px #E5B438; background-color:#FFEF98; display:none; }
+.comment.active .commentmenu { display:inline-block; }
+.comment .commentmenu .menuitem { display:inline-block; height:100%; color:#3E82DD; padding:3px 3px 0 19px; }
+.comment .commentmenu .menuitem:hover { cursor:pointer; color:#000; }
+.comment .commentmenu .menuitem.reply { background:url(./commentReplyIcon.png) no-repeat 3px 4px; }
+.comment .commentmenu .menuitem.delete { display:none; background:url(./commentDeleteIcon.png) no-repeat 5px 4px; }
+.comment.owner .commentmenu .menuitem.delete { display:inline-block; }
+
+
+.commentreply { cursor:text; }
+
+.commentreply.sub { border-top:solid 1px #f2e2af; margin-top:4px; padding-top:4px; }
+
+.replyauthor { vertical-align:top; color:#707070; }
+.replycontent { display:inline; word-wrap:break-word; } 
+.replycontent p { margin:0; } /*for IE9*/
+
+/*Text Selection (disabled on highlight layer to improve text selection in FF) */
+.layer.highlight { -moz-user-select:-moz-none; -webkit-user-select:none; user-select:none; }
+

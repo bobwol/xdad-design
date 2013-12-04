@@ -1,0 +1,57 @@
+<script type="text/javascript" id="html">
+<ol>
+	<li class=yellow>
+		<h3>{$T.title1}</h3>
+		<p>{$T.p1}</p>
+		<p>{$T.p1_1}</p>
+		
+	</li>
+	<li class=orange>
+		<h3>{$T.title2}</h3>
+		<p>{$T.p2}</p>
+	</li>
+	<li class=red>
+		<h3>{$T.title3}</h3>
+		<p>{$T.p3}</p>
+	</li>
+	<li class=violet>
+		<h3>{$T.title4}</h3>
+		<pre><code data-language="javascript" id="code1"> </code></pre>		
+	</li>
+</ol>
+	
+</script>
+<script type="text/javascript" id="json">
+{
+	title1:'这是标题a',
+	p1:'这是内容a_1',
+	p1_1:'这是内容a_2',
+	title2:'模板',
+	p2:'<ol><li class=red><h3>{$T.title}</h3><p>{$T.p1}</p><pre><code data-language="javascript" id="code1"> </code></pre>',
+	title3:'这是数据',
+	p3:'{title:"这是标题",p:"这是内容"}',
+	title4:'这是脚本'
+}
+</script>
+<script type="text/javascript" id="script">
+	function () {}
+</script>
+<script type="text/javascript" id="code1">
+Rainbow.extend('css', [
+	{
+		'name': 'comment',
+		'pattern': /\/\*[\s\S]*?\*\//gm
+	},
+	{
+		'name': 'constant.hex-color',
+		'pattern': /#([a-f0-9]{3}|[a-f0-9]{6})(?=;|\s)/gi
+	},
+	{
+		'matches': {
+			1: 'constant.numeric',
+			2: 'keyword.unit'
+		},
+		'pattern': /(\d+)(px|cm|s|%)?/g
+	}
+], true);
+</script>

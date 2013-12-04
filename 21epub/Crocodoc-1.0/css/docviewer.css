@@ -1,0 +1,172 @@
+/*layers*/
+.docviewer .layer.highlights  { z-index:2; width:100%; height:100%; }
+.docviewer .layer.text        { z-index:3; }
+.docviewer .layer.strikeouts  { z-index:4; width:100%; height:100%; pointer-events:none; }
+.docviewer .comment-lines     { z-index:5; }
+.docviewer .page-margin       { z-index:6; }
+.docviewer .layer.annotations { z-index:6; width:100%; height:100%; pointer-events:none; }
+.docviewer .annotations div   { pointer-events:auto; }
+.docviewer .annotations svg * { pointer-events:visiblepainted; }
+
+/*IE pointer-events fixes*/
+.no-pointer-events .doc .comment-lines,
+.no-pointer-events .doc .strikeouts,
+.no-pointer-events .doc .annotations { width:0; height:0; overflow:visible; }
+
+/*Safari pointer-events fix*/
+.buggy-pointer-events .doc .layer.text { z-index:7; }
+
+/*cursors*/
+.dragging * { cursor:move !important; }
+.drawing * { cursor:url("../images/cursors/drawing-cursor.cur") 1 15, url("../images/cursors/drawing-cursor.cur"), crosshair !important; }
+
+.resizing-nesw * { cursor:nesw-resize !important; }
+.resizing-nwse * { cursor:nwse-resize !important; }
+
+.docviewer.comment-point-mode .page { cursor:url("../images/cursors/comment-point-cursor.cur") 8 15, url("../images/cursors/comment-point-cursor.cur"), crosshair; }
+.docviewer.comment-area-mode .page { cursor:url("../images/cursors/comment-area-cursor.cur") 9 9, url("../images/cursors/comment-area-cursor.cur"), crosshair; }
+.docviewer.comment-text-mode .page { cursor:url("../images/cursors/comment-text-cursor.cur") 3 14, url("../images/cursors/comment-text-cursor.cur"), crosshair; }
+.docviewer.textbox-mode .page { cursor:url("../images/cursors/textbox-cursor.cur") 9 9, url("../images/cursors/textbox-cursor.cur"), crosshair; }
+.docviewer.strikeout-mode .page { cursor:url("../images/cursors/strikeout-cursor.cur") 3 7, url("../images/cursors/strikeout-cursor.cur"), crosshair; }
+.docviewer.drawing-mode .page { cursor:url("../images/cursors/drawing-cursor.cur") 1 15, url("../images/cursors/drawing-cursor.cur"), crosshair; }
+.docviewer.highlight-mode[color="FFF688"] .page { cursor:url("../images/cursors/hl-cursor-yellow.cur") 3 12, url("../images/cursors/hl-cursor-yellow.cur"), crosshair; }
+.docviewer.highlight-mode[color="FCCC6A"] .page { cursor:url("../images/cursors/hl-cursor-orange.cur") 3 12, url("../images/cursors/hl-cursor-orange.cur"), crosshair; }
+.docviewer.highlight-mode[color="BFF694"] .page { cursor:url("../images/cursors/hl-cursor-green.cur") 3 12, url("../images/cursors/hl-cursor-green.cur"), crosshair; }
+.docviewer.highlight-mode[color="98DDFF"] .page { cursor:url("../images/cursors/hl-cursor-blue.cur") 3 12, url("../images/cursors/hl-cursor-blue.cur"), crosshair; }
+
+.docviewer .point.editable,
+.docviewer .point.editable .area-fg { cursor:pointer; }
+
+.docviewer .point.editable,
+.docviewer .area-fg.editable,
+.docviewer .textbox.editable,
+.docviewer .drawing-hitpath.editable,
+.docviewer .drawing-bboxpath.editable { cursor:move; }
+
+.docviewer .area-fg.incomplete { cursor:url("../images/cursors/comment-area-cursor.cur") 9 9, url("../images/cursors/comment-area-cursor.cur"), crosshair !important; }
+.docviewer .textbox.editable .content { cursor:text; }
+
+.docviewer .resize-handle-0 { cursor:nwse-resize; }
+.docviewer .resize-handle-1 { cursor:nesw-resize; }
+.docviewer .resize-handle-2 { cursor:nwse-resize; }
+.docviewer .resize-handle-3 { cursor:nesw-resize; }
+
+/*context menu*/
+.docviewer .context-menu { position:fixed; background-color:#fff; border:1px solid #ccc; box-shadow:1px 1px 5px #777; z-index:10; }
+.docviewer .context-menu div { cursor:pointer; padding:3px 8px 3px 24px; font-size:12px; line-height:18px; }
+.docviewer .context-menu div:hover { background-color:#eee; }
+
+/*comments*/
+.docviewer .comment-lines { display:none; position:absolute; top:5px; left:18px; bottom:0; right:0; pointer-events:none; }
+.docviewer .page-margin { position:absolute; top:5px; right:0; bottom:0; width:250px; display:none; }
+.docviewer .comment-set { background:#FFFCD6; border:1px solid #E7C054; border-radius:4px; position:absolute; left:10px; width:220px; margin:-8px 0 18px; padding:4px; }
+.docviewer .comment-set.emphasized { background:#FFFAB5; border-width:2px; margin:-9px 0 17px; left:9px; }
+.docviewer .comment-set.editable.hover { z-index:2; } /*IE7*/
+.docviewer .comment-set.editable.hover .menu { display:block; }
+.docviewer .comment-set.editing-child .comments { overflow:visible; } /*prevents clipping bug*/
+.docviewer .comment-set.emphasized .comments { overflow:visible; } /*prevents focus bug*/
+.docviewer .comment-set .menu { display:none; position:absolute; bottom:-26px; right:5px; background:#FFEF98; border:1px solid #E7C054; z-index:2; }
+.docviewer .comment-set .menu span { display:inline-block; color:#3E82DD; font-size:13px; padding:3px 3px 0 19px; height:20px; line-height:20px; cursor:pointer; }
+.docviewer .comment-set .menu span:hover { color:#000; }
+.docviewer .comment-set .menu span.reply { background:url("../images/annotation-sprites.png") no-repeat -10px -34px; }
+.docviewer .comment-set .menu span.delete { display:none; background:url("../images/annotation-sprites.png") no-repeat -10px -8px; }
+.docviewer .comment-set.incomplete .menu span.reply { display:none; }
+.docviewer .comment-set.removable .menu span.delete { display:inline-block; }
+.docviewer .comment-set .comments { overflow:hidden; }
+.docviewer .comment { position:relative; font-size:13px; border-top:1px solid #F2E2AF; margin-top:4px; padding-top:4px; }
+.docviewer .comment.editable { overflow:hidden; margin-bottom:-16px; }
+.docviewer .comment:first-child { border-top:none; margin-top:0; padding-top:0; }
+.docviewer .comment .owner { color:#777; position:absolute; left:0; height:16px; }
+.docviewer .comment .content { display:block; outline:none; border:none; margin:0; padding:0; resize:none; width:100%;
+    background:transparent; font-family:Arial, Helvetica, sans-serif; font-size:13px; overflow:hidden; }
+.docviewer .comment.editable .content { *position:relative; *top:-1px; } /*IE7*/
+.docviewer .show-margins .page-outer { padding-right:260px; }
+.docviewer .show-margins .comment-lines { display:block; }
+.docviewer .show-margins .page-margin { display:block; }
+
+/*highlights*/
+.docviewer .highlight { position:absolute; }
+.docviewer .context-menu .add-comment-btn { background:url("../images/annotation-sprites.png") no-repeat -8px -150px; }
+.docviewer .context-menu .remove-btn { background:url("../images/annotation-sprites.png") no-repeat -8px -62px;  }
+.docviewer .highlight[color="FFF688"].hover,
+.docviewer .highlight[color="FFF688"].emphasize,
+.docviewer .highlight[color="FFF688"].selected { background:#FFD300 !important; }
+
+.docviewer .highlight[color="FCCC6A"].hover,
+.docviewer .highlight[color="FCCC6A"].emphasize,
+.docviewer .highlight[color="FCCC6A"].selected { background:#FFAC2D !important; }
+
+.docviewer .highlight[color="BFF694"].hover,
+.docviewer .highlight[color="BFF694"].emphasize,
+.docviewer .highlight[color="BFF694"].selected { background:#93F000 !important; }
+
+.docviewer .highlight[color="98DDFF"].hover,
+.docviewer .highlight[color="98DDFF"].emphasize,
+.docviewer .highlight[color="98DDFF"].selected { background:#72CFFD !important; }
+
+/*strikeouts*/
+.docviewer .strikeout { position:absolute; background:#f00; }
+.docviewer .strikeout-bg { position:absolute; }
+.docviewer .strikeout-bg.hover, .docviewer .strikeout-bg.selected { background:#000; opacity:0.1;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=10)"; filter:alpha(opacity=10); }
+
+/*textboxes*/
+.docviewer .textbox { border:none; padding:4px; margin-top:-6px; margin-left:-6px; position:absolute; }
+.docviewer .textbox { background:url("about:blank") no-repeat; } /*for clickable transparent backgrounds in IE*/
+.docviewer .textbox.editable:hover { border:1px dashed #ccc; margin-top:-7px; margin-left:-7px; }
+.docviewer .textbox.editable.focus, .docviewer .textbox.editable.selected { border:1px dashed #999; margin-top:-7px; margin-left:-7px; }
+.docviewer .textbox.editable .handle { position:absolute; left:-4px; right:-4px; top:-4px; bottom:-4px; }
+.docviewer .textbox .content {
+    padding:2px; margin:0; border:none; outline:none; background:transparent;
+    min-height:1em; line-height:1em; font-family:Arial,Helvetica; min-width:1px; white-space:nowrap;
+    position:relative; z-index:2; position:static/9; }
+.docviewer .textbox .content p { margin:0; } /*For newlines in IE*/
+.docviewer .textbox .content span { font-size: 1em !important; } /*In Chrome, some editing can lead to the font-size on be cascaded onto inner elements*/
+
+/*drawings*/
+.docviewer .drawing-bbox { position:absolute; display:none; border:1px dashed; }
+.docviewer .drawing-bbox.hover { display:block; border-color:#ccc; }
+.docviewer .drawing-bbox.select { display:block; border-color:#999; }
+.docviewer .complete-drawing-ui { position:absolute; z-index:10; border:1px dotted #888888; min-width:170px; margin:5px 0 0 18px; pointer-events:none; }
+.docviewer .drawing-actions {
+    position:absolute; bottom:-35px; right:0; white-space:nowrap;
+    font-family:Arial; cursor:pointer; margin:0; padding:0px 12px;
+    background:#f8f8f8; border:1px solid #ccc; border-radius:3px;
+    box-shadow:0 1px 1px #555;
+    color:#296ccf; font-size:12px; font-weight:bold;
+    text-align:center; text-shadow:0 1px 0px #eee;
+    background:-moz-linear-gradient(0% 100% 90deg, #eaeaea, #fff);
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#eaeaea));
+    pointer-events:auto;
+}
+.docviewer .drawing-actions a { display:inline-block; padding-left:20px; height:26px; line-height:26px; }
+.docviewer .drawing-actions a:first-child { margin-right:10px; }
+.docviewer .drawing-actions a:hover { color:#000; }
+.docviewer .drawing-actions .complete { background:url("../images/annotation-sprites.png") no-repeat -12px -120px; }
+.docviewer .drawing-actions .cancel { background:url("../images/annotation-sprites.png") no-repeat -12px -90px; }
+
+/*dialog*/
+.overlay { display:none; position:fixed; top:0; left:0; height:100%; width:100%; background:#000; z-index:100; opacity:0.3;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)"; filter:alpha(opacity=30); }
+.confirm-dialog { position:fixed; color:#333; z-index:101; }
+.confirm-dialog .inner { padding:15px; background:#F2F5F7; border:4px solid #ddd; border-radius:3px; box-shadow:0 1px 1px #555; }
+.confirm-dialog .message { font-size:13px; font-weight:bold; padding:0 0 18px; text-align:center; }
+.confirm-dialog .buttons { text-align:center; }
+.confirm-dialog button { margin:0 6px; padding:2px 12px; }
+
+/* retina displays */
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2), /* weird ff version */
+only screen and (   -moz-min-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) {
+    .docviewer .comment-set .menu span.reply { background:url("../images/annotation-sprites@2x.png") no-repeat -10px -34px; background-size: 40px auto; }
+    .docviewer .comment-set .menu span.delete { display:none; background:url("../images/annotation-sprites@2x.png") no-repeat -10px -8px; background-size: 40px auto; }
+    .docviewer .context-menu .add-comment-btn { background:url("../images/annotation-sprites@2x.png") no-repeat -8px -150px; background-size: 40px auto; }
+    .docviewer .context-menu .remove-btn { background:url("../images/annotation-sprites@2x.png") no-repeat -8px -62px; background-size: 40px auto; }
+    .docviewer .drawing-actions .complete { background:url("../images/annotation-sprites@2x.png") no-repeat -12px -120px; background-size: 40px auto; }
+    .docviewer .drawing-actions .cancel { background:url("../images/annotation-sprites@2x.png") no-repeat -12px -90px; background-size: 40px auto; }
+}

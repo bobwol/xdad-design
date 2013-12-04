@@ -1,0 +1,88 @@
+.contextMenu {
+	position: absolute;
+	z-index: 100;
+	border: solid 1px #CCC;
+	background-color: #FFF;
+	padding: 0px;
+	margin: 0px;
+	display: none;
+	/*shadow*/
+	-moz-box-shadow: 1px 1px 5px #777;
+	-webkit-box-shadow: 1px 1px 5px #777;
+	box-shadow: 1px 1px 5px #777;
+}
+.contextMenu li {
+	list-style: none;
+	padding: 3px 8px 3px 24px;
+	margin: 0px;
+}
+.contextMenu li.noimage {
+	padding: 3px 8px 3px 8px;
+}
+.contextMenu li: hover {
+	background-color: #E9E9E9 !important;
+	cursor: pointer;
+}
+.contextMenu li.spacer {
+	margin-bottom: 3px;
+}
+.contextMenu .highlight.addcomment {
+	background: url(./contextmenus/comment_add.png) no-repeat 3px 3px;
+}
+.contextMenu .highlight.delete {
+	background: url(./contextmenus/remove.png) no-repeat 3px 3px;
+}
+.contextMenu .highlight.yellow {
+	background: url(./contextmenus/hl_swatch_yellow.png) no-repeat 3px 3px;
+}
+.contextMenu .highlight.orange {
+	background: url(./contextmenus/hl_swatch_orange.png) no-repeat 3px 3px;
+}
+.contextMenu .highlight.green {
+	background: url(./contextmenus/hl_swatch_green.png) no-repeat 3px 3px;
+}
+.contextMenu .highlight.blue {
+	background: url(./contextmenus/hl_swatch_blue.png) no-repeat 3px 3px;
+}
+.contextMenu .strikeout.addreplacement {
+	background: url(./contextmenus/comment_add.png) no-repeat 3px 3px;
+}
+.contextMenu .strikeout.delete {
+	background: url(./contextmenus/remove.png) no-repeat 3px 3px;
+}
+.contextMenu .anchor.delete {
+	background: url(./contextmenus/remove.png) no-repeat 3px 3px;
+}
+.contextMenu .area.delete {
+	background: url(./contextmenus/remove.png) no-repeat 3px 3px;
+}
+.contextMenu .drawing.delete {
+	background: url(./contextmenus/remove.png) no-repeat 3px 3px;
+}
+.contextMenu .drawing.black {
+	background: url(./contextmenus/swatch_black.png) no-repeat 3px 3px;
+}
+.contextMenu .drawing.red {
+	background: url(./contextmenus/swatch_red.png) no-repeat 3px 3px;
+}
+.contextMenu .drawing.blue {
+	background: url(./contextmenus/swatch_blue.png) no-repeat 3px 3px;
+}
+.contextMenu .drawing.green {
+	background: url(./contextmenus/swatch_green.png) no-repeat 3px 3px;
+}
+.contextMenu .textbox.delete {
+	background: url(./contextmenus/remove.png) no-repeat 3px 3px;
+}
+.contextMenu .textbox.black {
+	background: url(./contextmenus/swatch_black.png) no-repeat 3px 3px;
+}
+.contextMenu .textbox.red {
+	background: url(./contextmenus/swatch_red.png) no-repeat 3px 3px;
+}
+.contextMenu .textbox.blue {
+	background: url(./contextmenus/swatch_blue.png) no-repeat 3px 3px;
+}
+.contextMenu .textbox.green {
+	background: url(./contextmenus/swatch_green.png) no-repeat 3px 3px;
+}

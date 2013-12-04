@@ -1,0 +1,33 @@
+#map {
+	BACKGROUND: url(../img/map1.gif) no-repeat left top; FLOAT: left; WIDTH: 620px; HEIGHT: 447px
+}
+#map H1 {
+	DISPLAY: block; FONT-WEIGHT: normal; POSITION: absolute;font-size: 12px;font-family: Verdana,"宋体",Arial,Sans;line-height: 1.8;
+}
+#map .mapl A:link {
+	DISPLAY: block; BACKGROUND: url(../img/maph1.gif) no-repeat; COLOR: #000; TEXT-DECORATION: none
+}
+#map .mapl A:visited {
+	DISPLAY: block; BACKGROUND: url(../img/maph1.gif) no-repeat; COLOR: #000; TEXT-DECORATION: none
+}
+
+#map .mapl A:link {
+	BACKGROUND-POSITION: left 4px; PADDING-LEFT: 20px
+}
+#map .mapl A:visited {
+	BACKGROUND-POSITION: left 4px; PADDING-LEFT: 20px
+}
+
+#map .mapl A:hover {
+	PADDING-RIGHT: 20px; DISPLAY: block; BACKGROUND: url(../img/maph1.gif) no-repeat; COLOR: #ff0000
+}
+#map .mapl A:active {
+	PADDING-RIGHT: 20px; DISPLAY: block; BACKGROUND: url(../img/maph1.gif) no-repeat; COLOR: #ff0000
+}
+
+#map .mapl A:hover {
+	BACKGROUND-POSITION: left bottom; PADDING-LEFT: 20px
+}
+#map .mapl A:active {
+	BACKGROUND-POSITION: left bottom; PADDING-LEFT: 20px
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+	
+</style>
+<script type="text/javascript" src="js/lib/jquery-1.6.1.js"></script>
+<script type="text/javascript"> 
+$(function(){
+	
+})
+</script>
+</head>
+ 
+<body style="width:100%;height:100%;margin:0;padding:0;">
+<div id="form1" class="">
+	sfsdfsd
+</div>
+   
+   
+ 
+</body>
+</html>

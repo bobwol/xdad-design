@@ -1,0 +1,260 @@
+body, img, p, h1, h2, h3, h4, h5, h6, ul, ol {
+	
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+}
+body { /*整个页面的属性设定*/
+	background-color: #CCCCCC; /*背景色*/
+	font-family: Geneva, sans-serif; /*可用字体*/
+	margin: 10px; /*页边空白*/
+	min-width: 1000px;
+	border: solid; /*边缘立体*/
+	border-color: #FFFFFF; /*边缘颜色*/
+	
+}
+h2 { /*设定整个body内的h2的共同属性*/
+	text-align: center; /*文本居中*/
+}
+header { /*整个body页面的header适用*/
+	/*background-color: #F47D31;*/
+	color: #FFFFFF;
+	text-align: center;
+}
+article { /*整个body页面的article适用*/
+	background-color: #eee;
+}
+p { /*整个body页面的p适用*/
+	color: #F36;
+}
+nav,article,aside { /*共同属性*/
+	margin: 10px;
+	padding: 10px;
+	display: block;
+	
+}
+ 
+header#page_header nav { /*header#page_header nav的属性*/
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+ 
+header#page_header nav ul li { /*header#page_header nav ul li属性*/
+	padding: 0;
+	margin: 0 20px 0 0;
+	display: inline;
+}
+ 
+section#posts { /*#posts 的section属性*/
+	display: block;
+	float: right;
+	width: 88%;
+	height: auto;
+	/*background-color: #F69;*/
+}
+ 
+section#posts article footer { /*section#posts article footer属性*/
+	background-color: #039;
+	clear: both;
+	height: 50px;
+	display: block;
+	color: #FFFFFF;
+	text-align: center;
+	padding: 15px;
+}
+ 
+section#posts aside { /*section#posts aside属性*/
+	background-color: #069;
+	display: block;
+	float: right;
+	width: 35%;
+	margin-left: 5%;
+	font-size: 20px;
+	line-height: 40px;
+}
+ 
+section#sidebar { /*section#sidebar属性*/
+	/*background-color: #eee;*/
+	display: block;
+	float: right;
+	width: 10%;
+	height: auto;
+	/*background-color: #699;*/
+	margin-right: 15px;
+}
+ 
+footer#page_footer { /*footer#page_footer属性*/
+	display: block;
+	clear: both;
+	width: 100%;
+	margin-top: 15px;
+	display: block;
+	color: #FFFFFF;
+	text-align: center;
+	/*background-color: #06C;*/
+}
+ #navigationMenuBox #navigationMenu li{
+	list-style:none;
+	height:39px;
+	padding:2px;
+	width:40px;
+}
+
+#navigationMenuBox #navigationMenu span{
+	/* Container properties */
+	width:0;
+	left:38px;
+	padding:0;
+	position:absolute;
+	overflow:hidden;
+
+	/* Text properties */
+	font-family:'Myriad Pro',Arial, Helvetica, sans-serif;
+	font-size:18px;
+	font-weight:bold;
+	letter-spacing:0.6px;
+	white-space:nowrap;
+	line-height:39px;
+	
+	/* CSS3 Transition: */
+	-webkit-transition: 0.25s;
+	/*-o-transition: 0.25s;*/
+	
+	/* Future proofing (these do not work yet): */
+	-moz-transition: 0.25s;
+	transition: 0.25s;
+}
+
+#navigationMenuBox #navigationMenu a{
+	background:url('../img/navigationMenu/navigation.jpg') no-repeat;
+
+	height:39px;
+	width:38px;
+	display:block;
+	position:relative;
+}
+
+/* General hover styles */
+
+#navigationMenuBox #navigationMenu a:hover span{ width:auto; padding:0 20px;overflow:visible; }
+#navigationMenuBox #navigationMenu a:hover{
+	text-decoration:none;
+	
+	/* CSS outer glow with the box-shadow property */
+	-moz-box-shadow:0 0 5px #9ddff5;
+	-webkit-box-shadow:0 0 5px #9ddff5;
+	box-shadow:0 0 5px #9ddff5;
+}
+
+/* Green Button */
+
+#navigationMenuBox #navigationMenu .home {	background-position:0 0;}
+#navigationMenuBox #navigationMenu .home:hover {	background-position:0 -39px;}
+#navigationMenuBox #navigationMenu .home span{
+	background-color:#7da315;
+	color:#3d4f0c;
+	text-shadow:1px 1px 0 #99bf31;
+}
+
+/* Blue Button */
+
+#navigationMenuBox #navigationMenu .about { background-position:-38px 0;}
+#navigationMenuBox #navigationMenu .about:hover { background-position:-38px -39px;}
+#navigationMenuBox#navigationMenu .about span{
+	background-color:#1e8bb4;
+	color:#223a44;
+	text-shadow:1px 1px 0 #44a8d0;
+}
+
+/* Orange Button */
+
+#navigationMenuBox #navigationMenu .services { background-position:-76px 0;}
+#navigationMenuBox #navigationMenu .services:hover { background-position:-76px -39px;}
+#navigationMenuBox #navigationMenu .services span{
+	background-color:#c86c1f;
+	color:#5a3517;
+	text-shadow:1px 1px 0 #d28344;
+}
+
+/* Yellow Button */
+
+#navigationMenuBox #navigationMenu .portfolio { background-position:-114px 0;}
+#navigationMenuBox #navigationMenu .portfolio:hover{ background-position:-114px -39px;}
+#navigationMenuBox #navigationMenu .portfolio span{
+	background-color:#d0a525;
+	color:#604e18;
+	text-shadow:1px 1px 0 #d8b54b;
+}
+
+/* Purple Button */
+
+#navigationMenuBox #navigationMenu .contact { background-position:-152px 0;}
+#navigationMenuBox #navigationMenu .contact:hover { background-position:-152px -39px;}
+#navigationMenuBox #navigationMenu .contact span{
+	background-color:#af1e83;
+	color:#460f35;
+	text-shadow:1px 1px 0 #d244a6;
+}
+
+/* The styles below are only needed for the demo page */
+
+#navigationMenuBox{
+	
+	width:40px;
+}
+.css3Tutorial,.css3Tutorial02,.css3Tutorial03 {
+	padding:0;
+}
+.css3Tutorial ul,.css3Tutorial02 ul,.css3Tutorial03 ul {
+	list-style:none;
+}
+#css3Tutorial02 li{
+
+	padding:50px 50px;
+	font-size:40px;
+	color:#FFF;
+	margin:0 100px 0 0;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+	text-decoration:none;
+}
+li#brand {
+	background-color:#4cbded;
+}
+li#promotion {
+	background-color:#f5940b;
+}
+li#show {
+	background-color:#89df11;
+}
+li#event {
+	background-color:#ce153e;
+}
+.css3Tutorial li,.css3Tutorial02 li,.css3Tutorial03 li {
+	-webkit-transform-style:preserve-3d;
+}
+.css3Tutorial li:hover {
+	-webkit-transform:rotateX(65deg) rotateY(0deg) translateZ(0px) rotate(360deg);
+	-webkit-transition:-webkit-transform 2s;
+}
+.css3Tutorial02 li:hover {
+	-webkit-transform:rotateX(360deg) rotateY(0deg) translateZ(0px);
+	-webkit-transition:-webkit-transform 2s;
+}
+.css3Tutorial03 li:hover {
+	-webkit-transform:rotateX(0deg) rotateY(360deg) translateZ(0px);
+	-webkit-transition:-webkit-transform 2s;
+}
+.clrfix {
+	*height:1%;
+	*display:block;
+}
+.clrfix:after {
+	content:".";
+	display:block;
+	height:0;
+	clear:both;
+	visibility:hidden;
+}

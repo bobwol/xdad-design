@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package version="3.0" xml:lang="en" unique-identifier="uid" prefix="cc: http://creativecommons.org/ns#" xmlns="http://www.idpf.org/2007/opf">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <dc:title id="title">A First Course in Linear Algebra</dc:title>
+        <dc:identifier id="uid">code.google.com.epub-samples.linear-algebra</dc:identifier>
+        <dc:language>en</dc:language>
+        <dc:creator>Robert A. Beezer</dc:creator>
+        <meta property="dcterms:modified">2012-03-05T12:47:00Z</meta>
+        <dc:rights>This work is shared with the public using the GNU Free Documentation License, Version 1.2.</dc:rights>
+        <dc:rights>© 2004 by Robert A. Beezer.</dc:rights>
+        <link rel="cc:license" href="http://www.gnu.org/copyleft/fdl.html"/>
+        <meta property="dcterms:source">http://linear.ups.edu</meta>
+    </metadata>
+    <manifest>
+        <item id="c1" media-type="application/xhtml+xml" href="xhtml/fcla-xml-chapter4.html"/>
+        <item id="c2" media-type="application/xhtml+xml" href="xhtml/fcla-xml-chapter17.html"/>
+       
+    </manifest>
+    <spine>
+        <itemref idref="c1"/>
+        <itemref idref="c2"/>
+    </spine>
+</package>

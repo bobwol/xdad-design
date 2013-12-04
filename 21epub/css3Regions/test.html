@@ -1,0 +1,105 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CSS Regions - Single flow demo</title>
+    <link rel="stylesheet" type="text/css" href="shared-style.css" media="all" />
+    <meta charset="UTF-8">
+    <style type="text/css">
+
+    article{
+        -webkit-flow-into: myArticle;
+    }
+
+    article h1 em{
+        white-space: nowrap;
+        font-style: normal;
+    }
+
+    .region{
+        -webkit-flow-from: myArticle;
+        float: left;
+        height: 600px;
+    }
+
+    .region + .region{
+        border-left: 1px solid lightgray;
+        padding-left: 4%;
+        margin-left: 4%;
+    }
+
+    .page{
+        width: 70%;
+        margin: 5% auto;
+        padding: 50px;
+        min-width: 500px;
+    }
+
+    #region1{
+        width: 52%;
+    }
+
+    #region2{
+        width: 16%;
+    }
+
+    #region3{
+        width: 15%;
+    }
+
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <div id="region1" class="region"></div>
+        <div id="region2" class="region"></div>
+        <div id="region3" class="region"></div>
+    </div>
+
+
+    <article>
+        <h1>Flowing content with <em>CSS Regions</em></h1>
+
+        <section id="introduction">
+            <p class="tip">
+                <strong>Hint:</strong> resize the browser window to see the content reflow.
+            </p>
+            <p>
+                With CSS Regions content can be extracted from its original DOM container into logical structures called named flows. These named flows can be used to associate the content with other containers called regions. 
+            </p>
+<pre>
+article{
+    flow-into: myArticle
+}
+
+#region1, #region2, #region3{
+    flow-from: myArticle
+} 
+</pre>
+            <p class="caption">The content of the <code>article</code> tag is pulled into a named flow called 'myArticle'. This named flow is associated with three regions. The original content of <code>article</code> now shows up in '#region1', '#region2' and '#region3'.</p>
+            <p>Multiple regions can be associated with the same named flow thus creating a region chain. Content flows from one region to another regardless of their positioning. </p>
+        </section>
+
+        <section id="problem">
+            <h2>The Problem with Overflow</h2>
+            <p>
+                When content does not fit in a box CSS has a limited set of options for overflow: it can hide it, it can add scrollbars or it can chose to display it completely with the risk of breaking the design. CSS Regions brings the flexibility of redirecting overflow content into another box.
+            </p>
+        </section>
+
+        <aside>
+            <h2>What's a region</h2>
+            <p>
+                Regions are placeholders for content which is directed into them with named flows. 
+            </p>
+            <p>
+                Regions don't have to be empty DOM elements. Future implementations will highlight the use of pseudo elements and other generated boxes as regions.
+            </p>
+        </aside>
+    </article>
+    
+    <script type="text/javascript" src="shared-script.js"></script>
+
+</body>
+</html>

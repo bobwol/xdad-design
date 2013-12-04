@@ -1,0 +1,613 @@
+
+.page .content .column{ text-align:justify; font-size: 10pt;}
+.page .content .column blockquote{ border-left: 2px solid #999999; background: #DEDEDE; padding: 10px; margin: 4px 20px; clear: both; }
+.page .content .column img{ float: left; margin: 10px; }
+.page .content .column p{ padding: 0 10px; margin: 10px 0; }
+.page .content .column h1{ padding: 0 10px; }
+.page .header{ text-align: center; font-size: 18pt; font-family: helvetica, arial; padding: 20px 0 0; }
+
+.page .footer{ text-align: center; }
+.page .footer span{ position: absolute; bottom: 10px; right: 10px; }
+.page_template{ display: none; }
+.enclosure {border:1px dashed black}	
+
+/*.vertical,.horizontal {width: 99999999px;position: absolute;top:0px;}*/
+/*.horizontal {top:800px;}*/
+
+
+#scroller .horizontal,#scroller .vertical {
+	display:block;
+	float:left;
+	width:100%;
+	height:100%;
+	padding:0;
+	margin:0;
+	text-align:left;
+}
+
+#wrapper {
+	position:absolute;
+	top:32px; 
+	bottom:0; 
+	left:0;
+	right:0;
+	background:#fff;
+	z-index:1;			/* it seems that recent webkit is less picky and works anyway. */
+	overflow:hidden;
+	background:#aaa;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	-o-border-radius:10px;
+	border-radius:10px;
+	background:#e3e3e3;
+}
+#scroller {
+	width:99999999px;
+	height:100%;
+	float:left;
+	padding:0;
+}
+/* Copyright 2012 Mozilla Foundation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+
+
+.toolbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 32px;
+  z-index: 9999;
+  cursor: default;
+}
+
+#toolbarContainer {
+  width: 100%;
+}
+
+#toolbarSidebar {
+  width: 200px;
+  height: 32px;
+  background-image: url(images/texture.png),
+                    -webkit-linear-gradient(hsla(0,0%,30%,.99), hsla(0,0%,25%,.95));
+  background-image: url(images/texture.png),
+                    -moz-linear-gradient(hsla(0,0%,30%,.99), hsla(0,0%,25%,.95));
+  background-image: url(images/texture.png),
+                    -ms-linear-gradient(hsla(0,0%,30%,.99), hsla(0,0%,25%,.95));
+  background-image: url(images/texture.png),
+                    -o-linear-gradient(hsla(0,0%,30%,.99), hsla(0,0%,25%,.95));
+  background-image: url(images/texture.png),
+                    linear-gradient(hsla(0,0%,30%,.99), hsla(0,0%,25%,.95));
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25),
+              
+              inset 0 -1px 0 hsla(0,0%,100%,.05),
+              0 1px 0 hsla(0,0%,0%,.15),
+              0 0 1px hsla(0,0%,0%,.1);
+}
+
+#toolbarViewer, .findbar {
+  position: relative;
+  height: 32px;
+  background-image: url(images/texture.png),
+                    -webkit-linear-gradient(hsla(0,0%,32%,.99), hsla(0,0%,27%,.95));
+  background-image: url(images/texture.png),
+                    -moz-linear-gradient(hsla(0,0%,32%,.99), hsla(0,0%,27%,.95));
+  background-image: url(images/texture.png),
+                    -ms-linear-gradient(hsla(0,0%,32%,.99), hsla(0,0%,27%,.95));
+  background-image: url(images/texture.png),
+                    -o-linear-gradient(hsla(0,0%,32%,.99), hsla(0,0%,27%,.95));
+  background-image: url(images/texture.png),
+                    linear-gradient(hsla(0,0%,32%,.99), hsla(0,0%,27%,.95));
+  box-shadow: inset 1px 0 0 hsla(0,0%,100%,.08),
+              inset 0 1px 1px hsla(0,0%,0%,.15),
+              inset 0 -1px 0 hsla(0,0%,100%,.05),
+              0 1px 0 hsla(0,0%,0%,.15),
+              0 1px 1px hsla(0,0%,0%,.1);
+}
+
+
+
+
+
+html[dir='ltr'] #toolbarViewerLeft {
+  margin-left: -1px;
+}
+
+
+html[dir='ltr'] #toolbarViewerLeft,
+html[dir='rtl'] #toolbarViewerRight {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+html[dir='ltr'] #toolbarViewerRight,
+html[dir='rtl'] #toolbarViewerLeft {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+html[dir='ltr'] #toolbarViewerLeft > *,
+html[dir='ltr'] #toolbarViewerMiddle > *,
+html[dir='ltr'] #toolbarViewerRight > *,
+html[dir='ltr'] .findbar > * {
+  float: left;
+}
+html[dir='rtl'] #toolbarViewerLeft > *,
+html[dir='rtl'] #toolbarViewerMiddle > *,
+html[dir='rtl'] #toolbarViewerRight > *,
+html[dir='rtl'] .findbar > * {
+  float: right;
+}
+
+html[dir='ltr'] .splitToolbarButton {
+  margin: 3px 2px 4px 0;
+  display: inline-block;
+}
+html[dir='rtl'] .splitToolbarButton {
+  margin: 3px 0 4px 2px;
+  display: inline-block;
+}
+html[dir='ltr'] .splitToolbarButton > .toolbarButton {
+  border-radius: 0;
+  float: left;
+}
+html[dir='rtl'] .splitToolbarButton > .toolbarButton {
+  border-radius: 0;
+  float: right;
+}
+
+.toolbarButton {
+  border: 0 none;
+  background-color: rgba(0, 0, 0, 0);
+  width: 32px;
+  height: 25px;
+}
+
+.toolbarButton > span {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.toolbarButton[disabled] {
+  opacity: .5;
+}
+
+.toolbarButton.group {
+  margin-right:0;
+}
+
+.splitToolbarButton.toggled .toolbarButton {
+  margin: 0;
+}
+
+.splitToolbarButton:hover > .toolbarButton,
+.splitToolbarButton:focus > .toolbarButton,
+.splitToolbarButton.toggled > .toolbarButton,
+.toolbarButton.textButton {
+  background-color: hsla(0,0%,0%,.12);
+  background-image: -webkit-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-image: -moz-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-image: -ms-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-image: -o-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-clip: padding-box;
+  border: 1px solid hsla(0,0%,0%,.35);
+  border-color: hsla(0,0%,0%,.32) hsla(0,0%,0%,.38) hsla(0,0%,0%,.42);
+  box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
+              0 0 1px hsla(0,0%,100%,.15) inset,
+              0 1px 0 hsla(0,0%,100%,.05);
+  -webkit-transition-property: background-color, border-color, box-shadow;
+  -webkit-transition-duration: 150ms;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-property: background-color, border-color, box-shadow;
+  -moz-transition-duration: 150ms;
+  -moz-transition-timing-function: ease;
+  -ms-transition-property: background-color, border-color, box-shadow;
+  -ms-transition-duration: 150ms;
+  -ms-transition-timing-function: ease;
+  -o-transition-property: background-color, border-color, box-shadow;
+  -o-transition-duration: 150ms;
+  -o-transition-timing-function: ease;
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: ease;
+
+}
+.splitToolbarButton > .toolbarButton:hover,
+.splitToolbarButton > .toolbarButton:focus,
+.dropdownToolbarButton:hover,
+.toolbarButton.textButton:hover,
+.toolbarButton.textButton:focus {
+  background-color: hsla(0,0%,0%,.2);
+  box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
+              0 0 1px hsla(0,0%,100%,.15) inset,
+              0 0 1px hsla(0,0%,0%,.05);
+  z-index: 199;
+}
+html[dir='ltr'] .splitToolbarButton > .toolbarButton:first-child,
+html[dir='rtl'] .splitToolbarButton > .toolbarButton:last-child {
+  position: relative;
+  margin: 0;
+  margin-right: -1px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-right-color: transparent;
+}
+html[dir='ltr'] .splitToolbarButton > .toolbarButton:last-child,
+html[dir='rtl'] .splitToolbarButton > .toolbarButton:first-child {
+  position: relative;
+  margin: 0;
+  margin-left: -1px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-left-color: transparent;
+}
+.splitToolbarButtonSeparator {
+  padding: 8px 0;
+  width: 1px;
+  background-color: hsla(0,0%,00%,.5);
+  z-index: 99;
+  box-shadow: 0 0 0 1px hsla(0,0%,100%,.08);
+  display: inline-block;
+  margin: 5px 0;
+}
+html[dir='ltr'] .splitToolbarButtonSeparator {
+  float:left;
+}
+html[dir='rtl'] .splitToolbarButtonSeparator {
+  float:right;
+}
+.splitToolbarButton:hover > .splitToolbarButtonSeparator,
+.splitToolbarButton.toggled > .splitToolbarButtonSeparator {
+  padding: 12px 0;
+  margin: 1px 0;
+  box-shadow: 0 0 0 1px hsla(0,0%,100%,.03);
+  -webkit-transition-property: padding;
+  -webkit-transition-duration: 10ms;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-property: padding;
+  -moz-transition-duration: 10ms;
+  -moz-transition-timing-function: ease;
+  -ms-transition-property: padding;
+  -ms-transition-duration: 10ms;
+  -ms-transition-timing-function: ease;
+  -o-transition-property: padding;
+  -o-transition-duration: 10ms;
+  -o-transition-timing-function: ease;
+  transition-property: padding;
+  transition-duration: 10ms;
+  transition-timing-function: ease;
+}
+
+.toolbarButton,
+.dropdownToolbarButton {
+  min-width: 16px;
+  padding: 2px 6px 0;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: hsl(0,0%,95%);
+  font-size: 12px;
+  line-height: 14px;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  /* Opera does not support user-select, use <... unselectable="on"> instead */
+  cursor: default;
+  -webkit-transition-property: background-color, border-color, box-shadow;
+  -webkit-transition-duration: 150ms;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-property: background-color, border-color, box-shadow;
+  -moz-transition-duration: 150ms;
+  -moz-transition-timing-function: ease;
+  -ms-transition-property: background-color, border-color, box-shadow;
+  -ms-transition-duration: 150ms;
+  -ms-transition-timing-function: ease;
+  -o-transition-property: background-color, border-color, box-shadow;
+  -o-transition-duration: 150ms;
+  -o-transition-timing-function: ease;
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: ease;
+}
+
+html[dir='ltr'] .toolbarButton,
+html[dir='ltr'] .dropdownToolbarButton {
+  margin: 3px 2px 4px 0;
+}
+html[dir='rtl'] .toolbarButton,
+html[dir='rtl'] .dropdownToolbarButton {
+  margin: 3px 0 4px 2px;
+}
+
+.toolbarButton:hover,
+.toolbarButton:focus,
+.dropdownToolbarButton {
+  background-color: hsla(0,0%,0%,.12);
+  background-image: -webkit-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-image: -moz-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-image: -ms-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-image: -o-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-clip: padding-box;
+  border: 1px solid hsla(0,0%,0%,.35);
+  border-color: hsla(0,0%,0%,.32) hsla(0,0%,0%,.38) hsla(0,0%,0%,.42);
+  box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
+              0 0 1px hsla(0,0%,100%,.15) inset,
+              0 1px 0 hsla(0,0%,100%,.05);
+}
+
+.toolbarButton:hover:active,
+.dropdownToolbarButton:hover:active {
+  background-color: hsla(0,0%,0%,.2);
+  background-image: -webkit-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-image: -moz-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-image: -ms-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-image: -o-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  border-color: hsla(0,0%,0%,.35) hsla(0,0%,0%,.4) hsla(0,0%,0%,.45);
+  box-shadow: 0 1px 1px hsla(0,0%,0%,.1) inset,
+              0 0 1px hsla(0,0%,0%,.2) inset,
+              0 1px 0 hsla(0,0%,100%,.05);
+  -webkit-transition-property: background-color, border-color, box-shadow;
+  -webkit-transition-duration: 10ms;
+  -webkit-transition-timing-function: linear;
+  -moz-transition-property: background-color, border-color, box-shadow;
+  -moz-transition-duration: 10ms;
+  -moz-transition-timing-function: linear;
+  -ms-transition-property: background-color, border-color, box-shadow;
+  -ms-transition-duration: 10ms;
+  -ms-transition-timing-function: linear;
+  -o-transition-property: background-color, border-color, box-shadow;
+  -o-transition-duration: 10ms;
+  -o-transition-timing-function: linear;
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 10ms;
+  transition-timing-function: linear;
+}
+
+.toolbarButton.toggled,
+.splitToolbarButton.toggled > .toolbarButton.toggled {
+  background-color: hsla(0,0%,0%,.3);
+  background-image: -webkit-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-image: -moz-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-image: -ms-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-image: -o-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  border-color: hsla(0,0%,0%,.4) hsla(0,0%,0%,.45) hsla(0,0%,0%,.5);
+  box-shadow: 0 1px 1px hsla(0,0%,0%,.1) inset,
+              0 0 1px hsla(0,0%,0%,.2) inset,
+              0 1px 0 hsla(0,0%,100%,.05);
+  -webkit-transition-property: background-color, border-color, box-shadow;
+  -webkit-transition-duration: 10ms;
+  -webkit-transition-timing-function: linear;
+  -moz-transition-property: background-color, border-color, box-shadow;
+  -moz-transition-duration: 10ms;
+  -moz-transition-timing-function: linear;
+  -ms-transition-property: background-color, border-color, box-shadow;
+  -ms-transition-duration: 10ms;
+  -ms-transition-timing-function: linear;
+  -o-transition-property: background-color, border-color, box-shadow;
+  -o-transition-duration: 10ms;
+  -o-transition-timing-function: linear;
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 10ms;
+  transition-timing-function: linear;
+}
+
+.toolbarButton.toggled:hover:active,
+.splitToolbarButton.toggled > .toolbarButton.toggled:hover:active {
+  background-color: hsla(0,0%,0%,.4);
+  border-color: hsla(0,0%,0%,.4) hsla(0,0%,0%,.5) hsla(0,0%,0%,.55);
+  box-shadow: 0 1px 1px hsla(0,0%,0%,.2) inset,
+              0 0 1px hsla(0,0%,0%,.3) inset,
+              0 1px 0 hsla(0,0%,100%,.05);
+}
+
+
+html[dir='ltr'] .splitToolbarButton:first-child,
+html[dir='ltr'] .toolbarButton:first-child,
+html[dir='rtl'] .splitToolbarButton:last-child,
+html[dir='rtl'] .toolbarButton:last-child {
+  margin-left: 4px;
+}
+html[dir='ltr'] .splitToolbarButton:last-child,
+html[dir='ltr'] .toolbarButton:last-child,
+html[dir='rtl'] .splitToolbarButton:first-child,
+html[dir='rtl'] .toolbarButton:first-child {
+  margin-right: 4px;
+}
+
+.toolbarButtonSpacer {
+  width: 30px;
+  display: inline-block;
+  height: 1px;
+}
+
+.toolbarButtonFlexibleSpacer {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  min-width: 30px;
+}
+
+.toolbarButton#sidebarToggle::before {
+  display: inline-block;
+  content: url(images/toolbarButton-sidebarToggle.png);
+}
+
+html[dir='ltr'] .toolbarButton.findPrevious::before {
+  display: inline-block;
+  content: url(images/findbarButton-previous.png);
+}
+
+html[dir='rtl'] .toolbarButton.findPrevious::before {
+  display: inline-block;
+  content: url(images/findbarButton-previous-rtl.png);
+}
+
+html[dir='ltr'] .toolbarButton.findNext::before {
+  display: inline-block;
+  content: url(images/findbarButton-next.png);
+}
+
+html[dir='rtl'] .toolbarButton.findNext::before {
+  display: inline-block;
+  content: url(images/findbarButton-next-rtl.png);
+}
+
+html[dir='ltr'] .toolbarButton.pageUp::before {
+  display: inline-block;
+  content: url(images/toolbarButton-pageUp.png);
+}
+
+html[dir='rtl'] .toolbarButton.pageUp::before {
+  display: inline-block;
+  content: url(images/toolbarButton-pageUp-rtl.png);
+}
+
+html[dir='ltr'] .toolbarButton.pageDown::before {
+  display: inline-block;
+  content: url(images/toolbarButton-pageDown.png);
+}
+
+html[dir='rtl'] .toolbarButton.pageDown::before {
+  display: inline-block;
+  content: url(images/toolbarButton-pageDown-rtl.png);
+}
+
+.toolbarButton.zoomOut::before {
+  display: inline-block;
+  content: url(images/toolbarButton-zoomOut.png);
+}
+
+.toolbarButton.zoomIn::before {
+  display: inline-block;
+  content: url(images/toolbarButton-zoomIn.png);
+}
+
+.toolbarButton.fullscreen::before {
+  display: inline-block;
+  content: url(images/toolbarButton-fullscreen.png);
+}
+
+.toolbarButton.print::before {
+  display: inline-block;
+  content: url(images/toolbarButton-print.png);
+}
+
+.toolbarButton.openFile::before {
+  display: inline-block;
+  content: url(images/toolbarButton-openFile.png);
+}
+
+.toolbarButton.download::before {
+  display: inline-block;
+  content: url(images/toolbarButton-download.png);
+}
+
+.toolbarButton.bookmark {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-top: 3px;
+  padding-top: 4px;
+}
+
+.toolbarButton.bookmark::before {
+  content: url(images/toolbarButton-bookmark.png);
+}
+
+#viewThumbnail.toolbarButton::before {
+  display: inline-block;
+  content: url(images/toolbarButton-viewThumbnail.png);
+}
+
+#viewOutline.toolbarButton::before {
+  display: inline-block;
+  content: url(images/toolbarButton-viewOutline.png);
+}
+
+#viewFind.toolbarButton::before {
+  display: inline-block;
+  content: url(images/toolbarButton-search.png);
+}
+
+
+.toolbarField {
+  padding: 3px 6px;
+  margin: 4px 0 4px 0;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background-color: hsla(0,0%,100%,.09);
+  background-image: -moz-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-clip: padding-box;
+  border: 1px solid hsla(0,0%,0%,.35);
+  border-color: hsla(0,0%,0%,.32) hsla(0,0%,0%,.38) hsla(0,0%,0%,.42);
+  box-shadow: 0 1px 0 hsla(0,0%,0%,.05) inset,
+              0 1px 0 hsla(0,0%,100%,.05);
+  color: hsl(0,0%,95%);
+  font-size: 12px;
+  line-height: 14px;
+  outline-style: none;
+  -moz-transition-property: background-color, border-color, box-shadow;
+  -moz-transition-duration: 150ms;
+  -moz-transition-timing-function: ease;
+}
+
+.toolbarField[type=checkbox] {
+  display: inline-block;
+  margin: 8px 0px;
+}
+
+.toolbarField.pageNumber {
+  min-width: 16px;
+  text-align: right;
+  width: 40px;
+}
+
+.toolbarField.pageNumber::-webkit-inner-spin-button,
+.toolbarField.pageNumber::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.toolbarField:hover {
+  background-color: hsla(0,0%,100%,.11);
+  border-color: hsla(0,0%,0%,.4) hsla(0,0%,0%,.43) hsla(0,0%,0%,.45);
+}
+
+.toolbarField:focus {
+  background-color: hsla(0,0%,100%,.15);
+  border-color: hsla(204,100%,65%,.8) hsla(204,100%,65%,.85) hsla(204,100%,65%,.9);
+}
+
+.toolbarLabel {
+  min-width: 16px;
+  padding: 3px 6px 3px 2px;
+  margin: 4px 2px 4px 0;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: hsl(0,0%,85%);
+  font-size: 12px;
+  line-height: 14px;
+  text-align: left;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  cursor: default;
+}
+
+

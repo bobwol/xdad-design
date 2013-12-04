@@ -1,0 +1,314 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="shortcut icon" href="http://pm.21epub.com/xdad/html/site-dev/template/favicon.ico"
+        />
+        <!--<script type="text/javascript" src="site-dev/js/jquery-1.8.1.min.js"></script>-->
+        <!--[if lt ie 9]>
+            <script type="text/javascript" src="http://pm.21epub.com/xdad/html/site-dev/js/html5.js">
+            </script>
+            <script type="text/javascript" src="http://pm.21epub.com/xdad/html/site-dev/js/selectivizr.js">
+            </script>
+        <![endif]-->
+        <!-- bootstrap start -->
+        <!--<script type="text/javascript" src="site-dev/js/bootstrap.js"></script>-->
+        <link type="text/css" href="http://pm.21epub.com/xdad/html/site-dev/css/bootstrap.min.css"
+        rel="stylesheet" media="all" />
+        <link type="text/css" href="http://pm.21epub.com/xdad/html/site-dev/css/bootstrap.min.patch.css"
+        rel="stylesheet" media="all" />
+        <!-- bootstrap end -->
+        <!--<script type="text/javascript" src="site-dev/js/jquery.goToTop.js"></script>
+        <script type="text/javascript" src="site-dev/js/base.js"></script>-->
+        <link type="text/css" href="http://pm.21epub.com/xdad/html/site-dev/css/style.css"
+        rel="stylesheet" media="all" />
+        <link type="text/css" href="http://pm.21epub.com/xdad/html/site-dev/css/typo.css"
+        rel="stylesheet" media="all" />
+        <style type="text/css">
+        
+        /*#myCarousel {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+        #myCarousel .item {
+            display: none;
+            position: relative;
+           -webkit-transition: 0.6s ease-in-out left;
+            -moz-transition: 0.6s ease-in-out left;
+            -ms-transition: 0.6s ease-in-out left;
+            -o-transition: 0.6s ease-in-out left;
+            transition: 0.6s ease-in-out left;
+        }
+        #myCarousel .active,
+        #myCarousel .next,
+        #myCarousel .prev {
+            display: block;
+        }
+        #myCarousel .active {
+            left: 0;
+        }
+        #myCarousel .next,
+        #myCarousel .prev {
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+        #myCarousel .next {
+            left: 100%;
+        }
+        #myCarousel .prev {
+            left: -100%;
+        }
+        #myCarousel .next.left,
+        #myCarousel .prev.right {
+            left: 0;
+        }
+        #myCarousel .active.left {
+            left: -100%;
+        }
+        #myCarousel .active.right {
+            left: 100%;
+        }*/
+        
+        </style>
+        <script type="text/javascript">
+            // css for iPad
+            if ((navigator.userAgent.match(/iPad/i))) {
+                document.write('<link href="http://pm.21epub.com/xdad/html/site-dev/css/ipad.css" rel="stylesheet" type="text/css">');
+            }
+        </script>
+    </head>
+    
+    <body class="page homepage">
+        <div class="wrap">
+            <header>
+                <div class="inner-header">
+                    <div class="logo">
+                        <a id="portal-logo" title="现代设计集团" accesskey="1" href="http://xdad-site.21epub.com">
+                        </a>
+                    </div>
+                    <div class="slogan">
+                        创意成就梦想
+                    </div>
+                    <nav>
+                        <ul>
+                            <li class="active" id="99969875">
+                                <a href="http://xdad-site.21epub.com/99969875/page" title="">
+                                    首页
+                                </a>
+                            </li>
+                            <li class="plain" id="5206680f4e00">
+                                <a href="http://xdad-site.21epub.com/5206680f4e00/96c656e2698251b5/pic/interaction.richtext.2013-01-23.2169872185/view"
+                                title="">
+                                    关于我们
+                                </a>
+                            </li>
+                            <li class="plain" id="5206680f4e8c">
+                                <a href="http://xdad-site.21epub.com/5206680f4e8c/contentstree_182/pic/interaction.richtext.2013-02-26.7930630935/view"
+                                title="">
+                                    客户服务
+                                </a>
+                            </li>
+                            <li class="plain" id="8bbe8ba14f5c54c1">
+                                <a href="http://xdad-site.21epub.com/8bbe8ba14f5c54c1/20105e744e0a6d774e16535a4f1a987976ee/wl"
+                                title="">
+                                    设计作品
+                                </a>
+                            </li>
+                            <li class="plain" id="4f014e1a65875316">
+                                <a href="http://xdad-site.21epub.com/4f014e1a65875316/contentstree_274/pic/interaction.richtext.2013-02-27.8760197146/view"
+                                title="">
+                                    企业文化
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <ul class="links">
+                        <li>
+                            <a href="http://xdad-site.21epub.com/join_us/principle/pic/interaction.richtext.2013-01-23.5863698409/view">
+                                加入我们 &gt;
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://xdad-site.21epub.com/xdad/html/contact.html">
+                                联系我们 &gt;
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://xdad-site.21epub.com/xdad/html/complaint.html">
+                                客户投诉 &gt;
+                            </a>
+                        </li>
+                    </ul>
+                    <!--<div class="language"><a href="#">English</a></div>-->
+                </div>
+            </header>
+            <div class="container">
+                <div class="inner-container clearfix" id="main_content">
+                    <section class="typo">
+                        <hgroup>
+                            <h1>
+                                首页
+                            </h1>
+                        </hgroup>
+                        <div class="slideshow" > 
+                            <ol class="slideshow-indicators">
+
+                                <li class="active">
+                                </li>
+                                <li class="">
+                                </li>
+                                <li class="">
+                                </li>
+                                <li class="">
+                                </li>
+                            </ol>
+                            <div class="slideshow-inner">
+                                <div class="item active">
+                                    <img alt="" src="../img/file.jpg"/>
+                                    <div class="slideshow-caption">
+                                        <dl>
+                                            <dt>
+                                                世博村绿化景观工程
+                                            </dt>
+                                            <dd>
+                                                项目名称：世博村绿化景观工程
+                                                <br />
+                                                建筑地点：上海浦东南码头路200号世博村基地
+                                                <br />
+                                                总建筑面积（㎡）：19714
+                                                <br />
+                                                服务范围：景观设计
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                    <div class="overlay">
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img alt="" src="../img/file.jpg"/>
+                                    <div class="slideshow-caption">
+                                        <dl>
+                                            <dt>
+                                                世博演艺中心
+                                            </dt>
+                                            <dd>
+                                                项目名称：世博演艺中心
+                                                <br />
+                                                建筑地点：上海世博园区浦东片区
+                                                <br />
+                                                总建筑面积（㎡）：125945
+                                                <br />
+                                                服务范围：建筑工程设计 景观设计
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                    <div class="overlay">
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img alt="" src="../img/file.jpg"/>
+                                    <div class="slideshow-caption">
+                                        <dl>
+                                            <dt>
+                                                虹桥综合交通枢纽
+                                            </dt>
+                                            <dd>
+                                                项目名称：虹桥综合交通枢纽
+                                                <br />
+                                                建筑地点：上海闵行虹桥国际机场西侧
+                                                <br />
+                                                总建筑面积（㎡）：800000
+                                                <br />
+                                                服务范围：规划设计 建筑工程设计
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                    <div class="overlay">
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img alt="" src="../img/file.jpg"/>
+                                    <div class="slideshow-caption">
+                                        <dl>
+                                            <dt>
+                                                无锡灵山梵宫建筑
+                                            </dt>
+                                            <dd>
+                                                项目名称：无锡灵山梵宫建筑
+                                                <br />
+                                                建筑地点：
+                                                <br />
+                                                总建筑面积（㎡）：70000
+                                                <br />
+                                                服务范围：规划设计 建筑工程设计
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                    <div class="overlay">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <a class="left slideshow-control" href="#">‹</a> <a class="right slideshow-control" href="#">›</a>  -->
+                        </div>
+                        <article>
+                            <div class="row-fluid">
+                                <div class="span4">
+                                    <p>
+                                        <img alt="集团荣誉" src="http://pm.21epub.com/xdad/html/site/public/honor_homepage.jpg"
+                                        data-mce-src="http://pm.21epub.com/xdad/html/site/public/honor_homepage.jpg"
+                                        />
+                                    </p>
+                                </div>
+                                <div class="span8">
+                                    <ul>
+                                        <li>
+                                            美国《工程新闻记录》（ENR）“国际工程设计公司200强”和“全球工程设计公司150强”之一，2011年位列全球第67位。
+                                        </li>
+                                        <li>
+                                            2011年集团荣获中国质量协会与全国用户委员会颁发的“用户满意企业”奖。
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+                    </section>
+                </div>
+            </div>
+            <footer id="footer">
+                <div class="inner-footer">
+                    <p class="copyright">
+                        Copyright © 2013 XIANDAI Architectural Design. All rights reserved.
+                        <br />
+                        沪ICP备09024479
+                    </p>
+                </div>
+            </footer>
+        </div>
+        <script src="../../../meta.js" data-main="epub.app.homepage20130405">
+        </script>
+    </body>
+
+</html>

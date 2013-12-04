@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <script type="text/javascript" src="admin/js/jquery-1.8.1.min.js"></script>
+
+        <!--[if lt ie 9]>
+        <script type="text/javascript" src="../js/html5.js"></script>
+        <script type="text/javascript" src="../js/selectivizr.js"></script>
+        <![endif]-->
+
+        <!-- bootstrap start -->
+        <script type="text/javascript" src="admin/js/bootstrap.js"></script>
+        <link type="text/css" href="admin/css/bootstrap.min.css" rel="stylesheet" media="all">
+        <link type="text/css" href="admin/css/bootstrap.min.patch.css" rel="stylesheet" media="all">
+        <!-- bootstrap end -->
+        <!-- <script type="text/javascript" src="admin/js/base.js"></script> -->
+        <link type="text/css" href="admin/css/style.css" rel="stylesheet" media="all">
+        <style>
+			.ui-sortable-placehoder{
+			   	border:1px solid black;
+			}
+			.ui-sortable-hover{
+				border:1px solid red;
+			}
+			.categories li.ui-sortable-helper .wraparea:hover {
+				background-color:transparent;
+				border-bottom:none;
+			}
+        </style>
+        <!-- nanoscroll start -->
+        <link type="text/css" href="admin/css/nanoscroller.css" rel="stylesheet" media="all">
+        <script type="text/javascript" src="admin/js/jquery.nanoscroller.min.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+          $('.nanoscrollbar').wrapInner('<div class="nano"><div class="content"></div></div>');
+          $('.nano').nanoScroller();
+          
+          $('.nano .pane').css({'visibility': 'hidden'});
+          $('.nano').hover(function (){
+            $(this).children('.pane').css({'visibility': 'visible'});
+          },function (){
+            $(this).children('.pane').css({'visibility': 'hidden'});
+          });
+          
+          $('.cat-list .hitarea, table tr').click(function() {
+            $('.nano').nanoScroller();
+          });
+
+          $('#btn-save').click(function() {
+            $('form').submit();
+          });
+          
+        });
+        </script>
+
+        <title>现代设计集团统一后台管理系统</title>
+    </head>
+
+    <body class="detail">
+      <div class="ui-layout uncollapsed-nav list">
+
+
+          <!-- ================================  top  start =======================================-->
+          <div class="ui-layout-top">
+            <div class="adminbar">
+              <ul class="quicklinks">
+                <li class="logo menu-mod">
+                  <div class="menu-hd"><span class="logo-icon"></span><span>现代设计集团统一后台管理系统</span></div>
+                  <div class="menu-bd">
+                    <ul>
+                      <li><a href="#">访问站点</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="addnew menu-mod">
+                  <div class="menu-hd"><a href="#">新建</a></div>
+                  <div class="menu-bd">
+                    <ul>
+                      <li><a href="#">教材</a>
+                        <ul>
+                          <li><a href="#">流式布局</a></li>
+                          <li><a href="#">版式布局</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">专题</a></li>
+                      <li><a href="#">组件</a></li>
+                      <li><a href="#">素材</a>
+                        <ul>
+                          <li><a href="#">IMAGE</a></li>
+                          <li><a href="#">SLIDESHOW</a></li>
+                          <li><a href="#">AUDIO</a></li>
+                          <li><a href="#">VIDEO</a></li>
+                          <li><a href="#">3D</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">文档</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="tip-update"><a href="#" title="0条更新提醒"><span class="count count-0">0</span></a></li>
+                <li class="tip-notice"><a href="#" title="7条评论"><span class="count">7</span></a></li>
+              </ul>
+              <ul class="userinfo">
+                <li><a href="#">帮助</a></li>
+                <li><a href="#">Jason</a></li>
+                <li><a href="#">注销</a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- ================================  top end  =======================================-->
+
+
+          <div class="ui-layout-center">
+              <div class="ui-layout-center-hd">
+
+                <h1 class="page-title">编辑内容</h1>
+
+                <div class="tabview">
+                  <ul>
+                    <li class="active"><a href="#">所有</a></li>
+                    <li><a href="#">集团网站</a></li>
+                    <li><a href="#">iPad书架</a></li>
+                  </ul>
+                </div>
+                <div class="content-type">类型：PDF</div>
+                <button class="btn btn-small btn-primary action-save" id="btn-save" data-loading-text="Saving..." type="button">SAVE</button>
+                <button class="btn btn-small action-preview" id="btn-preview" type="button">PREVIEW</button>
+
+              </div>
+              <div class="ui-layout-center-bd">
+
+                  <div class="main-column">
+                      <div class="column-hd">
+                      </div>
+                      <div class="column-bd ">
+
+                          <form class="form-horizontal" style="margin:40px 0;" method="post" enctype="multipart/form-data" id="edit-form" action="#form">
+                            <div class="control-group">
+                              <label class="control-label" for="title">* 标题：</label>
+                              <div class="controls">
+                                <input type="text" id="title" value="集团概况">
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="author">作者：</label>
+                              <div class="controls">
+                                <input type="text" id="author" value="">
+                              </div>
+                            </div>
+                            <div class="control-group thumb">
+                              <label class="control-label">缩略图：</label>
+                              <div class="controls">
+                                <div class="action">
+                                  <button class="btn btn-small" type="button">设置</button>
+                                  <!--<input name="" type="file">--> 
+                                </div>
+                                <div class="cover"><img src="admin/public/thumb.png" alt=""></div>
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="selectStyle">下拉框示例：</label>
+                              <div class="controls">
+                                <select id="selectStyle">
+                                  <option>默认样式</option>
+                                  <option>样式一</option>
+                                  <option>样式二</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="description">描述：</label>
+                              <div class="controls">
+                                <textarea rows="4" id="description">为保持我国适航标准与各国适航标准在安全水平上的一致性，民航局适航司于1989年3月委托民 航局第一研究所进行《中国民用航空条例第23部》的修订工作。</textarea>
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="tags">Tag标签：</label>
+                              <div class="controls">
+                                <input type="text" id="tags" value="">
+                              </div>
+                            </div>
+                          </form>
+
+                      </div>
+                  </div>
+
+
+                  <!-- 
+                  <div class="left-column">
+                      <div class="column-hd">
+
+                      </div>
+                      <div class="column-bd nanoscrollbar">
+
+                          <div class="cat-list">
+                          </div>
+
+                      </div>
+                  </div>
+
+                  <div class="right-column">
+                      <div class="column-hd">
+
+                      </div>
+                      <div class="column-bd nanoscrollbar">
+
+                      </div>
+                      <div class="column-ft">
+
+                      </div>
+                  </div> 
+                  -->
+
+            </div>
+          </div>
+          <div class="ui-layout-right"  id="JS_list_detail">
+
+
+          </div>
+
+          <div class="ui-layout-left">
+            <nav>
+            </nav>
+          </div>
+
+      </div>
+      <div id="js">
+      </div>
+      <div class="msg"></div>
+    </body>
+</html>

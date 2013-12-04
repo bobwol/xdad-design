@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="css/laylout-1.0.css" type="text/css">
+<script type="text/javascript" src="js/lib/jquery-1.6.1.js"></script>
+<script type="text/javascript"> 
+$(function(){
+	var jmp = {};
+	jmp.client = (function () {
+		var doc = document,
+		client = doc.compatMode == 'BackCompat' ? doc.body : doc.documentElement;
+		return client;
+	})();
+	jmp.getViewHeight  = function (){
+		var ret = 0;
+		if (self.innerHeight) { // all except Explorer
+			ret = self.innerHeight;
+		} else {
+			ret = jmp.client.clientHeight;
+		}
+		return ret;
+	}
+	// 获取可视区域的宽度
+	jmp.getViewWidth = function (){
+		var ret = 0;
+		if (self.innerHeight) { 
+			ret = self.innerWidth;
+		} else {
+			ret = jmp.client.clientWidth;
+		}
+		return ret;
+	} 
+	// 获取可视区域的滚动条的top
+	jmp.getViewScrollTop = function () {
+		return jmp.client.scrollTop;
+	}
+	// /获取可视区域的滚动条的left
+	jmp.getViewScrollLeft = function () {
+		return jmp.client.scrollLeft;
+	}
+	var refresh = function(){//刷新桌面				
+		var ww = jmp.client.scrollWidth,//浏览器宽
+			wh = jmp.client.scrollHeight;//浏览器高		
+		$("#zoomWallpaperGrid,#zoomWallpaper").width(ww).height(wh);//背景图片div
+		$('body').width(jmp.getViewWidth()-26).height(jmp.getViewHeight()-26);
+		$(".post").height(jmp.getViewHeight()-80-40-38);
+		if($("#editor")[0]){
+			$("#editor").width($(".post").width()).height($(".post").height());
+		}
+	}
+	var bg=$('<div style="position: absolute; z-index: -10; left: 0pt; top: 0pt; overflow: hidden; height: 70px; width: 366px;" class="zoomWallpaperGrid" id="zoomWallpaperGrid">'
+		+'<img src="img/wood1.jpg" style="position: absolute; top: 0pt; left: 0pt; height: 70px; width: 166px;" class="zoomWallpaper" id="zoomWallpaper">'
+	+'</div>');
+	$('body').append(bg);
+	refresh();
+	$(window).resize(refresh);
+	var $post = $(".post");
+	var tipIfm = document.createElement('iframe');
+	tipIfm.src = "layout-iframe-1.0.html";
+	tipIfm.id = "editor";
+	tipIfm.allowTransparency = "true"
+	tipIfm.frameBorder = "no";
+	tipIfm.border = "0";
+	tipIfm.width = $post[0].offsetWidth-20;
+	tipIfm.height = "400";
+	tipIfm.marginWidth = "0";
+	tipIfm.marginHeight = "0";
+	tipIfm.backgroundColor = "transparent";
+	tipIfm.scrolling = "no";
+	
+	tipIfm.style.cssText = "position:absolute;allowTransparency='true';background-color:transparent;";
+	$post[0].appendChild(tipIfm);
+	if (tipIfm.attachEvent) {
+		tipIfm.attachEvent("onload", function () {
+			iframeonload();
+		});
+	}
+	else {
+		tipIfm.onload = function () {
+			iframeonload();
+		};
+	}
+	var $d = null;
+	function iframeonload(){
+		if($("#editor")[0]){
+			$("#editor").width($(".post").width()).height($(".post").height());
+		}
+		$d = $("#editor")[0].contentWindow.document; // IE、FF都兼容
+		//$d.designMode="on"
+		//$d.contentEditable= true;
+		$("body", $d).click(function(e){
+			
+			var elm = e.target || e.srcElement,
+			newElement = null,
+			isDrs = null,
+			isElm = null;
+			while (elm) {
+				var $elm = $(elm);
+				if ($elm.hasClass("remove")) {
+					console.log($elm.parents(".dragdropresize"))
+					$("body", $d)[0].removeChild($elm.parents(".dragdropresize")[0]);
+					break
+				}
+				elm = elm.parentNode;
+			}
+		})
+		
+		
+		 $("#navigationMenu").click(function (e){
+			var elm = e.target || e.srcElement,
+				tag = elm.tagName;
+				var index = $("#editor")[0].contentWindow.getIndex();
+				console.log(index)
+				if(tag == "SPAN"){
+					var div = '<div id="insert_'+index+'" class="widget color-orange dragdropresize" style="position: static; clear: none; z-index: '+index+'; opacity: 1; left: auto; top: auto; width:400px;height:132px;min-height:132px;min-widht:100px;"><div class="widget-head" style="cursor: move;"><h3>Widget title</h3><a class="remove" href="javascript:void(0);">CLOSE</a></div><div class="widget-content" style="height:100px;"></div>';
+					$("body", $d).append(div);	
+					//console.log($("#insert_"+index,$d))
+					$("#insert_"+index,$d).bind("ccc",function (){
+						$("#editor")[0].contentWindow.getdragresize().show(this);
+					})
+					$("#insert_"+index,$d).focus();
+					$("#insert_"+index,$d).trigger('ccc');
+				}
+		 })
+		$('#preview').click(function(){
+			$('#preview_area').html($('#editor').contents().find('body').html());
+		});
+	}
+});
+</script>
+</head>
+ 
+<body>
+	
+    <h2></h2>
+    <header id="page_header">
+       <nav>
+			
+				<ul id="css3Tutorial02">
+					<li id="brand">
+						
+					</li>
+					<li id="promotion">
+						
+					</li>
+					<li id="show">
+						
+					</li>
+					<li id="event">
+						
+					</li>
+				</ul>
+			
+		</nav>
+    </header>
+    <section id="posts">
+        <h2></h2>
+        <article class="post"  style="min-height:400px;min-width:800px;">
+            
+        </article>
+       
+    </section>
+    <section id="sidebar" style="min-widht:200px;">
+        <h2></h2>
+        <header>
+            <h2></h2>
+        </header>
+        <nav>
+            <h3></h3>
+			<div id="navigationMenuBox">
+				<ul id="navigationMenu" style="padding:0;">
+					<li>
+						<a class="home" href="javascript:void(0);">
+							<span>text</span>
+						</a>
+					</li>
+					
+					<!--li>
+						<a class="about" href="#">
+							<span>image</span>
+						</a>
+					</li-->
+					
+					<li>
+						 <a class="services" href="javascript:void(0);">
+							<span>map</span>
+						 </a>
+					</li>
+					
+					<li>
+						<a class="portfolio" href="javascript:void(0);">
+							<span>image</span>
+						</a>
+					</li>
+					
+					<!--li>
+						<a class="contact" href="#">
+							<span>Contact us</span>
+						</a>
+					</li-->
+				</ul>
+			</div>
+        </nav>
+    </section>
+ 
+    <footer id="page_footer">
+        <h2></h2>
+    </footer>
+ 
+</body>
+</html>

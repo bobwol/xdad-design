@@ -1,0 +1,617 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Freedom</title>
+<style type="text/css">
+html, body {
+width:100%;
+max-height:100%;
+padding:0px;
+margin:0px;
+}
+body {
+text-align:center;
+font-size:14px;
+}
+.cell {
+float:left;
+clear:right;
+}
+.row {
+clear:both;
+}
+.r_nbsp {
+width:20px;
+}
+.root {
+width:868px;
+margin: 0 auto;
+}
+.root * {
+/*此属性FF的说*/
+-moz-user-select:none;
+}
+.line {
+width:202px;
+height:0px;
+overflow:hidden;
+}
+.move {
+border:#CCCCCC 1px solid;
+width:200px;
+height:aotu;
+margin-top:5px;
+margin-bottom:5px;
+display:none;
+}
+.title {
+height:24px;
+line-height:24px;
+background:#0080C0;
+}
+.title_a {
+width:140px;
+float:left;
+cursor:move;
+font-size:12px;
+font-weight:bold;
+color:#FFFFFF;
+text-align:center;
+}
+.title_b, .title_c {
+float:left;
+width:30px;
+font-size:9px;
+color:#CCCCCC;
+}
+.title_b {
+cursor:pointer;
+}
+.title_c {
+cursor:default;
+}
+.content {
+height:100px;
+border-top:#CCCCCC 1px solid;
+background-color:#F7F7F7;
+font-size:12px;
+line-height:100px;
+}
+.CDrag_temp_div {
+border:#CCCCCC 1px dashed;
+margin-top:5px;
+margin-bottom:5px;
+}
+a#DEL_CDrag {
+color:#6699CC;
+text-decoration:none;
+}
+a#DEL_CDrag:hover {
+color:#FF0000;
+}
+</style>
+<script type="text/javascript">
+var Class = {
+//创建类
+create: function () {
+   return function () {
+    this.initialize.apply(this, arguments);
+   };
+}
+};
+var $A = function (a) {
+//转换数组
+return a ? Array.apply(null, a) : new Array;
+};
+var $ = function (id) {
+//获取对象
+return document.getElementById(id);
+};
+Object.extend = function (a, b) {
+//追加方法
+for (var i in b) a[i] = b[i];
+return a;
+};
+Object.extend(Object, {
+addEvent : function (a, b, c, d) {
+//添加函数
+   if (a.attachEvent) a.attachEvent(b[0], c);
+   else a.addEventListener(b[1] || b[0].replace(/^on/, ""), c, d || false);
+   return c;
+},
+
+delEvent : function (a, b, c, d) {
+   if (a.detachEvent) a.detachEvent(b[0], c);
+   else a.removeEventListener(b[1] || b[0].replace(/^on/, ""), c, d || false);
+   return c;
+},
+
+reEvent : function () {
+//获取Event
+   return window.event ? window.event : (function (o) {
+    do {
+     o = o.caller;
+    } while (o && !/^\[object[ A-Za-z]*Event\]$/.test(o.arguments[0]));
+    return o.arguments[0];
+   })(this.reEvent);
+}
+
+});
+Function.prototype.bind = function () {
+//绑定事件
+var wc = this, a = $A(arguments), o = a.shift();
+return function () {
+   wc.apply(o, a.concat($A(arguments)));
+};
+};
+var CDrag = Class.create();
+CDrag.IE = /MSIE/.test(window.navigator.userAgent);
+CDrag.Table = Class.create();
+CDrag.Table.prototype = {
+//列的拖拽暂时不考虑
+initialize : function () {
+//初始化
+   var wc = this;
+   wc.items = []; //创建列组
+},
+
+add : function () {
+//添加列
+   var wc = this, id = wc.items.length, arg = arguments;
+   return wc.items[id] = new CDrag.Table.Cols(id, wc, arg[0]);
+}
+};
+CDrag.Table.Cols = Class.create();
+CDrag.Table.Cols.prototype = {
+
+initialize : function (id, parent, element) {
+//初始化
+   var wc = this;
+   wc.items = []; //创建列组
+   wc.id = id;
+   wc.parent = parent;
+   wc.element = element;
+},
+
+add : function () {
+//添加行
+   var wc = this, id = wc.items.length, arg = arguments;
+   return wc.items[id] = new CDrag.Table.Rows(id, wc, arg[0], arg[1]);
+},
+
+ins : function (num, row) {
+//插入行
+   var wc = this, items = wc.items, i;
+
+   if (row.parent == wc && row.id < num) num --; //同列向下移动的时候
+   for (i = num ; i < items.length ; i ++) items[i].id ++;
+
+   items.splice(num, 0, row);
+   row.id = num, row.parent = wc;
+
+   return row;
+},
+
+del : function (num) {
+//删除行
+   var wc = this, items = wc.items, i;
+
+   if (num >= items.length) return;
+   for (i = num + 1; i < items.length ; i ++) items[i].id = i - 1;
+   return items.splice(num, 1)[0];
+}
+
+};
+CDrag.Table.Rows = Class.create();
+CDrag.Table.Rows.prototype = {
+
+
+initialize : function (id, parent, element, window) {
+//初始化
+   var wc = this, temp;
+
+   wc.id = id;
+   wc.parent = parent;
+   wc.root_id = element;
+   wc.window = window;
+   wc.element = wc.element_init();
+
+   temp = wc.element.childNodes[CDrag.IE ? 0 : 1];
+   wc.title = temp.childNodes[0];
+   wc.reduce = temp.childNodes[1];
+   wc.close = temp.childNodes[2];
+   wc.content = wc.element.childNodes[CDrag.IE ? 1 : 3];
+
+   wc.mousedown = wc.reduceFunc = wc.closeFunc = null;
+
+   wc.load();
+},
+
+element_init : function () {
+//初始化元素
+   var wc = this, div = $("root_row").cloneNode(true);
+
+   wc.parent.element.appendChild(div);
+   div.style.display = "block";
+   return div;
+},
+
+load : function () {
+//加载信息
+   var wc = this, info = database.parse(wc.root_id);
+   wc.title.innerHTML = info.title;
+   wc.content.innerHTML = info.content;
+   if (wc.window == 0) {
+    wc.content.style.display = "none";
+    wc.reduce.innerHTML = "放大";
+   } else {
+    wc.content.style.display = "block";
+    wc.reduce.innerHTML = "缩小";
+   }
+   wc.content.style.display = (wc.window == 0 ? "none" : "block");
+}
+
+};
+CDrag.prototype = {
+
+initialize : function () {
+//初始化成员
+   var wc = this;
+   wc.table = new CDrag.Table; //建立表格对象
+   wc.iFunc = wc.eFunc = null;
+   wc.obj = { on : { a : null, b : "" }, row : null, left : 0, top : 0 };
+   wc.temp = { row : null, div : document.createElement("div") };
+   wc.temp.div.setAttribute(CDrag.IE ? "className" : "class", "CDrag_temp_div");
+   wc.temp.div.innerHTML = "&nbsp;";
+},
+
+reMouse : function (a) {
+//获取鼠标位置
+   var e = Object.reEvent();
+   return {
+    x : document.documentElement.scrollLeft + e.clientX,
+    y : document.documentElement.scrollTop + e.clientY
+   };
+},
+
+rePosition : function (o) {
+//获取元素绝对位置
+   var $x = $y = 0;
+   do {
+    $x += o.offsetLeft;
+    $y += o.offsetTop;
+   } while ((o = o.offsetParent)); // && o.tagName != "BODY"
+   return { x : $x, y : $y };
+},
+
+sMove : function (o) {
+//当拖动开始时设置参数
+
+   var wc = this;
+   if (wc.iFunc || wc.eFinc) return;
+
+   var mouse = wc.reMouse(), obj = wc.obj, temp = wc.temp, div = o.element, position = wc.rePosition(div);
+
+   obj.row = o;
+   obj.on.b = "me";
+   obj.left = mouse.x - position.x;
+   obj.top = mouse.y - position.y;
+
+   temp.row = document.body.appendChild(div.cloneNode(true)); //复制预拖拽对象
+
+   with (temp.row.style) {
+   //设置复制对象
+    position = "absolute";
+    left = mouse.x - obj.left + "px";
+    top = mouse.y - obj.top + "px";
+    zIndex = 100;
+    opacity = "0.3";
+    filter = "alpha(opacity:30)";
+   }
+
+   with (temp.div.style) {
+   //设置站位对象
+    height = div.clientHeight + "px";
+    width = div.clientWidth + "px";
+   }
+
+   div.parentNode.replaceChild(temp.div, div);
+
+   wc.iFunc = Object.addEvent(document, ["onmousemove"], wc.iMove.bind(wc));
+   wc.eFunc = Object.addEvent(document, ["onmouseup"], wc.eMove.bind(wc));
+   document.onselectstart = new Function("return false");
+},
+
+iMove : function () {
+//当鼠标移动时设置参数
+   var wc = this, mouse = wc.reMouse(), cols = wc.table.items, obj = wc.obj, temp = wc.temp,
+    row = obj.row, div = temp.row, t_position, t_cols, t_rows, i, j;
+
+   with (div.style) {
+    left = mouse.x - obj.left + "px";
+    top = mouse.y - obj.top + "px";
+   }
+
+   for (i = 0 ; i < cols.length ; i ++) {
+    t_cols = cols[i];
+    t_position = wc.rePosition(t_cols.element);
+    if (t_position.x < mouse.x && t_position.x + t_cols.element.offsetWidth > mouse.x) {
+     if (t_cols.items.length > 0) { //如果此列行数大于0
+      if (wc.rePosition(t_cols.items[0].element).y + 20 > mouse.y) {
+       //如果鼠标位置大于第一行的位置即是最上。。
+       //向上
+       obj.on.a = t_cols.items[0];
+       obj.on.b = "up";
+       obj.on.a.element.parentNode.insertBefore(temp.div, obj.on.a.element);
+      } else if (t_cols.items.length > 1 && t_cols.items[0] == row &&
+       wc.rePosition(t_cols.items[1].element).y + 20 > mouse.y) {
+       //如果第一行是拖拽对象而第鼠标大于第二行位置则，没有动。。
+       //向上
+       obj.on.b = "me";
+       t_cols.items[1].element.parentNode.insertBefore(temp.div, t_cols.items[1].element);
+      } else {
+       for (j = t_cols.items.length - 1 ; j > -1 ; j --) {
+        //重最下行向上查询
+        t_rows = t_cols.items[j];
+        if (t_rows == obj.row) {
+         if (t_cols.items.length == 1) {
+          t_cols.element.appendChild(temp.div);
+          obj.on.b = "me";
+         }
+         continue;
+        }
+        if (wc.rePosition(t_rows.element).y < mouse.y) {
+         //如果鼠标大于这行则在这行下面
+         if (t_rows.id + 1 < t_cols.items.length && t_cols.items[t_rows.id + 1] != obj.row) {
+          //如果这行有下一行则重这行下一行的上面插入
+          t_cols.items[t_rows.id + 1].element.parentNode.
+           insertBefore(temp.div, t_cols.items[t_rows.id + 1].element);
+          obj.on.a = t_rows;
+          obj.on.b = "down";
+         } else if (t_rows.id + 2 < t_cols.items.length) {
+          //如果这行下一行是拖拽对象则插入到下两行，即拖拽对象返回原位
+          t_cols.items[t_rows.id + 2].element.parentNode.
+           insertBefore(temp.div, t_cols.items[t_rows.id + 2].element);
+          obj.on.b = "me";
+         } else {
+          //前面都没有满足则放在最低行
+          t_rows.element.parentNode.appendChild(temp.div);
+          obj.on.a = t_rows;
+          obj.on.b = "down";
+         }
+         return;
+        }
+       }
+      }
+     } else {
+     //此列无内容添加新行
+      t_cols.element.appendChild(temp.div);
+      obj.on.a = t_cols;
+      obj.on.b = "new";
+     }
+    }
+   }
+},
+
+eMove : function () {
+//当鼠标释放时设置参数
+   var wc = this, obj = wc.obj, temp = wc.temp, row = obj.row, div = row.element, o_cols, n_cols, number;
+
+   if (obj.on.b != "me") {
+    number = (obj.on.b == "down" ? obj.on.a.id + 1 : 0);
+    n_cols = (obj.on.b != "new" ? obj.on.a.parent : obj.on.a);
+    o_cols = obj.row.parent;
+    n_cols.ins(number, o_cols.del(obj.row.id));
+  
+    wc.set_cookie();
+   }
+
+   temp.div.parentNode.replaceChild(div, temp.div);
+   temp.row.parentNode.removeChild(temp.row);
+   delete temp.row;
+
+   Object.delEvent(document, ["onmousemove"], wc.iFunc);
+   Object.delEvent(document, ["onmouseup"], wc.eFunc);
+   document.onselectstart = wc.iFunc = wc.eFunc = null;
+},
+
+add : function (o) {
+//添加对象
+   var wc = this;
+   o.mousedown = Object.addEvent(o.title, ["onmousedown"], wc.sMove.bind(wc, o));
+   o.reduceFunc = Object.addEvent(o.reduce, ["onclick"], wc.reduce.bind(wc, o));
+   o.closeFunc = Object.addEvent(o.close, ["onclick"], wc.close.bind(wc, o));
+},
+
+close : function (o) {
+//关闭对象
+   var wc = this, parent = o.parent;
+
+   Object.delEvent(o.close, ["onclick"], o.closeFunc);
+   Object.delEvent(o.reduce, ["onclick"], o.reduceFunc);
+   Object.delEvent(o.title, ["onmousedown"], o.mousedown);
+   o.closeFunc = o.reduceFunc = o.mousedown = null;
+
+   parent.element.removeChild(o.element);
+   parent.del(o.id);
+   delete o;
+   wc.set_cookie();
+},
+
+reduce : function (o) {
+//变大变小
+   var wc = this;
+   if ((o.window = (o.window == 1 ? 0 : 1))) {
+    o.content.style.display = "block";
+    o.reduce.innerHTML = "缩小";
+   } else {
+    o.content.style.display = "none";
+    o.reduce.innerHTML = "放大";
+   }
+   wc.set_cookie();
+},
+
+set_cookie : function () {
+//设置COOKIE
+   var wc = this, cols = wc.table.items, date = new Date, a = [], b = [], i, j, r;
+   date.setDate(date.getDate() + 1);
+   for (i = 0 ; i < cols.length ; i ++) {
+    for (r = cols[i].items, j = 0 ; j < r.length ; j ++)
+     b[b.length] = "{id:'" + r[j].root_id + "',window:" + r[j].window + "}";
+    a[a.length] = "cols:'" + cols[i].element.id + "',rows:[" + b.splice(0, b.length).join(",") + "]";
+   }
+   document.cookie = "CDrag=" + escape("[{" + a.join("},{") + "}]") + ";expires=" + date.toGMTString();
+},
+
+del_cookie : function () {
+//删除COOKIE
+   var date;
+   if (/(CDrag=[^;]+(?:;|$))/.test(document.cookie)) {
+    date = new Date;
+    date.setTime(date.getTime() - 1);
+    document.cookie = "CDrag=" + RegExp.$1 + ";expires=" + date.toGMTString();
+   }
+},
+
+parse : function (o) {
+//初始化成员
+   try {
+    var wc = this, table = wc.table, cols, rows, div, i, j;
+    for (i = 0 ; i < o.length ; i ++) {
+     div = $(o[i].cols), cols = table.add(div);
+     for (j = 0 ; j < o[i].rows.length ; j ++)
+      wc.add(cols.add(o[i].rows[j].id, o[i].rows[j].window));
+    }
+   } catch (exp) {
+    wc.del_cookie();
+   }
+}
+
+};
+Object.addEvent(window, ["onload"], function () {
+var wc = new CDrag,
+
+   json = /CDrag=([^;]+)(?:;|$)/.test(document.cookie) ? eval('(' + unescape(RegExp.$1) + ')') : [
+
+   { cols : "m_1", rows : [
+    { id : "m_1_1", window : 1 },
+    { id : "m_1_2", window : 1 },
+    { id : "m_1_3", window : 1 },
+    { id : "m_1_4", window : 1 }
+   ] },
+
+   { cols : "m_2", rows : [
+    { id : "m_2_1", window : 1 },
+    { id : "m_2_2", window : 1 },
+    { id : "m_2_3", window : 1 },
+    { id : "m_2_4", window : 1 }
+   ] },
+
+   { cols : "m_3", rows : [
+    { id : "m_3_1", window : 1 },
+    { id : "m_3_2", window : 1 },
+    { id : "m_3_3", window : 1 },
+    { id : "m_3_4", window : 1 }
+   ] },
+    
+   { cols : "m_4", rows : [
+    { id : "m_4_1", window : 1 },
+    { id : "m_4_2", window : 1 },
+    { id : "m_4_3", window : 1 },
+    { id : "m_4_4", window : 1 }
+   ] }
+
+];
+wc.parse(json);
+
+$("DEL_CDrag").onclick = (function (wc) {
+   return function () {
+    wc.del_cookie();
+    window.location.reload();
+   };
+})(wc);
+wc = null;
+});
+var database = {
+json : [
+
+   { id : "m_1_1", title : "第一列的第一个的说", content : "第一列的第一个的说" },
+
+   { id : "m_1_2", title : "第一列的第二个的说", content : "第一列的第二个的说" },
+
+   { id : "m_1_3", title : "第一列的第三个的说", content : "第一列的第三个的说" },
+
+   { id : "m_1_4", title : "第一列的第四个的说", content : "第一列的第四个的说" },
+
+   { id : "m_2_1", title : "第二列的第一个的说", content : "第二列的第一个的说" },
+
+   { id : "m_2_2", title : "第二列的第二个的说", content : "第二列的第二个的说" },
+
+   { id : "m_2_3", title : "第二列的第三个的说", content : "第二列的第三个的说" },
+
+   { id : "m_2_4", title : "第二列的第四个的说", content : "第二列的第四个的说" },
+
+   { id : "m_3_1", title : "第三列的第一个的说", content : "第三列的第一个的说" },
+
+   { id : "m_3_2", title : "第三列的第二个的说", content : "第三列的第二个的说" },
+
+   { id : "m_3_3", title : "第三列的第三个的说", content : "第三列的第三个的说" },
+
+   { id : "m_3_4", title : "第三列的第四个的说", content : "第三列的第四个的说" },
+
+   { id : "m_4_1", title : "第四列的第一个的说", content : "第四列的第一个的说" },
+
+   { id : "m_4_2", title : "第四列的第二个的说", content : "第四列的第二个的说" },
+
+   { id : "m_4_3", title : "第四列的第三个的说", content : "第四列的第三个的说" },
+
+   { id : "m_4_4", title : "第四列的第四个的说", content : "第四列的第四个的说" }
+
+],
+
+parse : function (id) {
+//昂应该用AJAX查找然后返回数据..我这里就拿..json串模拟好了嘿
+   var wc = this, json = wc.json, i;
+   for (i in json) {
+    if (json[i].id == id)
+     return { title : json[i].title, content : json[i].content };
+   }
+}
+};
+</script>
+</head>
+<body>
+<br />
+<div><a id="DEL_CDrag" href="javascript:void(0);">[清除记录]</a></div>
+<div class="move" id="root_row">
+<div class="title"><div class="title_a">&nbsp;</div><div class="title_b">缩小</div><div class="title_c">关闭</div></div>
+<div class="content"></div>
+</div>
+<div class="root">
+<div class="cell" id="m_1">
+   <div class="line">&nbsp;</div>
+</div>
+
+<div class="cell r_nbsp">&nbsp;</div>
+
+<div class="cell" id="m_2">
+   <div class="line">&nbsp;</div>
+</div>
+
+<div class="cell r_nbsp">&nbsp;</div>
+
+<div class="cell" id="m_3">
+   <div class="line">&nbsp;</div>
+</div>
+
+<div class="cell r_nbsp">&nbsp;</div>
+
+<div class="cell" id="m_4">
+   <div class="line">&nbsp;</div>
+</div>
+</div>
+</body>
+</html>

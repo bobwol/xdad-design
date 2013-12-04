@@ -1,0 +1,328 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>编辑内容 - 现代设计集团统一后台管理系统</title>
+<link rel="shortcut icon" href="favicon.ico">
+<script type="text/javascript" src="../js/jquery-1.8.1.min.js"></script>
+<!--[if lt ie 9]>
+<script type="text/javascript" src="../js/html5.js"></script>
+<script type="text/javascript" src="../js/selectivizr.js"></script>
+<![endif]-->
+<!-- bootstrap start -->
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" media="all">
+<link type="text/css" href="../css/bootstrap.min.patch.css" rel="stylesheet" media="all">
+<!-- bootstrap end -->
+<!-- nanoscroll start -->
+<script type="text/javascript" src="../js/jquery.nanoscroller.min.js"></script>
+<link type="text/css" href="../css/nanoscroller.css" rel="stylesheet" media="all">
+<!-- nanoscroll end -->
+<script type="text/javascript" src="../js/base.js"></script>
+<link type="text/css" href="../css/style.css" rel="stylesheet" media="all">
+<link type="text/css" href="../css/typo.css" rel="stylesheet" media="all">
+</head>
+<body class="detail component-management edit-gallery">
+<div class="ui-layout">
+  <div class="ui-layout-top">
+    <div class="adminbar">
+      <ul class="quicklinks">
+        <li class="logo menu-mod">
+          <div class="menu-hd"><span class="logo-icon"></span><span>现代设计集团统一后台管理系统</span></div>
+          <div class="menu-bd">
+            <ul>
+              <li><a href="../../admin/template/@entrance.html">后台入口</a></li>
+              <li><a href="../../site/template/welcome.html">集团网站</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="addnew menu-mod">
+          <div class="menu-hd"><a href="#">新建</a></div>
+          <div class="menu-bd">
+            <ul>
+              <li><a href="#">教材</a>
+                <ul>
+                  <li><a href="#">流式布局</a></li>
+                  <li><a href="#">版式布局</a></li>
+                </ul>
+              </li>
+              <li><a href="#">专题</a></li>
+              <li><a href="#">组件</a></li>
+              <li><a href="#">素材</a>
+                <ul>
+                  <li><a href="#">IMAGE</a></li>
+                  <li><a href="#">SLIDESHOW</a></li>
+                  <li><a href="#">AUDIO</a></li>
+                  <li><a href="#">VIDEO</a></li>
+                  <li><a href="#">3D</a></li>
+                </ul>
+              </li>
+              <li><a href="#">文档</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="tip-update"><a href="#" title="0条更新提醒"><span class="count count-0">0</span></a></li>
+        <li class="tip-notice"><a href="#" title="7条评论"><span class="count">7</span></a></li>
+      </ul>
+      <ul class="userinfo">
+        <li><a href="#">帮助</a></li>
+        <li><a href="#">Jason</a></li>
+        <li><a href="#">注销</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- ui-layout-top end -->
+  <div class="ui-layout-center">
+    <div class="ui-layout-center-hd">
+      <h1 class="page-title">编辑内容</h1>
+      <div class="tabview">
+        <ul>
+          <li><a href="edit_info.html">基本信息</a></li>
+          <li class="active"><a href="edit_richtext.html">内容</a></li>
+        </ul>
+      </div>
+      <button class="btn btn-small btn-primary action-save" type="button">保存</button>
+      <button class="btn btn-small action-preview" type="button" data-target="#preview">预览</button>
+      <a class="del" href="#confirmModal">删除条目</a> </div>
+    <div class="ui-layout-center-bd">
+      <div class="main-column">
+        <div class="column-hd">
+          <h3>编辑内容 <span class="content-type">类型：图片集</span></h3>
+        </div>
+        <div class="column-bd">
+          <div class="typo-hd" style="background-image:none;">
+            <button class="btn btn-small action-lib" type="button" style="position:absolute; left:auto; right:160px; top:6px; width:80px;" data-target="#lib">资源库</button>
+            <button class="btn btn-small btn-primary action-material" type="button" style="position:absolute; left:auto; right:60px; top:6px; width:80px;" data-target="#material">添加图片</button>
+            <button class="btn btn-small action-unselect" type="button" style="position:absolute; left:60px; top:6px; width:80px;">取消全选</button>
+            <button class="btn btn-small action-select" type="button" style="position:absolute; left:160px; top:6px; width:80px;">全选</button>
+            <button class="btn btn-small action-delete" type="button" style="position:absolute; left:260px; top:6px; width:80px;">删除选中</button>
+            <button class="btn btn-small action-setting" type="button" style="position:absolute; left:360px; top:6px; width:80px;" onclick="window.open('edit_fixed_doc.html', '_self')">设置交互</button>
+          </div>
+          <div class="typo-bd gallery-list nanoscrollbar">
+            <ul>
+              <li>
+                <div class="thumb"><img src="../public/thumb_01.jpg" width="120" height="120" alt=""></div>
+                <div class="action">
+                  <input type="checkbox">
+                  <a href="#preview" class="action-preview" rel="tooltip" title="预览">预览</a>
+                  <a href="#" class="action-move">移动</a>
+                </div>
+              </li>
+              <li>
+                <div class="thumb"><img src="../public/thumb_02.jpg" width="120" height="120" alt=""></div>
+                <div class="action">
+                  <input type="checkbox">
+                  <a href="#preview" class="action-preview" rel="tooltip" title="预览">预览</a>
+                  <a href="#" class="action-move">移动</a>
+                </div>
+              </li>
+              <li>
+                <div class="thumb"><img src="../public/thumb_03.jpg" width="120" height="120" alt=""></div>
+                <div class="action">
+                  <input type="checkbox" checked>
+                  <a href="#preview" class="action-preview" rel="tooltip" title="预览">预览</a>
+                  <a href="#" class="action-move">移动</a>
+                </div>
+              </li>
+              <li>
+                <div class="thumb"><img src="../public/thumb_04.jpg" width="120" height="120" alt=""></div>
+                <div class="action">
+                  <input type="checkbox" checked>
+                  <a href="#preview" class="action-preview" rel="tooltip" title="预览">预览</a>
+                  <a href="#" class="action-move">移动</a>
+                </div>
+              </li>
+              <li>
+                <div class="thumb"><img src="../public/thumb.png" width="120" height="120" alt=""></div>
+                <div class="action">
+                  <input type="checkbox">
+                  <a href="#preview" class="action-preview" rel="tooltip" title="预览">预览</a>
+                  <a href="#" class="action-move">移动</a>
+                </div>
+              </li>
+              <li>
+                <div class="thumb"><img src="../public/thumb.png" width="120" height="120" alt=""></div>
+                <div class="action">
+                  <input type="checkbox">
+                  <a href="#preview" class="action-preview" rel="tooltip" title="预览">预览</a>
+                  <a href="#" class="action-move">移动</a>
+                </div>
+              </li>
+              <li>
+                <div class="thumb"><img src="../public/thumb.png" width="120" height="120" alt=""></div>
+                <div class="action">
+                  <input type="checkbox">
+                  <a href="#preview" class="action-preview" rel="tooltip" title="预览">预览</a>
+                  <a href="#" class="action-move">移动</a>
+                </div>
+              </li>
+              <li>
+                <div class="thumb"><img src="../public/thumb.png" width="120" height="120" alt=""></div>
+                <div class="action">
+                  <input type="checkbox">
+                  <a href="#preview" class="action-preview" rel="tooltip" title="预览">预览</a>
+                  <a href="#" class="action-move">移动</a>
+                </div>
+              </li>
+              <li>
+                <div class="thumb"><img src="../public/thumb.png" width="120" height="120" alt=""></div>
+                <div class="action">
+                  <input type="checkbox">
+                  <a href="#preview" class="action-preview" rel="tooltip" title="预览">预览</a>
+                  <a href="#" class="action-move">移动</a>
+                </div>
+              </li>
+              <li>
+                <div class="thumb"><img src="../public/thumb.png" width="120" height="120" alt=""></div>
+                <div class="action">
+                  <input type="checkbox">
+                  <a href="#preview" class="action-preview" rel="tooltip" title="预览">预览</a>
+                  <a href="#" class="action-move">移动</a>
+                </div>
+              </li>
+              <li>
+                <div class="thumb"><img src="../public/thumb.png" width="120" height="120" alt=""></div>
+                <div class="action">
+                  <input type="checkbox">
+                  <a href="#preview" class="action-preview" rel="tooltip" title="预览">预览</a>
+                  <a href="#" class="action-move">移动</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ui-layout-center end -->
+  <div class="ui-layout-right related-info nanoscrollbar">
+    <div class="mod info-mod">
+      <div class="mod-hd">图片信息
+        <select class="language">
+          <option>中文</option>
+          <option>English</option>
+        </select>
+      </div>
+      <div class="mod-bd">
+        <dl>
+          <!--<dt>预览图</dt>-->
+          <dd>
+            <div class="cover"><img src="../public/thumb_medium.jpg" alt=""></div>
+            <button class="btn btn-small action-material" type="button" data-target="#material">替换</button>
+            <!--<button class="btn btn-small" type="button" onmousemove="f.style.pixelLeft=event.x-100; f.style.pixelTop=this.offsetTop;" onclick="f.click()">上传素材</button>
+      <input type="file" id="f" onchange="txt.value=this.value" name="f" style="position:absolute; filter:alpha(opacity=0); opacity:0;" size="1" hidefocus>--> 
+          </dd>
+        </dl>
+        <dl class="inputform">
+          <dt>标题</dt>
+          <dd>
+            <p class="titletitle">陆家嘴上海中心</p>
+            <div class="editform" style="display:none;">
+              <input type="text" value="" style="width:234px;">
+              <div>
+                <button class="btn btn-small btn-primary action-save" type="button">保存</button>
+                <button class="btn btn-small action-cancel" type="button" style="margin-left:10px;">取消</button>
+              </div>
+            </div>
+          </dd>
+        </dl>
+        <dl class="inputform">
+          <dt>作者</dt>
+          <dd>
+            <p>现代设计院</p>
+            <div class="editform" style="display:none;">
+              <input type="text" value="" style="width:234px;">
+              <div>
+                <button class="btn btn-small btn-primary action-save" type="button">保存</button>
+                <button class="btn btn-small action-cancel" type="button" style="margin-left:10px;">取消</button>
+              </div>
+            </div>
+          </dd>
+        </dl>
+        <dl class="textareaform">
+          <dt>描述</dt>
+          <dd>
+            <p>上海现代建筑设计(集团)有限公司是一家以建筑设计为主的现代科技型企业，集团旗下拥有华东建筑设计研究院和上海建筑设计研究院等20余家专业公司和机构。在2008年中国工程设计企业60强排名中跻身于前五名; 2001年至2008年连续八年被美国《工程新闻记录》（ENR）列入“国际工程设计公司200强”和“全球工程设计公司150强”之一。</p>
+            <div class="editform" style="display:none;">
+              <textarea rows="6" id="description" style="width:246px; margin:0 0 10px;"></textarea>
+              <div>
+                <button class="btn btn-small btn-primary action-save" type="button">保存</button>
+                <button class="btn btn-small action-cancel" type="button" style="margin-left:10px;">取消</button>
+              </div>
+            </div>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <!-- ui-layout-right end -->
+  <div class="ui-layout-left">
+    <nav>
+      <li class="menu-dashboard">
+        <div class="wraparea">
+          <h4><a href="#">工作台</a></h4>
+        </div>
+      </li>
+      <li>
+        <div class="wraparea">
+          <div class="hitarea"></div>
+          <h4><a href="list_2col.html">内容管理</a></h4>
+        </div>
+        <ul>
+          <li><a href="list_2col.html">所有内容</a></li>
+          <li> <a href="#">新建内容</a>
+            <ul>
+              <li><a href="#">流式布局</a></li>
+              <li><a href="#">版式布局</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="active unfold">
+        <div class="wraparea">
+          <div class="hitarea"></div>
+          <h4><a href="list_1col.html">组件</a></h4>
+        </div>
+        <ul>
+          <li><a href="#" class="active">所有</a></li>
+          <li><a href="#">新建组件</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="wraparea">
+          <div class="hitarea"></div>
+          <h4><a href="#">素材</a></h4>
+        </div>
+        <ul>
+          <li><a href="#">所有</a></li>
+          <li><a href="#">新建素材</a></li>
+          <li><a href="cat_management.html">分类目录</a></li>
+          <li><a href="#">收藏夹</a></li>
+        </ul>
+      </li>
+      <li class="menu-lib">
+        <div class="wraparea">
+          <h4><a href="#">资源库</a></h4>
+        </div>
+      </li>
+      <li class="menu-org">
+        <div class="wraparea">
+          <h4><a href="content_organization.html">内容组织</a></h4>
+        </div>
+      </li>
+      <li class="menu-user">
+        <div class="wraparea">
+          <h4><a href="#">用户管理</a></h4>
+        </div>
+      </li>
+      <li class="menu-publish">
+        <div class="wraparea">
+          <h4><a href="#">发布管理</a></h4>
+        </div>
+      </li>
+    </nav>
+  </div>
+  <!-- ui-layout-left end --> 
+</div>
+</body>
+</html>

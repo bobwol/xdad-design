@@ -1,0 +1,105 @@
+/*
+	Page style
+*/
+html { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, group, menu, nav, section { margin:0; padding:0; }
+ul, ol { list-style:none; }
+h1, h2, h3, h4, h5, h6{ font-weight:500; font-weight:800\9; }
+
+body { font-family:'Microsoft Yahei', sans-serif; color:#333; background:#f8f8f8 url('../img/bg_x.png') repeat-x 0 0; }
+a { color:#333; text-decoration:none; }
+a:hover { color:#7bbe37; text-decoration:none; }
+img { max-width:100%; vertical-align:middle; border:0; -ms-interpolation-mode:bicubic; }
+
+/*
+	Chapter style
+*/
+.admin { position:absolute; top:15px; right:20px; font-size:12px; height:24px; line-height:24px; padding:0 10px; border-radius:2px; }
+.admin a { display:block; height:24px; line-height:24px; color:#7bbe37; background:url('../img/icon_arrow_right.png') no-repeat 100% 50%; padding-right:20px; font-size:13px; }
+
+header { padding-top:3px; background:url('../img/header_top_bg.png') no-repeat 50% 0; }
+header .inner-header { position:relative; width:940px; height:95px; margin:0 auto; }
+header .logo a { display:block; position:absolute; left:0; top:35px; width:210px; height:36px; background:url('../img/logo.png') no-repeat 0 0; overflow:hidden; text-indent:-9999px; }
+header nav { display:block; position:absolute; left:240px; top:0;  }
+header nav li { display:block; float:left; height:30px; padding-top:40px; border-top:3px solid transparent; font-weight:500; }
+header nav li.active { border-top:3px solid #7bbe37; }
+header nav li.active a { color:#7bbe37; }
+header nav li:last-child a { border-right:0; }
+header nav li a { height:16px; line-height:16px; padding:0 39px; border-right:1px solid #ccc; font-size:16px; font-weight:500; }
+header .avatar a { display:block; position:absolute; right:0; top:15px; width:64px; height:64px; border:1px solid #dbdbdb; border-radius:32px; }
+header .avatar a:hover { border:1px solid #7bbe37; }
+header .avatar a img { display:block; width:64px; height:64px; border-radius:32px; }
+
+header .user-info { position:absolute; bottom:-25px; right:15px; z-index:9; font-size:12px; }
+header .user-info a { margin-left:10px; }
+footer { background:url('../img/footer_bg_x.png') repeat-x 0 0; }
+footer .inner-footer { height:140px; padding-top:40px; background:url('../img/footer_inner_bg.png') no-repeat 50% 0; font-size:12px; text-align:center; }
+footer .copyright { height:24px; line-height:24px; color:#6d6d6d; }
+
+/* container */
+.container { width:100%; background:transparent url('../img/container_bg_y.png') repeat-y 50% 0; }
+.inner-container { width:940px; margin:0 auto; padding:0; background:url('../img/overlay.png') repeat-x 0 0; }
+
+/* section */
+section { position:relative; float:right; width:700px; min-height:1000px; }
+section .crumb { width:640px; height:30px; line-height:30px; padding:0 30px; color:#6d6d6d; font-size:12px; text-shadow:0 1px 0 #fff; }
+section h1 { margin:10px 30px; width:586px; height:50px; line-height:50px; padding-left:54px; background:url('../img/icon_aircraft.png') no-repeat 0 50%; color:#7bbe37; font-size:20px; font-weight:100; }
+.tab-mod { margin:-34px 0 20px 30px; }
+.tab-hd { height:32px; border-bottom:1px solid #7bbe37; padding:0 30px; }
+.tab-hd ul { display:block; position:relative; height:32px; top:1px; }
+.tab-hd li { float:right; display:block; width:30px; height:30px; padding:0 3px; line-height:30px; margin-left:5px; border:1px solid transparent; border-bottom:1px solid #7bbe37; }
+.tab-hd li.active { border:1px solid #7bbe37; border-bottom:1px solid #fff; }
+.tab-hd li.tile a { display:block; width:30px; height:30px; overflow:hidden; background:url('../img/icon_tile_green.png') no-repeat 50% 50%; text-indent:-9999px; }
+.tab-hd li.list a { display:block; width:30px; height:30px; overflow:hidden; background:url('../img/icon_list_green.png') no-repeat 50% 50%; text-indent:-9999px; }
+.tab-bd { border:0; border-top:0; padding:20px 0; }
+.bookshelf-tile { width:640px; padding:10px 30px 10px 0; overflow:hidden; }
+.bookshelf-tile ul { width:660px; }
+.bookshelf-tile li { float:left; position:relative; width:150px; margin:0 20px 40px 0; padding-left:160px; height:188px; }
+.bookshelf-tile li h2 { font-size:14px; line-height:24px; font-weight:500; }
+.bookshelf-tile li small { color:#7f7f7f; }
+.bookshelf-tile li .cover { position:absolute; top:0; left:0; width:147px; height:188px; box-shadow:1px 2px 6px rgba(0, 0, 0, .25); background:#eee; }
+.bookshelf-tile li .cover img { display:block; width:147px; height:188px; }
+.bookshelf-tile li .action { position:absolute; bottom:0; left:160px; }
+.bookshelf-tile li .action .btn { border-radius:15px; width:80px; font-size:12px; box-shadow:0 0 1px rgba(0, 0, 0, .25); }
+.bookshelf-list { padding-right:30px; }
+.bookshelf-list li { position:relative; height:45px; line-height:45px; padding:0 10px; border-bottom:1px solid #e3e3e3; }
+.bookshelf-list li:hover { background:#f3f3f3; }
+.bookshelf-list li .icn { display:block; position:absolute; top:7px; right:120px; height:30px; line-height:30px; color:#7f7f7f; font-size:12px; }
+.bookshelf-list li .action { display:block; position:absolute; height:30px; line-height:30px; top:7px; right:10px; margin:0; padding:0; }
+.bookshelf-list li .action .btn { border-radius:15px; width:80px; font-size:12px; box-shadow:0 0 1px rgba(0, 0, 0, .25); }
+
+/* aside */
+aside { float:left; width:220px; padding-right:20px; }
+aside a { color:#333; text-decoration:none; }
+aside a:hover { color:#7bbe37; }
+aside .search { height:99px; position:relative; }
+aside .search form { position:absolute; left:24px; top:48px; }
+aside .search input { width:150px; }
+aside .search .btn { margin-left:-25px; position:relative; z-index:2; width:32px; height:32px; padding:4px; border-radius:16px; box-shadow:0 0 1px rgba(0, 0, 0, .25); }
+aside nav li { position:relative; list-style:none; margin-bottom:5px; }
+aside nav li h4 { height:36px; line-height:38px; background:#f0f0f0; text-indent:40px; font-size:14px; text-shadow:0 1px 0 #fff; }
+aside nav li ul { padding:10px 0 10px 60px; }
+aside nav li ul li { height:36px; line-height:38px; margin-bottom:0; border-bottom:1px solid #e6e6e6; text-indent:5px; font-size:12px; }
+aside nav li ul li a { display:block; height:36px; }
+aside nav li ul li:hover { text-decoration:underline; }
+aside nav li ul li ul li:hover { background:transparent; }
+/* menu active */
+aside nav li.active h4 { background:#f0f0f0; }
+aside nav li.active h4 a { display:block; height:36px;  }
+aside nav li.active ul li a.active { color:#7bbe37; background:url('../img/icon_arrow.png') no-repeat 100% 50%; }
+/* unfold hitarea */
+aside nav li .hitarea { position:absolute; top:6px; left:10px; width:24px; height:24px; background:url("../img/icon_plus_green.png") no-repeat 50% 50%;}
+aside nav li.unfold .hitarea { position:absolute; top:6px; left:10px; width:24px; height:24px; background:url("../img/icon_minus_green.png") no-repeat 50% 50%;}
+aside nav li > ul > li > ul { display:none; position:relative; z-index:9999; top:-38px; left:159px; padding:5px 0; background:#f9f9f9 url(../img/ul-arrow-frame.png) no-repeat 0 0; border-top:1px solid #eee; border-radius:4px; -webkit-box-shadow:3px 3px 0 rgba(0, 0, 0, 0.1); box-shadow:3px 3px 0 rgba(0, 0, 0, 0.1); }
+aside nav li > ul > li > ul li { background:none; border:none; padding:0 5px 0 20px; text-indent:0; text-align:center; }
+aside nav li > ul > li > ul li a:hover { background:#f5f5f5; border-radius:3px; }
+
+/* login */
+.login-wrap { padding:100px 0 80px; font-size:12px; background:#f2f2f2 url(../img/bg_login.png) repeat-x 0 0; }
+.login-wrap .login-form { position:relative; width:540px; height:520px; margin:0 auto; padding:0; background:url(../img/login_box_foto.png) no-repeat -22px 0; }
+.login-wrap .login-panel { position:absolute; top:224px; left:0; width:490px; height:68px; margin:0; padding:92px 25px 0; background:url(../img/login_box_bg.png) no-repeat center center; font-size:12px; }
+.login-wrap .login-panel .input-small { width:160px; margin:0 6px 0 0; padding-left:11px; height:22px; font-size:12px; }
+.login-wrap .login-panel .btn { width:90px; height:32px; border-radius:8px; box-shadow:0 0 2px rgba(0, 0, 0, .25); color:#7bbe37; font-size:12px; }
+.login-wrap .copyright { color:#6d6d6d; font-size:12px; text-align:center; }
+
+.login-wrap input[type="text"], .login-wrap input[type="password"] { border-width:2px; }

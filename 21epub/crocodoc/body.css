@@ -1,0 +1,334 @@
+
+/*body and container*/
+html, body {
+	overflow: hidden;
+}
+body .header .content {
+	width: auto;
+	padding: 0 15px;
+}
+body .navbar {
+	position: absolute;
+	right: 15px;
+	top: 0;
+}
+/*prevents overflow*/
+body .container {
+	width: 100%;
+	padding: 0;
+}
+body #footer {
+	display: none;
+}
+body .feedbackOverlayLink {
+	display: none;
+}
+/*layout*/
+#PageSplitter {
+	height: 100%;
+}
+#LeftPane {
+	/*overflow: auto;*/
+	
+}
+#DocHolder {
+	overflow-y: auto;
+	position: absolute;
+	top: 29px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #EEE;
+}
+#RightPane {
+	background-color: #F8F8F8;
+	width: 210px;
+	min-width: 210px;
+	max-width: 500px;
+}
+#TopPane {
+	height: 155px;
+	/*Initial height*/
+	min-height: 155px;
+	/*Minimum height*/
+	overflow: auto;
+}
+#BottomPane {
+	min-height: 125px;
+	overflow: auto;
+}
+/*embed layout*/
+	/*docstoc*/
+	/*title*/
+#HeaderTitle {
+	color: #333;
+	font-size: 14px;
+	padding: 2px 4px 2px	4px;
+	float: left;
+	margin: 11px 0 0 22px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	max-width: 390px;
+	height: 14px;
+}
+#HeaderTitle.editable.active,	#HeaderTitle.editable: hover {
+	background-color: #FFFFDD;
+	border: 1px solid	Silver;
+	margin: 10px 0 0 21px;
+	cursor: text;
+	text-overflow: clip;
+}
+/*document	and pages*/
+	#Doc {
+	font-size: 10px;
+	margin: 30px 15px auto 20px;
+}
+.page-outer {
+	margin-bottom: 4em;
+	margin-left: auto;
+	margin-right: auto;
+	/*padding-right: 235px;*/
+	position: relative;
+	visibility: hidden;
+}
+.page-outer {
+	padding-right: 210px;
+}
+.page {
+	background-color: #FFF;
+	visibility: hidden;
+	/*Shadow CSS*/
+	-moz-box-shadow: 	1px 1px 5px #777;
+	-webkit-box-shadow: 1px 1px 5px #777;
+	box-shadow: 1px	1px 5px #777;
+}
+.throbber-container {
+	color: silver;
+	font-family: Arial;
+	font-size: 12pt;
+	position: absolute;
+	top: 25%;
+	text-align: center;
+	width: 100%;
+}
+.placeholder {
+	}
+/*comment panel*/
+	.comment-pane {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 210px;
+}
+.comment-pane.transparent {
+	filter: alpha(opacity=25);
+	-moz-opacity: 0.25;
+	-khtml-opacity: 0.25;
+	opacity: 0.25;
+	*display: none;
+}
+.layer.commentline.transparent {
+	*display: none;
+}
+.hide-comment-panel	.page-outer {
+	padding-right: 0;
+}
+.hide-comment-panel .comment-pane {
+	display: none;
+	visibility: hidden;
+}
+.hide-comment-panel .layer.commentline {
+	display: none;
+	visibility: hidden;
+}
+#MoreComments {
+	background-color: yellow;
+	width: 212px;
+	height: 44px;
+	line-height: 44px;
+	bottom: 10px;
+	position: absolute;
+	right: 30px;
+	text-align: center;
+	z-index: 9;
+}
+.comment-pane .overflow-button {
+	display: none;
+	pointer-events: all;
+	width: 178px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	padding: 4px;
+	border: solid 1px #E7C054;
+	background-color: #FEEFA3;
+	position: absolute;
+	bottom: -33px;
+	left: 20px;
+	font-size: 13px;
+	text-align: center;
+	font-weight: bold;
+	z-index: 100;
+}
+.comment-pane .overflow-button: hover {
+	padding: 4px;
+	background-color: #F4E08B;
+	border: solid 1px #E5B438;
+	cursor: pointer;
+}
+.comment-pane .overflow-close-button {
+	display: none;
+	pointer-events: all;
+	width: 178px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	padding: 4px;
+	border: solid 1px #E7C054;
+	background-color: #FEEFA3;
+	position: absolute;
+	bottom: 3px;
+	left: 20px;
+	font-size: 13px;
+	text-align: center;
+	font-weight: bold;
+}
+.comment-pane .overflow-close-button: hover {
+	padding: 4px;
+	background-color: #F4E08B;
+	border: solid 1px #E5B438;
+	cursor: pointer;
+}
+/*side panel*/
+	.vsplitbar {
+	width: 0px;
+	background: url(./sidebar-open-background.png)	transparent center center no-repeat;
+	border: 1px solid #D1D1D1;
+	border-width: 0	1px 0 0;
+}
+.hsplitbar {
+	height: 1px;
+	background: #d1d1d1;
+	border-bottom: 1px	solid #fafafa;
+}
+.hide-sidebar #LeftPane {
+	right: 0px !important;
+	width: auto	!important;
+}
+.hide-sidebar #RightPane {
+	visibility: hidden;
+	display: none;
+}
+.hide-sidebar .vsplitbar {
+	left: auto !important;
+	right: 0 !important;
+	width: 0px;
+	border: none;
+}
+/*miscellaneous*/
+	#FontPreloader {
+	font-size: 1px;
+	line-height: 1px;
+	height: 1px;
+	opacity: 0.01;
+	position: absolute;
+	right: 0;
+	top: 0;
+	cursor: default;
+}
+.inc-status {
+	display: none;
+	position: absolute;
+	bottom: 10px;
+	right: 24px;
+	width: 200px;
+	text-align: center;
+	color: #9B9B9B;
+	z-index: 10;
+}
+.inc-status .msg {
+	text-shadow: 1px 1px 0 #FFF;
+}
+.inc-status	.total {
+	border: 1px solid #9A9A9A;
+	background: #fff;
+	height: 4px;
+	width: 180px;
+	margin: 2px auto;
+}
+.inc-status .prog {
+	background-color: #C8C8C8;
+	height: 100%;
+	width: 0%;
+	float: left;
+}
+.tipsy {
+	padding: 5px;
+	font-size: 13px;
+	position: 	absolute;
+	z-index: 100000;
+}
+.tipsy-inner {
+	padding: 4px 8px 5px 8px;
+	background-color: 	#FFFAB5;
+	color: #333;
+	max-width: 200px;
+	text-align: left;
+}
+.tipsy-inner {
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+.tipsy-arrow {
+	position: absolute;
+	background: url('./tipsy.gif')	no-repeat top left;
+	width: 9px;
+	height: 5px;
+}
+.tipsy-n .tipsy-arrow {
+	top: 0;
+	left: 50%;
+	margin-left: -4px;
+}
+.tipsy-nw .tipsy-arrow {
+	top: 0;
+	left: 10px;
+}
+.tipsy-ne .tipsy-arrow {
+	top: 0;
+	right: 10px;
+}
+.tipsy-s	.tipsy-arrow {
+	bottom: 0;
+	left: 50%;
+	margin-left: -4px;
+	background-position: 	bottom left;
+}
+.tipsy-sw .tipsy-arrow {
+	bottom: 0;
+	left: 10px;
+	background-position: 	bottom left;
+}
+.tipsy-se .tipsy-arrow {
+	bottom: 0;
+	right: 10px;
+	background-position: 	bottom left;
+}
+.tipsy-e .tipsy-arrow {
+	top: 50%;
+	margin-top: -4px;
+	right: 	0;
+	width: 5px;
+	height: 9px;
+	background-position: top right;
+}
+.tipsy-w	.tipsy-arrow {
+	top: 50%;
+	margin-top: -4px;
+	left: 0;
+	width: 5px;
+	height: 	9px;
+}

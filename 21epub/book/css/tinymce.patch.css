@@ -1,0 +1,63 @@
+/* for tinymce float panel position error patch */
+.mce-floatpanel.mce-mousemenu{
+	position:fixed !important;
+}
+
+.mce-i-spaltenListBox,
+.mce-i-statusListBox{
+	display:none !important;
+}
+
+/*fix last toolbar element position problem*/
+.mce-flow-layout-item.mce-last{
+	/*margin-right:0px !important;*/
+}
+/*
+	TINYMCE 4B3
+*/
+
+body > .mce-tinymce.mce-tinymce-inline.mce-container.mce-panel.mce-floatpanel > .mce-container-body > .mce-panel { background:none !important; }
+.mce-edit-focus { outline:none !important; }
+
+
+/* edit-fluid-doc */
+.edit-fluid-doc > .mce-tinymce.mce-tinymce-inline.mce-container.mce-panel.mce-floatpanel { position:fixed !important; top:3px !important; left:50% !important; margin-left:-415px !important; border:none !important; background:none !important; }
+
+/* active */
+/*.edit-fluid-doc article.mce-edit-focus { margin:0 -50px; padding:0 50px 0 46px; border-left:4px solid #bbb !important; background:none !important; }*/
+.edit-fluid-doc .mce-content-body { padding-bottom:0 !important; }
+
+.mce-btn button {height:28px;}
+
+/*patch for article position ,fix bug for tinymce image resize handle */
+section > article{
+	position: relative;
+}
+
+
+button.dropdown-toggle {height:24px;}
+
+/* patch for scrollbar size problem */
+.edit-fluid-doc .mce-tinymce.mce-tinymce-inline.mce-container.mce-panel{
+	z-index:1001 !important;
+}
+.edit-fluid-doc .mce-tinymce.mce-tinymce-inline.mce-container.mce-panel,
+.edit-fluid-doc .mce-tinymce-inline .mce-container-body.mce-abs-layout,
+.edit-fluid-doc .mce-tinymce-inline .mce-container.mce-panel.mce-abs-layout-item,
+.edit-fluid-doc .mce-tinymce-inline .mce-container-body.mce-stack-layout{
+	height:34px !important;
+	width:1000px !important;
+}
+
+.edit-richtext  .mce-tinymce.mce-tinymce-inline.mce-container.mce-panel{
+	display:block !important;
+	z-index:1001 !important;
+}
+
+.edit-richtext  .mce-tinymce.mce-tinymce-inline.mce-container.mce-panel,
+.edit-richtext  .mce-tinymce-inline .mce-container-body.mce-abs-layout,
+.edit-richtext  .mce-tinymce-inline .mce-container.mce-panel.mce-abs-layout-item,
+.edit-richtext  .mce-tinymce-inline .mce-container-body.mce-stack-layout{
+	height:34px !important;
+	width:1000px !important;
+}

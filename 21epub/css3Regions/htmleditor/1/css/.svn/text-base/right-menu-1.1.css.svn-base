@@ -1,0 +1,73 @@
+.panelSkin {
+    -moz-transition: none 0s ease 0s;
+    background: none repeat scroll 0 0 #FAFAFA;
+    border: 1px solid #A8A8A8;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3);
+}
+.floatingPanel {
+    position: fixed;
+}
+
+.panelSkin-label {
+    background: url("http://static.wix.com/services/html-web-skins/1.154.0//images/wysiwyg/core/themes/editor_web/panel/fpp-title-bg.png") repeat-x scroll 0 0 #259EDE;
+    border-bottom: 1px solid #838383;
+    border-radius: 3px 3px 0 0;
+    color: #FFFFFF;
+    cursor: default;
+    display: block;
+    font-size: 12px;
+    padding: 5px 30px 5px 7px;
+    white-space: nowrap;
+}
+
+.panelSkin-help {
+    border-left: 1px solid #1883BC;
+    color: #D8E9F1;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 5px 8px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.actionSkin {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 1px solid #F0F0F0;
+    cursor: pointer;
+    position: relative;
+}
+.actionSkin-label {
+    color: #249DDD;
+    display: block;
+    font-size: 12px;
+    padding: 5px 7px;
+    text-overflow: ellipsis;
+}
+.buttons {
+    height: 27px;
+    padding: 1px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.buttonFPPSkin {
+    background: url("http://static.wix.com/services/html-web-skins/1.154.0//images/wysiwyg/core/themes/editor_web/button/fpp-buttons-bg.png") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    height: 27px;
+    line-height: 27px;
+    margin: 0 2px 0 3px;
+    position: relative;
+    width: 26px;
+}
+.c-button {
+    display: inline-block;
+}
+.FPPSkin-icon {
+    background-position: 0 0;
+    position: absolute;
+    top: 50%;
+}
+.buttonFPPSkin[disabled] {
+    opacity: 0.5;
+}

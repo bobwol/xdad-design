@@ -1,0 +1,100 @@
+(function(category){
+	category.template=_.template(
+		[
+  '            <li id=<%=id%>>',
+'					<div class="wraparea">',
+   '            		 <h4><a href="#"><%=title%></a></h4>',
+    '					<div class="hitarea"></div>',
+ '              		<% if(!_.isEmpty(actions)){ %>',
+ '              		<div class="action-new">',
+ '              			<a href="javascript:void(0)">新建</a>',
+ '              			<ul style="top: 20px; display: none;">',
+ '              				<% _.each(actions,function(action){ %>',
+ '              				<li><a target="_blank" href=<%=portal_url+"createfactory?Type="+action.id+"&id="+id%>><%=action.title%></a></li>',
+ '              				<%   }) %>',
+ '              			</ul>',
+ '              		</div>',
+ '              		<% } %>',
+   '				</div>',
+ '			 </li>'
+		].join("")
+	);
+	category.list_template=_.template(
+		[
+	  '  <li class="content-item" id=<%=id%>>',
+ '	        <div class="wraparea">',
+ '	        	<h4><%=title%></h4>',
+ '				<div class="hitarea"></div>',
+ '	        	<div rel="tooltip" class="btn-draged" data-original-title="上下拖拽">',
+ '	        	</div>',
+ // '	        	<div class="action-pub">',
+	 // '        		<a href="#" data-original-title="">操作</a>',
+	  // '       	</div>',
+	   '      	<div class="action">',
+	    '     		<ul>',
+ '	        			<li><a class="action-edit" href="#">编辑</a></li>',
+	  '       			<li><a href="#" class="action-addCategory">添加子分类</a></li>',
+	      '  	 		<li><a href="#confirmModal" class="action-delete">删除</a></li>',
+	        	 '	</ul>',
+	     '    	</div>',
+	   '      </div>',
+	 '   </li>',
+		].join("")
+	);
+	category.edit_template=_.template(
+		[
+'		  <div class="modal-header">',
+'		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>',
+'		    <h3>新建／编辑分类名称</h3>',
+'		  </div>',
+'		    <form class="form-horizontal" onsubmit="javascript:return false;">',
+'		  <div class="modal-body">',
+'		      <div class="control-group">',
+'		        <label class="control-label" for="title"><em>*</em> 标题：</label>',
+'		        <div class="controls">',
+'		          <input type="text" id="title" name="title" value="<%=title%>">',
+'		          <input type="hidden" id="id" name="id" value="<%=id%>">',
+'		          <input type="hidden" id="thumbnail" name="thumbnail" value="<%=thumbnail&&escape(thumbnail)%>">',
+'		          <input type="hidden" id="picture" name="picture" value="<%=picture&&escape(picture)%>">',
+'		        </div>',
+'		      </div>',
+'		      <div class="control-group thumb">',
+'		        <label class="control-label">缩略图：</label>',
+'		        <div class="controls">',
+'		          <div class="action">',
+'		            <a class="btn btn-small action-change" type="button">设置</a>',
+'		            <!--<input name="" type="file">--> ',
+'		          </div>',
+'		          <div class="cover"><img src="<%=thumbnail%>" alt=""></div>',
+'		        </div>',
+'		      </div>',
+'		      <div class="control-group">',
+'		        <label class="control-label" for="description">描述：</label>',
+'		        <div class="controls">',
+'		          <textarea rows="4" name="description" id="description"><%=description%></textarea>',
+'		        </div>',
+'		      </div>',
+'		  </div>',
+'		  <div class="modal-footer">',
+'		    <button class="btn">确定</button>',
+'		  </div>',
+'		    </form>',
+		 ].join("")
+	);
+	category.modal_template=_.template(
+		[
+'	  <div class="modal-header">',
+'	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>',
+'	    <h3>资源库</h3>',
+//'	    <button class="btn btn-small btn-primary action-copy" type="button">复制所选</button>',
+'	    <button class="btn btn-small btn-primary action-quote-categories action-quote" type="button">确定</button>',
+//'	    <form class="search" style="position:absolute; left:auto; right:20px; top:5px;">',
+//'	      <input type="text" placeholder="搜索" class="input-medium search-query">',
+//'	      <button class="btn" type="submit"><i class="icon-search"></i></button>',
+//'	    </form>',
+//'	    <button class="btn btn-small action-fav" type="button" style="position:absolute; right:205px; top:5px;"><i class="icon-star"></i> 收藏</button>',
+'	  </div>',
+'	  <div class="modal-body"></div>',
+		].join("")
+	);
+})(category);

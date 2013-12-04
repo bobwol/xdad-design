@@ -1,0 +1,735 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>组件素材列表 - 现代设计集团统一后台管理系统</title>
+<link rel="shortcut icon" href="favicon.ico">
+<script type="text/javascript" src="../js/jquery-1.8.1.min.js"></script>
+<!--[if lt ie 9]>
+<script type="text/javascript" src="../js/html5.js"></script>
+<script type="text/javascript" src="../js/selectivizr.js"></script>
+<![endif]-->
+<!-- bootstrap start -->
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" media="all">
+<link type="text/css" href="../css/bootstrap.min.patch.css" rel="stylesheet" media="all">
+<!-- bootstrap end -->
+<!-- nanoscroll start -->
+<script type="text/javascript" src="../js/jquery.nanoscroller.min.js"></script>
+<link type="text/css" href="../css/nanoscroller.css" rel="stylesheet" media="all">
+<!-- nanoscroll end -->
+<script type="text/javascript" src="../js/base.js"></script>
+<link type="text/css" href="../css/style.css" rel="stylesheet" media="all">
+<link type="text/css" href="../css/typo.css" rel="stylesheet" media="all">
+</head>
+<body class="list component-management">
+<div class="ui-layout">
+  <div class="ui-layout-top">
+    <div class="adminbar">
+      <ul class="quicklinks">
+        <li class="logo menu-mod">
+          <div class="menu-hd"><span class="logo-icon"></span><span>现代设计集团统一后台管理系统</span></div>
+          <div class="menu-bd">
+            <ul>
+              <li><a href="../../admin/template/@entrance.html">后台入口</a></li>
+              <li><a href="../../site/template/welcome.html">集团网站</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="addnew menu-mod">
+          <div class="menu-hd"><a href="#">新建</a></div>
+          <div class="menu-bd">
+            <ul>
+              <li><a href="#">教材</a>
+                <ul>
+                  <li><a href="#">流式布局</a></li>
+                  <li><a href="#">版式布局</a></li>
+                </ul>
+              </li>
+              <li><a href="#">专题</a></li>
+              <li><a href="#">组件</a></li>
+              <li><a href="#">素材</a>
+                <ul>
+                  <li><a href="#">IMAGE</a></li>
+                  <li><a href="#">SLIDESHOW</a></li>
+                  <li><a href="#">AUDIO</a></li>
+                  <li><a href="#">VIDEO</a></li>
+                  <li><a href="#">3D</a></li>
+                </ul>
+              </li>
+              <li><a href="#">文档</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="tip-update"><a href="#" title="0条更新提醒"><span class="count count-0">0</span></a></li>
+        <li class="tip-notice"><a href="#" title="7条评论"><span class="count">7</span></a></li>
+      </ul>
+      <ul class="userinfo">
+        <li><a href="#">帮助</a></li>
+        <li><a href="#">Jason</a></li>
+        <li><a href="#">注销</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- ui-layout-top end -->
+  <div class="ui-layout-center">
+    <div class="ui-layout-center-hd">
+      <h1 class="page-title">组件列表</h1>
+      <form class="search" style="position:absolute; left:auto; right:10px; top:2px;">
+        <input type="text" onfocus="if(this.value == '搜索') {this.value = '';}" onblur="if(this.value == '') {this.value = '搜索';}" placeholder="搜索" class="input-medium search-query">
+        <button class="btn" type="submit"><i class="icon-search"></i></button>
+      </form>
+      <button class="btn btn-small action-fav" type="button" style="position:absolute; right:195px; top:2px;"><i class="icon-star"></i> 收藏</button>
+      <button class="btn btn-small btn-primary action-newuser" type="button" data-target="#newUser" style="position:absolute; top:2px; left:140px; right:auto;">新建用户</button>
+    </div>
+    <div class="ui-layout-center-bd">
+      <div class="main-column">
+        <div class="column-hd">
+          <table cellspacing="0" class="hascheckbox list">
+            <thead>
+              <tr>
+                <th scope="col"><input type="checkbox"></th>
+                <th scope="col" colspan="2">标题</th>
+                <th scope="col" width="12%">创建时间</th>
+                <th scope="col" width="10%"><select style="width:auto; height:auto;">
+                    <option>创建者</option>
+                    <option>LXH</option>
+                    <option>Laozhao</option>
+                    <option>Jason</option>
+                  </select></th>
+                <th scope="col" width="10%"><select style="width:auto; height:auto;">
+                    <option>状态</option>
+                    <option>已使用</option>
+                    <option>未使用</option>
+                  </select></th>
+                <th scope="col" width="10%"><select>
+                    <option>类型</option>
+                    <option>SLIDE</option>
+                    <option>TAB</option>
+                    <option>投票</option>
+                  </select></th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="column-bd nanoscrollbar">
+          <table cellspacing="0" class="hascheckbox list">
+            <tbody>
+              <tr class="used slide">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb_01.jpg" alt=""></span></td>
+                <td><span class="title">曹杨新村 Caoyang New Village</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_gallery.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td width="12%">2012/02/16</td>
+                <td width="10%">LXH</td>
+                <td width="10%"><span class="status">已使用</span></td>
+                <td width="10%"><img src="../img/type/component_slide.png" width="32" height="32" alt="slide"></td>
+              </tr>
+              <tr class="unused slide">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb_02.jpg" alt=""></span></td>
+                <td><span class="title">龙华塔历史建筑保护和利用项目</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_gallery.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/25</td>
+                <td>LXH</td>
+                <td><span class="status">未使用</span></td>
+                <td><img src="../img/type/component_slide.png" width="32" height="32" alt="slide"></td>
+              </tr>
+              <tr class="unused slide">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb_03.jpg" alt=""></span></td>
+                <td><span class="title">杭州屏风山疗养院</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_gallery.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/16</td>
+                <td>LXH</td>
+                <td><span class="status">未使用</span></td>
+                <td><img src="../img/type/component_slide.png" width="32" height="32" alt="slide"></td>
+              </tr>
+              <tr class="unused slide">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb_05.jpg" alt=""></span></td>
+                <td><span class="title">上海展览中心（原中苏友好大厦）</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_gallery.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/16</td>
+                <td>LXH</td>
+                <td><span class="status">未使用</span></td>
+                <td><img src="../img/type/component_slide.png" width="32" height="32" alt="slide"></td>
+              </tr>
+              <tr class="unused tab">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb_06.jpg" alt=""></span></td>
+                <td><span class="title">现代设计集团发展历程</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_tab.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/16</td>
+                <td>LXH</td>
+                <td><span class="status">未使用</span></td>
+                <td><img src="../img/type/component_tab.png" width="32" height="32" alt="Tab"></td>
+              </tr>
+              <tr class="used tab">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb.png" alt=""></span></td>
+                <td><span class="title">现代设计集团60周年经典作品集</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_tab.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/25</td>
+                <td>LXH</td>
+                <td><span class="status">已使用</span></td>
+                <td><img src="../img/type/component_tab.png" width="32" height="32" alt="Tab"></td>
+              </tr>
+              <tr class="used tab">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb.png" alt=""></span></td>
+                <td><span class="title">现代设计集团发展历程</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_tab.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/16</td>
+                <td>LXH</td>
+                <td><span class="status">已使用</span></td>
+                <td><img src="../img/type/component_tab.png" width="32" height="32" alt="Tab"></td>
+              </tr>
+              <tr class="used tab">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb.png" alt=""></span></td>
+                <td><span class="title">现代设计集团发展历程</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_tab.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/16</td>
+                <td>LXH</td>
+                <td><span class="status">已使用</span></td>
+                <td><img src="../img/type/component_tab.png" width="32" height="32" alt="Tab"></td>
+              </tr>
+              <tr class="used tab">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb.png" alt=""></span></td>
+                <td><span class="title">现代设计集团发展历程</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_tab.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/16</td>
+                <td>LXH</td>
+                <td><span class="status">已使用</span></td>
+                <td><img src="../img/type/component_tab.png" width="32" height="32" alt="Tab"></td>
+              </tr>
+              <tr class="used tab">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb.png" alt=""></span></td>
+                <td><span class="title">现代设计集团60周年经典作品集</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_tab.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/25</td>
+                <td>LXH</td>
+                <td><span class="status">已使用</span></td>
+                <td><img src="../img/type/component_tab.png" width="32" height="32" alt="Tab"></td>
+              </tr>
+              <tr class="used tab">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb.png" alt=""></span></td>
+                <td><span class="title">现代设计集团发展历程</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_tab.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/16</td>
+                <td>LXH</td>
+                <td><span class="status">已使用</span></td>
+                <td><img src="../img/type/component_tab.png" width="32" height="32" alt="Tab"></td>
+              </tr>
+              <tr class="used tab">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb.png" alt=""></span></td>
+                <td><span class="title">现代设计集团发展历程</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_tab.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/16</td>
+                <td>LXH</td>
+                <td><span class="status">已使用</span></td>
+                <td><img src="../img/type/component_tab.png" width="32" height="32" alt="Tab"></td>
+              </tr>
+              <tr class="used tab">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb.png" alt=""></span></td>
+                <td><span class="title">现代设计集团发展历程</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_tab.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/16</td>
+                <td>LXH</td>
+                <td><span class="status">已使用</span></td>
+                <td><img src="../img/type/component_tab.png" width="32" height="32" alt="Tab"></td>
+              </tr>
+              <tr class="used tab">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb.png" alt=""></span></td>
+                <td><span class="title">现代设计集团60周年经典作品集</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_tab.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/25</td>
+                <td>LXH</td>
+                <td><span class="status">已使用</span></td>
+                <td><img src="../img/type/component_tab.png" width="32" height="32" alt="Tab"></td>
+              </tr>
+              <tr class="used tab">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb.png" alt=""></span></td>
+                <td><span class="title">现代设计集团发展历程</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_tab.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/16</td>
+                <td>LXH</td>
+                <td><span class="status">已使用</span></td>
+                <td><img src="../img/type/component_tab.png" width="32" height="32" alt="Tab"></td>
+              </tr>
+              <tr class="used tab">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb.png" alt=""></span></td>
+                <td><span class="title">现代设计集团发展历程</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_tab.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/16</td>
+                <td>LXH</td>
+                <td><span class="status">已使用</span></td>
+                <td><img src="../img/type/component_tab.png" width="32" height="32" alt="Tab"></td>
+              </tr>
+              <tr class="used tab">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb.png" alt=""></span></td>
+                <td><span class="title">现代设计集团发展历程</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_tab.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/16</td>
+                <td>LXH</td>
+                <td><span class="status">已使用</span></td>
+                <td><img src="../img/type/component_tab.png" width="32" height="32" alt="Tab"></td>
+              </tr>
+              <tr class="used tab">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb.png" alt=""></span></td>
+                <td><span class="title">现代设计集团60周年经典作品集</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_tab.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/25</td>
+                <td>LXH</td>
+                <td><span class="status">已使用</span></td>
+                <td><img src="../img/type/component_tab.png" width="32" height="32" alt="Tab"></td>
+              </tr>
+              <tr class="used tab">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb.png" alt=""></span></td>
+                <td><span class="title">现代设计集团发展历程</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_tab.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/16</td>
+                <td>LXH</td>
+                <td><span class="status">已使用</span></td>
+                <td><img src="../img/type/component_tab.png" width="32" height="32" alt="Tab"></td>
+              </tr>
+              <tr class="used tab">
+                <td><input type="checkbox"></td>
+                <td><span class="thumb"><img src="../public/thumb.png" alt=""></span></td>
+                <td><span class="title">现代设计集团发展历程</span>
+                  <div class="action">
+                    <ul>
+                      <li><a href="edit_tab.html">查看</a></li>
+                      <li><a href="#preview" data-toggle="modal">预览</a></li>
+                      <li><a href="#">收藏</a></li>
+                      <li><a href="#">收回</a></li>
+                    </ul>
+                  </div></td>
+                <td>2012/02/16</td>
+                <td>LXH</td>
+                <td><span class="status">已使用</span></td>
+                <td><img src="../img/type/component_tab.png" width="32" height="32" alt="Tab"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="column-ft">
+          <div class="pagination pagination-centered">
+            <ul>
+              <li class="disabled"><a href="#">«</a></li>
+              <li class="disabled"><a href="#">‹</a></li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#">›</a></li>
+              <li><a href="#">»</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ui-layout-center end -->
+  <div class="ui-layout-right related-info nanoscrollbar">
+    <div class="mod save-mod">
+      <div class="mod-hd">更新设置</div>
+      <div class="mod-bd">
+        <ul>
+          <li> <span class="status">状态：已使用 <a href="#">[查看引用]</a></span> </li>
+          <li> <span class="status">创建者：LXH <a href="#">[发消息]</a></span> </li>
+        </ul>
+      </div>
+      <div class="mod-ft"> <a class="del" href="#confirmModal">删除条目</a>
+        <button class="btn btn-small btn-primary action-save" type="button">更新</button>
+        <button class="btn btn-small action-preview" type="button" data-target="#preview">预览</button>
+      </div>
+    </div>
+    <div class="mod cat-mod">
+      <div class="mod-hd">分类设定</div>
+      <div class="mod-bd">
+        <div class="categories">
+          <ul>
+            <li>
+              <h4>
+                <input type="checkbox" checked>
+                分类 1</h4>
+              <ul>
+                <li>
+                  <h4>
+                    <input type="checkbox" checked>
+                    分类 1.1</h4>
+                </li>
+                <li>
+                  <h4>
+                    <input type="checkbox">
+                    分类 1.2</h4>
+                </li>
+                <li>
+                  <h4>
+                    <input type="checkbox">
+                    分类 1.3</h4>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <h4>
+                <input type="checkbox">
+                分类 2</h4>
+              <ul>
+                <li>
+                  <h4>
+                    <input type="checkbox">
+                    分类 2.1</h4>
+                  <ul>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.1.1</h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.1.2</h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.1.3</h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.1.4</h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.1.5</h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.1.6</h4>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>
+                    <input type="checkbox">
+                    分类 2.2</h4>
+                  <ul>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.2.1</h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.2.2</h4>
+                      <ul>
+                        <li>
+                          <h4>
+                            <input type="checkbox">
+                            分类 2.2.2.1</h4>
+                        </li>
+                        <li>
+                          <h4>
+                            <input type="checkbox">
+                            分类 2.2.2.2</h4>
+                        </li>
+                        <li>
+                          <h4>
+                            <input type="checkbox">
+                            分类 2.2.2.3</h4>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.2.3</h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.2.4</h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.2.5</h4>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>
+                    <input type="checkbox">
+                    分类 2.3</h4>
+                  <ul>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.3.2.1 </h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.3.2.2 </h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.3.2.3 </h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.3.2.4 </h4>
+                    </li>
+                    <li>
+                      <h4>
+                        <input type="checkbox">
+                        分类 2.3.2.5 </h4>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>
+                    <input type="checkbox">
+                    分类 2.3.3 </h4>
+                </li>
+                <li>
+                  <h4>
+                    <input type="checkbox">
+                    分类 2.3.4 </h4>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          </li>
+          </ul>
+        </div>
+        <!-- categories --> 
+      </div>
+    </div>
+    <!-- mod end --> 
+  </div>
+  <!-- ui-layout-right end -->
+  <div class="ui-layout-left">
+    <nav>
+      <li class="menu-dashboard">
+        <div class="wraparea">
+          <h4><a href="#">工作台</a></h4>
+        </div>
+      </li>
+      <li>
+        <div class="wraparea">
+          <div class="hitarea"></div>
+          <h4><a href="list_2col.html">内容管理</a></h4>
+        </div>
+        <ul>
+          <li><a href="list_2col.html">所有内容</a></li>
+          <li> <a href="#">新建内容</a>
+            <ul>
+              <li><a href="#">流式布局</a></li>
+              <li><a href="#">版式布局</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="active unfold">
+        <div class="wraparea">
+          <div class="hitarea"></div>
+          <h4><a href="list_1col.html">组件</a></h4>
+        </div>
+        <ul>
+          <li><a href="#" class="active">所有</a></li>
+          <li><a href="#">新建组件</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="wraparea">
+          <div class="hitarea"></div>
+          <h4><a href="#">素材</a></h4>
+        </div>
+        <ul>
+          <li><a href="#">所有</a></li>
+          <li><a href="#">新建素材</a></li>
+          <li><a href="cat_management.html">分类目录</a></li>
+          <li><a href="#">收藏夹</a></li>
+        </ul>
+      </li>
+      <li class="menu-lib">
+        <div class="wraparea">
+          <h4><a href="#">资源库</a></h4>
+        </div>
+      </li>
+      <li class="menu-org">
+        <div class="wraparea">
+          <h4><a href="content_organization.html">内容组织</a></h4>
+        </div>
+      </li>
+      <li class="menu-user">
+        <div class="wraparea">
+          <h4><a href="#">用户管理</a></h4>
+        </div>
+      </li>
+      <li class="menu-publish">
+        <div class="wraparea">
+          <h4><a href="#">发布管理</a></h4>
+        </div>
+      </li>
+    </nav>
+  </div>
+  <!-- ui-layout-left end --> 
+</div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+<li class="pagetemplate" id=<%=id%>><a class="addpage" href="#"><img src="<%=thumbnail%>"></a></li>

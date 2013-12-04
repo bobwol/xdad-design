@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>集团概况 - 关于我们 - 上海现代建筑设计（集团）有限公司</title>
+<script type="text/javascript" src="../js/jquery-1.8.1.min.js"></script>
+<!--[if lt ie 9]>
+<script type="text/javascript" src="../js/html5.js"></script>
+<script type="text/javascript" src="../js/selectivizr.js"></script>
+<![endif]-->
+<!-- bootstrap start -->
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" media="all">
+<link type="text/css" href="../css/bootstrap.min.patch.css" rel="stylesheet" media="all">
+<!-- bootstrap end -->
+<link type="text/css" href="../css/style.css" rel="stylesheet" media="all">
+<script type="text/javascript" src="../js/jquery.masonry.js"></script>
+<script type="text/javascript" src="../js/jquery.infinitescroll.js"></script>
+<!--<script type="text/javascript">
+var isWidescreen=screen.width>=1280; 
+if(isWidescreen){document.write("<style type='text/css'>.demo{width:700px;}</style>");}
+</script>-->
+
+<script type="text/javascript" src="../js/jquery.goToTop.js"></script>
+<script type="text/javascript">
+function item_masonry(){ 
+	$('.item img').load(function(){ 
+		$('.infinite_scroll').masonry({ 
+			itemSelector: '.masonry_brick',
+			columnWidth:223,
+			gutterWidth:15								
+		});		
+	});	
+	$('.infinite_scroll').masonry({ 
+		itemSelector: '.masonry_brick',
+		columnWidth:223,
+		gutterWidth:15								
+	});	
+}
+$(function(){
+	function item_callback(){ 
+		$('.item').mouseover(function(){
+	//		$(this).css('box-shadow', '0 1px 5px rgba(35,25,25,0.5)');
+			$('.btns',this).show();
+		}).mouseout(function(){
+	//		$(this).css('box-shadow', '0 1px 3px rgba(34,25,25,0.2)');
+			$('.btns',this).hide();		 	
+		});
+		item_masonry();	
+	}
+	item_callback();  
+	$('.item').fadeIn();
+	var sp = 1
+	$(".infinite_scroll").infinitescroll({
+		navSelector  	: "#more",
+		nextSelector 	: "#more a",
+		itemSelector 	: ".item",
+		loading:{
+			img: "../img/loading.gif",
+			msgText: ' ',
+			finishedMsg: '木有了',
+			finished: function(){
+				sp++;
+				if(sp>=10){ //到第10页结束事件
+					$("#more").remove();
+					$("#infscr-loading").hide();
+					$("#pagination").show();
+					$(window).unbind('.infscr');
+				}
+			}	
+		},errorCallback:function(){ 
+			$("#pagination").show();
+		}
+	},function(newElements){
+		var $newElems = $(newElements);
+		$('.infinite_scroll').masonry('appended', $newElems, false);
+		$newElems.fadeIn();
+		item_callback();
+		return;
+	});
+});
+
+$(function(){
+		$(".go-top").goToTop({});
+		$(window).bind("scroll resize",function(){
+				$(".go-top").goToTop({});
+		});
+	});
+</script>
+</head>
+<body>
+<div class="wrap page">
+  <header>
+    <div class="inner-header">
+      <div class="logo"><a href="#">上海现代建筑设计（集团）有限公司</a></div>
+      <div class="slogan">创意成就梦想</div>
+      <nav>
+        <li class="active"><a href="page.html">关于我们</a></li>
+        <li><a href="#">客户服务</a></li>
+        <li><a href="works.html">设计作品</a></li>
+        <li><a href="#">企业文化</a></li>
+      </nav>
+      <ul class="links">
+        <li><a href="#">加入我们 &gt;</a></li>
+        <li><a href="#">联系我们 &gt;</a></li>
+        <li><a href="#">客户投诉 &gt;</a></li>
+      </ul>
+      <div class="language"><a href="#">English</a></div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="inner-container clearfix">
+      <aside>
+        <ul>
+          <li class="active">
+            <h4><a href="#">集团概况</a></h4>
+          </li>
+          <li>
+            <h4><a href="#">集团荣誉</a></h4>
+          </li>
+          <li>
+            <h4><a href="#">组织架构</a></h4>
+          </li>
+          <li>
+            <h4><a href="#">合作伙伴</a></h4>
+          </li>
+        </ul>
+      </aside>
+      <section id="chapter3312" class="typo">
+        <hgroup>
+          <h1>集团概况</h1>
+        </hgroup>
+        <article>
+          <p>上海现代建筑设计(集团)有限公司是一家以建筑设计为主的现代科技型企业，集团旗下拥有华东建筑设计研究院和上海建筑设计研究院等20余家专业公司和机构。在2008年中国工程设计企业60强排名中跻身于前6名; 2001年至2011年连续十年被美国《工程新闻记录》（ENR）列入“国际工程设计公司200强”和“全球工程设计公司150强”之一，2011年位列全球第75位。2011年集团荣获中国质量协会与全国用户委员会颁发的“用户满意企业”奖。</p>
+          <div class="row-fluid">
+            <div class="span6">
+              <h4>专业的团队</h4>
+              <p>集团现有职工3,500余人，其中包括中国工程院院士2名、国家设计大师6名、国家有突出贡献中青年专家6名。各专业技术人员约占73%, 高级工程师约占25.4%, 技术力量雄厚。</p>
+            </div>
+            <div class="span6">
+              <h4>经验与成就</h4>
+              <p>集团累计完成了3万余项工程的设计与咨询，创作成果遍及全国29个省市及20多个国家和地区，其中1000余项工程设计、科研项目和标准设计获国家、省（市）级优秀设计和科研进步奖。</p>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span6">
+              <h4>全过程服务</h4>
+              <p>集团业务领域涵盖建筑﹑水利﹑市政和规划四大行业，业务横跨工程咨询﹑工程设计﹑工程承包﹑工程勘察四大类别的项目全过程。主要内容有：建筑设计、历史建筑保护和利用设计、环境与装饰设计、建筑声学设计、项目管理、工程监理、项目可行性研究、投资控制、科技咨询等。2011年度全集团实现营业收入超过人民币33亿元。 </p>
+            </div>
+            <div class="span6">
+              <h4>市场与合作</h4>
+              <p>集团已在北京、天津、重庆、武汉、青岛、深圳、西安、厦门、大连、南宁、苏州等地共设有23个内地机构（分公司，办事处，分院），并在香港设有全资子公司。至今集团与美国、加拿大、英国、法国、德国、澳大利亚、日本、新加坡、韩国、香港、台湾等国家和地区的设计机构已合作设计达400多个项目。</p>
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
+  </div>
+  <footer id="footer">
+    <div class="inner-footer">
+      <p class="copyright">Copyright &copy; 2010 XIANDAI Architectural Design. All rights reserved.<br>
+        沪ICP备09024479</p>
+    </div>
+  </footer>
+</div>
+<div class="admin"><a href="../publish/dashboard.html">管理后台</a></div>
+</body>
+</html>

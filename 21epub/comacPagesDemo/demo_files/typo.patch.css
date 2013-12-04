@@ -1,0 +1,5 @@
+/*
+	reset XDAD
+*/
+.typo ul, .mceContentBody ul { margin:0 0 2em; list-style:none !important; }
+.typo ul li, .mceContentBody ul li { list-style:none !important; line-height:21px; padding:5px 0 5px 20px; background:url('../img/xdad/icon_list_style_01.png') no-repeat 0 7px; }

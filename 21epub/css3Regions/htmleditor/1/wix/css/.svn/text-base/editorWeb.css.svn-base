@@ -1,0 +1,292 @@
+/* Helvetica fonts are loaded in fontFace.css from public */
+
+/* Reset */
+/* TODO shouldn't this be * ? */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+:focus {
+    outline: 0;
+}
+
+ins {
+    text-decoration: none;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    color:#379ACF;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Contain floats: h5bp.com/q */
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
+
+/* Webkit ScrollBar appearance for editor panels
+ * Also forces the scroll bars on MacOSX to stay visible*/
+#EDITOR_STRUCTURE ::-webkit-scrollbar,
+#dialogLayer ::-webkit-scrollbar{
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+}
+#EDITOR_STRUCTURE ::-webkit-scrollbar-thumb,
+#dialogLayer ::-webkit-scrollbar-thumb{
+    border-radius: 8px;
+    border: 2px solid #fdfdfd; /* should match background, can't be transparent */
+    background-color: rgba(0,0,0,.5);
+}
+
+/* General */
+
+/*body, html {*/
+    /*height: 100%;*/
+    /*width: 100%;*/
+    /*margin: 0 auto;*/
+    /*background-color: #ffffff;*/
+    /*text-align: center;*/
+    /*color: #404040;*/
+/*}*/
+
+body {
+    overflow-y: scroll;
+    color: #404040;
+}
+
+/***** Typography ********/
+
+/* Regular */
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* Italic */
+
+em, i, .italic{
+    font-family: "Helvetica Neue Italic", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+.isPlaceholder{
+    font-family: "Helvetica Neue Italic", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+::-webkit-input-placeholder{
+    font-family: "Helvetica Neue Italic", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+:-moz-placeholder{
+    font-family: "Helvetica Neue Italic", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* Bold (Medium) */
+b, strong, .bold, .tbLabel{
+    font-family: "Helvetica Neue Medium", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* Bold (Medium) */
+.thin{
+    font-family: "Helvetica Neue Thin", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+
+/* Typography END */
+
+
+#EDITOR_STRUCTURE {
+    width: 960px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+/* Editor Container */
+
+.editorContainer {
+    overflow: hidden;
+}
+
+/* Site Pages */
+
+#SITE_PAGES {
+    float: left;
+    width: 700px;
+}
+
+#SITE_PAGES .right {
+    float: right;
+}
+
+#SITE_PAGES .left {
+    float: left;
+}
+
+.sitePage {
+    overflow: hidden;
+}
+
+/* Graphic Buttons */
+.topBarBTN {
+    height:20px;
+    margin-left: 15px;
+    padding-left: 25px;
+    padding-top:9px;
+    margin-top:5px;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+
+}
+
+#pageMenuContainer {
+    display: inline-block;
+    background-color: #dddddd;
+    margin-left: 100px;
+    margin-top: -20px;
+}
+
+*:not(input):not(textarea) {
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.selectable,
+.selectableChildren *{
+    -khtml-user-select: text;
+   -webkit-user-select: text;
+   -o-user-select: text;
+   user-select: text;
+    -moz-user-select: text;
+}
+
+textarea, input, select {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block;
+}
+
+/* Preview fixed scrolling */
+#previewContainer.fixed {
+    position: fixed;
+    top: 45px;
+}
+#progressBar.fixed {
+    position: fixed;
+    top: 538px;
+    margin-left:33px;
+}
+/* Preloader */
+#editor_preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+#editor_preloader.editorLoading {
+    /*background-color: #FFFFFF;*/
+    background: #FFFFFF url(../../images/wysiwyg/editor/editor_loading.gif) no-repeat 50% 50%;
+}
+#editor_preloader.siteLoading {
+    background: rgba(255, 255, 255, 0.5) url(../../images/wysiwyg/editor/editor_loading.gif) no-repeat 50% 50%;
+}
+#editor_preloader.ready {
+    display:none;
+}
+
+/*See AutoPanel.js*/
+.inline-component {display: inline-block; vertical-align: top}
+
+/*CK-Editor style*/
+span.cke_skin_kama{
+    padding: 0 !important;
+    background: none transparent !important;
+    display: block;
+    border: 0 !important;
+    border-radius: 0 !important;
+    visibility: hidden;
+    margin: 0 !important;
+    /*outline: 0 !important;*/
+}
+.cke_focus{
+    outline: none !important;
+}
+.cke_wrapper{
+    padding: 0 !important;
+    background: none transparent !important;
+    /*outline: 0 !important;*/
+    /*display: block;*/
+}
+.cke_contents iframe{
+    padding: 0 !important;
+    background: none transparent !important;
+    display: block;
+    margin: 0 !important;
+}
+
+.cke_rcombopanel {width:170px !important}
+
+.z-topLayer {z-index:1000000}/*for drag and drop in pages panel*/
+
+.tooltipIcon {
+    float:right;
+    padding:0 0 2px;
+    width:8px;
+    height:10px;
+    font-weight:bold;
+    color:#379ACF;
+    cursor:pointer;
+    background-repeat: no-repeat;
+}
+
+.tooltipIcon:hover {
+    background-position:0 -12px;
+}

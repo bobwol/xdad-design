@@ -1,0 +1,687 @@
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>BlackSoul的拖拽Demo</title>
+
+<!--
+
+ ____________________________________
+
+|--------Author By BlackSoul---------|
+
+|------------2006.03.30--------------|
+
+|--------BlackSoulylk@gmail.com------|
+
+|------------QQ:Array1361Array4--------------|
+
+|------http://blacksoul.cnblogs.cn---|
+
+======================================
+
+-->
+
+<style type="text/css">
+
+body
+
+{
+
+    margin:0px;
+
+}
+
+ 
+
+#aim /*设置目标层样式*/
+
+{
+
+    position:absolute;/*控制层的位置所必须的style*/
+
+    width:200px;
+
+    height:30px;
+
+    border:1px solid #666666;
+
+    background-color:#FFCCCC;
+
+}
+
+ 
+
+#sourceLayer, #cloneLayer
+
+{
+
+    position:absolute;/*控制层的位置所必须的style*/
+
+    width:300px;
+
+    height:50px;
+
+    border:1px solid #666666;
+
+    background-color:#CCCCCC;
+
+    cursor:move;
+
+}
+
+ 
+
+.docked
+
+{
+
+    display:none;
+
+    filter:alpha(opacity=100);
+
+}
+
+ 
+
+.actived
+
+{
+
+    display:block;
+
+    filter:alpha(opacity=70);
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body >
+
+ 
+
+<div id="aim">放置范围</div>
+
+<div id="sourceLayer" unselectable="off"><img src="http://www.knowsky.com/http://blacksoul.gamenews.cn/mail.png" alt="拖拽Demo">拖拽Demo源</div>
+
+<div id="cloneLayer" class="docked" unselectable="off"></div>
+
+ 
+
+<script type="text/javascript" language="javascript">
+
+<!--
+
+/*
+
+ ====================================
+
+|--------Author By BlackSoul---------|
+
+|------------2006.03.30--------------|
+
+|--------BlackSoulylk@gmail.com------|
+
+|------------QQ:Array1361Array4--------------|
+
+|------http://blacksoul.cnblogs.cn---|
+
+ ====================================
+
+*/
+
+//设置层对象
+
+var aim;
+
+var sourceLayer;
+
+var cloneLayer;
+
+ 
+
+//定义各个层初始位置
+
+var aimX;
+
+var aimY;
+
+var orgnX;
+
+var orgnY;
+
+ 
+
+//拖拽过程中的变量
+
+var draging = false; //是否处于拖拽中
+
+var offsetX = 0;     //X方向左右偏移量
+
+var offsetY = 0;     //Y方向上下偏移量
+
+var back;            //返回动画对象
+
+var thisX ;          //当前clone层的X位置
+
+var thisY ;          //当前clone层的Y位置
+
+var time ;
+
+var stepX ;          //位移速度
+
+var stepY ;          //位移速度
+
+ 
+
+//初始化拖拽信息
+
+/*
+
+  initAimX 目标x坐标
+
+  initAimY 目标y坐标
+
+  initOrgnX 拖拽源x坐标
+
+  initOrgnY 拖拽源y坐标
+
+*/
+
+//获得层对象
+
+ 
+
+function getLayer(inAim,inSource,inClone)
+
+{
+
+    aim = document.getElementById(inAim);
+
+    sourceLayer = document.getElementById(inSource);
+
+    cloneLayer = document.getElementById(inClone);
+
+}
+
+ 
+
+function initDrag(initAimX,initAimY,initOrgnX,initOrgnY)
+
+{
+
+    aimX = initAimX;
+
+    aimY = initAimY;
+
+    orgnX = initOrgnX;
+
+    orgnY = initOrgnY;
+
+    //设置各个开始层的位置
+
+    aim.style.pixelLeft = aimX;
+
+    aim.style.pixelTop = aimY;
+
+    sourceLayer.style.pixelLeft = orgnX;
+
+    sourceLayer.style.pixelTop = orgnY;
+
+    cloneLayer.style.pixelLeft = orgnX;
+
+    cloneLayer.style.pixelTop = orgnY;
+
+}
+
+ 
+
+//准备拖拽
+
+function BeforeDrag()
+
+{
+
+    if (event.button != 1)
+
+    {
+
+        return;
+
+    }
+
+    cloneLayer.innerHTML = sourceLayer.innerHTML; //复制拖拽源内容
+
+    offsetX = document.body.scrollLeft + event.clientX - sourceLayer.style.pixelLeft;
+
+    offsetY = document.body.scrollTop + event.clientY - sourceLayer.style.pixelTop;
+
+    cloneLayer.className = "actived";
+
+    draging = true;
+
+}
+
+ 
+
+//拖拽中
+
+function OnDrag()
+
+{
+
+    if(!draging)
+
+    {
+
+        return;
+
+    }
+
+    //更新位置
+
+    event.returnValue = false;
+
+    cloneLayer.style.pixelLeft = document.body.scrollLeft + event.clientX - offsetX;
+
+    cloneLayer.style.pixelTop = document.body.scrollTop + event.clientY - offsetY;
+
+}
+
+ 
+
+//结束拖拽
+
+function EndDrag()
+
+{
+
+    if (event.button != 1)
+
+    {
+
+        return;
+
+    }
+
+    draging = false;
+
+ 
+
+    if (event.clientX >= aim.style.pixelLeft && event.clientX <= (aim.style.pixelLeft + aim.offsetWidth) &&
+
+        event.clientY >= aim.style.pixelTop && event.clientY <= (aim.style.pixelTop + aim.offsetHeight))
+
+    {
+
+        //拖拽层位于目标中，自动定位到目标位置
+
+        sourceLayer.style.pixelLeft = aim.style.pixelLeft;
+
+        sourceLayer.style.pixelTop = aim.style.pixelTop;
+
+         cloneLayer.className = "docked";
+
+         /*
+
+         **  这里完成之后可以用xml保存当前位置.
+
+         **  下次用户进入的时候
+
+         **  就初始化源拖拽层为xml当中的数据了    
+
+         */
+
+    }
+
+    else
+
+    {
+
+    //拖拽位于目标层外，将拖拽源位置复原
+
+     thisX = cloneLayer.style.pixelLeft;
+
+     thisY = cloneLayer.style.pixelTop;
+
+     offSetX = Math.abs(thisX - orgnX);
+
+     offSetY = Math.abs(thisY - orgnY);
+
+     time = 500;//设置动画时间
+
+     stepX = Math.floor((offSetX/time)*20);
+
+     stepY = Math.floor((offSetY/time)*20);
+
+     if(stepX == 0)
+
+         stepX = 2;
+
+     if(stepY == 0)
+
+         stepY = 2;
+
+        
+
+    //开始返回动画
+
+     moveStart();
+
+    }   
+
+}
+
+ 
+
+ 
+
+function moveStart()
+
+{
+
+     back = setInterval("MoveLayer();",15);
+
+}
+
+ 
+
+//设置返回的动画效果
+
+function MoveLayer()
+
+{
+
+    //位于目标左上
+
+     if(cloneLayer.style.pixelLeft <= orgnX && cloneLayer.style.pixelTop <= orgnY)
+
+     {
+
+         cloneLayer.style.pixelLeft += stepX;
+
+         cloneLayer.style.pixelTop += stepY;
+
+         //如果位移超过目标则设置速度为pix.并向反方向回移.此处实现了弹簧效果.下同
+
+         if(cloneLayer.style.pixelLeft > orgnX)
+
+         {
+
+              stepX = 1;
+
+         }
+
+         if(cloneLayer.style.pixelTop > orgnY)
+
+         {
+
+              stepY = 1;
+
+         }
+
+         //在X或Y轴上坐标相同则不发生位移
+
+         if(cloneLayer.style.pixelLeft == orgnX)
+
+         {
+
+              stepX = 0;
+
+         }
+
+         if(cloneLayer.style.pixelTop == orgnY)
+
+         {
+
+              stepY = 0;
+
+         }
+
+         if(cloneLayer.style.pixelLeft == orgnX && cloneLayer.style.pixelTop == orgnY)
+
+         {
+
+              EndMove();
+
+         }
+
+     }
+
+    
+
+     //位于目标左下
+
+     else if(cloneLayer.style.pixelLeft <= orgnX && cloneLayer.style.pixelTop >= orgnY)
+
+     {
+
+         cloneLayer.style.pixelLeft += stepX;
+
+         cloneLayer.style.pixelTop -= stepY;
+
+         if(cloneLayer.style.pixelLeft > orgnX)
+
+         {
+
+              stepX = 1;
+
+         }
+
+         if(cloneLayer.style.pixelTop < orgnY)
+
+         {
+
+              stepY = 1;
+
+         }
+
+         if(cloneLayer.style.pixelLeft == orgnX)
+
+         {
+
+              stepX = 0;
+
+         }
+
+         if(cloneLayer.style.pixelTop == orgnY)
+
+         {
+
+              stepY = 0;
+
+         }
+
+         if(cloneLayer.style.pixelLeft == orgnX && cloneLayer.style.pixelTop == orgnY)
+
+         {
+
+              EndMove();
+
+         }
+
+     }
+
+    
+
+     //位于目标右上
+
+     else if(cloneLayer.style.pixelLeft >= orgnX && cloneLayer.style.pixelTop <= orgnY)
+
+     {
+
+         cloneLayer.style.pixelLeft -= stepX;
+
+         cloneLayer.style.pixelTop += stepY;
+
+         if(cloneLayer.style.pixelLeft < orgnX)
+
+         {
+
+              stepX = 1;
+
+         }
+
+         if(cloneLayer.style.pixelTop > orgnY)
+
+         {
+
+              stepY = 1;
+
+         }
+
+         if(cloneLayer.style.pixelLeft == orgnX)
+
+         {
+
+              stepX = 0;
+
+         }
+
+         if(cloneLayer.style.pixelTop == orgnY)
+
+         {
+
+              stepY = 0;
+
+         }
+
+         if(cloneLayer.style.pixelLeft == orgnX && cloneLayer.style.pixelTop == orgnY)
+
+         {
+
+              EndMove();
+
+         }
+
+     }
+
+    
+
+     //位于目标右上
+
+     else if(cloneLayer.style.pixelLeft >= orgnX && cloneLayer.style.pixelTop >= orgnY)
+
+     {
+
+         cloneLayer.style.pixelLeft -= stepX;
+
+         cloneLayer.style.pixelTop -= stepY;
+
+         if(cloneLayer.style.pixelLeft < orgnX)
+
+         {
+
+              stepX = 1;
+
+         }
+
+         if(cloneLayer.style.pixelTop < orgnY)
+
+         {
+
+              stepY = 1;
+
+         }
+
+         if(cloneLayer.style.pixelLeft == orgnX)
+
+         {
+
+              stepX = 0;
+
+         }
+
+         if(cloneLayer.style.pixelTop == orgnY)
+
+         {
+
+              stepY = 0;
+
+         }
+
+         if(cloneLayer.style.pixelLeft == orgnX && cloneLayer.style.pixelTop == orgnY)
+
+         {
+
+              EndMove();
+
+         }
+
+     }
+
+    
+
+     //到达目标
+
+     else
+
+     {
+
+         EndMove();
+
+     }
+
+}
+
+ 
+
+//停止返回动画
+
+function EndMove()
+
+{
+
+         sourceLayer.style.pixelLeft = orgnX;
+
+         sourceLayer.style.pixelTop = orgnY;
+
+         cloneLayer.style.pixelLeft = orgnX;
+
+         cloneLayer.style.pixelTop = orgnY;
+
+         cloneLayer.className = "docked";
+
+         clearInterval(back);
+
+}
+
+ 
+
+//主拖拽函数
+
+function startDraging(inAim,inSource,inClone,initAimX,initAimY,initOrgnX,initOrgnY)
+
+{
+
+    getLayer(inAim,inSource,inClone)
+
+    initDrag(initAimX,initAimY,initOrgnX,initOrgnY);
+
+    sourceLayer.onmousedown = BeforeDrag;
+
+    document.onmousemove = OnDrag; //这里如果用cloneLayer,在拖拽中会选中cloneLayer里面内容,进而出现一些bug...
+
+    cloneLayer.onmouseup = EndDrag;   
+
+}
+
+ 
+
+//调用
+
+startDraging("aim","sourceLayer","cloneLayer",300,200,20,20);
+
+//-->
+
+</script>
+
+</body>
+
+</html>

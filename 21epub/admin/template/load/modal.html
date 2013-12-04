@@ -1,0 +1,315 @@
+<!------ LARGE-MODAL ------>
+
+<!-- preview start -->
+
+<div class="modal large-modal preview-modal" id="preview" tabindex="-1" role="dialog" aria-labelledby="previewLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>预览：海浦东陆家嘴金融贸易开发区的中心区</h3>
+  </div>
+  <div class="modal-body nanoscrollbar"></div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {setPreview();});
+</script> 
+<!-- preview end --> 
+<!-- lib start -->
+<div class="modal large-modal" id="lib" tabindex="-1" role="dialog" aria-labelledby="libLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>资源库</h3>
+    <button class="btn btn-small btn-primary action-copy" type="button">复制所选</button>
+    <button class="btn btn-small btn-primary action-quote" type="button">引用所选</button>
+    <form class="search" style="position:absolute; left:auto; right:20px; top:5px;">
+      <input type="text" onfocus="if(this.value == '搜索') {this.value = '';}" onblur="if(this.value == '') {this.value = '搜索';}" placeholder="搜索" class="input-medium search-query">
+      <button class="btn" type="submit"><i class="icon-search"></i></button>
+    </form>
+    <button class="btn btn-small action-fav" type="button" style="position:absolute; right:205px; top:5px;"><i class="icon-star"></i> 收藏</button>
+  </div>
+  <div class="modal-body"></div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('a[href="#lib"], button[data-target="#lib"]').click(function() {
+			$('#lib .modal-body').load('list_2col.html .ui-layout-center-bd >', (function() {setCategories();setNanoscrollbar();setPreview();}));
+		});
+	});
+</script> 
+<!-- lib end --> 
+
+<!-- material start -->
+<div class="modal large-modal" id="material" tabindex="-1" role="dialog" aria-labelledby="materialLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>素材库</h3>
+    <button class="btn btn-small btn-primary action-upload" type="button" data-target="#upload">上传素材</button>
+    <button class="btn btn-small action-inset" type="button">插入所选</button>
+  </div>
+  <div class="modal-body"></div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('a[href="#material"], button[data-target="#material"]').click(function() {
+			$('#material .modal-body').load('list_2col.html .ui-layout-center-bd >', (function() {setCategories();setNanoscrollbar();setPreview();}));
+		});
+	});
+</script> 
+<!-- material end --> 
+
+<!-- categories start -->
+<div class="modal large-modal" id="categories" tabindex="-1" role="dialog" aria-labelledby="categoriesLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>分类目录</h3>
+    <button class="btn btn-small btn-primary action-quote" type="button">添加所选</button>
+  </div>
+  <div class="modal-body">
+    <div class="left-column">
+      <div class="column-hd">
+        <h3>产品分类</h3>
+      </div>
+      <div class="column-bd nanoscrollbar"></div>
+      <div class="column-ft"></div>
+    </div>
+    <div class="right-column">
+      <div class="column-hd">
+        <h3>内容分类</h3>
+        <div style="position:absolute; top:8px; right:30px; font-size:12px; line-height:20px;">
+          <input type="checkbox" checked="checked">
+          勾选子分类</div>
+      </div>
+      <div class="column-bd nanoscrollbar"></div>
+      <div class="column-ft"></div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('a[href="#categories"], button[data-target="#categories"]').click(function() {
+			$('#categories').modal({backdrop:false});
+			$('#categories .modal-body .left-column .column-bd').load('content_organization.html .ui-layout-center-bd .left-column .column-bd >');
+			$('#categories .modal-body .right-column .column-bd').load('list_2col.html .ui-layout-right .mod:last-child .mod-bd >', (function() {setCategories();setNanoscrollbar();}));
+		});
+	});
+</script> 
+<!-- categories end --> 
+
+<!------ MEDIUM-MODAL ------> 
+
+<!-- upload start -->
+<div class="modal medium-modal" id="upload" tabindex="-1" role="dialog" aria-labelledby="uploadLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>上传素材</h3>
+  </div>
+  <div class="modal-body">
+    <div class="upload-hd">
+      <button class="btn btn-small btn-primary" type="button">上传素材</button>
+      <p>提示：每次最多可以批量上传二十张照片，按着 “command” 键可以一次选择多张照片。</p>
+    </div>
+    <div class="upload-bd">
+      <ul>
+        <li>
+          <div class="meta-data">01.jpg</div>
+          <div class="progress">
+            <div class="bar" style="width: 60%;"></div>
+          </div>
+          <div class="percent">60%</div>
+        </li>
+        <li>
+          <div class="meta-data">02.jpg</div>
+          <div class="progress">
+            <div class="bar" style="width: 30%;"></div>
+          </div>
+          <div class="percent">30%</div>
+        </li>
+        <li>
+          <div class="meta-data">03.jpg</div>
+          <div class="progress">
+            <div class="bar" style="width: 80%;"></div>
+          </div>
+          <div class="percent">80%</div>
+        </li>
+        <li>
+          <div class="meta-data">04.jpg</div>
+          <div class="progress">
+            <div class="bar" style="width: 36%;"></div>
+          </div>
+          <div class="percent">36%</div>
+        </li>
+        <li>
+          <div class="meta-data">05.jpg</div>
+          <div class="progress">
+            <div class="bar" style="width: 90%;"></div>
+          </div>
+          <div class="percent">90%</div>
+        </li>
+      </ul>
+    </div>
+    <div class="upload-ft">
+      <button class="btn btn-small" type="button">取消上传</button>
+    </div>
+  </div>
+</div>
+<!-- upload end --> 
+
+<!-- newPage start -->
+<div class="modal medium-modal" id="newPage" tabindex="-1" role="dialog" aria-labelledby="newPageLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>新建页面</h3>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="title"><em>*</em> 标题：</label>
+        <div class="controls">
+          <input type="text" id="title" value="集团概况">
+        </div>
+      </div>
+      <div class="control-group thumb">
+        <label class="control-label">缩略图：</label>
+        <div class="controls">
+          <div class="action">
+            <button class="btn btn-small" type="button">设置</button>
+            <!--<input name="" type="file">--> 
+          </div>
+          <div class="cover"><img src="../public/thumb.png" alt=""></div>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="selectStyle">下拉框示例：</label>
+        <div class="controls">
+          <select id="selectStyle">
+            <option>默认样式</option>
+            <option>样式一</option>
+            <option>样式二</option>
+          </select>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="description">描述：</label>
+        <div class="controls">
+          <textarea rows="4" id="description">为保持我国适航标准与各国适航标准在安全水平上的一致性，民航局适航司于1989年3月委托民 航局第一研究所进行《中国民用航空条例第23部》的修订工作。</textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn">确定</button>
+  </div>
+</div>
+<!-- newPage end --> 
+
+<!-- editModal start -->
+<div class="modal medium-modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>新建／编辑分类名称</h3>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="title"><em>*</em> 标题：</label>
+        <div class="controls">
+          <input type="text" id="title" value="集团概况">
+        </div>
+      </div>
+      <div class="control-group thumb">
+        <label class="control-label">缩略图：</label>
+        <div class="controls">
+          <div class="action">
+            <button class="btn btn-small" type="button">设置</button>
+            <!--<input name="" type="file">--> 
+          </div>
+          <div class="cover"><img src="../public/thumb.png" alt=""></div>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="description">描述：</label>
+        <div class="controls">
+          <textarea rows="4" id="description">为保持我国适航标准与各国适航标准在安全水平上的一致性，民航局适航司于1989年3月委托民 航局第一研究所进行《中国民用航空条例第23部》的修订工作。</textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn">确定</button>
+  </div>
+</div>
+<!-- editModal end --> 
+
+<!-- newUser start -->
+<div class="modal medium-modal" id="newUser" tabindex="-1" role="dialog" aria-labelledby="newUserLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>新建用户</h3>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="userName">用户名：</label>
+        <div class="controls">
+          <input type="text" id="userName" value="Jason">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="email">电子邮件：</label>
+        <div class="controls">
+          <input type="text" id="email" value="">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="realName">姓名：</label>
+        <div class="controls">
+          <input type="text" id="realName" value="">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="password">密码：</label>
+        <div class="controls">
+          <input type="password" id="password" value="">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="confirmPassword">确认密码：</label>
+        <div class="controls">
+          <input type="password" id="confirmPassword" value="">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="docStyle">用户角色：</label>
+        <div class="controls">
+          <select id="docStyle">
+            <option>学员</option>
+            <option>系统管理员</option>
+            <option>总编</option>
+            <option>主编</option>
+            <option>编辑</option>
+            <option>审核</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn">确定</button>
+  </div>
+</div>
+<!-- newUser end --> 
+
+<!------ SMALL-MODAL ------> 
+
+<!-- confirmModal start -->
+<div class="modal small-modal" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>确认框</h3>
+  </div>
+  <div class="modal-body"> <span style="font-size:14px;">确认xxxx（删除／发布／收回/...）？</span></div>
+  <div class="modal-footer">
+    <button class="btn btn-primary">确定</button>
+    <button class="btn" style="margin-left:20px;" data-dismiss="modal" aria-hidden="true">取消</button>
+  </div>
+</div>
+<!-- confirmModal end --> 

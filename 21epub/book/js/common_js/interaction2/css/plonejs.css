@@ -1,0 +1,295 @@
+/* patch for ui resizable */
+.ui-resizable {
+    outline: 0px !important;
+}
+div.element.ui-selected.ui-resizable,
+div.element.active.ui-resizable {
+    /*outline: 1px solid #81A3EA !important;*/
+}
+
+
+.ui-resizable-handle{
+	display:none !important;
+}
+div.element.ui-selected > .ui-resizable-handle,
+div.element.active > .ui-resizable-handle{
+	display:block !important;
+}
+
+div.element.ui-resizable-disabled .ui-resizable-handle {
+	display:none !important;
+}
+
+.mce-tinymce.mce-tinymce-inline{
+	z-index:1000 !important;
+	display:block !important;
+}
+.mce-tinymce.mce-tinymce-inline.mce-container.mce-panel,
+.mce-tinymce-inline .mce-container-body.mce-abs-layout,
+.mce-tinymce-inline .mce-container.mce-panel.mce-abs-layout-item,
+.mce-tinymce-inline .mce-container-body.mce-stack-layout{
+	height:34px !important;
+}
+
+.highlight{ /* set the hightlight element */
+	/*border:1px solid red;*/
+}
+/* @end */
+/* for element(div) */
+div.element{
+	position:absolute;
+}
+div.iTextfield{
+	position:absolute;
+	overflow-y:auto;/* set overflow options to iTextfield ,because the text area should fit the element size */
+}
+
+div.iText{
+	position:absolute;
+	width:100%;
+	height:100%;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+
+
+/* for site modal or mask */
+.modal.mask{  
+	z-index: 999; 
+	padding: 0px; 
+	margin: 0px;
+	position: fixed; 
+	overflow: hidden; 
+}
+/* @end */
+
+canvas#interaction{
+	position:absolute;
+    background: transparent;
+    opacity: 1;
+    z-index: 100000;
+}
+/* @end */
+.edit-fixed-doc .setting-body a.action-ok {
+    background: url("app/img/glyphicons-halflings.png"); no-repeat scroll 0px 0px #FFFFFF;
+    background-position: -288px 0;
+    border: 1px solid #CCCCCC;
+    display: block;
+    height: 24px;
+    overflow: hidden;
+    position: absolute;
+    right: 10px;
+    text-indent: -9999px;
+    top: 0;
+    width: 24px;
+}
+fieldset.animationitem{
+	margin:0;
+}
+.edit-fixed-doc .setting-body a.animation-play,
+.edit-fixed-doc .setting-body a.action-play,
+.edit-fixed-doc .setting-body a.animation-edit,
+.edit-fixed-doc .setting-body a.action-edit{
+	box-shadow:none;
+    bottom: 0;
+    display: block;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    top: auto;
+    width: 24px;
+}
+
+/* for preloader */
+div#preloader{
+	position: absolute;
+	left: -9999px;
+	top:  -9999px;
+}
+div#preloader img,
+div.preloader img {
+	display: block;
+}
+div.prewait{
+	position:absolute;
+	width:100%;
+	height:100%;
+	background:url(img/ajax-loader1.gif) center center no-repeat #BBBBBB;
+	z-index: 1000000;
+	opacity:1;
+}
+/* for animation preview */
+div#animation_preview{
+	width:1024px;
+	height:803px;
+}
+div#animation_preview .modal-body{
+	width:1024px;
+	height:768px;
+}
+div.interaction-view{
+	position:absolute;
+	width:1024px;
+	height:768px;
+	overflow:hidden;
+}
+.prompt.tooltip{
+	width:150px;
+}
+.categories > ul > li.waitaction > .wraparea{
+	background: url('/img/icon_09.png') no-repeat;
+}
+
+.interaction_thumbitem .typo li{
+	width:auto;
+	height:auto;
+}
+
+/* patch for play button */
+.edit-fixed-doc .topbar .action-playinteraction {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}
+
+/* patch for jquery selectable */
+.ui-selectable-helper { position: absolute; z-index: 100; border:1px dotted black; }
+
+
+/* patch for floatmenu */
+.ia-menu {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    margin: 2px 0 0;
+    max-height: 400px;
+    min-width: 160px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 5px 0;
+    z-index: 1002;
+}
+.ia-menu i {
+    display: none;
+}
+.ia-menu-has-icons i {
+    display: inline-block;
+}
+.ia-menu-sub-tr-tl {
+    margin: -6px 0 0 -1px;
+}
+.ia-menu-sub-br-bl {
+    margin: 6px 0 0 -1px;
+}
+.ia-menu-sub-tl-tr {
+    margin: -6px 0 0 1px;
+}
+.ia-menu-sub-bl-br {
+    margin: 6px 0 0 1px;
+}
+.ia-menu-item {
+    border-left: 4px solid transparent;
+    clear: both;
+    color: #333333;
+    cursor: pointer;
+    display: block;
+    font-weight: normal;
+    line-height: normal;
+    margin-bottom: 1px;
+    padding: 6px 15px 6px 12px;
+    white-space: nowrap;
+}
+.ia-menu-item.mce-disabled .mce-text {
+    color: #999999;
+}
+.ia-menu-item:hover, .ia-menu-item.mce-selected, .ia-menu-item:focus {
+    background-color: #0081C2;
+    background-image: linear-gradient(to bottom, #0088CC, #0077B3);
+    background-repeat: repeat-x;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.ia-menu-item:hover .mce-text, .ia-menu-item.mce-selected .mce-text {
+    color: #FFFFFF;
+}
+.ia-menu-item:hover .mce-ico, .ia-menu-item.mce-selected .mce-ico, .ia-menu-item:focus .mce-ico {
+    color: white;
+}
+.ia-menu-item.mce-disabled:hover {
+    background: none repeat scroll 0 0 #CCCCCC;
+}
+.ia-menu-shortcut {
+    color: #999999;
+    display: inline-block;
+}
+.ia-menu-shortcut {
+    display: inline-block;
+    padding: 0 15px 0 20px;
+}
+.ia-menu-item .mce-caret {
+    border-bottom: 4px solid transparent;
+    border-left: 4px solid #666666;
+    border-top: 4px solid transparent;
+    margin-right: 6px;
+    margin-top: 4px;
+}
+.ia-menu-item.mce-selected .mce-caret, .ia-menu-item:focus .mce-caret {
+    border-left-color: #FFFFFF;
+}
+.ia-menu-align .ia-menu-shortcut {
+}
+.ia-menu-align .ia-menu-shortcut, .ia-menu-align .mce-caret {
+    position: absolute;
+    right: 0;
+}
+.ia-menu-item-sep, .ia-menu-item-sep:hover {
+    background: none repeat scroll 0 0 #E5E5E5;
+    border-bottom: 1px solid white;
+    cursor: default;
+    filter: none;
+    height: 1px;
+    margin: 9px 1px;
+    overflow: hidden;
+    padding: 0;
+}
+.ia-menu-item.mce-active i {
+    visibility: visible;
+}
+.ia-menu-item.mce-active {
+    background-color: #C8DEF4;
+    outline: 1px solid #C5C5C5;
+}
+.ia-menu-item-preview.mce-active {
+    background-color: transparent;
+    border-left: 5px solid #AAAAAA;
+    outline: 0 none;
+}
+.ia-menu-item-checkbox.mce-active {
+    background-color: #FFFFFF;
+    outline: 0 none;
+}
+.ia-menu-item.disabled{
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  filter: alpha(opacity=40);
+  -moz-opacity: 0.4;
+  -khtml-opacity: 0.4;
+  opacity: 0.4;
+}
+.edit-fixed-doc .settings-mod .bd > .tabbable > .nav-tabs > li.s6 > a {
+   background-image: url("../img/icon_10.png");
+}
+.edit-fixed-doc .settings-mod .bd > .tabbable > .nav-tabs > li {
+    width: 44px;
+}
+.edit-fixed-doc .settings-mod .bd > .tabbable > .nav-tabs > li > a, .edit-fixed-doc .settings-mod .bd > .tabbable .nav-pills > li > a {
+    width: 44px;
+}
+.edit-fixed-doc .settings-mod .bd > .tabbable > .nav-tabs > .active > a, .edit-fixed-doc .settings-mod .bd > .tabbable > .nav-tabs > .active > a:hover {
+	width: 44px;
+}
+
+.edit-fixed-doc .mce-btn button {
+    padding: 4px 10px !important;
+    height:28px;
+}

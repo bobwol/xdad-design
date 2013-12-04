@@ -1,0 +1,24 @@
+var epub = {};
+
+// var _RE_DEPS = /\Wepub\[["']import["']\]\s*\(\s*["']([^'"\s]+)["']\s*(,)*\s*\)/g;
+var _RE_DEPS = /\s*\epub\[["']import["']\]\s*\(\s*["']([^'"\s]+)["']\s*(,*)\s*\)/g;
+epub.app = function(block){
+	var hdeps = [];
+    var code = block.toString(),h = null;
+   // console.log(code)
+    console.log(h)
+    while (h = _RE_DEPS.exec(code)) {
+    	
+    	if(!h[2]){
+
+    		hdeps.push(h[1]);
+    	}
+    }
+    
+    return hdeps.slice();
+}
+
+var hdeps = epub.app(function(){
+	epub["import"]('epub.modules.nanoscroller@1.0',function(){});epub["import"]('epub.modules.jquery-debounce@1.0');
+});
+console.log(hdeps)

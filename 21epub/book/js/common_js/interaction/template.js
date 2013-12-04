@@ -1,0 +1,555 @@
+(function(interaction){
+	interaction.template={
+	   confirm:_.template(
+	   	[
+'		  <div class="modal-header">',
+'		    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>',
+'		    <h3>确认框</h3>',
+'		  </div>',
+'		  <div class="modal-body"> <span style="font-size:14px;"><%=msg%></span></div>',
+'		  <div class="modal-footer">',
+'		    <button class="btn btn-primary btn-confirm">确定</button>',
+'		    <button aria-hidden="true" data-dismiss="modal" style="margin-left:20px;" class="btn">取消</button>',
+'		  </div>',
+	   	].join("")
+	   ),
+		Page:_.template(
+			[
+'				<li id="<%=id%>">',
+					'<a href="" class="img"><img></a>',
+'				</li>',
+			].join("")
+		),
+		element:_.template(
+			[
+'				<div class="element component <%=iType.toLowerCase()%>" id="<%=id%>" style="position: absolute; width: <%=iCommon[iPageDirection].iWidth%>px; height: <%=iCommon[iPageDirection].iHeight%>px; left: <%=iCommon[iPageDirection].iStartx%>px; top: <%=iCommon[iPageDirection].iStarty%>px;">',
+'					<a class="action-active" title="" rel="tooltip" href="#" data-original-title="激活编辑">激活</a>',
+'					<button title="" rel="tooltip" type="button" class="btn btn-small btn-primary action-done" data-original-title="完成编辑">',
+'						<i class="icon-ok icon-white"></i>',
+'					</button>',
+//'					<button class="btn btn-small action-animation" title="" rel="tooltip" type="button" data-original-title="动画设定">',
+//'						<i class="icon-film" style="width:16px; height:16px;"></i>',
+//'					</button>',
+'					<button class="btn btn-small action-cancel" title="" rel="tooltip" type="button" data-original-title="复原">',
+'						<i class="icon--trash" style="background:url(../img/icon_undo.png) no-repeat 50% 50%; width:16px; height:16px;"></i>',
+'					</button>',
+'					<button data-target="#confirmModal" title="" rel="tooltip" type="button" class="btn btn-small action-del" data-original-title="移除">',
+'						<i class="icon-trash"></i>',
+'					</button>',
+'					<div class="iContent" style="postion:absolute;width:100%;height:100%"></div>',
+'				</div>',
+			].join("")
+		),
+		richtext:_.template(
+			[
+'				<div class="element component <%=iType.toLowerCase()%>" id="<%=id%>" style="position: absolute; width: <%=iCommon[iPageDirection].iWidth%>px; height: <%=iCommon[iPageDirection].iHeight%>px; left: <%=iCommon[iPageDirection].iStartx%>px; top: <%=iCommon[iPageDirection].iStarty%>px;">',
+'					<a class="action-active" title="" rel="tooltip" href="#" data-original-title="激活编辑">激活</a>',
+'					<button title="" rel="tooltip" type="button" class="btn btn-small btn-primary action-done" data-original-title="完成编辑">',
+'						<i class="icon-ok icon-white"></i>',
+'					</button>',
+'					<button data-target="#confirmModal" title="" rel="tooltip" type="button" class="btn btn-small action-del" data-original-title="移除">',
+'						<i class="icon-trash"></i>',
+'					</button>',
+'					<button class="btn btn-small action-cancel" title="" rel="tooltip" type="button" data-original-title="复原">',
+'						<i class="icon--trash" style="background:url(../img/icon_undo.png) no-repeat 50% 50%; width:16px; height:16px;"></i>',
+'					</button>',
+'					<div class="iText nanoscrollbar">',
+'						<span id=<%="tEditor_"+id%>><%=iDetail.iText%></span>',
+'					</div>',
+'					<div class="iContent" style="postion:absolute;width:100%;height:100%"></div>',
+'				</div>',
+			].join("")
+		),
+		Dom:_.template(
+			[
+'				<li class="<%=iType%> Dom" id="<%=id%>">',
+ '             	    <div class="wraparea">',
+'						<h4><%=iType%></h4>',
+'						<div title="" rel="tooltip" class="btn-draged" data-original-title="上下拖拽"></div>',
+  '            	    	<div class="action-0">',
+   '            			<a title="" rel="tooltip" class="action-showhide active" href="#" style="right:60px;" data-original-title="是否可见">是否可见</a>',
+    '           			<a style="right:30px;" title="" rel="tooltip" class="action-del" href="#" data-original-title="移除">移除</a>',
+'    					</div>',
+'    				</div>',
+'				</li>',
+			].join("")
+		),
+		Elementattr:_.template(
+			[
+'				<li class="db clear" id="<%=id%>">',
+'					<span class="fl">',
+'						<% var iItemlist=interaction.elementlist.get(elementid).iview.getdetail().iItemlist %>',
+'						<input type="checkbox" value=<%=id%> name="iItemlist" data-attr="iDetail" <%=(_.include(iItemlist,id))&&"checked=checked"||""%>>',
+'					</span>',
+'					<span class="fl">',
+'						<a class="dom_move" id="<%=id%>">',
+'							<img class="vm" src="n/i_move.png">',
+'						</a>								',
+'					</span>',
+'					<span class="fl dom_name"><%=iType%></span>',
+// '					<span class="fr">',
+// '						<a id="remove" class="remove">',
+// '							<img src="n/i_removeelement.png" class="vm">',
+// '						</a>',
+// '					</span>',
+// '					<span class="fr"><a class="dom_visibility" id="<%=id%>"><img class="vm" src="n/i_visibility.png"></a></span>',
+// '					<ul style="margin-left:20px"></ul>',
+'				</li>',
+			].join("")
+		),	
+		tree:_.template(
+		[
+	  '  <li class="treeitem" data-type=<%=iType%> id=<%=id%>>',
+ '	        <div class="wraparea">',
+ '	        	<h4><%=iType%></h4>',
+ '				<div class="hitarea"></div>',
+ '	        	<div rel="tooltip" class="btn-draged" data-original-title="上下拖拽">',
+ '	        	</div>',
+ // '	        	<div class="action-pub <%=review_state%>">',
+	 // '        		<a class="action-publish" href="#" data-original-title="">操作</a>',
+	  // '       	</div>',
+	   // '      	<div class="action">',
+	    // '     		<ul>',
+ // '	        			<li><a class="action-edit" href="<%if(type=="Column"){%><%=url%>/edit<%}%>">编辑</a></li>',
+// ' 						<% if(type=="Column"||type=="Category"){ %>',
+	 // '        			<li class="action-new"><a href="javascript:void(0)">+ 追加</a>',
+	   // '      				<ul>',
+	  // '       					<li><a href="#" class="action-addCategory">添加子分类</a></li>',
+	   // '      					<li><a class="action-addLink" href="#">新建链接</a></li>',
+	    // '     					<li><a class="action-lib" href="#">引入内容</a></li>',
+	      // '   					<li><a class="action-category" href="#">引入分类</a></li>',
+	         // '				</ul>',
+	        	 // '		</li>',
+// '	        	 		<% } %>',
+	      // '  	 		<li><a href="#confirmModal" class="action-delete">删除</a></li>',
+	        	 // '	</ul>',
+	     // '    	</div>',
+	   '      </div>',
+'					<ul style="margin-left:20px"></ul>',
+	 '   </li>',
+		].join("")
+		),	
+		Animation:_.template(
+			[
+'			<fieldset id="<%=id%>" class="animation categories">',
+'                <legend><%=id%></legend>',
+'					<div class="action">',
+'					<select name="iAnimationType" class="animationtype" style="width:150px">',
+'						<%if(type=="object"){%>',
+'						<%_.each(interaction.AnimationTypes,function(value,key){%>',
+	'						<option value=<%=key%>><%=value%></option>',						
+'						<%})%>',
+'						<%}%>',
+'						<%if(type=="media"){%>',
+'						<%_.each(interaction.MediaAnimationTypes,function(value,key){%>',
+	'						<option value=<%=key%>><%=value%></option>',						
+'						<%})%>',
+'						<%}%>',						
+'						</select>',
+'					<button class="btn btn-small btn-primary action-addanimation">Add</button>',
+'					</div>',
+// '					<button class="btn btn-small animation-play">play</button>',
+// '					<button class="btn btn-small animation-switch">switch</button>',
+ '                   <div class="action">',
+  '                  	<a title="" rel="tooltip" class="action-ok" data-type="<%=type%>" href="#material" data-original-title="确定"></a>',
+  '                  </div>',
+'  					<ul></ul>',
+  '            </fieldset>',
+			].join("")
+		),	
+		AnimationItem:_.template(
+			[
+'				<li data-type="<%=iType%>" id="<%=id%>" class="animation-item">',
+ '             	    <div class="wraparea">',
+'						<h6><%=iType%>(<%=interaction.getAnimationTypeName(iType)%>)</h6>',
+'						<div title="" rel="tooltip" class="btn-draged" data-original-title="上下拖拽"></div>',
+  '            	    	<div class="action-0">',
+'  							<a class="btn btn-link animation-play" style="bottom:0;position:absolute;right:70px"><i class="icon-play"></i></a>',
+'  							<a class="btn btn-link animation-edit" style="bottom:0;position:absolute;right:50px"><i class="icon-edit"></i></a>',
+ //  '            			<a title="" rel="tooltip" class="action-showhide active" href="#" style="right:60px;" data-original-title="是否可见">是否可见</a>',
+    '           			<a style="right:30px;" title="" rel="tooltip" class="action-del" href="#" data-original-title="移除">移除</a>',
+'    					</div>',
+'    				</div>',
+'				</li>',
+			].join("")
+		),
+		PathItem:_.template(
+			[
+'             <li class="item">',
+ '             	    <div class="wraparea">',
+'						(x:<%=parseInt(point.x*100)/100%>,y:<%=parseInt(point.y*100)/100%>)',
+//'						<input name="duration" type="text" value="<%=duration%>" class="duration" style="width:10px;">秒', 
+  '            	    	<div class="action-0">',
+//    '           			<a style="right:30px;" title="" rel="tooltip" class="action-del" href="#" data-original-title="移除">移除</a>',
+'    					</div>',
+'    				</div>',
+    '          </li>',
+			].join("")
+		),
+		Resources:_.template(
+			[
+'			<fieldset id="<%=id%>" class="resources">',
+'                <legend><%=id%></legend>',
+ '                   <div class="action">',
+  '                  	<a title="" rel="tooltip" class="action-file" data-type="<%=type%>" href="#material" data-original-title="上传">上传</a>',
+  '                  </div>',
+  '            </fieldset>',
+			].join("")
+		),	
+		ResourcesItem:_.template(
+			[
+'             <div class="item" id="<%=id%>">',
+'                  <figure> <%=preview%>',
+'                      <figcaption><%=title%></figcaption>',
+ '                 </figure>',
+  '                <a title="" rel="tooltip" class="action-showhide active" href="javascript:void(0)" data-original-title="是否可见">是否可见</a>',
+   '               <a title="" rel="tooltip" class="action-del" href="#confirmModal" data-original-title="移除">移除</a> ',
+    '          </div>',
+			].join("")
+		),
+		Editor:_.template(
+			[
+'			<% var iText=iElementlist.get(elementid).toJSON().iDetail.iText; %>',
+'			<%=iText%>',
+			].join("")
+		),
+		info:{
+			baseinfo:_.template(
+				[
+'					<h3 class="baseinfo"><%=iType%></h3>',	
+				].join("")			
+			),
+			infosave:_.template(
+				[
+'				<div class="resources"></div>',
+'				<div class="animations_area"></div>',
+'				<div class="action-save">',
+'					<button class="btn btn-small" type="button">SAVE</button>',
+'				</div>',
+				].join("")
+			),
+			common:_.template(
+				[
+'				<fieldset class="Pos">',
+'                    <legend>尺寸和位置</legend>',
+ '                   <div class="item">',
+  '                    <ul>',
+   '                     <li>',
+'                          <label>L：</label>',
+ '                         <input class="inputquarter ui-state-default ui-corner-all" name="iHeight" type="text" data-attr="iCommon" value=<%=iCommon[iPageDirection].iHeight%>>',
+ '                       </li>',
+ '                       <li>',
+ '                         <label>H：</label>',
+ '                         <input class="inputquarter ui-state-default ui-corner-all" name="iWidth" type="text"  data-attr="iCommon" value=<%=iCommon[iPageDirection].iWidth%>>',
+ '                       </li>',
+ '                       <li>',
+ '                         <label>X：</label>',
+ '                         <input class="inputquarter ui-state-default ui-corner-all" name="iStartx" type="text"  data-attr="iCommon" value=<%=iCommon[iPageDirection].iStartx%>>',
+ '                       </li>',
+ '                       <li>',
+ '                         <label>Y：</label>',
+  '                        <input class="inputquarter ui-state-default ui-corner-all" name="iStarty" type="text"  data-attr="iCommon" value=<%=iCommon[iPageDirection].iStarty%>>',
+ '                       </li>',
+ '                     </ul>',
+ '                   </div>',
+  '                </fieldset>',
+				].join("")	
+			),
+			commonxy:_.template(
+				[
+'				<fieldset class="Pos">',
+'                    <legend>尺寸和位置</legend>',
+ '                   <div class="item">',
+  '                    <ul>',
+   '                     <li class="hide">',
+'                          <label>L：</label>',
+ '                         <input class="inputquarter ui-state-default ui-corner-all" name="iHeight" type="text" data-attr="iCommon" value=<%=iCommon[iPageDirection].iHeight%>>',
+ '                       </li>',
+ '                       <li class="hide">',
+ '                         <label>H：</label>',
+ '                         <input class="inputquarter ui-state-default ui-corner-all" name="iWidth" type="text"  data-attr="iCommon" value=<%=iCommon[iPageDirection].iWidth%>>',
+ '                       </li>',
+ '                       <li>',
+ '                         <label>X：</label>',
+ '                         <input class="inputquarter ui-state-default ui-corner-all" name="iStartx" type="text"  data-attr="iCommon" value=<%=iCommon[iPageDirection].iStartx%>>',
+ '                       </li>',
+ '                       <li>',
+ '                         <label>Y：</label>',
+  '                        <input class="inputquarter ui-state-default ui-corner-all" name="iStarty" type="text"  data-attr="iCommon" value=<%=iCommon[iPageDirection].iStarty%>>',
+ '                       </li>',
+ '                     </ul>',
+ '                   </div>',
+  '                </fieldset>',
+				].join("")	
+			),
+			resources:_.template(
+				[
+'					<div class="cls"></div>',
+'					<hr class="full ui-widget-header">',
+'					<div id="iUpload">',
+'						<br>',
+'						<a id="iImg" data-attr="iImg" data-type="string" class="resources_upload"><img src=<%=iDetail.iImg&&iDetail.iImg||"n/i_upload.png"%> width="48px" height="48px"></a>',
+'					</div>',
+				].join("")
+			),
+			resourceslist:_.template(
+				[
+'					<div class="cls"></div>',
+'					<hr class="full ui-widget-header">',
+'					<div id="iUpload">',
+'						<br>',
+'						<a id="iImglist" data-attr="iImglist" data-type="array" class="resources_upload"><img src=<%=iDetail.iImglist&&iDetail.iImglist[0]||"n/i_upload.png"%> width="48px" height="48px"></a>',
+'					</div>',
+				].join("")
+			)
+		},
+		detail:{
+			Image:_.template(
+				[
+'					<fieldset class="detail no-legend">',
+'						<div class="item">',
+'							<input data-attr="iDetail" data-type="boolean" name="iAdapt" type="checkbox" value="true" <%=iDetail.iAdapt&&"checked=true"%>>边框适应图片大小',
+'						</div>',
+'						<div class="item">',
+'							<input data-attr="iDetail" data-type="boolean" name="iFullview" type="checkbox" value="true" <%=iDetail.iFullview&&"checked=true"%>>点击全屏显示',
+'						</div>',
+'					</fieldset>',
+				].join("")	
+			),
+			VideoType:_.template(
+				[
+'				<fieldset class="typedetail no-legend" id="iVideotype">',
+'					<label class="db">选择类型</label>',
+'					<select data-attr="iDetail" name="iVideotype" class="db">',
+'						<option <%=(iDetail.iVideotype=="mediafile")&&"selected"||""%> value="mediafile">视频文件</option>',
+'						<option <%=(iDetail.iVideotype=="streammedia")&&"selected"||""%> value="streammedia">流媒体</option>',
+'					</select>',
+'				</fieldset>',
+				].join("")
+			),
+			Video:_.template(
+				[
+'				<fieldset class="no-legend detail">',
+'					<div class="info_set1" class="">',
+'						<span class="input1"><input data-attr="iDetail" data-type="boolean" name="iAdapt" type="checkbox" value="true" <%=iDetail.iAdapt&&"checked=true"||""%>></span><span class="text1">边框适应视频比例</span>',
+'					</div>',
+'					<div class="info_set1">',
+'						<span class="input1"><input data-attr="iDetail" data-type="boolean" name="iFullview" type="checkbox" value="true" <%=iDetail.iFullview&&"checked=true"||""%>></span><span class="text1">点击全屏显示</span>',
+'					</div>',
+'					<div class="info_set1">',
+'						<span class="input1"><input data-attr="iDetail" data-type="boolean" name="iAutoplay" type="checkbox" value="true" <%=iDetail.iAutoplay&&"checked=true"||""%>></span><span class="text1">自动播放</span>',
+'					</div>',
+'					<div class="info_set1">',
+'					<span class="input1"><input data-attr="iDetail" data-type="boolean" name="iRepeat" type="checkbox" value="true" <%=iDetail.iRepeat&&"checked=true"||""%>></span><span class="text1">循环播放</span>',
+'					</div>',
+'				</fieldset>',
+				].join("")
+			),
+			Audio:_.template(
+				[
+'				<fieldset class="no-legend detail">',
+'					<div class="info_set1">',
+'						<span class="input1"><input data-attr="iDetail" data-type="boolean" name="iAutoplay" type="checkbox" value="true" <%=iDetail.iAutoplay&&"checked=true"||""%>></span><span class="text1">自动播放</span>',
+'					</div>',
+'					<div class="info_set1">',
+'						<span class="input1"><input data-attr="iDetail" data-type="boolean" name="iRepeat" type="checkbox" value="true" <%=iDetail.iRepeat&&"checked=true"||""%>></span><span class="text1">循环播放</span>',
+'					</div>',
+'				</fieldset>',
+				].join("")
+			),
+			LinkType:_.template(
+				[
+'				<fieldset class="no-legend typedetail">',
+'					<span class="quarter">选择类型</span>',
+'					<span class="threequarter">',
+'					<select name="iLinktype" data-attr="iDetail" class="threequarter ui-state-default ui-corner-all">',
+'						<option <%=(iDetail.iLinktype=="hyperlink")&&"selected"||""%> value="hyperlink">超链接</option>',
+'						<option <%=(iDetail.iLinktype=="gotopage")&&"selected"||""%> value="gotopage">go to Page</option>',
+'						<option <%=(iDetail.iLinktype=="Cortona3D")&&"selected"||""%> value="Cortona3D">Cortona3D</option>',
+'					</select>',
+'					</span>',
+'				</fieldset>',
+				].join("")
+			),
+			Link:_.template(
+				[
+'				<%if(iDetail.iLinktype=="hyperlink"){%>',
+'				<fieldset class="no-legend detail">',
+'					<div class="full">',
+'						<span>网址:</span>',
+'						<span><input data-attr="iDetail" class="ui-state-default ui-corner-all" name="iUrl" type="text"  value=<%=iDetail.iUrl%>></span>',
+'					</div>',
+'					<div class="cls"></div>',
+'					<div class="full">',
+'						<span><input data-attr="iDetail" data-type="boolean" <%=(iDetail.iSafari)&&"checked=checked"||""%> name="iSafari" type="checkbox" value="true"></span>',
+'						<span>在Safari中打开</span>',
+'					</div>',
+'				</fieldset>',
+'				<% }%>',
+'				<%if(iDetail.iLinktype=="gotopage"){%>',
+'				<fieldset class="no-legend detail">',
+'					<div class="full">',
+'						<span><input data-attr="iDetail" name="iGoto" type="radio" value="page" <%=(iDetail.iGoto=="page")&&"checked=checked"||""%>>转到：</span>',
+'						<span><input data-attr="iDetail" class="inputquarter ui-state-default ui-corner-all" name="iPage" type="text" value=<%=iDetail.iPage%>>页</span>',
+'					</div>',
+'					<div class="cls"></div>',
+'					<span class="half"><input data-attr="iDetail" name="iGoto" type="radio" <%=(iDetail.iGoto=="prev")&&"checked=checked"||""%> value="prev">前一页</span>',
+'					<span class="half"><input data-attr="iDetail" name="iGoto" type="radio" <%=(iDetail.iGoto=="next")&&"checked=checked"||""%> value="next">后一页</span>',
+'				</fieldset>',
+'				<% }%>',
+'				<%if(iDetail.iLinktype=="Cortona3D"){%>',
+'				<fieldset class="no-legend detail">',
+'					<div id="iUpload" class="full">',
+'						<span class="full">选择文件</span>',
+'						<div class="cls"></div>',
+'						<span class="quarter"><a id="iFile" data-attr="iFile" class="resources_upload"><img src="n/i_upload.png"></a></span>',
+'					</div>',
+'				</fieldset>',
+'				<% }%>',
+				].join("")
+			),
+			SlideType:_.template(
+				[
+'				<fieldset class="no-legend typedetail">',
+'					<label class="quarter">选择类型</label>',
+'					<span class="threequarter"><input data-attr="iDetail" type="radio" name="iSlidetype" value="横向" <%=(iDetail.iSlidetype=="横向")&&"checked=checked"||""%>>横向<input data-attr="iDetail" type="radio" name="iSlidetype" value="纵向" <%=(iDetail.iSlidetype=="纵向")&&"checked=checked"||""%>>纵向 </span>',
+'				</fieldset>',
+				].join("")
+			),
+			Slide:_.template(
+				[
+'				<fieldset class="no-legend detail">',
+'					<div id="" class="full">',
+'						<input data-attr="iDetail" <%=(iDetail.iAutoplay)&&"checked=checked"||""%> data-type="boolean" name="iAutoplay" type="checkbox" value="true">自动播放',
+'					</div>',
+'					<div id="" class="full">',
+'						<span><input name="iRepeat" data-attr="iDetail" <%=(iDetail.iRepeat)&&"checked=checked"||""%> data-type="boolean" type="checkbox" data-attr="iDetail" value="true">循环</span><span> 间隔<input data-attr="iDetail" class="ui-state-default" type="text" name="iInterval" style="width:40px" value=<%=iDetail.iInterval%>>秒</span>',
+'					</div>',
+'					<div class="full">',
+'						<span><input name="iFade" data-attr="iDetail" type="radio" value="Fade" <%=(iDetail.iFade=="Fade")&&"checked=checked"||""%>>Fade</span><span><input data-attr="iDetail" name="iFade" type="radio" value="Slip" <%=(iDetail.iFade=="Slip")&&"checked=checked"||""%>>Slip</span>',
+'					</div>',
+'					<hr class="full ui-widget-header">',
+'					<div id="" class="full">',
+'						<span><input name="iSlipable" data-attr="iDetail" data-type="boolean" type="checkbox" value="true" <%=(iDetail.iSlipable)&&"checked=checked"||""%>>可滑动</span><span><input data-attr="iDetail" data-type="boolean" name="iPagenumber" type="checkbox" value="true" <%=(iDetail.iPagenumber)&&"checked=checked"||""%>>显示页码</span>',
+'					</div>',
+'					<div class="full">',
+'						<span><input name="iFullview" data-attr="iDetail" data-type="boolean" type="checkbox" value="true" <%=(iDetail.iFullview)&&"checked=checked"||""%>>全屏</span><span><input data-attr="iDetail" data-type="boolean" type="checkbox" name="iWholeswitch" value="true" <%=(iDetail.iWholeswitch)&&"checked=checked"||""%>>整幅切换</span>',
+'					</div>',
+'				</fieldset>',
+				].join("")
+			),
+			CycleImage:_.template(
+				[
+'				<fieldset class="no-legend detail">',
+'					<div id="" class="full">',
+'						<input data-attr="iDetail" <%=(iDetail.iAutoplay)&&"checked=checked"||""%> data-type="boolean" name="iAutoplay" type="checkbox" value="true">自动播放, 时间间隔<input data-attr="iDetail" class="ui-state-default" type="text" name="iInterval" style="width:40px" value=<%=iDetail.iInterval%>>秒',
+'					</div>',
+'				</fieldset>',
+				].join("")
+			),
+			RichText:_.template(
+				[
+'				<fieldset class="no-legend detail">',
+'					<div class="half">',
+'						<span><input data-attr="iDetail" data-type="boolean" name="iBackground" type="checkbox" value="true" <%=(iDetail.iBackground)&&"checked=checked"||""%>></span>',
+'						<span>背景透明</span>',
+'					</div>',
+'					<div class="half">',
+'						<span><input data-attr="iDetail" data-type="boolean" name="iScrollable" type="checkbox" value="true" <%=(iDetail.iScrollable)&&"checked=checked"||""%>></span>',
+'						<span>可滚动</span>',
+'					</div>',
+'				</fieldset>',
+				].join("")
+			),
+			ShowHide:_.template(
+				[
+'				<fieldset class="no-legend detail">',
+'				<div class="full">',
+'					<input type="checkbox" name="iStatus" data-attr="iDetail" data-type="boolean" value="true" class="ui-state-default" <%=(iDetail.iStatus)&&"checked=checked"||""%>>初始状态为隐藏',
+'				</div>',
+'				<div class="full elementlist"><ul>',
+'				</ul></div>',
+'				<div id="iUpload" class="full">',
+'					<span class="quarter tc"><a id="iIconon" data-attr="iIconon" data-type="string" class="resources_upload"><img src=<%=iDetail.iIconon&&iDetail.iIconon||"n/i_upload.png"%>></a></span>',
+'					<span class="quarter tc"><a id="iIconoff" data-attr="iIconoff" data-type="string" class="resources_upload"><img src=<%=iDetail.iIconoff&&iDetail.iIconoff||"n/i_upload.png"%>></a></span>',
+'					<div class="cls"></div>',
+'					<span class="quarter tc">On</span>',
+'					<span class="quarter tc">Off</span>',
+	'			</div>',
+'				</fieldset>',
+				].join("")
+			),
+			WebcontentType:_.template(
+				[
+'				<fieldset class="no-legend typedetail">',
+'					<span class="quarter">选择类型</span>',
+'					<span class="threequarter"><select data-attr="iDetail" name="iWebcontenttype" class="threequarter ui-state-default ui-corner-all">',
+'						<option <%=(iDetail.iWebcontenttype=="local")&&"selected"||""%> value="local">Html本地文件包</option>',
+'						<option <%=(iDetail.iWebcontenttype=="external")&&"selected"||""%> value="external">外部网页</option>',
+'					</select>',
+'					</span>',
+'				</fieldset>',
+				].join("")
+			),
+			Webcontent:_.template(
+				[
+'				<fieldset class="no-legend detail">',
+'				<div class="full">',
+'					<span>地址:</span>',
+'					<span><input data-attr="iDetail" class="ui-state-default ui-corner-all" name="iUrl" type="text"  value=<%=iDetail.iUrl%>></span>',
+'				</div>',
+'				<div class="cls"></div>',
+'				<hr class="full ui-widget-header">',
+'				<%if(iDetail.iWebcontenttype=="local"){%>',
+'				<div id="local" class="iWebcontenttype">',
+'					<div id="iUpload" class="full">',
+'						<span class="full">选择文件</span>',
+'						<div class="cls"></div>',
+'						<span class="quarter"><a id="iFile" data-attr="iFile" data-type="string" class="resources_upload"><img src="n/i_upload.png"></a></span>',
+'					</div>',
+'					<div class="cls"></div>',
+'					<div class="half">',
+'						<span><input data-attr="iDetail" data-type="boolean" name="iBackground" type="checkbox" value="true" <%=(iDetail.iBackground)&&"checked=checked"||""%>></span>',
+'						<span>背景透明</span>',
+'					</div>',
+'					<div class="half">',
+'						<span><input data-attr="iDetail" data-type="boolean" name="iScrollable" type="checkbox" value="true" <%=(iDetail.iScrollable)&&"checked=checked"||""%>></span>',
+'						<span>可滚动</span>',
+'					</div>',
+'				</div>',
+'				<% }%>',
+'				<%if(iDetail.iWebcontenttype=="external"){%>',
+'				<div id="external" class="iWebcontenttype">',
+'					<div class="full">',
+'						<span><input data-attr="iDetail" data-type="boolean" name="iBackground" type="checkbox" value="true" <%=(iDetail.iBackground)&&"checked=checked"||""%>></span>',
+'						<span>背景透明</span>',
+'					</div>',
+'				</div>',
+'				<%}%>',
+'				</fieldset>',
+				].join("")
+			),
+			ElementsGroup:_.template(
+				[
+'				<fieldset class="no-legend detail">',
+'				<div class="full elementlist categories"><ul>',
+'				</ul></div>',
+'				<div class="cls"></div>',
+'				<hr class="full ui-widget-header">',
+'               <div class="full">时间间隔（秒）<input data-attr="iDetail" class="ui-state-default" type="text" name="iInterval" style="width:40px" value=<%=iDetail.iInterval%>></div>',
+'				</fieldset>',
+				].join("")
+			),
+			AnimationGroup:_.template(
+				[
+'				<fieldset class="detail">',
+'				<legend>所有对象列表</legend>',
+'				<div class="full animations categories"><ul>',
+'				</ul></div>',
+'				<div class="cls"></div>',
+'				</fieldset>',
+				].join("")
+			),
+		}
+	};
+})(interaction);

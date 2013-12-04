@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="css/laylout-1.0.css" type="text/css">
+<script type="text/javascript" src="js/lib/jquery-1.6.1.js"></script>
+<script type="text/javascript"> 
+$(function(){
+	var $post = $(".post");
+	var tipIfm = document.createElement('iframe');
+	tipIfm.src = "layout-iframe-1.0.html";
+	tipIfm.id = "editor";
+	tipIfm.allowTransparency = "true"
+	tipIfm.frameBorder = "no";
+	tipIfm.border = "0";
+	tipIfm.width = $post[0].offsetWidth-20;
+	tipIfm.height = "400";
+	tipIfm.marginWidth = "0";
+	tipIfm.marginHeight = "0";
+	tipIfm.backgroundColor = "transparent";
+	tipIfm.scrolling = "no";
+	
+	tipIfm.style.cssText = "position:absolute;allowTransparency='true';background-color:transparent;";
+	$post[0].appendChild(tipIfm);
+	if (tipIfm.attachEvent) {
+		tipIfm.attachEvent("onload", function () {
+			iframeonload();
+		});
+	}
+	else {
+		tipIfm.onload = function () {
+			iframeonload();
+		};
+	}
+	var $d = null;
+	function iframeonload(){
+		if($("#editor")[0]){
+			$("#editor").width($(".post").width()).height($(".post").height());
+		}
+		$d = $("#editor")[0].contentWindow.document; // IE、FF都兼容
+		window.w = $("#editor")[0].contentWindow;
+		//$d.designMode="on"
+		//$d.contentEditable= true;
+		
+	}
+	
+});
+</script>
+</head>
+ 
+<body>
+	
+    <h2></h2>
+    <header id="page_header">
+       <nav>
+			
+				<ul id="css3Tutorial02">
+					<li id="brand">
+						
+					</li>
+					<li id="promotion">
+						
+					</li>
+					<li id="show">
+						
+					</li>
+					<li id="event">
+						
+					</li>
+				</ul>
+			
+		</nav>
+    </header>
+    <section id="posts">
+        <h2></h2>
+        <article class="post"  style="min-height:400px;min-width:800px;">
+            
+        </article>
+       
+    </section>
+    <section id="sidebar" style="min-widht:200px;">
+        <h2></h2>
+        <header>
+            <h2></h2>
+        </header>
+        <nav>
+            <h3></h3>
+			
+        </nav>
+    </section>
+ 
+    <footer id="page_footer">
+        <h2></h2>
+    </footer>
+ 
+</body>
+</html>

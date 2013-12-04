@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="http://localhost/epub/21epub/css3Regions/htmleditor/1/css/layout-iframe-1.0.css" />
+	
+
+	<script type="text/javascript" src="js/lib/jquery-1.6.1.js"></script>
+	<script type="text/javascript" src="js/modules/dragresize-1.1.js"></script>
+	<script type="text/javascript">
+		function dragdropresize(){
+			$(function(){
+				var css = {
+					dra:"dragdropresize",
+					drs:"drsElement",
+					hide:{
+						visibility: "visible",
+						left: "-999px",
+						top:  "-999px",
+						width:  0,
+						height:  0,
+						minHeight:"50px"
+					},
+					zIndex:1
+					
+				}
+	    		var dragresize = new DragResize('dragresize', { minWidth: 120, minHeight: 50, minLeft: 20, minTop: 20, maxLeft: 900, maxTop: 600 });
+	    		function log(msg){
+					console.log(msg)
+				}
+			    var contains = function(root, el) {
+			        if (root.compareDocumentPosition)
+			            return root === el || !!(root.compareDocumentPosition(el) & 16);
+			        if (root.contains && el.nodeType === 1){
+			            return root.contains(el) && root !== el;
+			        }
+			        while ((el = el.parentNode))
+			            if (el === root) return true;
+			        return false;
+			    } 
+				/*
+				
+				
+				*/
+				var drsbox = $("#drsbox");
+				var dashbox = $("#dashbox");
+				$.belowthefold = function(element, settings) {
+			        var fold;
+			        var $container = $(settings.container);
+			        fold = $container.offset().top + $container.height();
+			        return fold <= $(element).offset().top;
+			    };
+				function getDims(elems) {
+					var dims = [], i = 0, offset;
+					offset = $(elems).offset();
+					dims = [
+						offset.top,
+						offset.left,
+						elems.offsetWidth,
+						elems.offsetHeight
+					];
+					return dims;
+				}
+			    function checkOverlap(collection1,collection2) {
+					var dims1 = getDims(collection1),
+						dims2 = getDims(collection2),
+						x1 = dims1[1], y1 = dims1[0],
+						w1 = dims1[2], h1 = dims1[3],
+						x2 = dims2[1], y2 = dims2[0],
+						w2 = dims2[2], h2 = dims2[3];
+						
+					return x1>x2&&x1<x2+w2&&y1>y2&&y1<y2+h2&&x1+w1>x2&&x1+w1<x2+w2&&y1+h1>y2&&y1+h1<y2+h2;
+				}
+				$.rightoffold = function(element, settings) {
+			        var fold;
+					var $container = $(settings.container);
+			        fold = $container.offset().left + $container.width();
+			        return fold <= $(element).offset().left;
+			    };
+			        
+			    $.abovethetop = function(element, settings) {
+			        var fold;
+			        var $container = $(settings.container);
+			        fold = $container.offset().top;
+			        return fold >= $(element).offset().top + $(element).height();
+			    };
+			    
+			    $.leftofbegin = function(element, settings) {
+			        var fold;
+			        var $container = $(settings.container);
+					fold = $container.offset().left;
+			        return fold >= $(element).offset().left + $(element).width();
+			    };
+
+			    $.inviewport = function(element, settings) {
+			         return !$.rightoffold(element, settings) && !$.leftofbegin(element, settings) && 
+			                !$.belowthefold(element, settings) && !$.abovethetop(element, settings);
+			     };
+				$.isOverlap = function(idOne,idTwo){
+					var objOne=$(idOne),
+						objTwo=$(idTwo),
+						offsetOne = objOne.offset(),
+						offsetTwo = objTwo.offset(),
+						topOne=offsetOne.top,
+						topTwo=offsetTwo.top,
+						leftOne=offsetOne.left,
+						leftTwo=offsetTwo.left,
+						widthOne = objOne.width(),
+						widthTwo = objTwo.width(),
+						heightOne = objOne.height(),
+						heightTwo = objTwo.height();
+					var leftTop = leftTwo > leftOne && leftTwo < leftOne+widthOne 
+							&& topTwo > topOne && topTwo < topOne+heightOne,
+						rightTop = leftTwo+widthTwo > leftOne && leftTwo+widthTwo < leftOne+widthOne 
+							&& topTwo > topOne && topTwo < topOne+heightOne,
+						leftBottom = leftTwo > leftOne && leftTwo < leftOne+widthOne 
+							&& topTwo+heightTwo > topOne && topTwo+heightTwo < topOne+heightOne,
+						rightBottom = leftTwo+widthTwo > leftOne && leftTwo+widthTwo < leftOne+widthOne 
+							&& topTwo+heightTwo > topOne && topTwo+heightTwo < topOne+heightOne;
+					return leftTop || rightTop || leftBottom || rightBottom;
+				}
+	    		dragresize.isElement = function(elm) {
+				    if (elm.className && elm.className.indexOf('drsElement') > -1) return true;
+				};
+				dragresize.isHandle = function(elm) {
+				    if (elm.className && elm.className.indexOf('drsMoveHandle') > -1) return true;
+				};
+				dragresize.ondragfocus = function() { };
+				dragresize.ondragstart = function(isResize) {};
+				dragresize.ondragmove = function(isResize) {};
+				dragresize.ondragend = function(isResize) {};
+				dragresize.ondragblur = function() {};
+				dragresize.updateref = function(elm) {this.ref = elm,this.refID = elm.id};
+				dragresize.updatezindex = function(zIndex) {drsbox[0].style.zIndex = zIndex};
+				dragresize.apply(document);
+				dragresize.show = function (elm){
+					var pos = $(elm).offset();
+					if($(elm).css("position")!="absolute"){
+						$(elm).css({
+							position:"absolute",
+							left:pos.left,
+							top:pos.top
+						})
+					}
+					var elmX = parseInt(pos.left);
+					var elmY = parseInt(pos.top);
+					var elmW = elm.offsetWidth;
+					var elmH = elm.offsetHeight;
+					css.zIndex++;
+					drsbox.css({
+						left: elmX,
+						top:  elmY,
+						width:  elmW,
+						height:  elmH
+						
+					})
+					$(elm)[0].style.zIndex = css.zIndex;
+					
+					dragresize.minWidth = parseInt($(elm).css("minwidth"),10)||dragresize.o_minWidth;
+					dragresize.minHeight = parseInt($(elm).css("minHeight"),10)||dragresize.o_minHeight;
+					dragresize.updateref(elm);
+					css.zIndex++
+					dragresize.updatezindex(css.zIndex);
+				}
+				
+				dragresize.hide = function(){
+					drsbox.css(css.hide);
+				};
+				
+				
+				$(document).bind('mousedown',function (e){
+					if(e.which==3)return;
+					var elm = e.target || e.srcElement,
+					newElement = null,
+					isDrs = null,
+					isElm = null;
+					while (elm) {
+						var $elm = $(elm);
+						if ($elm.hasClass(css.dra)) {
+							isElm = true;
+							newElement = elm;
+							break
+			            }else if($elm.hasClass(css.drs)){
+							isDrs = true;
+							newElement = elm;
+							break
+						}
+						elm = elm.parentNode;
+			        }
+			        if(isElm){
+					
+						dragresize.show(elm);
+					}else if (isDrs){
+					
+					}else {
+						dragresize.hide();
+					}
+					
+				});
+
+			})
+		}
+
+	</script>
+
+</head>
+
+<body>
+<div class="drsElement drsMoveHandle" id="drsbox"  style="visibility: visible; left: -999px; top: -999px; width: 0px; min-height: 50px;height:0px;" state="normalEdit masterPage notSiteSegment"  topenabled="true" rightenabled="true" bottomenabled="true"  leftenabled="true"  toprightenabled="true" bottomrightenabled="true" bottomleftenabled="true" topleftenabled="true" >
+	<!-- <div class="drsElement-minHeightMark " style="bottom: 1px;" > </div> -->
+	<div class="dragresize-tm">
+		<!-- <div class="dragresize-tm-dragHandle pushKnob"> </div> -->
+		<p class="knob "> </p>
+	</div>
+	<div class="dragresize-bm">
+		<p class="knob "> </p>
+		<!-- <p  class="dragresize-bm-pushKnob pushKnob"> </p> -->
+	</div>
+	<div class="dragresize-rm" >
+		<p class="knob "></p>
+	</div>
+	<div  class="dragresize-lm">
+		
+		<p class="knob "> </p>
+	</div>
+	<div  class="dragresize-tl">
+		<p class="knob " > </p>
+	</div>
+	<div  class="dragresize-bl">
+		<p class="knob " > </p>
+	</div>
+	<div class="dragresize-br">
+		<p class="knob " > </p>
+	</div>
+	<div  class="dragresize-tr">
+		<p class="knob " > </p>
+	</div>
+</div>
+
+<div style="position:absolute;left:100px;top:100px;width:200px;height:200px;background-color:red;" class="dragdropresize drsElement"></div>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+#ignore these in git listings
+*.pyc
+*~
+.emacs*
+.DS_Store
+.swp
+\#*#
+.#*
+\#*

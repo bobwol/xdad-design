@@ -1,0 +1,8 @@
+/*
+	iPad style reset
+*/
+
+.page, .homepage, .works { background-image:none !important; }
+.wrap { border:0 !important; }
+.history .container { height:672px !important; }
+.location-bd { height:383px !important; }

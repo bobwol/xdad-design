@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CSS Regions - Transformed regions demo</title>
+
+    <link href="./css/bootstrap.css" rel="stylesheet" />
+    <!-- <link rel="stylesheet" type="text/css" href="shared-style.css" media="all" /> -->
+     <style type="text/css">
+       
+        body
+        {
+            
+             background-color:rgb(128,128,128);
+           
+        }
+        #placeholder {
+            border: 1px solid black;
+           
+            background-color: #cee9d3;
+           
+            height: 25px;
+            
+            
+        }
+        article.flowed {
+            -webkit-flow-into: article;
+        }
+        .region{
+            -webkit-flow-from: article;
+        }
+       
+    </style>
+
+    <meta charset="UTF-8">
+   
+    <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="temp.js"></script>
+
+    <script type="text/javascript" src="../tinymce/js/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+   
+   function PageEdit(opt){
+        this.setOptions(opt);
+        
+   }
+   PageEdit.prototype = {
+        setOptions:function(opt){
+            this.opt = $.extend(true,{},PageEdit.defaults);
+            this.page = 1;
+            
+            this.$template = $.tmpl(this.opt.template,{ "editme":"region" });
+            
+        },
+        init:function(){
+            this.$previewSelecter = $(this.opt.previewSelecter)//.hide();
+            this.$editSelecter = $(this.opt.editSelecter)//.show();
+            this.$articleSelecter = $(this.opt.articleSelecter)//.show();
+            this.bindEvent();
+            this.render();
+            this.regTinymce();
+        },
+        bindEvent:function(){
+             var namedFlow = document.webkitGetNamedFlows()["article"];
+            namedFlow.addEventListener("webkitregionlayoutupdate", this.updateLayout.bind(this))
+        },
+        render:function(){
+
+            var namedFlow = document.webkitGetNamedFlows()["article"];
+            var added = 0;
+            while (namedFlow.firstEmptyRegionIndex == -1) {
+                 this.addPage();
+                ++added;
+
+                // FIXME: Workaround for Webkit bug 92506
+                // Throttle the maximum amount of regions to be added
+                if (added == 40)
+                    break;
+            }
+
+            this.updateLayout({target: namedFlow})
+        },
+        updateLayout:function(e){     
+            var lastRegion, newRegion, emptyRegion,
+            
+                // the named flow instance
+                namedFlow = e.target,      
+                
+                // get a collection of regions associated with this named flow
+                regions = namedFlow.getRegions()
+
+            // are there any empty regions ?
+            if (namedFlow.firstEmptyRegionIndex !== -1){   
+                emptyRegion = regions[namedFlow.firstEmptyRegionIndex] 
+                this.delPage(emptyRegion);
+            }      
+                                                                              
+            // does the content fully fit in the available regions?
+            if (namedFlow.overset){ 
+                this.addPage();
+                
+            }
+        },
+        addPage:function(){
+
+            var $page = this.$template.clone().css("display", "block").attr('id','page_'+this.page);
+            this.$editSelecter.append($page);
+            this.$editSelecter.append($('<br/>'));
+            this.page++;
+        },
+        delPage:function(region){
+            $(region).parents('center').remove();
+        },
+        regTinymce:function(){
+            var self = this;
+            tinymce.init({
+                selector: self.opt.articleSelecter,
+                inline: true,
+                plugins: [
+                    "advlist autolink lists link image charmap print preview anchor",
+                    "searchreplace visualblocks code fullscreen",
+                    "insertdatetime media table contextmenu paste"
+                ],
+                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+                onpageload:function(){
+                    
+                    $('#mce_34').css( {
+                        position: 'fixed',
+                        top:'0px'
+                    })
+                }
+
+            });
+        },
+        save:function(){
+            var self = this;
+            var destination = this.$previewSelecter.html("");
+            $('.region',this.$editSelecter[0]).each(function(index,elem){
+                var ranges = $(elem)[0].webkitGetRegionFlowRanges();
+               
+                var page = $(elem).parents('center').attr('id');
+                var $page = self.$template.clone().css("display", "block")//.attr('id',page);
+                // ranges.forEach(function(range) {
+                //     $page.find('.region')[0].appendChild(range.cloneContents());
+                // })
+                $(destination).append($page);
+                $(destination).append($('<br/>'));
+            })
+        },
+        preview:function(){
+            this.save();
+            //this.$editSelecter.hide();
+            //this.$previewSelecter.show();
+            
+            var str=this.$previewSelecter.html();
+            var article = '<article class="flowed">'+this.$articleSelecter[0].innerHTML+'</article>';
+            var go=open("","运行html代码预览功能","");
+            go.document.open();
+            var html = [
+                '<!DOCTYPE HTML>',
+                '    <html>',
+                '    <head>',
+             
+                '        <title>CSS Regions - Transformed regions demo</title>',
+           
+
+                '        <link href="./css/bootstrap.css" rel="stylesheet" />',
+                '        <style type="text/css">',
+           
+                '        body',
+                '        {',
+                            
+                '             background-color:rgb(128,128,128);',
+                           
+                '        }',
+                '        article.flowed {',
+                '            -adobe-flow-into: article;',
+                '        }',
+                '        .region{',
+                '            -adobe-flow-from: article;',
+                '        }',
+
+                '        </style>',
+                '        <meta charset="UTF-8">',
+
+                '    </head>',
+                '    <body>',
+                    article,
+                '    <div class="preview">',
+               
+                        str,
+                '    </div>',
+                '    <script type="text/javascript" src="cssregions.js"><\/script>',
+                '    </body>',
+                '    </html>'
+            ].join('');
+            alert(html)
+            go.document.write(html);
+            go.document.close();
+            
+        },
+        edit:function(){
+            this.$previewSelecter.hide();
+            this.$editSelecter.show();
+
+        }
+   }
+   PageEdit.defaults = {
+        template:[
+            '<center style="display:none;">',
+            '    <div  style="font-family:\'\';background-color:#ffffcc;zoom:1;font-size:10.5pt;text-align:left;background-color:white;white-space:normal;word-break:break-all; word-wrap:break-word;width:14.5cm; height:23.97cm; padding-top:96px; padding-right:120px; padding-bottom:96px; padding-left:120px;">',
+            '        <div  class="${editme}"style="padding:0px;border:dotted 2px #cccccc;width:100%;height:100%;overflow:hidden;">',
+            //'           <div  class="${editme}"style="width:100%;max-height:906px;overflow:scroll;overflow-x:hidden;overflow-y:hidden;">',
+            //'           </div>',
+            '       </div>',
+            '   </div>',
+            '</center>'
+        ].join(""),
+        previewSelecter:'.preview',
+        editSelecter:'.edit',
+        articleSelecter:'article.flowed'
+   }
+
+  
+
+   
+
+</script>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="brand" href="javascript:void(0);">pageEditor v1.0</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li class="active">
+            <a href="javascript:void(0);" id="btn_preview">预览</a>
+          </li>
+       
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<article class="flowed">
+     <h1>Example using the CSS Regions polyfill</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <h2>Going forward</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <h1>Flowing content with <em>CSS Regions</em></h1>
+
+    <section id="introduction">
+        <p class="tip">
+            <strong>Hint:</strong> resize the browser window to see the content reflow.
+        </p>
+        <p>
+            With CSS Regions content can be extracted from its original DOM container into logical structures called named flows. These named flows can be used to associate the content with other containers called regions. 
+        </p>
+        <pre>
+        article{
+            flow-into: myArticle
+        }
+
+        #region1, #region2, #region3{
+            flow-from: myArticle
+        } 
+        </pre>
+        <p class="caption">The content of the <code>article</code> tag is pulled into a named flow called 'myArticle'. This named flow is associated with three regions. The original content of <code>article</code> now shows up in '#region1', '#region2' and '#region3'.</p>
+        <p>Multiple regions can be associated with the same named flow thus creating a region chain. Content flows from one region to another regardless of their positioning. </p>
+    </section>
+
+    <section id="problem">
+        <h2>The Problem with Overflow</h2>
+        <p>
+            When content does not fit in a box CSS has a limited set of options for overflow: it can hide it, it can add scrollbars or it can chose to display it completely with the risk of breaking the design. CSS Regions brings the flexibility of redirecting overflow content into another box.
+        </p>
+    </section>
+
+    <aside>
+        <h2>What's a region</h2>
+        <p>
+            Regions are placeholders for content which is directed into them with named flows. 
+        </p>
+        <p>
+            Regions don't have to be empty DOM elements. Future implementations will highlight the use of pseudo elements and other generated boxes as regions.
+        </p>
+    </aside>
+
+</article>
+
+<div class="edit"></div>
+<div class='preview'></div>
+
+
+<script type="text/javascript">
+    var gPageEdit = new PageEdit();
+   $(function(){
+        gPageEdit.init();
+        $("#btn_preview").bind("click", function() {
+            gPageEdit.preview();
+            
+        })
+   })
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <!-- IDENTIFY THE THEME HTML TEMPLATE -->
+    <notheme if="$host = '127.0.0.1:8081'" />
+
+
+    <rules css:if-content="#admin-portal-wrapper form#login_form">
+        <theme href="admin/template/@login.html" /> 
+        <replace css:theme="form.form-inline"
+            css:content="form#login_form" css:if-content="form#login_form"/>
+    </rules>
+
+    <rules css:if-content="#admin-portal-wrapper">
+        <theme href="admin.html"  /> 
+
+        <replace theme="/html/head/title" content="/html/head/title"/>
+
+
+        <!-- LOGIN FORM -->
+        <replace css:theme-children="div.ui-layout-center"
+                css:content="form#login_form" css:if-content="form#login_form"/>
+
+        <!-- CONTENT EDIT FORM -->
+        <replace css:theme="h1.page-title" css:content="h1.page-title"/>
+        <replace css:theme-children="div.tabview"
+                css:content="ul#content-views"/>
+        <replace css:content="ul#content-views li.selected">
+            <li class="active">
+                <xsl:apply-templates css:select="li.selected a" mode="raw"/>
+            </li>
+        </replace>
+        <replace css:theme-children="div.property"
+                css:content-children="div.property"/>
+
+        <drop css:content="label.horizontal span"/>
+        <!-- <drop css:content="div.formControls"/> -->
+        <!-- <merge attributes="class" css:theme="div.control-group" css:content="div.field"/> -->
+        <copy attributes="action" css:theme="div.column-bd form" css:content="div#content-core form" />
+        <replace css:theme-children="div.column-bd form" css:content-children="div#content-core form"  css:if-content="div#content-core form"/>
+        <replace css:theme="div.column-bd form" css:content-children="div#operation" css:if-content="div#operation"/>
+        <replace css:content="div.field">
+            <div class="control-group">
+                <label class="control-label">
+                    <xsl:apply-templates css:select="div.field label.horizontal"/>
+                    <xsl:apply-templates css:select="div.field label[for^='__ac']"/>
+                </label>
+                <div class="controls">
+                    <xsl:apply-templates css:select="div.field  [id^='form-widgets'][class*='widget']" mode="raw"/>
+                    <xsl:apply-templates css:select="div.field  input[id^='__ac']" mode="raw"/>
+                </div>
+            </div>
+        </replace>
+<!--    <merge attributes="class" css:theme="div.column-bd form div.control-group" css:content="div#content-core form div.field" />
+        <replace css:content="div.field input[id^='form-widgets']">
+            <div class="controls">
+                <xsl:apply-templates css:select="div.field  input[id^='form-widgets']" mode="raw"/>
+            </div>
+        </replace>
+         <replace css:content="div.field  span[id^='form-widgets']">
+            <div class="controls">
+                <xsl:apply-templates css:select="div.field  span[id^='form-widgets']" mode="raw"/>
+            </div>
+        </replace>
+        <replace css:content="div.field  textarea[id^='form-widgets']">
+            <div class="controls">
+                <xsl:apply-templates css:select="div.field  textarea[id^='form-widgets']" mode="raw"/>
+            </div>
+        </replace> -->
+
+
+        <replace css:theme-children="div.main-column"
+                css:content-children="div.main-column#list" css:if-content="div.main-column#list"/>
+
+        <replace css:theme-children="div.adminbar"
+                css:content-children="div#portal-top"/>
+        <replace css:theme-children="div.ui-layout-left nav" 
+                css:content-children="div#portal-left"/>
+        <replace css:theme-children="div#js"
+                css:content-children="div#js"/>
+        <merge attributes="class" css:theme="body" css:content="body"/>
+        <replace css:theme-children="div#JS_list_detail"
+                css:content-children="div#portal-right" css:if-content="div#portal-right"/>
+
+        <drop css:theme="button.action-save" css:if-content="body.portaltype-plone-site"/>
+        <drop css:theme="button.action-preview" css:if-content="body.portaltype-plone-site"/>
+        <drop css:theme="div.content-type" css:if-content="body.portaltype-plone-site"/>
+
+    </rules>
+
+</rules>

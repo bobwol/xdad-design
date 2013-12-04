@@ -1,0 +1,123 @@
+div.interaction-view{
+	position:absolute;
+	width:1024px;
+	height:768px;
+	overflow:hidden;
+}
+/* for element(div) */
+div.iText{
+	width:100%;
+	height:100%;
+	overflow-y: auto;
+	overflow-x: hidden;	
+}
+
+/* for site modal or mask */
+.modal.mask{  
+	z-index: 999; 
+	padding: 0px; 
+	margin: 0px;
+	position: fixed; 
+	overflow: hidden; 
+}
+/* @end */
+
+
+/* patch for ui-text-button */
+.text_button.ui-button-text-only .ui-button-text {
+    padding: 0.4em 0.8em;
+}
+.text_button,
+.icon_button{
+    margin: 1px;
+}
+/* @end */
+
+
+/* for shadow */
+canvas#interaction{
+	position:absolute;
+    background: transparent;
+    opacity: 1;
+}
+/* for preloader */
+div.loading{
+	position:fixed;
+	width:100%;
+	z-index: 2;
+}
+div#preloader {
+	position: absolute;
+	left: -9999px;
+	top:  -9999px;
+}
+div#preloader img {
+	display: block;
+}
+div.prewait{
+	position:absolute;
+	width:100%;
+	height:100%;
+	background:url(loader.gif) center center no-repeat;
+}
+.msg {
+    font-size: 12px;
+    left: 50%;
+    margin-left: -150px;
+    position: fixed;
+    text-align: left;
+    top: 15px;
+    width: 300px;
+    z-index: 999;
+}
+.msg .status {
+    background: none repeat scroll 0 0 rgba(240, 240, 240, 0.75);
+    border: 1px solid rgba(204, 204, 204, 0.75);
+    border-radius: 4px 4px 4px 4px;
+    line-height: 20px;
+    margin: 0 0 5px;
+    padding: 5px 10px;
+    position: relative;
+}
+.msg .status p {
+    display: block;
+    padding-left: 22px;
+}
+.msg .info {
+    color: #004B69;
+}
+.msg .info p {
+    background: url("../img/msg/icon_info.png") no-repeat scroll 0 2px transparent;
+}
+.msg .success {
+    color: #4D821F;
+}
+.msg .success p {
+    background: url("../img/msg/icon_success.png") no-repeat scroll 0 2px transparent;
+}
+.msg .warning, .msg .alert {
+    color: #978D3C;
+}
+.msg .warning p, .msg .alert p {
+    background: url("../img/msg/icon_warn.png") no-repeat scroll 0 2px transparent;
+}
+.msg .error {
+    color: #D00000;
+}
+.msg .error p {
+    background: url("../img/msg/icon_error.png") no-repeat scroll 0 2px transparent;
+}
+.msg a.close {
+    background: url("../img/msg/icon_close.png") no-repeat scroll 100% 50% transparent;
+    display: none;
+    height: 12px;
+    overflow: hidden;
+    position: absolute;
+    right: 10px;
+    text-indent: 9999px;
+    top: 10px;
+    width: 12px;
+}
+.msg a.close:hover {
+    background: url("../img/msg/icon_close.png") no-repeat scroll 0 50% transparent;
+}

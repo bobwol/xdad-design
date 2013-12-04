@@ -1,0 +1,388 @@
+<script type="text/javascript">
+<!--
+(function() {
+	var y = this.instanceOf = function(b, a) {
+		if (b == null) {
+			return false
+		}
+		var c = b.$constructor || b.constructor;
+		while (c) {
+			if (c === a) {
+				return true
+			}
+			c = c.parent
+		}
+		return b instanceof a
+	};
+})();
+(function() {
+	
+	var LOG = {
+		reportError:function(){
+			console.log.call(this,arguments)
+		}
+	}
+	
+	window.WClass = function(a, o) {
+		
+		var b = this;
+		a = a || {};
+		a.className = o || a.className;
+		b.validateScope(this, a.className);
+		if (!b.validateClassData(a)) {
+			return b.InvalidWClass
+		}
+		a.$className = a.className;
+		var p = b.clonePrototype(a.Extends);
+		var l = {};
+		for (var m in p) {
+			l[m] = p[m]
+		}
+		b.implementTraits(a.Implements, l);
+		for (m in a) {
+			l[m] = a[m]
+		}
+		var c = l.Static;
+		delete l.Static;
+		if (!a.Extends) {
+			if (a.hasOwnProperty("toString") && typeof a.toString == "function") {
+				l.toString = a.toString
+			} else {
+				l.toString = this._$wclassToString
+			}
+			l.hasClassAncestor = this._hasClassAncestor
+		}
+		if (p.Implements instanceof Array) {
+			l.Implements.combine(p.Implements)
+		}
+		l.Binds = b.aggregateBinds(l.Binds, p.Binds, l.Implements);
+		l.$parentPrototype = p;
+		l.parent = function() {
+			var k;
+			var i;
+			var h = l.parent.caller || arguments.callee.caller || arguments.caller;
+			if (!h) {
+				throw new Error("no caller!")
+			}
+			do {
+				k = k ? k.$parentPrototype : l;
+				if (!k) {
+					return
+				}
+				for (i in k) {
+					if (k[i] === h) {
+						break
+					}
+				}
+			} while (k[i] !== h);
+			if (!k || !k[i] || !k.$parentPrototype) {
+				return
+			}
+			var j = b.realParent(k);
+			while (k[i] === j[i]) {
+				k = j;
+				j = b.realParent(k)
+			}
+			k = b.realParent(k);
+			if (!k || !k[i] || typeof k[i] != "function") {
+				return
+			}
+			return k[i].apply(this, arguments)
+		};
+		var n = function() {
+				b.validateScope(this);
+				b.clonePrototypeObjects(this);
+				b.bindMethods(l.Binds, this);
+				if (l.initialize && typeof l.initialize == "function") {
+					l.initialize.apply(this, arguments)
+				}
+				b.initializeTraits(l.Implements, this, arguments)
+			};
+		b.copyStatic(n, l, c, a.Extends);
+		l.constructor = n;
+		n.prototype = l;
+		l.$class = n;
+		l.$class.$originalClassName = l.$className;
+		l.getOriginalClassName = function() {
+			return l.$class.$originalClassName || l.$className
+		};
+		if (a.$extendsName) {
+			l.$class.$extendsName = a.$extendsName;
+			delete a.$extendsName
+		} else {
+			delete l.$class.$extendsName
+		}
+		return n
+	};
+	window.WClass.prototype = {
+		constructor: window.WClass,
+		realParent: function(b) {
+			var a = b.$parentPrototype;
+			while (a && a.$className && b.$class.$extendsName && (b.$class.$extendsName != a.$className)) {
+				a = a.$parentPrototype
+			}
+			return a
+		},
+		validateScope: function(a) {
+			if (a === window || !a) {
+				LOG.reportError(wixErrors.WCLASS_CLASS_MUST_USE_NEW_OP, "WClass", "validateScope")()
+			}
+			for (key in a) {
+				if (a.hasOwnProperty(key)) {
+					LOG.reportError(wixErrors.WCLASS_CLASS_MUST_USE_NEW_OP, "WClass", "validateScope")()
+				}
+			}
+		},
+		clonePrototype: function(a) {
+			if (typeof a != "function") {
+				return {}
+			}
+			var c = {};
+			var b = a.prototype || {};
+			if (b === Function.prototype || b === Function) {
+				return c
+			}
+			for (key in b) {
+				if (b.hasOwnProperty(key) || key == "toString") {
+					c[key] = b[key]
+				}
+			}
+			return c
+		},
+		validateClassData: function(a) {
+			var b;
+			if (typeof a != "object") {
+				return LOG.reportError(wixErrors.WCLASS_CLASS_DATA_INVALID, "WClass", "validateClassData", b)()
+			}
+			if (typeof a.className != "string" || a.className.length === 0) {
+				return LOG.reportError(wixErrors.WCLASS_CLASS_EMPTY_STRING, "WClass", "validateClassData")()
+			}
+			for (b in a) {
+				if (this.reservedWords.contains(b)) {
+					return LOG.reportError(wixErrors.WCLASS_CLASS_RESERVED, "WClass", "validateClassData", b)()
+				}
+			}
+			if (a.Implements && !(a.Implements instanceof Array)) {
+				return LOG.reportError(wixErrors.WCLASS_CLASS_DATA_INVALID, "WClass", "validateClassData", "Implements is not an array")()
+			}
+			if (a.Binds && !(a.Binds instanceof Array)) {
+				return LOG.reportError(wixErrors.WCLASS_CLASS_DATA_INVALID, "WClass", "validateClassData", "Binds is not an array")()
+			}
+			return true
+		},
+		reservedWordsForTraits: ["initialize", "parent", "Extends", "Implements", "Binds", "$parentPrototype", "$className"],
+		reservedWords: ["parent", "$parentPrototype", "$className"],
+		bindMethods: function(i, b) {
+			var c, j, a;
+			if (i instanceof Array) {
+				for (c = 0, j = i.length;
+				c < j;
+				c++) {
+					a = i[c];
+					if (typeof b[a] == "function") {
+						b[a] = b[a].bind(b)
+					} else {
+						LOG.reportError(wixErrors.WCLASS_INVALID_BIND, "WClass", "bindMethods", a)
+					}
+				}
+			}
+		},
+		implementTraits: function(b, c) {
+			var i, l, k, a;
+			c.Implements = [];
+			if (b instanceof Array) {
+				for (i = 0, l = b.length;
+				i < l;
+				i++) {
+					k = b[i];
+					c.Implements.push(k);
+					if (typeof k == "function") {
+						k = k.prototype
+					}
+					for (a in k) {
+						if (a && !this.reservedWordsForTraits.contains(a)) {
+							c[a] = k[a]
+						}
+					}
+				}
+			}
+		},
+		initializeTraits: function(a, b, l) {
+			var c, m, i;
+			if (a instanceof Array) {
+				for (c = 0, m = a.length;
+				c < m;
+				c++) {
+					i = a[c];
+					if (typeof i == "function") {
+						i = i.prototype
+					}
+					var n = i.initialize;
+					if (n && typeof n == "function") {
+						n.apply(b, l)
+					}
+				}
+			}
+		},
+		clonePrototypeObjects: function(a) {
+			var b;
+			for (b in a) {
+				if (a[b] && typeof a[b] == "object") {
+					a[b] = (a[b] instanceof Array) ? a[b].clone() : Object.clone(a[b])
+				}
+			}
+		},
+		copyStatic: function(b, c, a, i) {
+			var j;
+			if (typeof i == "function") {
+				for (j in i) {
+					if (i.hasOwnProperty(j)) {
+						b[j] = i[j]
+					}
+				}
+			}
+			if (a) {
+				for (j in a) {
+					if (c[j]) {
+						throw new Error("The property " + j + " conflicts with a static property")
+					}
+					b[j] = c[j] = a[j]
+				}
+			}
+		},
+		aggregateBinds: function(h, a, b) {
+			var c = [];
+			if (h instanceof Array) {
+				c.combine(h)
+			}
+			if (a instanceof Array) {
+				c.combine(a)
+			}
+			b && b.forEach(function(i) {
+				if (i.Binds instanceof Array) {
+					c.combine(i.Binds)
+				} else {
+					if (i.prototype && i.prototype.Binds instanceof Array) {
+						c.combine(i.prototype.Binds)
+					}
+				}
+			});
+			return c
+		},
+		_findMethod: function(b, c) {
+			while (b) {
+				if (b.hasOwnProperty(c)) {
+					var a = b[c];
+					if (typeof(a) == "function") {
+						return a
+					}
+				}
+				if (b.Extends) {
+					b = b.Extends.prototype
+				} else {
+					return null
+				}
+			}
+			return null
+		},
+		_hasClassAncestor: function(a, b) {
+			var j = this;
+			do {
+				var k = j.className;
+				var l;
+				if (b) {
+					var c = new RegExp("\\.?" + a + "(\\.|$)");
+					l = k && k.match(c)
+				} else {
+					l = (k == a)
+				}
+				if (l) {
+					return true
+				}
+				j = j.Extends && j.Extends.prototype
+			} while (j);
+			return false
+		},
+		_$wclassToString: function() {
+			return "[wclass " + (this.className || "") + "]"
+		},
+		InvalidWClass: function() {
+			throw new Error("invalid WClass")
+		}
+	};
+	var g = instanceOf;
+	var f;
+	var d = window;
+	d.instanceOf = f = function(a, b) {
+		if (b === d.WClass && a && typeof a == "function" && a.prototype && a.prototype.$className) {
+			return true
+		}
+		if (a && a.$className && typeof b == "function" && b.prototype && b.prototype.$className) {
+			return a.$className == b.prototype.$className || instanceOf(a.$parentPrototype, b)
+		} else {
+			d.instanceOf = g;
+			var c = instanceOf(a, b);
+			d.instanceOf = f;
+			return c
+		}
+	}
+	var W = {
+		Managers: {},
+		BaseClasses: {}
+	};
+	W.ClassManager = W.ClassManager || {};
+	
+	W.ClassManager.ClassManager = new WClass({
+		className: "ClassManager",
+		initialize: function() {
+			this._classRepo = new W.ClassManager.ClassRepository();
+			this._classParser = new W.ClassManager.ClassParser(this._classRepo)
+		},
+		get: function(c, d) {
+			return this._classRepo.getClassWhenReady(c, d)
+		},
+		override: function(c, d) {
+			this._classRepo.override(c, d)
+		},
+		overrideDependency: function(c, d) {
+			return this._classParser.override(c, d)
+		},
+		getClassStatus: function(b) {
+			return this._classRepo.getClassStatus(b)
+		},
+		getClassStatusDetails: function(b) {
+			return this._classRepo.getClassStatusDetails(b)
+		},
+		newClass: function(b) {
+			return this._classParser.registerClass(Object.clone(b))
+		},
+		newTrait: function(b) {
+			b.Class = b.trait;
+			delete b.trait;
+			this.newClass(b)
+		},
+		newClasses: function(b) {
+			Object.forEach(b, this.newClass.bind(this))
+		},
+		setDynamicScriptLoading: function() {
+			this._classRepo.loadMissingClasses()
+		},
+		_getClassDataErrorCode: function(b) {
+			this._classParser._getClassDataErrorCode(b)
+		},
+		removeClass: function(b) {
+			this._classRepo.deleteClass(b)
+		},
+		isReady: function() {
+			return this._classRepo.isReady()
+		},
+		clone: function() {
+			var b = new W.ClassManager.ClassManager();
+			b._classRepo = this._classRepo.clone();
+			b._classParser = new W.ClassManager.ClassParser(b._classRepo);
+			return b
+		}
+	});
+}());
+//-->
+</script>

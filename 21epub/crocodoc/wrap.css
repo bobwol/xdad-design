@@ -1,0 +1,3 @@
+
+html, body, #wrap {height: 100%;} 
+body > #wrap {height: auto; min-height: 100%;}

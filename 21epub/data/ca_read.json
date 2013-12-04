@@ -1,0 +1,36 @@
+{
+	"results":[
+		{
+			"img":"../public/book/001.jpg",
+			"thumb_img" : "../public/thumb/001.jpg"
+		},
+		{
+			"img":"../public/book/002.jpg",
+			"thumb_img" : "../public/thumb/002.jpg"
+		},
+		{
+			"img":"../public/book/003.jpg",
+			"thumb_img" : "../public/thumb/003.jpg"
+		},
+		{
+			"img":"../public/book/004.jpg",
+			"thumb_img" : "../public/thumb/004.jpg"
+		},
+		{
+			"img":"../public/book/005.jpg",
+			"thumb_img" : "../public/thumb/005.jpg"
+		},
+		{
+			"img":"../public/book/006.jpg",
+			"thumb_img" : "../public/thumb/006.jpg"
+		},
+		{
+			"img":"../public/book/007.jpg",
+			"thumb_img" : "../public/thumb/007.jpg"
+		},
+		{
+			"img":"../public/book/008.jpg",
+			"thumb_img" : "../public/thumb/008.jpg"
+		}
+	]
+}

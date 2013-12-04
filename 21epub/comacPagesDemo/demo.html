@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://127.0.0.1/ca/html/admin/template/edit_fluid_doc.html -->
+<html><script type="text/javascript">window["_gaUserPrefs"] = { ioo : function() { return true; } }</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>编辑流式文档 - 城市动漫后台管理系统</title>
+<link rel="shortcut icon" href="http://127.0.0.1/ca/html/admin/template/favicon.ico">
+<script type="text/javascript" src="./js/jquery-1.8.1.min.js"></script><style type="text/css"></style>
+<!--[if lt ie 9]>
+
+<script type="text/javascript" src="../js/html5.js"></script>
+<script type="text/javascript" src="../js/selectivizr.js"></script>
+<![endif]-->
+<!-- bootstrap start -->
+<script type="text/javascript" src="./js/bootstrap.js"></script>
+<link type="text/css" href="./css/bootstrap.min.css" rel="stylesheet" media="all">
+<link type="text/css" href="./css/bootstrap.min.patch.css" rel="stylesheet" media="all">
+<!-- bootstrap end -->
+<!-- nanoscroll start -->
+<script type="text/javascript" src="./js/jquery.nanoscroller.min.js"></script>
+<link type="text/css" href="./css/nanoscroller.css" rel="stylesheet" media="all">
+<!-- nanoscroll end -->
+<link type="text/css" href="./css/style.css" rel="stylesheet" media="all">
+<link type="text/css" href="./css/theme.red.css" rel="stylesheet" media="all">
+<link type="text/css" href="./css/typo.css" rel="stylesheet" media="all">
+<link type="text/css" href="./css/typo.patch.css" rel="stylesheet" media="all">
+<link type="text/css" href="./css/style_edit.css" rel="stylesheet" media="all">
+
+<script type="text/javascript" src="../tinymce/js/tinymce/tinymce.min.js"></script>
+
+
+<script type="text/javascript" src="pageEdit.js"></script>
+
+
+<script>
+  $(function(){
+    $('body').css({"overflow":"visible"})
+      return;
+        //  初始化编辑器 start
+        var timer = setInterval(function(){
+            if($('.mce-tinymce')[0]){
+                // if($('.mce-tinymce')[0].style.position!='fixed'){
+                    $('.mce-tinymce').css( {
+                        position: 'fixed',
+                        top:'0px',
+                        right:'0px'
+                    })
+                    // clearInterval(timer)
+                    // timer = null;
+                // }
+            }
+            
+        },500)
+        tinymce.init({
+            selector: '#articles',
+            inline: true
+        });
+        //  初始化编辑器 end
+         // nanoscrollbar
+        $('body').css({"overflow":"visible"})
+
+
+
+        //=======================pageEdit start===========================
+        $('#articles').pageEdit({
+            templates:{
+               page:[
+                  '<div class="doc-container typo tiny-editor">',
+                  '    <div class="doc-header"><span class="planetype">ARJ21-700</span>ARJ21-700飞机客舱乘务员转机型训练手册</div>',
+                  '    <div class="doc-body">',
+                  '    </div>',
+                  '    <div class="doc-footer">© 2012 上海飞机客户服务有限公司 <span class="time">2011-05</span><span class="version">修订：4</span></div>',
+                  '  </div>'
+              ].join("")
+            },
+            editSelecter:'.PageEdit_edit',
+            regionSelecter:'.doc-body'
+        });
+
+        //返回分页内容
+
+      $('#articles').pageEdit('getPageContent',function(str){
+          console.log(str);
+      })
+      //=======================pageEdit end===========================
+
+
+
+    })
+</script>
+
+<link href="http://assets.annotateit.org/annotator/v1.2.2/annotator.min.css" rel="stylesheet" />
+<script src="http://assets.annotateit.org/annotator/v1.2.2/annotator-full.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+    $('body').annotator();
+  })
+
+</script>
+</head>
+<body class="edit-fluid-doc">
+  <div>
+  	<div id="articles" style="display:">
+            <header>
+              <h1><span class="number">3.3.1</span> <span class="title">使用数据</span></h1>
+            </header>
+            <!-- article start -->
+            <section>
+              <hgroup>
+                <h2><span class="number">3.3.1.1</span> <span class="title">风分量</span></h2>
+              </hgroup>
+              <article id="chapter3311" aria-hidden="true">
+                <h3>功能</h3>
+                <p>飞机燃油系统确保飞机在正常运转以及整个正常飞行包线内，连续地向发动机和APU提供最小压力为TVP+5磅/平方英寸的燃油，同时燃油系统也有足够的冗余功能，保证飞机由于燃油系统失效而导致灾难性事件的机率大大减小。</p>
+                <!-- SLIDE start -->
+                <div class="element component slide"><div class="ui-resizable-handle ui-resizable-n"></div><div class="ui-resizable-handle ui-resizable-e"></div><div class="ui-resizable-handle ui-resizable-s"></div><div class="ui-resizable-handle ui-resizable-w"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se"></div><div class="ui-resizable-handle ui-resizable-sw"></div><div class="ui-resizable-handle ui-resizable-ne"></div><div class="ui-resizable-handle ui-resizable-nw"></div><span class="thumb"><img src="./public/thumb_05.jpg" alt=""></span><span class="title">上海展览中心（原中苏友好大厦）</span></div>
+                <!-- SLIDE end -->
+                <p>NACA通气口安装在机翼下翼面的维护口盖上。该通气口位于飞机雷击3区。NACA通气口可使油箱内的气体向内或向外自由流动。该通气口在飞行过程中可向油箱提供一定的冲压压力。该通气口上安装有火焰抑制器。通气系统的设计可以保证飞机在所有飞行和地面（包括压力加油和放油）状态下保持油箱内的压力在安全范围内。即使在压力加油切断阀故障状态下，通气系统也可以保证油箱内的压力在安全范围内。</p>
+                <p>每个油箱通过各自独立的通气管路进行通气，这些通气管与位于油箱外部17＃肋和19＃肋之间的通气箱相连。主通气管路用于油箱内侧部分的通气，该管路从机翼油箱中央翼部分起一直连通到通气箱。该通气管在靠近中央翼处分为两路，两个分支分别在1＃肋的内侧和外侧。这两个分支开口处的导管直径小于主通气管直径，以此防止某些能通过分支管的杂质堵住主通气管。油箱外侧部分的通气是通过安装在17＃肋肋板上的通气浮子阀来实现的。当该处油面高过通气浮子阀的通气管时，该阀门将关闭，以防止燃油的溢出。通气系统的设计应保证在所有正常的飞行状态下至少有一处通气口是保持畅通的，保证油箱始终通气。通气箱与外界大气相通，并可存储少量燃油。从通气管路溢出的燃油可通过通气箱排到机外。NACA通气口安装在机翼下翼面的维护口盖上。该通气口位于飞机雷击3区。NACA通气口可使油箱内的气体向内或向外自由流动。该通气口在飞行过程中可向油箱提供一定的冲压压力。该通气口上安装有火焰抑制器。通气系统的设计可以保证飞机在所有飞行和地面（包括压力加油和放油）状态下保持油箱内的压力在安全范围内。即使在压力加油切断阀故障状态下，通气系统也可以保证油箱内的压力在安全范围内。机翼上所有肋的顶部都是畅通的，以保证翼盒之间的空气流通。</p>
+              </article>
+            </section>
+            <section>
+              <hgroup>
+                <h2><span class="number">3.3.1.2</span> <span class="title">MATCH-CAS转换</span></h2>
+              </hgroup>
+              <article id="chapter3312">
+                <h3>系统组成</h3>
+                <p>飞机燃油系统包括贮存、分配和指示部分</p>
+                <!-- material start -->
+                <figure class="audio">
+                  <audio src="./public/lifeishard.mp3" controls=""></audio>
+                  <figcaption>LIFE IS HARD - BOB DYLAN</figcaption>
+                </figure>
+                <!-- material end -->
+                <h3>贮存</h3>
+                <ul>
+                  <li>燃油箱</li>
+                  <li>油箱通气系统</li>
+                </ul>
+                <h3>分配</h3>
+                <ul>
+                  <li>加/放油系统</li>
+                  <li>发动机供油系统</li>
+                  <li>APU供油系统</li>
+                </ul>
+                <h3>指示</h3>
+                <ul>
+                  <li>燃油量指示系统</li>
+                  <li>磁性油尺</li>
+                  <li>燃油压力指示系统</li>
+                  <li>燃油温度指示系统</li>
+                </ul>
+                <h3>燃油箱的位置</h3>
+                <p>燃油箱位于每侧机翼的0#肋和17#肋之间。通气油箱位于17#肋和19#肋之间。通气油箱中的翼肋将油箱分成两个隔舱。集油箱由0#肋，1#肋，1号展向梁和后梁围成。它的功能是减少不可用油量，并保持供油系统的油面高度。</p>
+              </article>
+            </section>
+            <section>
+              <hgroup>
+                <h2><span class="number">3.3.1.3</span> <span class="title">CAS-TAS转换</span></h2>
+              </hgroup>
+              <article id="chapter3313">
+                <table summary="TYPO.CSS 的测试平台列表" width="100%" class="table">
+                  <caption>
+                  表3.3.1.3-1 燃油系统 — 缩略语
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th width="20%">缩略语</th>
+                      <th width="50%">英文</th>
+                      <th width="30%">中文</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>AC</td>
+                      <td>Alternating Current</td>
+                      <td>交流（电）</td>
+                    </tr>
+                    <tr>
+                      <td>APU</td>
+                      <td>Auxiliary Power Unit</td>
+                      <td>辅助动力装置</td>
+                    </tr>
+                    <tr>
+                      <td>ATA</td>
+                      <td>Air Transport Association</td>
+                      <td>航空运输协会</td>
+                    </tr>
+                    <tr>
+                      <td>DC</td>
+                      <td>Direct Current</td>
+                      <td>直流（电）</td>
+                    </tr>
+                    <tr>
+                      <td>DCU</td>
+                      <td>Data Concentrator Unit</td>
+                      <td>数据集中装置</td>
+                    </tr>
+                    <tr>
+                      <td>EICAS</td>
+                      <td>Engine Indication and Crew Alerting System</td>
+                      <td>发动机指示与机组告警系统</td>
+                    </tr>
+                    <tr>
+                      <td>EMI</td>
+                      <td>Elector-Magnetic Interface</td>
+                      <td>电磁干扰</td>
+                    </tr>
+                    <tr>
+                      <td>ESS</td>
+                      <td>Essential</td>
+                      <td>重要的</td>
+                    </tr>
+                    <tr>
+                      <td>FOCU</td>
+                      <td>Fire and Overheat Control Unit</td>
+                      <td>防火和过热控制装置</td>
+                    </tr>
+                    <tr>
+                      <td>FQC</td>
+                      <td>Fuel Quantity Computer</td>
+                      <td>燃油量计算机</td>
+                    </tr>
+                    <tr>
+                      <td>IOC</td>
+                      <td>Input/Output Concentrator</td>
+                      <td>输入输出集中器</td>
+                    </tr>
+                    <tr>
+                      <td>LDU</td>
+                      <td>Lamp Driver Unit</td>
+                      <td>灯驱动装置</td>
+                    </tr>
+                    <tr>
+                      <td>RDI</td>
+                      <td>Refuel-Defuel Indicator</td>
+                      <td>加/放油指示器</td>
+                    </tr>
+                    <tr>
+                      <td>RDP</td>
+                      <td>Refuel-Defuel Pannel</td>
+                      <td>加/放油指示板</td>
+                    </tr>
+                    <tr>
+                      <td>SOV</td>
+                      <td>Shut-Off Valve</td>
+                      <td>切断阀</td>
+                    </tr>
+                    <tr>
+                      <td>XFEED</td>
+                      <td>Crossfeed</td>
+                      <td>交输</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <h3>CAS-TAS转换</h3>
+                <p>燃油箱位于每侧机翼的0#肋和17#肋之间。通气油箱位于17#肋和19#肋之间。通气油箱中的翼肋将油箱分成两个隔舱。集油箱由0#肋，1#肋，1号展向梁和后梁围成。它的功能是减少不可用油量，并保持供油系统的油面高度。</p>
+                <!-- fluid grid start -->
+                <div class="row-fluid">
+                  <div class="span4">
+                    <p>飞机燃油系统确保飞机在正常运转以及整个正常飞行包线内，连续地向发动机和APU提供最小压力为TVP+5磅/平方英寸的燃油，同时燃油系统也有足够的冗余功能，保证飞机由于燃油系统失效而导致灾难性事件的机率大大减小。</p>
+                  </div>
+                  <div class="span4">
+                    <p>飞机燃油系统确保飞机在正常运转以及整个正常飞行包线内，连续地向发动机和APU提供最小压力为TVP+5磅/平方英寸的燃油，同时燃油系统也有足够的冗余功能，保证飞机由于燃油系统失效而导致灾难性事件的机率大大减小。</p>
+                  </div>
+                  <div class="span4">
+                    <p>燃油箱位于每侧机翼的0#肋和17#肋之间。通气油箱位于17#肋和19#肋之间。通气油箱中的翼肋将油箱分成两个隔舱。集油箱由0#肋，1#肋，1号展向梁和后梁围成。它的功能是减少不可用油量，并保持供油系统的油面高度飞机燃油系统确保飞机在正常运转以及整个正常飞行包线内，连续地向发动机和APU提供最小压力为TVP+5磅/平方英寸的燃油，同时燃油系统也有足够的冗余功能，保证飞机由于燃油系统失效而导致灾难性事件的机率大大减小。</p>
+                  </div>
+                </div>
+                <!-- fluid grid end --> 
+              </article>
+            </section>
+            <section>
+              <hgroup>
+                <h2><span class="number">3.3.1.4</span> <span class="title">QNH-压力高度转换</span></h2>
+              </hgroup>
+              <article id="chapter3314"> 
+                <!-- TAB start -->
+                <div class="element component tab"><div class="ui-resizable-handle ui-resizable-n"></div><div class="ui-resizable-handle ui-resizable-e"></div><div class="ui-resizable-handle ui-resizable-s"></div><div class="ui-resizable-handle ui-resizable-w"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se"></div><div class="ui-resizable-handle ui-resizable-sw"></div><div class="ui-resizable-handle ui-resizable-ne"></div><div class="ui-resizable-handle ui-resizable-nw"></div><span class="thumb"><img src="./img/thumb.png" alt=""></span><span class="title">上海展览中心（原中苏友好大厦）</span></div>
+                <!-- TAB end -->
+                <p class="p-s02">燃油箱中的蒸汽是易爆的，有毒的。进入油箱前，应放掉油箱中燃油，并将燃油蒸汽降低到安全水平。需要进行油箱清洗并执行油箱进入程序以除去燃油蒸汽。油箱中的火花可以引发爆炸。在油箱内部时，必须执行这些操作以防止出现火花。</p>
+                <blockquote>
+                  <h3>功能描述</h3>
+                  <p class="p-s03">放沉淀阀位于机翼油箱和通气油箱的低点。因此，燃油可以通过放沉淀阀外壳体的延长孔中流出。由于孔的低点低于下翼面，燃油可以完全放出。应当在压力加油操作前后采集燃油样本。燃油中含有大量的水表明可能是引射泵故障。寒冷的天气可以冻结油箱中的水，使放沉淀阀不能打开。该通气口上安装有火焰抑制器。通气系统的设计可以保证飞机在所有飞行和地面（包括压力加油和放油）状态下保持油箱内的压力在安全范围内。即使在压力加油切断阀故障状态下，通气系统也可以保证油箱内的压力在安全范围内。机翼上所有肋的顶部都是畅通的，以保证翼盒之间的空气流通。</p>
+                </blockquote>
+                <blockquote class="blockquote-s02"> "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit…"
+                  <blockquote>"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain…"</blockquote>
+                  <blockquote>"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain…"
+                    <blockquote>"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain…"</blockquote>
+                  </blockquote>
+                </blockquote>
+                <blockquote class="blockquote-s03"> "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit…"
+                  <blockquote>"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain…"</blockquote>
+                  <blockquote>"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain…"
+                    <blockquote>"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain…"</blockquote>
+                  </blockquote>
+                </blockquote>
+                <p>每个油箱通过各自独立的通气管路进行通气，这些通气管与位于油箱外部17＃肋和19＃肋之间的通气箱相连。主通气管路用于油箱内侧部分的通气，该管路从机翼油箱中央翼部分起一直连通到通气箱。该通气管在靠近中央翼处分为两路，两个分支分别在1＃肋的内侧和外侧。这两个分支开口处的导管直径小于主通气管直径，以此防止某些能通过分支管的杂质堵住主通气管。油箱外侧部分的通气是通过安装在17＃肋肋板上的通气浮子阀来实现的。当该处油面高过通气浮子阀的通气管时，该阀门将关闭，以防止燃油的溢出。通气系统的设计应保证在所有正常的飞行状态下至少有一处通气口是保持畅通的，保证油箱始终通气。通气箱与外界大气相通，并可存储少量燃油。从通气管路溢出的燃油可通过通气箱排到机外。NACA通气口安装在机翼下翼面的维护口盖上。该通气口位于飞机雷击3区。NACA通气口可使油箱内的气体向内或向外自由流动。该通气口在飞行过程中可向油箱提供一定的冲压压力。该通气口上安装有火焰抑制器。通气系统的设计可以保证飞机在所有飞行和地面（包括压力加油和放油）状态下保持油箱内的压力在安全范围内。即使在压力加油切断阀故障状态下，通气系统也可以保证油箱内的压力在安全范围内。机翼上所有肋的顶部都是畅通的，以保证翼盒之间的空气流通。</p>
+              </article>
+            </section>
+            <section>
+              <hgroup>
+                <h2><span class="number">3.3.1.5</span> <span class="title">QFE-压力高度转换</span></h2>
+              </hgroup>
+              <article id="chapter3315">
+                <p>每个油箱通过各自独立的通气管路进行通气，这些通气管与位于油箱外部17＃肋和19＃肋之间的通气箱相连。主通气管路用于油箱内侧部分的通气，该管路从机翼油箱中央翼部分起一直连通到通气箱。该通气管在靠近中央翼处分为两路，两个分支分别在1＃肋的内侧和外侧。这两个分支开口处的导管直径小于主通气管直径，以此防止某些能通过分支管的杂质堵住主通气管。油箱外侧部分的通气是通过安装在17＃肋肋板上的通气浮子阀来实现的。当该处油面高过通气浮子阀的通气管时，该阀门将关闭，以防止燃油的溢出。通气系统的设计应保证在所有正常的飞行状态下至少有一处通气口是保持畅通的，保证油箱始终通气。通气箱与外界大气相通，并可存储少量燃油。从通气管路溢出的燃油可通过通气箱排到机外。NACA通气口安装在机翼下翼面的维护口盖上。该通气口位于飞机雷击3区。NACA通气口可使油箱内的气体向内或向外自由流动。该通气口在飞行过程中可向油箱提供一定的冲压压力。该通气口上安装有火焰抑制器。通气系统的设计可以保证飞机在所有飞行和地面（包括压力加油和放油）状态下保持油箱内的压力在安全范围内。即使在压力加油切断阀故障状态下，通气系统也可以保证油箱内的压力在安全范围内。机翼上所有肋的顶部都是畅通的，以保证翼盒之间的空气流通。</p>
+              </article>
+            </section>
+            <section>
+              <hgroup>
+                <h2><span class="number">3.3.1.6</span> <span class="title">压力高度-几何高度转换</span></h2>
+              </hgroup>
+              <article id="chapter3316">
+                <p>每个油箱通过各自独立的通气管路进行通气，这些通气管与位于油箱外部17＃肋和19＃肋之间的通气箱相连。主通气管路用于油箱内侧部分的通气，该管路从机翼油箱中央翼部分起一直连通到通气箱。该通气管在靠近中央翼处分为两路，两个分支分别在1＃肋的内侧和外侧。这两个分支开口处的导管直径小于主通气管直径，以此防止某些能通过分支管的杂质堵住主通气管。油箱外侧部分的通气是通过安装在17＃肋肋板上的通气浮子阀来实现的。当该处油面高过通气浮子阀的通气管时，该阀门将关闭，以防止燃油的溢出。通气系统的设计应保证在所有正常的飞行状态下至少有一处通气口是保持畅通的，保证油箱始终通气。通气箱与外界大气相通，并可存储少量燃油。从通气管路溢出的燃油可通过通气箱排到机外。NACA通气口安装在机翼下翼面的维护口盖上。该通气口位于飞机雷击3区。NACA通气口可使油箱内的气体向内或向外自由流动。该通气口在飞行过程中可向油箱提供一定的冲压压力。该通气口上安装有火焰抑制器。通气系统的设计可以保证飞机在所有飞行和地面（包括压力加油和放油）状态下保持油箱内的压力在安全范围内。即使在压力加油切断阀故障状态下，通气系统也可以保证油箱内的压力在安全范围内。机翼上所有肋的顶部都是畅通的，以保证翼盒之间的空气流通。</p>
+              </article>
+            </section>
+            <section>
+              <hgroup>
+                <h2><span class="number">3.3.1.7</span> <span class="title">国际标准大气</span></h2>
+              </hgroup>
+              <article id="chapter3317">
+                <h3>折叠示例</h3>
+                <!-- accordion start -->
+                <div class="accordion" id="accordion2">
+                  <div class="accordion-group">
+                    <div class="accordion-heading"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="http://127.0.0.1/ca/html/admin/template/edit_fluid_doc.html#collapseOne"><span class="alignright">（查看答案）</span> 一 + ? = 2</a> </div>
+                    <div id="collapseOne" class="accordion-body collapse" style="height:0;">
+                      <div class="accordion-inner"> 这是买火车票的验证码。 </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- accordion end -->
+                <h3>DM示例</h3>
+                <!-- DM start -->
+                <div class="dm block">
+                  <figure class="lightbox image"> <img src="./public/boeing787.jpg" alt="NASA揭未来飞机神秘面纱" title="NASA揭未来飞机神秘面纱">
+                    <figcaption>
+                      <h4>NASA揭未来飞机神秘面纱</h4>
+                      <p>人们期待21世纪的飞机可以变得更安全、更舒适、更快捷、更环保。为了让飞机走向“未来”，风格迥异的未来飞机设计。</p>
+                    </figcaption>
+                  </figure>
+                </div>
+                <!-- DM end -->
+                <h3>强调样式</h3>
+                <!-- message start -->
+                <div class="message-box warning">
+                  <p>排版是一个麻烦的问题，需要精心设计，而这个设计却是常被视觉设计师所忽略的。前端工程师更常看到这样的问题，但不便变更。因为在多个 OS 中的不同浏览器渲染不同，改动需要多的时间做回归测试，所以改变变得更困难。</p>
+                </div>
+                <div class="message-box doubt">
+                  <p>排版是一个麻烦的问题，需要精心设计，而这个设计却是常被视觉设计师所忽略的。前端工程师更常看到这样的问题，但不便变更。因为在多个 OS 中的不同浏览器渲染不同，改动需要多的时间做回归测试，所以改变变得更困难。</p>
+                </div>
+                <div class="message-box info">
+                  <p>排版是一个麻烦的问题，需要精心设计，而这个设计却是常被视觉设计师所忽略的。前端工程师更常看到这样的问题，但不便变更。因为在多个 OS 中的不同浏览器渲染不同，改动需要多的时间做回归测试，所以改变变得更困难。</p>
+                </div>
+                <div class="message-box error">
+                  <p>排版是一个麻烦的问题，需要精心设计，而这个设计却是常被视觉设计师所忽略的。</p>
+                </div>
+                <div class="message-box success">
+                  <p>排版是一个麻烦的问题，需要精心设计，而这个设计却是常被视觉设计师所忽略的。前端工程师更常看到这样的问题，但不便变更。因为在多个 OS 中的不同浏览器渲染不同，改动需要多的时间做回归测试，所以改变变得更困难。</p>
+                </div>
+                <!-- message end -->
+                <h3>字号样式</h3>
+                <h1>&lt;h1&gt; 排版是一个麻烦的问题</h1>
+                <h2>&lt;h2&gt; 排版是一个麻烦的问题</h2>
+                <h3>&lt;h3&gt; 排版是一个麻烦的问题</h3>
+                <h4>&lt;h4&gt; 排版是一个麻烦的问题</h4>
+                <h5>&lt;h5&gt; 排版是一个麻烦的问题</h5>
+                <h6>&lt;h6&gt; 排版是一个麻烦的问题</h6>
+                <small>&lt;small&gt; 排版是一个麻烦的问题，需要精心设计，而这个设计却是常被视觉设计师所忽略的。前端工程师更常看到这样的问题，但不便变更。因为在多个 OS 中的不同浏览器渲染不同，改动需要多的时间做回归测试，所以改变变得更困难。而像我们一般使用的 Yahoo、Eric Meyer 和 Alice base.css 中采用的 Reset 都没有很好地考虑中文排版。TYPO.CSS 要做的就是解决中文排版的问题。</small>
+                <h3>列表样式</h3>
+                <ul class="disc">
+                  <li>排版是一个麻烦的问题</li>
+                  <li>需要精心设计
+                    <ul class="circle">
+                      <li>排版是一个麻烦的问题</li>
+                      <li>需要精心设计
+                        <ul class="square">
+                          <li>排版是一个麻烦的问题</li>
+                          <li>需要精心设计</li>
+                          <li>而这个设计却是常被视觉设计师所忽略的</li>
+                          <li>前端工程师更常看到这样的问题，但不便变更</li>
+                          <li>因为在多个 OS 中的不同浏览器渲染不同</li>
+                        </ul>
+                      </li>
+                      <li>而这个设计却是常被视觉设计师所忽略的</li>
+                      <li>前端工程师更常看到这样的问题，但不便变更</li>
+                      <li>因为在多个 OS 中的不同浏览器渲染不同</li>
+                    </ul>
+                  </li>
+                  <li>而这个设计却是常被视觉设计师所忽略的</li>
+                  <li>前端工程师更常看到这样的问题，但不便变更</li>
+                  <li>因为在多个 OS 中的不同浏览器渲染不同</li>
+                </ul>
+                <ol class="decimal">
+                  <li>排版是一个麻烦的问题</li>
+                  <li>需要精心设计</li>
+                  <li>而这个设计却是常被视觉设计师所忽略的</li>
+                  <li>前端工程师更常看到这样的问题，但不便变更</li>
+                  <li>因为在多个 OS 中的不同浏览器渲染不同</li>
+                </ol>
+                <ol class="cjk-ideographic">
+                  <li>排版是一个麻烦的问题</li>
+                  <li>需要精心设计 </li>
+                  <li>而这个设计却是常被视觉设计师所忽略的</li>
+                  <li>前端工程师更常看到这样的问题，但不便变更</li>
+                  <li>因为在多个 OS 中的不同浏览器渲染不同</li>
+                </ol>
+                <ol class="lower-roman">
+                  <li>排版是一个麻烦的问题</li>
+                  <li>需要精心设计</li>
+                  <li>而这个设计却是常被视觉设计师所忽略的</li>
+                  <li>前端工程师更常看到这样的问题，但不便变更</li>
+                  <li>因为在多个 OS 中的不同浏览器渲染不同</li>
+                </ol>
+                <ol class="upper-roman">
+                  <li>排版是一个麻烦的问题</li>
+                  <li>需要精心设计</li>
+                  <li>而这个设计却是常被视觉设计师所忽略的</li>
+                  <li>前端工程师更常看到这样的问题，但不便变更</li>
+                  <li>因为在多个 OS 中的不同浏览器渲染不同</li>
+                </ol>
+                <ol class="lower-alpha">
+                  <li>排版是一个麻烦的问题</li>
+                  <li>需要精心设计</li>
+                  <li>而这个设计却是常被视觉设计师所忽略的</li>
+                  <li>前端工程师更常看到这样的问题，但不便变更</li>
+                  <li>因为在多个 OS 中的不同浏览器渲染不同</li>
+                </ol>
+                <ol class="upper-alpha">
+                  <li>排版是一个麻烦的问题</li>
+                  <li>需要精心设计</li>
+                  <li>而这个设计却是常被视觉设计师所忽略的</li>
+                  <li>前端工程师更常看到这样的问题，但不便变更</li>
+                  <li>因为在多个 OS 中的不同浏览器渲染不同</li>
+                </ol>
+              </article>
+            </section>
+            <!-- section end --> 		
+  	</div>
+  </div>
+</body></html>

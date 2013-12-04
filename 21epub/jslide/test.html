@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>JSSLIDE</title>
+	  
+		<style type="text/css" media="screen">@import "rainbow/themes/rainbow.css";</style>
+		<script src="jquery1.7.js" type="application/x-javascript" charset="utf-8"></script>
+		<script src="jquery-jtemplates.js" type="application/x-javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		<!--
+			$(function () {
+				 $.ajax({
+					url : 'pages/2.html',
+					data: null,
+					cache : false,
+					dataType:'text',
+					success: function (node, textStatus) {
+                        var box = document.createElement('div');
+                        var templates = {
+                            html:"",
+                            json:{},
+                            script:function () {}
+                        }
+                        box.innerHTML = node;
+                       
+                        var $box = $(box);
+						$box.find("script").each(function (index, script) {
+                            var templateNode = $(script);
+                            var id = templateNode.attr("id");
+                            var html = templateNode.html();
+							html = $.trim(html);
+							if(html.length!==0) templates[id] = html;
+                        });
+                        var title = "title";
+                        var prev = '<div id="page2">'+
+                                        '<div class="toolbar">'+
+                                            '<h1>'+title+'</h1>'+
+                                        '</div>'+
+                                        '<div class="scroll_wrapper">'+
+                                            '<div>'+
+                                                '<article>';
+                        var next = '</article></div></div></div>';
+                        var page = $('<div></div>').setTemplate(prev+templates["html"]+next);
+                        var json = typeof(templates["json"]) == 'object' ? templates["json"] : eval('(' + templates["json"] + ')');
+                        var script = typeof(templates["script"]) == 'function' ? templates["script"] : eval('(' + templates["script"] + ')');
+                        page.processTemplate(json)
+                          
+                        var $node = $(page);
+						var uid = 'n-' +(++newPageCount);
+                        $node.attr('id', uid).appendTo('body');
+                        $node.find("code").each(function (index, code) {
+                            var templateNode = $(code);
+                            var id = templateNode.attr("id");
+                            var html =  $("#"+id,$box[0]).html();
+							html = $.trim(html);
+							templateNode.html(html);
+                        });
+						Rainbow.color();
+                    },
+					error: function (node) {
+						
+					}
+				})
+			})
+		//-->
+		</script>
+	</head>
+	<body>
+	    <pre>
+			<code data-language="javascript">/**
+			 * test function
+			 *
+			 * @param string
+			 * @return string
+			 */
+			function blah(foo, blah) {
+				var test = 25;
+
+				console.log(test.length);
+
+				// if foo is true then return this string
+				if (foo === true) {
+					return 'foo is true';
+				}
+				return 'foo is false';
+			}
+
+			$(document).ready(function() {
+				$("table").on("click", "td", function() {
+					console.log('td click');
+				});
+			});
+			</code>
+		</pre>
+		<script src="rainbow/js/rainbow.js"></script>
+		<script src="rainbow/js/language/test.js">
+		
+		</script>
+		
+	</body>
+</html>
+
+
+
+
+

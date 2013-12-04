@@ -1,0 +1,96 @@
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <!-- IDENTIFY THE THEME HTML TEMPLATE -->
+    <notheme if="$host = '127.0.0.1:8082'" />
+
+    <rules css:if-content="#web-portal-wrapper">
+            <theme href="site.html" />
+
+            <!-- * METADATA * -->
+            <!-- REPLACE THE TITLE -->
+            <replace theme="/html/head/title" content="/html/head/title" /> 
+
+            <!-- ADD STYLE, SCRIPT and META TAGS from CONTENT -->
+            <!-- <before theme-children="/html/head" 
+                content="/html/head/link | /html/head/style | /html/head/script | /html/head/meta" /> -->
+
+            <!-- * MAIN CONTENT * -->
+            <!-- <replace css:theme-children="#main_content"
+             css:content-children="#content"/> -->
+
+            <!-- NAVIGATION -->
+            <replace css:theme-children="header nav"
+                css:content="#portal-globalnav" />
+
+            <drop css:content="#portal-globalnav" attributes="id" />
+            <replace css:content="#portal-globalnav li.selected">
+                <li class="active">
+                    <xsl:apply-templates css:select="li.selected a" mode="raw"/>
+                </li>
+            </replace>
+
+
+            <replace css:theme-children="div.menu"
+                    css:content="ul#portal-sitemenus"/>
+            <replace css:content="ul#portal-sitemenus li.selected">
+                <li class="active">
+                    <h4><xsl:apply-templates css:select="li.selected a" mode="raw"/></h4>
+                </li>
+            </replace>
+
+            <!-- NAV ASIDE -->
+            <replace css:theme-children="div.menu"
+                css:content="ul.navTree" />
+            <replace css:content="li.navTreeItem">
+            <li>
+                <h4>
+                    <xsl:apply-templates css:select="li.navTreeItem a" mode="raw"/>
+                </h4>
+            </li>
+            </replace>
+            <replace css:content="li.navTreeCurrentNode">
+            <li class="active">
+                <h4>
+                    <xsl:apply-templates css:select="li.navTreeItem a" mode="raw"/>
+                </h4>
+            </li>
+            </replace>
+            <replace content="//ul[@class='navTree navTreeLevel1']"/>
+
+
+            <!-- CONTENT -->
+            <replace css:theme="section hgroup h1"
+                css:content="h1.documentFirstHeading"/>
+
+            <replace css:theme-children="div#main_content section.typo"
+                css:content-children="div#detailview" />
+            <replace css:theme-children="div#main_content section.typo"
+                css:content-children="div#detailview" />
+            <merge css:theme="div#main_content"
+                css:content="div.inner-container" css:if-content="body.homepage"/> 
+
+            <!-- LINKS -->
+            <!-- <replace theme-children="//ul[@class='links']"
+                content-children="//ul[@id='portal-siteactions']"/> -->
+
+            <!-- * CUSTOM LOGO * -->
+            <replace css:theme-children="div.logo"
+                 content="//*[@id='portal-logo']" />
+            <replace content="//*[@id='portal-logo']/img" />
+
+            <!-- * BODY CLASS * -->
+            <merge attributes="class" css:theme="body" css:content="body"/>
+            <drop css:theme="aside" css:if-content="body.homepage"/>
+
+            <!-- meta.js -->
+            <copy css:theme="script[src*='meta.js']" 
+                css:content="div.waterfallstream" attributes="data-main" css:if-content="div.waterfallstream"/> 
+            <!-- <merge css:theme="script[src*='meta.js']" 
+                css:content="div.inner-container" attributes="data-main" css:if-content="body.homepage"/>  -->
+    </rules>
+
+
+</rules>

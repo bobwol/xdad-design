@@ -1,0 +1,24 @@
+2013/7/23  classes/Plugin.js  104行  ： 						
+						{
+							label: '样式',
+							minWidth: 90,
+							name: 'tableclass',
+							type: 'listbox',
+							text: '样式一',
+							maxWidth: null,
+							values: [
+								{text: '样式一', value: 'table mce-item-table'},
+								{text: '样式二', value: 'table-striped mce-item-table'},
+								{text: '样式三', value: 'table-bordered mce-item-table'},
+								{text: '样式四', value: 'table-condensed mce-item-table'},
+								{text: '样式五', value: 'table-striped table-bordered table-condensed mce-item-table'},
+							]
+						}
+						
+			61行 ： tableclass:dom.getAttrib(tableElm,'class'),
+			
+			131行： 							class: data.tableclass
+			
+
+8/1 classes/Plugin.js 424行
+		html = '<table class="table mce-item-table"><tbody>';

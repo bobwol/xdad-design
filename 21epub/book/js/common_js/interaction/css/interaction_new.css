@@ -1,0 +1,289 @@
+/* for interaction */
+#interaction-top ul, 
+#ipage_area ul{
+    list-style: none outside none;
+	padding:0;
+	margin:0;
+}
+#interaction-top li,
+#ipage_area li{
+
+}
+div#interaction-top{
+	position:fixed;
+	top:0;
+	z-index:9999999;
+	width:100%;
+	height:40px;
+	line-height:40px;
+	background:#ddd;
+	background:-moz-linear-gradient( top,#e6e6e6,#ddd);
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#e6e6e6), to(#ddd));
+	border-bottom:1px solid #bbb;
+	overflow:hidden;
+}
+div#interaction-top .return a {
+	position:absolute;
+	top:4px;
+	left:8px;
+	width:68px;
+	height:32px;
+	line-height:32px;
+	background:url('http://pm.21epub.com/webserver/web/img/icon_return.png') no-repeat 0 0;
+	padding-left:32px;
+	font-size:14px;
+	color:#666;
+	text-decoration:none;
+}
+div#interaction-top .return a:hover {
+	background:url('http://pm.21epub.com/webserver/web/img/icon_return.png') no-repeat 0 -32px;
+	color:#2ca4e3;
+}
+
+div.element span.iStylefield{
+	left:1px;
+	top:1px;
+}
+div.element.Link span#shade{
+	background:#F8ECAC;
+}
+div.element.Slide span#shade{
+	background:#A5F3C0;
+}
+div.element.Image span#shade{
+	background:#3EBDFF;
+}
+div.element.Video span#shade{
+	background:#FF768C;
+}
+div.element.State span#shade{
+	background:#F1F49F;
+}
+div.element.Tag span#shade{
+	background:transparent;
+}
+div.element.Grid span.iType{
+	background:#CCCCCC;
+}
+div.element.Cell span.iType,
+div.element.Grid span.iType.Cell{
+	background:red;
+	width:50px;
+	left: 55px;
+}
+div.element.Button span.iType{
+	background:#10B256;
+	width:80px;
+}
+div.element.Link span.iType{
+	background:#C20202;
+	width:50px;
+	left:0;
+}
+div.element.Slide span.iType{
+	background:#017309;
+	width:70px;
+	left:0;
+}
+div.element.Image span.iType{
+	background:#026AC2;
+	width:70px;
+	left:0;
+}
+div.element.Video span.iType{
+	background:#FF4B4B;
+	left:0;
+}
+div.element.State span.iType{
+	background:#F7C01B;
+	width:70px;
+}
+div.element.Tag span.iType{
+	background:#DB4701;
+	width:50px;
+}
+div.element.Ref span.iType{
+	background:#DB4701;
+	width:50px;
+}
+div.element.ShowHide span.iType{
+	background:#769096;
+	width:100px;
+}
+div.element.Webcontent span.iType{
+	background:#90A30C;
+	width:100px;
+}
+div.element.Webcontent span.iShade{
+	background:#EBF4A1;
+}
+div.element.Imagesequence span.iType{
+	background:#20A30C;
+	width:120px;
+}
+div.element.Imagesequence span.iShade{
+	background:#EBF4A1;
+}
+div.element.RichText span.iType{
+	background:#16771C;
+	width:100px;
+	left: 0;
+}
+div.element.ComponentRef span.iType{
+	background:#AB8A08;
+	width:120px;
+	left: 0;
+}
+ul#interaction_tabs{
+    margin: 0;
+}
+ul#interaction_tabs li{
+	float:left;
+    cursor: pointer;
+    width: 40px;
+	text-align: center;
+	height:10px;
+	padding:5px 0 15px;
+}
+
+ul#interaction_tabs li:hover,
+ul#interaction_tabs li.selected{
+	background:#EDEDED;
+}
+
+ul#interaction_actions{
+	width: 600px;
+    margin: 0 auto;
+}
+ul#interaction_actions li{
+    background: none repeat scroll 0 0 transparent;
+    color: #616161;
+    cursor: pointer;
+    float: left;
+    font-size: 10px;
+    height: 32px;
+    line-height: 20px;
+    margin: 0;
+    padding: 4px 0;
+    text-align: center;
+    width: 70px;
+}
+ul#interaction_actions li span{
+	line-height:8px;
+}
+ul#interaction_pageactions{
+	float:left;
+	width:240px;
+}
+ul#interaction_pageactions li{
+    background: none repeat scroll 0 0 transparent;
+    color: #616161;
+    cursor: pointer;
+    float: left;
+    font-size: 10px;
+    height: 60px;
+    line-height: 20px;
+    margin: 0 20px;
+    padding: 15px 0 0;
+    text-align: center;
+    width: 70px;
+}
+ul#interaction_pageactions li.pagedirection{
+	float:right;
+}
+ul#interaction_actions li.selected,
+ul#interaction_actions li:hover{
+    background: none repeat scroll 0 0 #eee;
+}
+select[name='iLinktype'],
+input[name="iUrl"]{
+	width:210px;
+}
+
+div.interaction_close{
+	margin:10px 0;
+	text-align:center;
+}
+
+
+
+/* for pages area */
+div#ipage_area{
+    background: none repeat scroll 0 0 #F0F0F0;
+	min-height:800px;
+	border-right:1px solid #000;
+	position:relative;
+}
+div#ipage_content{
+	min-height:800px;
+	background:#f0f0f0;
+}
+
+.pages-hd {
+	width:68px;
+	height:60px;
+	background:#ccc;
+	border-bottom:1px solid #a4a4a4;
+	background:url('../widget_icons/icon_pages.png') no-repeat 50% 50%;
+	text-align:center;
+	text-indent:-9999px;
+	overflow:hidden;
+}
+.pages-action {
+	width:68px;
+	height:16px;
+	padding:6px 0;
+	border-top:1px solid #fff;
+	border-bottom:1px solid #a4a4a4;
+	text-align:center;
+}
+.pages-action a {
+	padding:0 5px;
+	color:#333;
+	text-decoration:none;
+	font-size:14px;
+	height:16px;
+	line-height:16px;
+}
+
+ul#ipages{
+    text-align: center;
+    width: 68px;
+    max-height: 768px;
+	overflow-x: hidden;
+    overflow-y: auto;
+}
+li.ipageitems{
+    display: block;
+    line-height: 130px;
+    margin: 0 0 5px;
+    padding:68px 0 0;
+    height: 12px;
+    width: 68px;
+    background:url('../widget_icons/icon_page.png') no-repeat 50% 50%;
+   
+}
+li.ipageitems a {
+	height:12px;
+	line-height:12px;
+	color:#333;
+    text-decoration:none;
+}
+li.ipageitems.selected{
+	background:url('../widget_icons/icon_page_active.png') no-repeat 50% 50%;
+}
+li.ipageitems a img{
+	border:none;
+	vertical-align: middle;
+}
+div#ipage_control_button{
+    min-height: 800px;
+    position: relative;
+    width: 12px;
+    background:#e3e3e3;
+}
+div#ipage_control_button img{
+    position: absolute;
+    top: 50%;
+}
+	

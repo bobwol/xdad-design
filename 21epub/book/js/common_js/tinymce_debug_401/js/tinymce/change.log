@@ -1,0 +1,62 @@
+6/13 FormatControls.js 184行，增加首行缩进功能
+					    189行， 增加清除样式功能
+					    
+			var defaultStyleFormats = [
+				{title: 'Headers', items: [
+					{title: 'Header 1', format: 'h1'},
+					{title: 'Header 2', format: 'h2'},
+					{title: 'Header 3', format: 'h3'},
+					{title: 'Header 4', format: 'h4'},
+					{title: 'Header 5', format: 'h5'},
+					{title: 'Header 6', format: 'h6'}
+				]},
+
+				{title: 'Inline', items: [
+					{title: 'Bold', icon: 'bold', format: 'bold'},
+					{title: 'Italic', icon: 'italic', format: 'italic'},
+					{title: 'Underline', icon: 'underline', format: 'underline'},
+					{title: 'Strikethrough', icon: 'strikethrough', format: 'strikethrough'},
+					{title: 'Superscript', icon: 'superscript', format: 'superscript'},
+					{title: 'Subscript', icon: 'subscript', format: 'subscript'},
+					{title: 'Code', icon: 'code', format: 'code'}
+				]},
+
+				{title: 'Blocks', items: [
+				    {title: '首行缩进',format:'textindent'},
+					{title: 'Paragraph', format: 'p'},
+					{title: 'Blockquote', format: 'blockquote'},
+					{title: 'Div', format: 'div'},
+					{title: 'Pre', format: 'pre'}
+				]},
+
+				{title: 'Alignment', items: [
+					{title: 'Left', icon: 'alignleft', format: 'alignleft'},
+					{title: 'Center', icon: 'aligncenter', format: 'aligncenter'},
+					{title: 'Right', icon: 'alignright', format: 'alignright'},
+					{title: 'Justify', icon: 'alignjustify', format: 'alignjustify'}
+				]},
+				{title: '清除样式',format :'removeformat'}
+			];
+
+6/13 Formatter.js 126行 ，增加首行缩进的执行format项  				textindent:{selector:'p',attributes:{'class':'p-s02'}},
+
+
+7/2  FormatControls.js 187 , {title: '清除样式',format :'removeformat'}
+
+7/11 从4.0 beta 	升级到4.0.1 , 项目进行迁移和升级测试 ，同时对上述变更应用到tinymce 4.0.1
+
+     FormatControls.js  , 227行:  {title: '首行缩进',format:'textindent'}
+     					  240行： {title: '清除样式',format :'removeformat'}
+     					  
+     Formatter.js 126行 ，textindent:{selector:'p',attributes:{'class':'p-s02'}},
+     
+7/12 FormatControls.js 601行, 增加sizeformat 参数，			var items = [], defaultFontsizeFormats = '8pt 10pt 12pt 14pt 18pt 24pt 36pt 48pt 64pt';
+
+7/25 FormatControls.js 230行 ， 删除		{title: 'Div', format: 'div'},
+
+8/1 FormatControls.js 557行， 增加字体
+			    '黑体=SimHei,Hiragino Sans GB,STHeiti;' +
+			    '宋体=SimSun,STSong;' +
+			    '仿宋=FangSong,STFangsong;'+
+			    '楷体=KaiTi,STKaiti;' +
+     

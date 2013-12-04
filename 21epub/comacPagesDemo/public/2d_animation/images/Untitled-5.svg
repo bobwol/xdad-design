@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="1024px" height="768px" viewBox="0 0 1024 768" enable-background="new 0 0 1024 768" xml:space="preserve">
+<rect x="105.269" y="36.983" fill="none" width="790.755" height="131.933"/>
+<text transform="matrix(1 0 0 1 105.269 57.6079)" fill="#A05000" font-family="'FZLTCHJW--GB1-0'" font-size="24">C919大型客机培训教材编制系统</text>
+<rect x="490" y="322" fill="none" width="70" height="28"/>
+<rect x="490" y="322" fill="none" width="294" height="118"/>
+<g>
+	<g>
+		<line fill="none" stroke="#828282" stroke-miterlimit="10" x1="111" y1="68.5" x2="112" y2="68.5"/>
+		<line fill="none" stroke="#828282" stroke-miterlimit="10" stroke-dasharray="3,3" x1="115" y1="68.5" x2="1001" y2="68.5"/>
+		<line fill="none" stroke="#828282" stroke-miterlimit="10" x1="1003" y1="68.5" x2="1004" y2="68.5"/>
+	</g>
+</g>
+<rect x="37" y="145" fill="none" width="353" height="567"/>
+<text transform="matrix(1 0 0 1 37 165.625)"><tspan x="0" y="0" fill="#AA5A0B" font-family="'FZLTHK--GBK1-0'" font-size="24">跨终端阅读系统开发方式：</tspan><tspan x="0" y="72" font-family="'FZBYFKSK--GBK1-0'" font-size="21">系统采用两种开发模式，ios客户端</tspan><tspan x="332" y="72" font-family="'FZBYFKSK--GBK1-0'" font-size="21">采</tspan><tspan x="0" y="108" font-family="'FZBYFKSK--GBK1-0'" font-size="21">用objective-C做为底层开发框架，</tspan><tspan x="332" y="108" font-family="'FZBYFKSK--GBK1-0'" font-size="21">内</tspan><tspan x="0" y="144" font-family="'FZBYFKSK--GBK1-0'" font-size="21">容组织与UI采用ios原生方式开发，</tspan><tspan x="332" y="144" font-family="'FZBYFKSK--GBK1-0'" font-size="21">通</tspan><tspan x="0" y="180" font-family="'FZBYFKSK--GBK1-0'" font-size="21" letter-spacing="1">过嵌入html5文档内容，通过javas</tspan><tspan x="338.891" y="180" font-family="'FZBYFKSK--GBK1-0'" font-size="21">-</tspan><tspan x="0" y="216" font-family="'FZBYFKSK--GBK1-0'" font-size="21">cript与ios交互实现内容的显示，桌</tspan><tspan x="332" y="216" font-family="'FZBYFKSK--GBK1-0'" font-size="21">面</tspan><tspan x="0" y="252" font-family="'FZBYFKSK--GBK1-0'" font-size="21" letter-spacing="1">webapp采用html5、css3、javas</tspan><tspan x="338.891" y="252" font-family="'FZBYFKSK--GBK1-0'" font-size="21">-</tspan><tspan x="0" y="288" font-family="'FZBYFKSK--GBK1-0'" font-size="21">cript进行开发，使用html5</tspan><tspan x="251.18" y="288" font-family="'FZBYFKSK--GBK1-0'" font-size="21" letter-spacing="4"> </tspan><tspan x="261.289" y="288" font-family="'FZBYFKSK--GBK1-0'" font-size="21">Canvas做</tspan><tspan x="0" y="324" font-family="'FZBYFKSK--GBK1-0'" font-size="21">为矢量图及2d动画的媒体类型，实</tspan><tspan x="332" y="324" font-family="'FZBYFKSK--GBK1-0'" font-size="21">现</tspan><tspan x="0" y="360" font-family="'FZBYFKSK--GBK1-0'" font-size="21">ios版与桌面版的跨平台浏览。通过</tspan><tspan x="332" y="360" font-family="'FZBYFKSK--GBK1-0'" font-size="21">数</tspan><tspan x="0" y="396" font-family="'FZBYFKSK--GBK1-0'" font-size="21" letter-spacing="1">据同步与缓存机制，实现离线阅读</tspan><tspan x="332" y="396" font-family="'FZBYFKSK--GBK1-0'" font-size="21">功</tspan><tspan x="0" y="432" font-family="'FZBYFKSK--GBK1-0'" font-size="21">能。</tspan></text>
+<polygon fill="none" stroke="#E57007" stroke-width="4" stroke-miterlimit="10" points="384,704 39,704 39,632 384,632 384,655.5 
+	400.125,669 384,683 "/>
+<rect x="132" y="657" fill="none" width="235" height="92"/>
+<text transform="matrix(1 0 0 1 132 675.0469)" font-family="'FZLTHJW--GB1-0'" font-size="21">html5动画demo</text>
+<polygon fill="#A05000" points="77,49 43,66 43,32 77,49 "/>
+</svg>

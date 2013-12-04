@@ -1,0 +1,387 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0048)http://comac-dev.21epub.com/book_published_list -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><script type="text/javascript">window["_gaUserPrefs"] = { ioo : function() { return true; } }</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    
+
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    
+        <!--<base href="http://comac-dev.21epub.com/">--><base href="."><!--[if lt IE 7]></base><![endif]-->
+    
+
+    
+        
+<link rel="alternate" data-kss-base-url="kss-base-url" href="http://comac-dev.21epub.com/">
+
+  
+    <link rel="stylesheet" type="text/css" media="screen" href="./book_list_files/member.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./book_list_files/discussion.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./book_list_files/tinymce.css">
+        <!--[if lt IE 8]>    
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="http://comac-dev.21epub.com/portal_css/21Epub%20Admin%20UI/IEFixes.css" />
+        <![endif]-->
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="./book_list_files/++resource++plone.app.dexterity.overlays.css">
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="./book_list_files/bootstrap.min.css">
+  
+  
+    <script type="text/javascript" src="./book_list_files/jquery-1.8.1.min.js"></script><style type="text/css"></style>
+    <script type="text/javascript" src="./book_list_files/register_function.js"></script>
+    <script type="text/javascript" src="./book_list_files/modernizr.js"></script>
+    <script type="text/javascript" src="./book_list_files/tiny_mce.js"></script>
+    <script type="text/javascript" src="./book_list_files/tiny_mce_init.js"></script>
+    <script type="text/javascript" src="./book_list_files/jquery.autocomplete.min.js"></script>
+    <script type="text/javascript" src="./book_list_files/formwidget-autocomplete.js"></script>
+    <script type="text/javascript" src="./book_list_files/contenttree.js"></script>
+    <script type="text/javascript" src="./book_list_files/swfobject.js"></script>
+    <script type="text/javascript" src="./book_list_files/jquery.uploadify.js"></script>
+    <script type="text/javascript" src="./book_list_files/fileuploader.js"></script>
+    <script type="text/javascript" src="./book_list_files/helpers.js"></script>
+    <script type="text/javascript" src="./book_list_files/bootstrap.min.js"></script>
+
+
+<title>培训教材发布系统</title>
+        
+    <link rel="author" href="http://comac-dev.21epub.com/author/" title="作者信息">
+
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="http://comac-dev.21epub.com/favicon.ico">
+    <link rel="apple-touch-icon" href="http://comac-dev.21epub.com/touch_icon.png">
+
+
+
+
+
+
+    <link rel="search" href="http://comac-dev.21epub.com/@@search" title="搜索本站">
+
+
+
+        
+        
+        
+        
+
+        <meta name="viewport" content="width=device-width; initial-scale=0.6666; maximum-scale=1.0; minimum-scale=0.6666">
+        <script type="text/javascript" src="./book_list_files/jquery.nanoscroller.min.js"></script>
+        <link rel="stylesheet" type="text/css" media="screen" href="./book_list_files/nanoscroller.css">
+<!--  		<script type="text/javascript" tal:attributes="src string:$portal_url/portal_javascripts/21Epub%20Admin%20UI/++resource++epub.admin.javascripts/c919.js"></script>
+        <script type="text/javascript" tal:attributes="src string:${portal_url}/comac/js/global/global_event.js"></script>
+        <script type="text/javascript" tal:attributes="src string:${portal_url}/comac/js/global/global_web.js"></script>
+ -->        <link rel="stylesheet" type="text/css" media="all" href="./book_list_files/style_publish.css">
+        <link rel="stylesheet" type="text/css" media="all" href="./book_list_files/patch.css">
+        
+        
+	<script type="text/javascript" src="./book_list_files/jquery.min.js"></script>
+	<script type="text/javascript" src="./book_list_files/underscore-min.js"></script>
+	<script type="text/javascript" src="./book_list_files/backbone-min.js"></script>
+	<script type="text/javascript" src="./book_list_files/jqwait.js"></script>
+	<link href="./book_list_files/jqwait.css" rel="stylesheet" type="text/css" media="all">
+	<script type="text/javascript" src="./book_list_files/plonejs_model.js"></script>
+	<script type="text/javascript" src="./book_list_files/plonejs.js"></script>
+	<!--[if lt ie 9]>
+	<script type="text/javascript" tal:attributes="src string:${portal_url}/comac_web/js/html5.js"></script>
+	<script type="text/javascript" tal:attributes="src string:${portal_url}/comac_web/js/selectivizr.js"></script>
+	<![endif]-->
+
+        
+	<script type="text/javascript" src="./book_list_files/global.js"></script>
+	<script type="text/javascript" src="./book_list_files/global_event.js"></script>
+	<script type="text/javascript" src="./book_list_files/global_data.js"></script>
+	<script type="text/javascript" src="./book_list_files/global_varibles.js"></script>
+	<script type="text/javascript" src="./book_list_files/global_web.js"></script>
+	<script type="text/javascript" src="./book_list_files/global_error.js"></script>
+	<script type="text/javascript" src="./book_list_files/global_dict.js"></script>
+	<script type="text/javascript" src="./book_list_files/global_template.js"></script>
+
+        <script type="text/javascript" src="./querylist.js"></script>
+        <script type="text/javascript" src="./book_list_files/book_published_list.js"></script>
+        <script type="text/javascript" src="./book_list_files/comac_model.js"></script>
+        <script type="text/javascript" src="./book_list_files/dict_model.js"></script>
+        <script type="text/javascript">
+          $(document).ready(function(){
+            iElementlist=new iElementCollection;
+            iGlobalDict=new iDictModel({id:'iDict'});
+            dict_load();
+          })
+        </script>
+       
+</head>
+
+<body style="background-color:white;" class="template-book_published_list portaltype-plone-site site-comac internal-wrap book-list">
+<header>
+  <div class="adminbar">
+    <ul class="quicklinks">
+      <li class="logo menu-mod">
+        <div class="menu-hd">
+            <span class="logo-icon"></span>
+            <span>培训教材发布系统</span>
+        </div>
+        <div class="menu-bd" style="display: none; ">
+          <ul>
+            <li><a href="http://comac-dev.21epub.com/">访问站点</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="addnew menu-mod">
+        <div class="menu-hd">
+            <a href="http://comac-dev.21epub.com/#">新建</a>
+        </div>
+        <div class="menu-bd">
+          <ul>
+            <li>
+              <a href="http://comac-dev.21epub.com/pic/++add++interaction.book">教材</a>
+              <ul>
+                <li><a href="http://comac-dev.21epub.com/pic/++add++interaction.book">流式布局</a></li>
+                <!--<li><a tal:attributes="href string:${view/site_url}/pic/createObject?type_name=InteractBook">版式布局</a></li>-->
+              </ul>
+            </li>
+            <!-- <li><a href="#">专题</a></li> -->
+            <li><a href="http://comac-dev.21epub.com/pic/createObject?type_name=InteractBook">组件</a></li>
+            <li style="display: none;">
+              <a href="http://comac-dev.21epub.com/#">素材</a>
+              <ul>
+                <li><a href="http://comac-dev.21epub.com/#">IMAGE</a></li>
+                <li><a href="http://comac-dev.21epub.com/#">SLIDESHOW</a></li>
+                <li><a href="http://comac-dev.21epub.com/#">AUDIO</a></li>
+                <li><a href="http://comac-dev.21epub.com/#">VIDEO</a></li>
+                <li><a href="http://comac-dev.21epub.com/#">3D</a></li>
+              </ul>
+            </li>
+            <!-- <li><a href="#">文档</a></li> -->
+          </ul>
+        </div>
+      </li>
+      <li class="tip-update">
+        <a title="" href="http://comac-dev.21epub.com/dashboard_update">
+          <span class="count myupdate count-0">1</span>
+        </a>
+      </li>
+      <li class="tip-comment">
+        <a title="" href="http://comac-dev.21epub.com/dashboard">
+          <span class="count mynotice">0</span>
+        </a>
+      </li>
+</ul>
+
+<ul class="userinfo">
+      <li><a href="http://comac-dev.21epub.com/#">帮助</a></li>
+      <li><a href="http://comac-dev.21epub.com/useractions">LXH</a></li>
+	  
+      
+	  
+	  
+      
+	  
+	  
+      
+	  
+	  
+      <li id="personaltools-logout">
+            <a href="http://comac-dev.21epub.com/logout">退出</a>
+      </li>
+	  
+</ul>
+  </div>
+</header>
+<div class="main clearfix">
+  <aside>
+	
+	    <nav>
+    <li class="menu-dashboard">
+      <div class="wraparea">
+        <h4><a href="http://comac-dev.21epub.com/dashboard">工作台</a></h4>
+      </div>
+    </li>
+    
+    <li class=" active unfold">
+        <div class="wraparea">
+            <div class="hitarea"></div>
+            <h4><a href="http://comac-dev.21epub.com/book_list">教材</a></h4>
+        </div>
+        <ul>
+          
+          <li>
+            <a class="" href="http://comac-dev.21epub.com/book_list">所有</a>
+            
+          </li>
+          
+          
+          <li>
+            <a class="active" href="./book_list_files/book_list.html">已发布教材</a>
+            
+          </li>
+          
+          
+          <li>
+            <a class="" href="http://comac-dev.21epub.com/pic/++add++interaction.book">新建教材</a>
+            
+          </li>
+          
+        </ul>
+    </li>
+    
+    <li class="  ">
+        <div class="wraparea">
+            <div class="hitarea"></div>
+            <h4><a href="http://comac-dev.21epub.com/component_list">组件</a></h4>
+        </div>
+        <ul>
+          
+          <li>
+            <a class="" href="http://comac-dev.21epub.com/component_list">所有</a>
+            
+          </li>
+          
+          
+          <li>
+            <a class="" href="http://comac-dev.21epub.com/component_published_list">已发布组件</a>
+            
+          </li>
+          
+          
+          <li>
+            <a class="" href="http://comac-dev.21epub.com/medias/common/createObject?type_name=InteractBook">新建组件</a>
+            
+          </li>
+          
+        </ul>
+    </li>
+    
+    <li class="  ">
+        <div class="wraparea">
+            
+            <h4><a href="http://comac-dev.21epub.com/material_list">素材</a></h4>
+        </div>
+        
+    </li>
+    
+    <li class="divider  ">
+        
+        
+    </li>
+    
+    <li class="menu-project  ">
+        <div class="wraparea">
+            
+            <h4><a href="http://comac-dev.21epub.com/project_management">项目管理</a></h4>
+        </div>
+        
+    </li>
+    
+    <li class="menu-user  ">
+        <div class="wraparea">
+            
+            <h4><a href="http://comac-dev.21epub.com/user_management">用户目录</a></h4>
+        </div>
+        
+    </li>
+    
+    <li class="menu-cat  ">
+        <div class="wraparea">
+            
+            <h4><a href="http://comac-dev.21epub.com/cat_management">分类目录</a></h4>
+        </div>
+        
+    </li>
+    
+    <li class="menu-publish  ">
+        <div class="wraparea">
+            
+            <h4><a href="http://comac-dev.21epub.com/publish_management">发布管理</a></h4>
+        </div>
+        
+    </li>
+</nav>
+
+	
+  </aside>
+  <!-- container start -->
+  <div id="book-published-list" class="container book-published-list ">
+    <div class="inner-container">
+	
+	
+	
+      <hgroup>
+        <h1 class="book-title">教材列表</h1>
+      </hgroup>
+    
+	
+
+		<!-- section start -->
+		<section class="section" style="min-height: 488px;">
+			<div class="inner-section clearfix">
+
+
+	
+
+				<div class="left-column">
+				    
+	
+        <div class="container-mod">
+
+              <div class="container-hd clearfix">
+                <ul>
+                  <li><a href="http://comac-dev.21epub.com/book_list">所有教材</a></li>
+                  <li class="active"><a href="./book_list_files/book_list.html">已发布教材</a></li>
+                </ul>
+              </div>
+
+              <div class="container-bd">  
+		            <!-- content start -->
+                <div class="content-mod">
+                  <div class="content-hd" id="JS_list_menu"><h3>教材查询</h3><form class="search">  <input data-name="SearchableText" type="text" value="搜索" class="input-medium search-query">  <button class="btn submit" type="button"><i class="icon-search"></i></button></form></div>
+                  <div class="content-bd content-container clearfix">
+                    <aside id="JS_list_project"></aside>
+                    <section>
+                      <table cellspacing="0" class="hascheckbox" id="JS_list_content"></table>
+                      <div class="pagination pagination-centered" id="JS_list_page"></div>
+                    </section>
+                  </div>
+                  <!--<div class="content-ft"></div>--> 
+                </div>
+                <!-- content end --> 
+              </div>
+       </div>
+    
+				</div>
+
+				<div class="right-column fixed" id="JS_list_detail" style="max-height: 436px; overflow: auto; margin-left: 0px; left: 1160px;"></div>
+
+	
+
+
+			</div>
+		</section>
+		<!-- section end -->
+		
+		<footer>
+			<div id="epub-colophon">
+    <p class="version">Version 0.1</p>
+    <p>
+       21Epub 
+       <acronym title="Copyright">©</acronym>
+       2012
+    </p>
+</div>
+			<input type="hidden" name="root_url" value="http://comac-dev.21epub.com">
+			<input type="hidden" name="context_url" value="http://comac-dev.21epub.com">
+		</footer>
+
+	</div>
+  </div>
+  <!-- container end -->
+</div>
+
+
+
+	<div class="msg">
+	</div>
+
+
+</body></html>

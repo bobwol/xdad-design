@@ -1,0 +1,29 @@
+define([
+	'interaction/model/action',
+	'interaction/model/animation',
+	//'interaction/model/animationgroup',
+	'interaction/model/audio',
+	'interaction/model/cycleimage',
+	'interaction/model/dom',
+	'interaction/model/element',
+	'interaction/model/elementattr',
+	'interaction/model/image',
+	'interaction/model/link',
+	'interaction/model/page',
+	'interaction/model/resources',
+	'interaction/model/richtext',
+	'interaction/model/root',
+	'interaction/model/slide',
+	'interaction/model/showhide',
+	'interaction/model/video',
+	'interaction/model/webcontent',
+	'interaction/model/pagelib',
+	'interaction/model/overlaylib',
+	'interaction/model/animationlib',
+	'interaction/model/step',
+	'interaction/model/button',
+	'interaction/model/map',
+	'interaction/model/pay'
+	],function(){
+		return ;
+	})

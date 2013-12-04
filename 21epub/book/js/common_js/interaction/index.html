@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>商飞交互动画演示 — 城市动漫</title>
+      <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+      <meta name="author" content="Hakim El Hattab">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <link rel="stylesheet" href="./css/reveal-custom.css">
+      <link rel="stylesheet" href="./css/default-custom.css" id="theme">
+      <link rel="shortcut icon" href="http://127.0.0.1/ca/html/diazo/favicon.ico">
+      <link type="text/css" href="./css/bootstrap.min.css" rel="stylesheet" media="all">
+      <link type="text/css" href="./css/bootstrap.min.patch.css" rel="stylesheet" media="all">
+      <!-- bootstrap end --><!-- nanoscroll start -->
+      <link type="text/css" href="./css/nanoscroller.css" rel="stylesheet" media="all">
+      <!-- nanoscroll end -->
+      <!-- <link type="text/css" href="../admin/css/style.css" rel="stylesheet" media="all"> -->
+      <!-- <link type="text/css" href="../admin/css/theme.red.css" rel="stylesheet" media="all"> -->
+      <link type="text/css" href="./css/typo.css" rel="stylesheet" media="all">
+      <link type="text/css" href="./css/typo.patch.css" rel="stylesheet" media="all">
+      <!-- <link type="text/css" href="../admin/css/style_edit.css" rel="stylesheet" media="all"> -->
+      <style type="text/css">
+         .slides section {width:100%;height:100%; background-color: white;}
+         .reveal iframe { max-width: 100%; max-height: 100%; margin-top: 0px;}
+         .reveal .slides>section, .reveal .slides>section>section { padding: 0px !important; }
+         .slide-control { position:absolute; top:50%; margin-top:-20px; width:40px; height:40px; z-index: 10000;}
+         div.slide-control::selection {background-color: transparent;}
+         .slide-control a { display:block; width:40px; height:40px; text-align:center; line-height:.5 !important; background:#999; color:#fff; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+         -webkit-font-smoothing:subpixel-antialiased; font-size:60px; font-weight:100; background:#222; opacity:.25; filter:alpha(opacity=25); text-decoration: none;}
+         .slide-control a:hover { opacity:.5; filter:alpha(opacity=50); }
+         .navigate-left.slide-control { left:25px; }
+         .navigate-right.slide-control { right:25px; }
+         aside.controls { display: none !important;}
+      </style>
+   </head>
+   <body>
+      <div class="navigate-left slide-control"><a href="javascript:void(0)">《</a></div>
+      <div class="navigate-right slide-control"><a href="javascript:void(0)">》</a></div>
+      <div class="reveal">
+         <div class="slides">
+            <section style="background:white url(./medias/bk2.jpg/images/file?0c6e1277179e6ff463379d577a774cb4) no-repeat 0% 0%" id="photogallery_321">
+               <div class="interaction-area typo"></div>
+            </section>
+            <section style="background:white url(./medias/bk2.jpg/images/file?0c6e1277179e6ff463379d577a774cb4) no-repeat 0% 0%" id="photogallery_315">
+               <div class="interaction-area typo"></div>
+            </section>
+            <section style="background:white url(./medias/bk2.jpg/images/file?0c6e1277179e6ff463379d577a774cb4) no-repeat 0% 0%" id="photogallery_318">
+               <div class="interaction-area typo"></div>
+            </section>
+            <section style="background:white url(./medias/bk2.jpg/images/file?0c6e1277179e6ff463379d577a774cb4) no-repeat 0% 0%" id="photogallery_312">
+               <div class="interaction-area typo"></div>
+            </section>
+            <section style="background:white url(./medias/bk2.jpg/images/file?0c6e1277179e6ff463379d577a774cb4) no-repeat 0% 0%" id="photogallery_181">
+               <div class="interaction-area typo"></div>
+            </section>
+            <section style="background:white url(./medias/bk2.jpg/images/file?0c6e1277179e6ff463379d577a774cb4) no-repeat 0% 0%" id="interaction.imageref.2013-04-17.4755438176">
+               <div class="interaction-area typo"></div>
+            </section>
+         </div>
+      </div>
+      <link media="all" rel="stylesheet" type="text/css" href="./common_js/jswait/jswait.css" />
+      <link media="all" rel="stylesheet" type="text/css" href="./common_js/interaction/css/interaction_view.css" />
+      <script type="text/javascript" src="system_varibles.js"></script>
+      <script type="text/javascript" src="index.js"></script>
+    <script src="require.js"></script>
+    <script>
+        require.config({
+            paths: {
+                //Comment out this line to go back to loading
+                //the non-optimized main.js source file.
+                "main": "cbtview-build"
+            }
+        });
+        require(["main"],function(){
+
+	 console.log(window.PageTemplate);
+	// getPageIds=function(){
+		// var returned=[];
+		// $('.reveal').find('section').each(function(){
+			// returned.push($(this).attr('id'));
+		// })
+		// return returned;
+	// };
+	// interaction_view.checkPageLoad=function(pageid){
+		// if(!interaction_view.pagecheck) interaction_view.pagecheck=interaction_view.ipagelist.pluck('id');
+		// interaction_view.pagecheck=_.reject(interaction_view.pagecheck,function(i){return i==pageid;});
+		// if(interaction_view.pagecheck.length==0){
+			// interaction_view.doPreload();
+		// }
+	// };
+	// interaction_view.pagePreloadCheck=function(){
+		// var unloadlist=_.filter(interaction_view.ipreloadlist.toJSON(),function(i){return i.loaded==false});
+		// var unloadelementids=_.pluck(unloadlist,'overlay_id');
+		// interaction_view.ipagelist.each(function(model){
+			// var elementids=model.iViewlist.pluck('id');
+			// //console.log(elementids);
+			// //console.log(unloadelementids);
+			// var compare=_.filter(elementids,function(i){return _.include(unloadelementids,i)});
+			// if(compare.length==0) model.loaded=true;
+			// else model.loaded=false;
+		// })
+	// };
+	// interaction_view.preparePlay=function(){
+		// interaction_view.ipagelist.each(function(model){
+			// //model.iAnimationlist.setParams();
+		// })
+	// };
+	// interaction_view.doPreload=function(){
+		// if(interaction_view.ipreloadlist.length==0) {
+			// interaction_view.donext();
+		// }
+		// else interaction_view.ipreloadlist.each(function(model){
+			// model.iview.render();
+		// })		
+	// };
+    // interaction_view.donext=function(){
+		 // $('body').jswait('close');
+		 // $('.loading').remove();
+		 // interaction_view.ipagelist.each(function(model){
+		 	// model.iview.afterpreload();
+		 // })
+		 // interaction_view.preparePlay();
+		 // interaction_view.play(interaction_view.currentPage);
+    // };
+    // interaction_view.play=function(pageid){
+    	 // var currentPage=interaction_view.ipagelist.get(pageid);
+		 // // console.log('play '+pageid);
+		 // // if(interaction_view.firstPlay){
+		 	// // interaction_view.firstPlay=false;
+		 // // }
+		 // // else interaction_view.slidePatch(pageid);
+		 // currentPage.iViewlist.resetViewStatus();
+		 // currentPage.iAnimationlist.setParams();
+		 // currentPage.iAnimationlist.play();
+		 // currentPage.iActionlist.each(function(i){
+		 		// i.iview.render();
+		 // })
+    // };
+    // interaction_view.stopPlay=function(pageid){
+    	// var currentPage=interaction_view.ipagelist.get(pageid);
+		// if(currentPage.iAnimationlist.timeline) {
+			// // var allTween=TimelineLite.exportRoot().getChildren();
+			// // var ids=currentPage.iViewlist.pluck('id');
+			// // _.each(allTween,function(i){
+				// // //if(i.data&&_.include(ids,i.data.overlay_id)&&_.include([101,102,103],i.data.iType)) i.pause(0);
+			// // })
+			// // currentPage.iAnimationlist.timeline.pause(0);
+			// TweenMax.killAll();
+			// currentPage.iViewlist.each(function(model){
+				// if(model.media){
+					// if(model.get('iType')=='Audio') {
+						// model.media.load();
+						// model.media.stop();
+					// }
+					// if(model.get('iType')=='Video') {
+						// model.videoloaded=false;
+						// model.media.load();
+						// model.media.pause();
+					// }
+				// } 
+			// })		
+			// $('.interaction-view').css('cursor','auto');
+			// currentPage.iActionlist.resetStatus();
+			// interaction_view.bezierPatch(pageid);	
+		// };
+    // };
+    // interaction_view.bezierPatch=function(pageid){
+    	// var currentPage=interaction_view.ipagelist.get(pageid);
+    	// currentPage.iAnimationlist.each(function(i){
+    		// if(_.include([301,302],i.get('iType'))){
+    			// if(i.toJSON().iDetail.autoRotate) TweenMax.to(i._animation.obj,0,{rotation:'0_cw'});
+    		// }
+    	// })
+    // };
+    // interaction_view.repeatPatch=function(pageid){
+    	// var currentPage=interaction_view.ipagelist.get(pageid);
+    	// currentPage.iAnimationlist.each(function(i){
+    		// if(i.toJSON().iTiming.repeat!=0){
+    			// //model.iview.play();
+    		// }
+    	// })
+    // };
+    // interaction_view.slidePatch=function(pageid){
+    	// var currentPage=interaction_view.ipagelist.get(pageid);
+    	// currentPage.iViewlist.each(function(model){
+    		// if(model.get('iType')=='CycleImage'||model.get('iType')=='Slide'){
+    			// model.iview.play();
+    		// }
+    	// })
+    // };
+	// window.iPageDirection='landscape';
+	// Reveal.initialize({
+		// progress: true,
+		// history: true,
+		// center: true,
+		// width: 1024,
+		// height: 768, 
+		// minScale: 1.0,
+		// maxScale: 1.0,
+// 
+		// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+		// transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+// 
+	// });
+	// Reveal.addEventListener( 'ready', function( event ) {
+	    // section = event.currentSlide;
+	    // interaction_view.currentPage = $(section).attr('id');
+		// var pageids=getPageIds();
+		// console.log(pageids);
+		// if(pageids.length==0) return;
+		// _.each(pageids,function(i){
+			// new interaction_view.model.Page({id:i});
+		// })
+	// });
+	// Reveal.addEventListener( 'slidechanged', function( event ) {
+	    // // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+	    // section = event.currentSlide;
+	    // current_id = $(section).attr('id');
+	    // interaction_view.currentPage = current_id;
+	    // pre_id = $(event.previousSlide).attr('id');
+	    // interaction_view.stopPlay(pre_id);
+	    // interaction_view.play(current_id);
+		// //$('section[id="'+current_id+'"]').html('<iframe src="'+url+'" width=1024px height=768px></iframe>');
+	    // console.log(current_id);
+	// });
+	// interaction_view.firstPlay=true;
+	// $('body').append('<div id="preloader"></div>');
+	// $('body').prepend('<div class="loading progress progress-striped active"><div class="bar" style="width: 0%;"></div></div>');
+	// $('.reveal').find('section .interaction-area').append('<div class="interaction-view"></div>');
+   	// $('body').jswait();       	
+        });
+    </script>
+   </body>
+</html>

@@ -1,0 +1,31 @@
+{
+	"code": 200,
+	"data": {
+		"numspage": 10,
+		"totalScreens":5,
+		"results": [{
+			"description": "Caoyang New Village",
+			"type": "PhotoGallery",
+			"height": 150,
+			"thumbnail": "http://pm.21epub.com/xdad/21epub/project/site20130101/public/works/08.jpg",
+			"picture": "http://pm.21epub.com/xdad/21epub/project/site20130101/public/works/08.jpg",
+			"creator": "admin",
+			"modifyTime": null,
+			"title": "2012\u5e74\u73b0\u4ee3\u8bbe\u8ba1\u91cd\u70b9\u9879\u76ee",
+			"review_state": "public",
+			"detail": {
+				"foto": ["http://pm.21epub.com/xdad/21epub/project/site20130101/public/cover1.jpg", "http://pm.21epub.com/xdad/21epub/project/site20130101/public/cover2.jpg", "http://pm.21epub.com/xdad/21epub/project/site20130101/public/cover3.jpg"],
+				"dd": ["\u5efa\u7b51\u5730\u70b9\uff1a\u4e0a\u6d77\u6d66\u4e1c\u9646\u5bb6\u5634\u91d1\u878d\u8d38\u6613\u5f00\u53d1\u533a\u7684\u4e2d\u5fc3\u533a", "\u603b\u5efa\u7b51\u9762\u79ef\uff08m<sup>2</sup>\uff09\uff1a289500", "\u5efa\u7b51\u9ad8\u5ea6\uff08m\uff09\uff1a420.5", "\u5408\u4f5c\u8bbe\u8ba1\u5355\u4f4d\uff1a\u829d\u52a0\u54e5SOM\u516c\u53f8"],
+				"dt": "2012\u5e74\u73b0\u4ee3\u8bbe\u8ba1\u91cd\u70b9\u9879\u76ee",
+				"ul": ["http://pm.21epub.com/xdad/21epub/project/site20130101/public/thumb_01.jpg", "http://pm.21epub.com/xdad/21epub/project/site20130101/public/thumb_02.jpg", "http://pm.21epub.com/xdad/21epub/project/site20130101/public/thumb_03.jpg"]
+			},
+			"icon": "http://localhost/img/icon_book_s.png",
+			"url": "http://localhost/pic/richtext.2012-12-28.5759541918",
+			"created": "2012-12-28",
+			"id": "richtext0"
+		}],
+		"sum": 20,
+		"page": 1
+	},
+	"msg": "success"
+}

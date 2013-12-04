@@ -1,0 +1,71 @@
+(function(win){
+	win.filter={
+
+	};
+	filter.filterconfig=function(callback){
+		var url=portal_url+'filterconfig.json';
+		global.json.load(url,callback);
+	};
+	filter.material_filterconfig=function(callback){
+		var url=portal_url+'material_filterconfig.json';
+		global.json.load(url,callback);
+	};
+	filter.component_filterconfig=function(callback){
+		var url=portal_url+'component_filterconfig.json';
+		global.json.load(url,callback);
+	};
+	filter.template=_.template(
+		[
+'		<th width="10%" scope="col">',
+'			<select name=<%=id%>>',
+'				<option value=null><%=title%></option>',
+'				<% _.each(options,function(option){ %> ',
+'					<option value=<%=option.id%>><%=option.title%></option>',
+'				<% }) %> ',
+'			</select>',
+'		</th>',
+		].join("")
+	)
+})(window);
+var ifilterModel=iAppModel.extend({
+	setcollection:function(){
+		this.icollection=new ifilterCollection();
+	},
+	setsync:function(type){//this function use to prejudge if this model need to sync with dateserver
+		return true;
+	},
+	setview:function(){
+		this.iview=new ifilterView({model:this});
+	},
+	seturl:function(method){
+		//if(method=='create'){
+		//	options.url=hosturl+this.url+'overlaycreate.json';
+		//}
+		if(method=='update'){
+			return context_url+'/setimages';
+		}
+		//if(method=='delete'){
+		//	options.url=hosturl+this.url+'overlaydelete.json?id='+model.id;
+		//}
+		//if(method=='read'){
+		//	options.url=hosturl+this.url+'overlayget.json?id='+model.id;
+		//}
+	}
+});
+var ifilterCollection=iAppCollection.extend({
+	initialize:function(){
+		this.setonaddtree();
+		this.setonremove();
+	},
+	model:ifilterModel
+});
+var ifilterView=iAppView.extend({
+	initialize:function(options){
+		_.bindAll(this);
+		//this.model.bind('change',this.update);
+	},
+	template:filter.template
+});
+	filter.model=new ifilterModel({id:'filter',el:'.ui-layout-center-bd .list-menu table > thead > tr',wrap:null,template:filter.template});
+	filter.list_model=new ifilterModel({id:'filter',el:'#material_list .list-menu table > thead > tr',wrap:null,template:filter.template});
+	filter.model.query=filter.list_model.query=filter.filterconfig;

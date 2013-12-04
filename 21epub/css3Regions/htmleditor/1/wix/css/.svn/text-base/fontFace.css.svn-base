@@ -1,0 +1,53 @@
+/* fonts helvetica */
+
+/*@import url("http://fast.fonts.com/t/1.css?apiType=css&projectid=33bd0973-5b82-45be-bb77-837225874dfe");*/
+
+html{
+    background-image:url("http://fast.fonts.com/t/1.css?apiType=css&projectid=33bd0973-5b82-45be-bb77-837225874dfe");
+}
+
+@font-face {
+    font-family: "Helvetica Neue";
+    src: url("Fonts/b7693a83-b861-4aa6-85e0-9ecf676bc4d6.eot?#iefix") format("embedded-opentype"),
+         url("Fonts/bcf54343-d033-41ee-bbd7-2b77df3fe7ba.woff") format("woff"),
+         url("Fonts/b0ffdcf0-26da-47fd-8485-20e4a40d4b7d.ttf") format("truetype"),
+         url("Fonts/da09f1f1-062a-45af-86e1-2bbdb3dd94f9.svg#da09f1f1-062a-45af-86e1-2bbdb3dd94f9") format("svg");
+}
+
+
+@font-face {
+    font-family: "Helvetica Neue Italic";
+    font-style: italic;
+    src: url("Fonts/58a5cbff-d570-4c18-a5e3-60868dc07ae8.eot?#iefix") format("embedded-opentype"),
+         url("Fonts/2c056da8-4920-4e20-8c69-8a6b315458a9.woff") format("woff"),
+         url("Fonts/2381d918-136d-444f-8391-db0cba6da388.ttf") format("truetype"),
+         url("Fonts/d0697971-6f58-4597-942e-8beabd1adc87.svg#d0697971-6f58-4597-942e-8beabd1adc87") format("svg");
+}
+
+@font-face {
+    font-family: "Helvetica Neue Thin";
+    font-weight: 200;
+    src: url("Fonts/56be84de-9d60-4089-8df0-0ea6ec786b84.eot?#iefix") format("embedded-opentype"),
+         url("Fonts/50d35bbc-dfd4-48f1-af16-cf058f69421d.woff") format("woff"),
+         url("Fonts/278bef59-6be1-4800-b5ac-1f769ab47430.ttf") format("truetype"),
+         url("Fonts/2e309b1b-08b8-477f-bc9e-7067cf0af0b3.svg#2e309b1b-08b8-477f-bc9e-7067cf0af0b3") format("svg");
+}
+
+@font-face {
+    font-family: "Helvetica Neue Medium";
+    font-weight: bold;
+    src: url("Fonts/07fe0fec-b63f-4963-8ee1-535528b67fdb.eot??#iefix") format("embedded-opentype"),
+         url("Fonts/60be5c39-863e-40cb-9434-6ebafb62ab2b.woff") format("woff"),
+         url("Fonts/4c6503c9-859b-4d3b-a1d5-2d42e1222415.ttf") format("truetype"),
+         url("Fonts/36c182c6-ef98-4021-9b0d-d63122c2bbf5.svg#36c182c6-ef98-4021-9b0d-d63122c2bbf5") format("svg");
+}
+
+/*
+This CSS resource incorporates links to font software which is
+the valuable copyrighted property of Monotype Imaging and/or
+its suppliers. You may not attempt to copy, install, redistribute, convert,
+modify or reverse engineer this font software. Please contact Monotype Imaging
+with any questions regarding Web Fonts:  http://webfonts.fonts.com
+*/
+
+/* END fonts helvetica */

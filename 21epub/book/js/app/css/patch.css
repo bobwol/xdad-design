@@ -1,0 +1,84 @@
+
+.internal-wrap .container hgroup h1.fluidbook,
+.internal-wrap .container hgroup h1.interactbook { display:inline; background:url("../img/icon_book_m.png") no-repeat 0 50%; }
+
+.portaltype-interaction-book .content-hd h3, 
+.portaltype-interactbook .content-hd h3 {  background:url('../img/icon_book_s.png') no-repeat -4px 50%; }
+
+.version-mod {left: 190px;display:none;}
+
+.modal aside>h4,
+.content-container aside>h4 { position:relative; height:40px; line-height:40px; padding:0 15px; border-bottom:1px solid #ddd; background:#fff; font-size:14px; }
+.modal aside>h4.active,
+.content-container aside>h4.active {  position:relative; background:#fff url('../img/icon_arrow_green.png') no-repeat 100% 50%; }
+.modal aside>h4.active a,
+.content-container aside>h4.active a { color:#7bbe37; }
+.modal aside>h4.active::before,
+.content-container aside>h4.active::before { content:''; display:block; position:absolute; top:0; right:-15px; height:40px; width:30px; background:url('../img/icon_arrow_large.png') no-repeat 100% 50%; }
+.modal aside>h4.active:hover::before, 
+.content-container aside>h4.active:hover::before { background:url('../img/icon_arrow_large_hover.png') no-repeat 100% 50%; }
+.modal aside>h4 a,
+.content-container aside>h4 a { display:block; }
+.modal aside>h4:hover,
+.content-container aside>h4:hover { background-color:#f9f9f9; }
+
+.cat-list ol li > .wraparea h4 { text-overflow: ellipsis; overflow: hidden; }
+.chapter-list ol li > .wraparea .updates {background-color: red; color:white; right:20px;}
+.content-container aside h4 { position: relative; height: 40px; line-height: 40px; padding: 0 15px; border-bottom: 1px solid #DDD; background: white; font-size: 14px; }
+
+body.template-edit h1.documentFirstHeading {display:none;}
+
+form#form { padding-top: 1em;padding-left: 3em; }
+form#form div.field { margin: 1.5em 2em; }
+form#form label.horizontal { width: 100px; float: left; }
+form#form input.text-widget,
+form#form textarea.textarea-widget  { width: 300px; }
+form#form span.formHelp {float: left; color: grey; font-size: 8pt; margin: 3px 5px 0 0; }
+form#form span.named-image-widget { position: relative; left: 90px; }
+form#form span.named-image-widget input[type='radio'] {float: left; margin-right: 1em;}
+
+.portaltype-folder.section-pic h1.Folder { display: none; height: 0px; font-size: 0px; line-height: 0px;}
+.portaltype-folder.section-pic hgroup {height:0;}
+.portaltype-folder.section-pic .container-hd {height:0 !important;}
+.portaltype-folder.section-pic .content-hd {display:none;}
+#formfield-form-widgets-cover { position:relative !important; height:340px !important; }
+#formfield-form-widgets-cover span.named-image-widget { position:absolute !important; left:100px !important; }
+#formfield-form-widgets-cover span.named-image-widget img {height:188px;width:147px;}
+
+div.save { right: 20px; position: absolute; width: 100px; top: 2px; }
+div.save button { position:relative;}
+
+div.formControls {margin-left: 100px;}
+div.formControls input.button-field {
+	display: inline-block;
+	padding: 4px 14px;
+	margin-bottom: 0;
+	font-size: 14px;
+	line-height: 20px;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	color: #333;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	background-color: whiteSmoke;
+	background-image: -moz-linear-gradient(top, white, #E6E6E6);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#E6E6E6));
+	background-image: -webkit-linear-gradient(top, white, #E6E6E6);
+	background-image: -o-linear-gradient(top, white, #E6E6E6);
+	background-image: linear-gradient(to bottom, white, #E6E6E6);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+	border-color: #E6E6E6 #E6E6E6 #BFBFBF;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	border: 1px solid #BBB;
+	border-bottom-color: #A2A2A2;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 0 1px rgba(0, 0, 0, .25);
+	border-radius: 15px;
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>编辑版式文档</title>
+<link rel="shortcut icon" href="favicon.ico">
+<script type="text/javascript" src="../js/jquery-1.8.1.min.js"></script>
+<!--[if lt ie 9]>
+<script type="text/javascript" src="../js/html5.js"></script>
+<script type="text/javascript" src="../js/selectivizr.js"></script>
+<![endif]-->
+<!-- bootstrap start -->
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" media="all">
+<link type="text/css" href="../css/bootstrap.min.patch.css" rel="stylesheet" media="all">
+<!-- bootstrap end -->
+<!-- nanoscroll start -->
+<script type="text/javascript" src="../js/jquery.nanoscroller.min.js"></script>
+<link type="text/css" href="../css/nanoscroller.css" rel="stylesheet" media="all">
+<!-- nanoscroll end -->
+<script type="text/javascript" src="../js/jquery.goToTop.js"></script>
+<script type="text/javascript" src="../js/base.js"></script>
+<link type="text/css" href="../css/style.css" rel="stylesheet" media="all">
+<link type="text/css" href="../css/typo.css" rel="stylesheet" media="all">
+<link type="text/css" href="../css/style_edit.css" rel="stylesheet" media="all">
+<script type="text/javascript">
+$(function() {
+	$('.edit-layout-left .nano').nanoScroller({ scrollTop: 600 });
+
+	$('.settings-mod .hd').click(function() {
+		$(this).parent().children('.bd').slideToggle('fast');
+		$(this).toggleClass('collapsed');
+	});
+
+});
+</script>
+</head>
+<body class="edit-fixed-doc screen1024x768">
+<div class="edit-layout uncollapsed-nav">
+  <div class="edit-layout-top">
+    <div class="topbar">
+      <div class="return"><a href="edit_gallery.html">Return</a></div>
+      <div style="position:absolute; left:180px; top:7px; width:130px; height:30px; background:url('../img/icon_devices.png') no-repeat 0 50%;">
+        <select style="position:absolute; left:30px; top:3px; width:180px; height:24px;">
+          <option class="select1024x768" selected="selected">iPad 1024x768</option>
+          <option class="select960x640">iPhone 960x640</option>
+          <option class="select1280x720">Android Pad 1280x720</option>
+          <option class="select800x480">Android Phone 800x480</option>
+        </select>
+      </div>
+      <div class="interaction-action">
+        <ul>
+          <li class="type text"><a href="javascript:void(0)">Text</a></li>
+          <li class="type image"><a href="javascript:void(0)">Image</a></li>
+          <li class="type video"><a href="javascript:void(0)">Video</a></li>
+          <li class="type slide"><a href="javascript:void(0)">Slide</a></li>
+          <li class="type link"> <a href="javascript:void(0)">Link</a></li>
+          <li class="type audio"><a href="javascript:void(0)">Audio</a></li>
+          <li class="type loop-animation"><a href="javascript:void(0)">Loop Animation</a></li>
+          <li class="type elements-group"><a href="javascript:void(0)">Elements Group</a></li>
+        </ul>
+      </div>
+      <button class="btn btn-small" type="button" style="position:absolute; right:90px; top:10px;">PREVIEW</button>
+      <button class="btn btn-small btn-primary action-save" type="button" style="position:absolute; right:15px; top:10px;">SAVE</button>
+    </div>
+  </div>
+  <!-- edit-layout-top end -->
+  <div class="edit-layout-center nanoscrollbar">
+    <div class="content-area typo tiny-editor"> 
+      <!--<div class="loading"></div>-->
+      <div class="read-area"> <img src="../public/book/007.jpg"> </div>
+      <!--<div class="component tab" style="position:absolute; top:60px; left:20px; right:20px;"> <span class="thumb"><img src="../public/thumb_06.jpg" alt=""></span><span class="title">上海展览中心（原中苏友好大厦）</span><span class="type"><img src="../img/type/component_tab.png" width="32" height="32" alt=""></span>
+        <div class="action">
+          <ul>
+            <li class="preview"><a href="#preview">预览</a></li>
+            <li class="edit"><a href="edit_tab.html" target="_blank">编辑</a></li>
+            <li class="delete"><a href="#confirmModal">删除</a></li>
+          </ul>
+        </div>
+      </div>--> 
+      <!-- tab end --> 
+    </div>
+  </div>
+  <!-- edit-layout-center end -->
+  <div class="edit-layout-right nanoscrollbar">
+    <div class="mod settings-mod">
+      <div class="hd">
+        <h4>属性设置</h4>
+      </div>
+      <div class="bd">
+        <div class="tabbable">
+          <ul class="nav nav-tabs">
+            <li class="s1 active"><a href="#sA" data-toggle="tab">1</a></li>
+            <li class="s2"><a href="#sB" data-toggle="tab">2</a></li>
+            <li class="s3"><a href="#sC" data-toggle="tab">3</a></li>
+            <li class="s4"><a href="#sD" data-toggle="tab">4</a></li>
+            <li class="s5"><a href="#sE" data-toggle="tab">5</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="sA"> 1 </div>
+            <div class="tab-pane" id="sB"> 2 </div>
+            <div class="tab-pane" id="sC"> 3 </div>
+            <div class="tab-pane" id="sD"> 4 </div>
+            <div class="tab-pane" id="sE"> 5 </div>
+          </div>
+        </div>
+        <!-- tab end --> 
+        
+      </div>
+    </div>
+    <!-- mod end --> 
+    
+  </div>
+  <!-- edit-layout-right end -->
+  <div class="edit-layout-left">
+    <div class="navi">
+      <header>
+        <div class="pages">Pages</div>
+        <button class="btn btn-small action-add" type="button" style="position:absolute; left:40px; top:67px; padding:2px 4px;" data-target="#editModal"><i class="icon-plus"></i></button>
+        <button class="btn btn-small action-del" type="button" style="position:absolute; left:75px; top:67px; padding:2px 4px;" data-target="#confirmModal"><i class="icon-minus"></i></button>
+      </header>
+      <section class="nanoscrollbar">
+        <div class="thumbs">
+          <ul>
+            <li><a href="#"><img src="../public/thumb/001.jpg"></a></li>
+            <li><a href="#"><img src="../public/thumb/002.jpg"></a></li>
+            <li><a href="#"><img src="../public/thumb/003.jpg"></a></li>
+            <li><a href="#"><img src="../public/thumb/004.jpg"></a></li>
+            <li><a href="#"><img src="../public/thumb/005.jpg"></a></li>
+            <li><a href="#"><img src="../public/thumb/006.jpg"></a></li>
+            <li class="active"><a href="#"><img src="../public/thumb/007.jpg"></a></li>
+            <li><a href="#"><img src="../public/thumb/008.jpg"></a></li>
+            <li><a href="#"><img src="../public/thumb/009.jpg"></a></li>
+            <li><a href="#"><img src="../public/thumb/010.jpg"></a></li>
+            <li><a href="#"><img src="../public/thumb/011.jpg"></a></li>
+            <li><a href="#"><img src="../public/thumb/012.jpg"></a></li>
+            <li><a href="#"><img src="../public/thumb/013.jpg"></a></li>
+            <li><a href="#"><img src="../public/thumb/014.jpg"></a></li>
+          </ul>
+        </div>
+        <!-- thumbs end --> 
+      </section>
+    </div>
+  </div>
+  <!-- edit-layout-left end --> 
+</div>
+</body>
+</html>

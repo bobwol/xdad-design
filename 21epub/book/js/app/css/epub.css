@@ -1,0 +1,117 @@
+/* epub style */
+.epub { font:500 14px/1.6 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif; -webkit-font-smoothing:antialiased; }
+.epub h1, .epub h2, .epub h3, .epub h4, .epub h5, .epub h6, .epub small { margin:0 0 0.5em; line-height:1.5; color:#000; }
+.epub h1 { font-size:1.8em; }
+.epub h2 { font-size:1.6em; }
+.epub h3 { font-size:1.4em; }
+.epub h4 { font-size:1.2em; }
+.epub h5, .epub h6 { font-size:1em; }
+.epub ul { margin-left:1.9em; margin-bottom:1em; list-style:disc; }
+.epub ol { margin-left:1.9em; margin-bottom:1em; list-style:decimal; }
+.epub li ul, .epub li ol { margin-top:0; margin-bottom:0; margin-left:2em; }
+.epub li ul { list-style:circle; }
+.epub li li ul { list-style:square; }
+.epub em { font-weight:700; }
+.epub pre { margin-bottom:1em; }
+.epub p { margin:0 0 2em; text-align:justify; text-justify:distribute-all-lines; text-justify:inter-ideograph; }
+.epub p:last-child { margin:0; }
+.epub small { display:block; margin:1em 0; }
+.epub ul, epub ol { margin:0 0 1em 1.9em; }
+.epub li { line-height:1.8; } 
+img.size-auto, img.size-full, img.size-large, img.size-medium, .attachment img { max-width:100%; height:auto; }
+.alignleft, img.alignleft { display:inline; float:left; margin-right:24px; margin-top:4px; }
+.alignright, img.alignright { display:inline; float:right; margin-left:24px; margin-top:4px; }
+.aligncenter, img.aligncenter { clear:both; display:block; margin-left:auto; margin-right:auto; }
+img.alignleft, img.alignright, img.aligncenter { margin-bottom:12px; }
+/* section */
+.epub hgroup h1 { margin:0 0 20px; padding:0; height:24px; line-height:24px; padding:0 0 5px; font-size:18px; font-weight:normal; border-bottom:1px dashed #c00; color:#c72135; }
+/* Grid */
+.epub .row-fluid { margin:0 0 2em; }
+/* Table */
+.epub .mceContentBody table { position:relative; border-collapse:separate; border-spacing:2px; margin-bottom:1em; }
+.epub .mceContentBody caption { margin-bottom:2px; }
+.epub .mceContentBody table th { background:whiteSmoke; }
+.epub .mceContentBody table td, .epub .mceContentBody table th, .epub .mceContentBody table caption { border:1px dashed #bbb; }
+.epub .mceContentBody table::before { z-index:10; position:absolute; top:-5px; right:-5px; display:block; padding:0 10px; height:20px; line-height:20px; background:#666; color:#fff; font-size:12px; }
+.epub .mceContentBody table.table::before { CONTENT:'表格样式 1'; }
+.epub .mceContentBody table.table-striped::before { CONTENT:'表格样式 2'; }
+.epub .mceContentBody table.table-bordered::before { CONTENT:'表格样式 3'; }
+.epub .mceContentBody table.table-condensed::before { CONTENT:'表格样式 4'; }
+.epub table.table {}
+.epub table.table-striped {}
+.epub table.table-bordered {}
+.epub table.table-condensed {}
+.epub table.table-striped.table-bordered.table-condensed {}
+/* List */
+.epub .disc li { list-style-type:disc; }
+.epub .circle li { list-style-type:circle; }
+.epub .square li { list-style-type:square; }
+.epub .decimal li { list-style-type:decimal; }
+.epub .cjk-ideographic li { list-style-type:cjk-ideographic; }
+.epub .lower-roman li { list-style-type:lower-roman; }
+.epub .upper-roman li { list-style-type:upper-roman; }
+.epub .lower-alpha li { list-style-type:lower-alpha; }
+.epub .upper-alpha li { list-style-type:upper-alpha; }
+/* Blockquote */
+.epub blockquote { margin:1.5em 2.5em 2em 2em; background:#fff; border:1px solid #ddd; border-radius:8px; -webkit-box-shadow: 6px 6px 6px rgba(0, 0, 0, 1); box-shadow: 6px 6px 0 #cecece; color:#d86c23; }
+.epub blockquote blockquote { border:1px solid #ddd; }
+.epub blockquote { padding:.5em 1em 1em; }
+.epub blockquote p:last-child { margin-bottom:0; }
+.epub blockquote.blockquote-s01 {}
+.epub blockquote.blockquote-s02 { margin:1em 4em 2em 2em; padding:0 0 0 1em; border-radius:0; border:none; border-left:0.4em solid #ddd; box-shadow:none; }
+.epub blockquote.blockquote-s02 blockquote { margin:1em 4em 1em 2em; padding:0 0 0 1em; border-radius:0; border:none; border-left:0.4em solid #ddd; box-shadow:none; }
+.epub blockquote.blockquote-s03 { background:url('../img/icon_q.png') no-repeat 0 -15px; margin:1em 4em 2em 0; padding:0 0 0 4.4em; border-radius:0; border:none; box-shadow:none; }
+.epub blockquote.blockquote-s03 blockquote  { background:url('../img/icon_q.png') no-repeat 0 -15px; margin:1em 4em 1em 0; padding:0 0 0 4.4em; border-radius:0; border:none; box-shadow:none; }
+/* Emphasize */
+.epub .message-box { border:1px solid #d4d4d4; border-radius:1px; margin:1em 0; padding:1.2em 2em 1.2em 6em; min-height:70px; }
+.epub .message-box.warning { background:#f2f2f2 url('../img/icon_warning.png') no-repeat 1em 1em; }
+.epub .message-box.doubt { background:#f2f2f2 url('../img/icon_doubt.png') no-repeat 1em 1em; }
+.epub .message-box.info { background:#f2f2f2 url('../img/icon_info.png') no-repeat 1em 1em; }
+.epub .message-box.error { background:#f2f2f2 url('../img/icon_error.png') no-repeat 1em 1em; }
+.epub .message-box.success { background:#f2f2f2 url('../img/icon_success.png') no-repeat 1em 1em; }
+/* Widget */
+.accordion-group { border-radius:2px; background:#fff; }
+.accordion-heading { background:#f5f5f5; }
+figure { margin:0 0 0.6em; text-align:center; }
+figure figcaption { text-align:center; padding:1em 0; color:#7f7f7f; }
+.epub figure figcaption h4 { font-size:16px; text-align:left; color:#333; }
+.epub figure figcaption p { color:#6d6d6d; font-size:16px; text-align:left; color:#7f7f7f; }
+figure.lightbox { position:relative; margin:1em 0; /*box-shadow:0px 2px 6px #aaa;*/ }
+figure.lightbox::before { position:absolute; top:.8em; right:.8em; display:inline-block; color:white; border:0; box-shadow:0px 2px 6px #aaa; font-family:'Whitney A', 'Whitney B', WhitneyMed, 'Helvetica Neue', Helvetica, sans; font-size:0.73em; line-height:normal; text-transform:none; letter-spacing:inherit; font-weight:500; text-align:right; padding:.7em 3em .7em .9em; /*text-transform:uppercase;*/ background:#7bbe37 url('../img/icon_blank_white.png') no-repeat 85% 48%; -webkit-background-size:1.6em, auto; -moz-background-size:1.6em, auto; -o-background-size:1.6em, auto; background-size:1.6em, auto; }
+figure.package::before { content:'HTML'; background:#7bbe37 url('../img/icon_res/icon_html.png') no-repeat 88% 48%; }
+figure.cortona3d::before { content:'Cortona3D'; background:#7bbe37 url('../img/icon_res/icon_3d.png') no-repeat 88% 48%; }
+figure.image::before { content:'IMAGE'; background:#7bbe37 url('../img/icon_res/icon_image.png') no-repeat 85% 48%; }
+figure.component::before { content:'Component'; background:#7bbe37 url('../img/icon_res/icon_widget.png') no-repeat 88% 48%; }
+figure.video::before { content:'VIDEO'; background:#7bbe37 url('../img/icon_res/icon_video.png') no-repeat 85% 48%; }
+figure.slideshow::before { content:'SLIDESHOW'; background:#7bbe37 url('../img/icon_res/icon_slide.png') no-repeat 88% 48%; }
+figure.audio { margin-top:1em; }
+figure.audio figcaption { text-align:center; padding:0 0 1em 0; color:#7f7f7f; }
+figure.widget { position:relative; }
+figure.widget::before { position:absolute; top:.8em; right:.8em; display:inline-block; color:white; border:0; box-shadow:0px 2px 6px #aaa; font-family:'Whitney A', 'Whitney B', WhitneyMed, 'Helvetica Neue', Helvetica, sans; font-size:0.73em; line-height:normal; text-transform:none; letter-spacing:inherit; font-weight:500; text-align:right; padding:.9em 3.3em .7em .8em; text-transform:uppercase; background:#7bbe37 url('../img/icon_blank_white.png') no-repeat 85% 48%; -webkit-background-size:1.6em, auto; -moz-background-size:1.6em, auto; -o-background-size:1.6em, auto; background-size:1.6em, auto; }
+figure.widget::before { content:'WIDGET'; }
+/* Tab */
+.epub .tabbable { margin:0; }
+.epub .tabbable ul { margin:0; }
+.epub .tabbable ul li { list-style:none; }
+.epub .tabbable .tab-content { padding:20px 0; }
+.epub .tabbable .tab-content h5 { color:#c20433; }
+.epub .tabbable .tab-content ul { margin:0 0 20px; }
+.epub .tabbable .tab-content ul li { line-height:21px; padding:5px 0 5px 20px; border-bottom:1px solid #eee; background:url('../img/icon_list_style_02.png') no-repeat 0 7px; }
+.epub .tabbable .nav-tabs { width:100%; border:none; }
+.epub .tabbable .nav-tabs > li { text-align:center; padding:0 0 8px; }
+.epub .tabbable .nav-tabs > li.active { background:url('../img/xdad/icon_tab_arrow.png') no-repeat 50% 100%; }
+.epub .tabbable .nav-tabs > .active > a, .epub .tabbable .nav-tabs > .active > a:hover { background:#929292; color:#fff; }
+.epub .tabbable .nav-tabs > li > a { background:#eee; border:none; border-top:1px solid #c20433; margin:0; padding:5px 0; }
+.epub .tabbable .nav-tabs-5 > li { width:20%; }
+.epub .tabbable .nav-tabs-4 > li { width:25%; }
+.epub .tabbable .nav-tabs-3 > li { width:33.33%; }
+.epub .tabbable .nav-tabs-2 > li { width:50%; }
+
+
+/* list-style patch for XDAD */
+.epub ul { margin:0 0 2em; }
+.epub ul li { list-style:none; line-height:21px; padding:5px 0 5px 20px; background:url('../img/icon_list_style_01.png') no-repeat 0 7px; }
+
+/* epub link style */
+.epub a { color:#333; text-decoration:none; }
+.epub a:hover { color:#c72135; text-decoration:none; }

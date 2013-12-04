@@ -1,0 +1,154 @@
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+      
+        
+        .region{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            float: left;
+        }
+          
+        #region-1,  
+        #region-2, 
+        #region-3, 
+        #region-4 {  
+            -webkit-flow-from: aside;  
+            flow-from: aside;  
+        }  
+       
+    </style>
+    <style type="text/css" id="style1">
+        aside {  
+            -webkit-flow-into: aside;  
+            flow-into: aside;  
+        }  
+    </style>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    var $shadow = new Object();  
+    /** 
+        获取元素的xpath 
+        特性： 
+        - 转换xpath为csspath进行jQuery元素获取 
+        - 仅生成自然表述路径（不支持非、或） 
+        @param dom {String/Dom} 目标元素 
+        @returns {String} dom的xpath路径 
+    */  
+    $shadow.domXpath = function(dom) {  
+      dom = $(dom).get(0);  
+      var path = "";  
+      for (; dom && dom.nodeType == 1; dom = dom.parentNode) {  
+        var index = 1;  
+        for (var sib = dom.previousSibling; sib; sib = sib.previousSibling) {  
+          if (sib.nodeType == 1 && sib.tagName == dom.tagName)  
+            index++;  
+          }  
+        var xname =  dom.tagName.toLowerCase();  
+        if (dom.id) {  
+          xname += "[@id=\"" + dom.id + "\"]";  
+        } else {  
+          if (index > 0)  
+            xname += "[" + index + "]";  
+        }  
+        path = "/" + xname + path;  
+      }  
+        
+      path = path.replace("html[1]/body[1]/","html/body/");  
+        
+            return path;  
+    };  
+    /** 
+            根据xpath获取元素 
+            特性： 
+            - 转换xpath为csspath进行jQuery元素获取 
+            - 仅支持自然表述（不支持非、或元素选取） 
+            @param xpath {String} 目标元素xpath 
+            @returns {jQuery Object} 元素/元素集合 
+    */  
+    $shadow.xpathDom = function(xpath){  
+            // 开始转换 xpath 为 css path  
+            // 转换 // 为 " "  
+            xpath = xpath.replace(/\/\//g, " ");  
+            // 转换 / 为 >  
+            xpath = xpath.replace(/\//g, ">");  
+            // 转换 [elem] 为 :eq(elem) ： 规则 -1  
+            xpath = xpath.replace(/\[([^@].*?)\]/ig, function(matchStr,xPathIndex){  
+                    var cssPathIndex = parseInt(xPathIndex)-1;  
+                    return ":eq(" + cssPathIndex + ")";  
+            });  
+            // 1.2 版本后需要删除@  
+            xpath = xpath.replace(/\@/g, "");  
+          // 去掉第一个 >  
+          xpath = xpath.substr(1);  
+          console.log(xpath);  
+                // 返回jQuery元素  
+          return $(xpath);  
+    };  
+
+    $(function(){
+        var ret = []
+        return;
+
+        var children = $(document.body.getElementsByTagName("*"));
+        children.each(function(){
+            if($(this).hasClass('region')){
+
+            }else{
+                var offset = $(this).offset();
+                offset.width = $(this).width()
+                offset.height = $(this).height()
+                offset.xpath = $shadow.domXpath($(this))
+                ret.push(offset)
+            }
+           
+        })
+        console.log(JSON.stringify(ret))
+        for (var i = ret.length - 1; i >= 0; i--) {
+            var offset = ret[i];
+
+            var width = offset.width 
+            var height = offset.height
+            var left = offset.left 
+            var top = offset.top
+            
+            var xpath =  offset.xpath;
+            var $em = $shadow.xpathDom(xpath)
+            $em.css({
+                width:width+"px",
+                height:height+"px",
+                top:top+"px",
+                left:left+"px",
+                position:"absolute"
+            })
+            $('#style1').html('')
+        };
+       
+    })
+    </script>
+</head>
+
+<body>
+
+    <aside>  
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod  
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo  
+        consequat.</p>  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod  
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo  
+        consequat.</p>  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod  
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo  
+        consequat.</p>  
+    </aside> 
+    <div class="regions">  
+        <div id="region-1" class="region"></div>  
+        <div id="region-2" class="region"></div>  
+        <div id="region-3" class="region"></div>  
+        <div id="region-4" class="region"></div>  
+    </div>  
+</body>
+</html>

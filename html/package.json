@@ -1,0 +1,9 @@
+{
+  "name": "xdad",
+  "version": "0.9.0",
+  "devDependencies": {
+    "grunt-hashres": "~0.3.2",
+    "grunt": "~0.4.1",
+    "grunt-contrib-requirejs": "~0.4.1"
+  }
+}

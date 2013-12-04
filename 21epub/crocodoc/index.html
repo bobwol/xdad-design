@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+	    <link rel="stylesheet" href="./screen.css" type="text/css" media="screen, projection" />
+        <link href="./document.css" rel="stylesheet" type="text/css" />
+        <link href="./std-full.css" rel="stylesheet" type="text/css" />
+		<link href="./body.css" rel="stylesheet" type="text/css" />
+        <script src="./jquery.js"></script>
+    </head>
+    <body class="whitelabel">
+		<link href="./wrap.css" rel="stylesheet" type="text/css" />
+        <div id="wrap">
+            <div id="main" class="clearfix">
+                <div class="container">
+                    <!--DocViewer Layout-->
+                    <div id="PageSplitter" style="display:;">
+                        <div id="LeftPane">
+                            <link href="./ViewerToolbar.css" rel="stylesheet" type="text/css" />
+                            <div id="ViewerToolbar" class="toolbar">
+                               <div id="AnnotateButton" class="button text-button normal left ">
+                                    Annotate
+                                </div>
+                                <div id="OpenSidebarButton" class="button fancy-button right">&laquo;</div>
+                            </div>
+                            <div id="AnnotationToolbar" class="toolbar" style="display:none" unselectable="on">
+                                <div class="split-button normal left comment-btn-group">
+                                    <div id="CommentButton" class="split-left point">
+                                        Comment
+                                    </div>
+                                    <div id="CommentDropButton" class="split-right">
+                                    </div>
+                                </div>
+                                <div class="vbar left comment-btn-group">
+                                </div>
+                                <ul id="CommentSub" class="subnav comment-btn-group">
+                                    <li val="10">
+                                        <span id="PointOption">
+                                            Point Comment
+                                        </span>
+                                    </li>
+                                    <li val="11">
+                                        <span id="AreaOption">
+                                            Area Comment
+                                        </span>
+                                    </li>
+                                    <li val="12">
+                                        <span id="TextOption">
+                                            Text Comment
+                                        </span>
+                                    </li>
+                                </ul>
+                                <div id="DrawButton" class="button text-button normal left" title="Draw">
+                                    Draw
+                                </div>
+                                <div class="vbar left">
+                                </div>
+                                <div id="TextboxButton" class="button text-button normal left" title="Add text">
+                                    Text
+                                </div>
+                                <div class="vbar left">
+                                </div>
+                                <div id="HighlightButton" class="button text-button yellow normal left"
+                                title="Highlight text">
+                                    Highlight
+                                </div>
+                                <div class="vbar left">
+                                </div>
+                                <div id="StrikeoutButton" class="button text-button normal left" title="Strike out text">
+                                    Strikeout
+                                </div>
+                                <div id="AnnoSettingsSection" style="display:none;">
+                                    <div id="DrawToolSettings" style="display:none;">
+                                        <span class="label">
+                                            Draw tool:
+                                        </span>
+                                        <div class="swatch" style="background-color:#000000;" value="0">
+                                        </div>
+                                        <div class="swatch" style="background-color:#FF0012;" value="1">
+                                        </div>
+                                        <div class="swatch" style="background-color:#2650EA;" value="2">
+                                        </div>
+                                        <div class="swatch" style="background-color:#00DB48;" value="3">
+                                        </div>
+                                    </div>
+                                    <div id="TextToolSettings" style="display:block;">
+                                        <span class="label">
+                                            Text tool:
+                                        </span>
+                                        <div class="swatch" style="background-color:#000000;" value="0">
+                                        </div>
+                                        <div class="swatch" style="background-color:#FF0012;" value="1">
+                                        </div>
+                                        <div class="swatch" style="background-color:#2650EA;" value="2">
+                                        </div>
+                                        <div class="swatch" style="background-color:#00DB48;" value="3">
+                                        </div>
+                                        <div class="vbar left">
+                                        </div>
+                                        <button id="TextSizeSel" class="dropdown normal left" value="1">
+                                            8pt
+                                        </button>
+                                        <div class="vbar left">
+                                        </div>
+                                        <div id="TextBGBtn" class="button icon-button transparent normal left">
+                                        </div>
+                                        <ul id="TextSizeSub" class="subnav" style="width:82px;">
+                                            <li>
+                                                <span value="8" class="url">
+                                                    8pt
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span value="10" class="url">
+                                                    10pt
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span value="12" class="url">
+                                                    12pt
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span value="14" class="url">
+                                                    14pt
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span value="18" class="url">
+                                                    18pt
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span value="24" class="url">
+                                                    24pt
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span value="36" class="url">
+                                                    36pt
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div id="HighlightToolSettings" style="display:none;">
+                                        <span class="label">
+                                            Highlight tool:
+                                        </span>
+                                        <div class="swatch" style="background-color:#FFF688;" value="0xFFF688">
+                                        </div>
+                                        <div class="swatch" style="background-color:#FCCC6A;" value="0xFCCC6A">
+                                        </div>
+                                        <div class="swatch" style="background-color:#BFF694;" value="0xBFF694">
+                                        </div>
+                                        <div class="swatch" style="background-color:#98DDFF;" value="0x98DDFF">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="DocHolder">
+                                <div id="Doc" class="hide-comment-panel">
+                                    <div id="page0" pagenum="0" class="page-outer ">
+                                        <div class="page" style="visibility:visible;">
+                                            <div class="throbber-container">
+                                                Loading...
+                                            </div>
+                                        </div>
+                                        <div id="commentline-layer-0" class="layer commentline">
+                                        </div>
+                                        <div class="layer highlight">
+                                        </div>
+                                        <div class="layer strikeout">
+                                        </div>
+                                        <div class="layer anno">
+                                        </div>
+                                        <div class="comment-pane">
+                                            <div class="overflow-button">
+                                                <span>
+                                                    Show more Comments...
+                                                </span>
+                                            </div>
+                                            <div class="overflow-close-button">
+                                                <span>
+                                                    Hide more comments...
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <link href="./contextMenu.css" rel="stylesheet" type="text/css" />
+                                <ul id="AnnotationMenu" class="contextMenu">
+                                    <!-- Highlight items -->
+                                    <li class="highlight addcomment" action="addcomment">
+                                        <span>
+                                            Add Comment
+                                        </span>
+                                    </li>
+                                    <li class="highlight delete" action="delete">
+                                        <span>
+                                            Remove Highlight
+                                        </span>
+                                    </li>
+                                    <li class="highlight yellow" action="color 0xFFF688">
+                                        <span>
+                                            Yellow
+                                        </span>
+                                    </li>
+                                    <li class="highlight orange" action="color 0xFCCC6A">
+                                        <span>
+                                            Orange
+                                        </span>
+                                    </li>
+                                    <li class="highlight green" action="color 0xBFF694">
+                                        <span>
+                                            Green
+                                        </span>
+                                    </li>
+                                    <li class="highlight blue" action="color 0x98DDFF">
+                                        <span>
+                                            Blue
+                                        </span>
+                                    </li>
+                                    <!-- Strikeout items -->
+                                    <li class="strikeout addreplacement" action="addreplacement">
+                                        <span>
+                                            Add Replacement
+                                        </span>
+                                    </li>
+                                    <li class="strikeout delete" action="delete">
+                                        <span>
+                                            Remove Strikeout
+                                        </span>
+                                    </li>
+                                    <!-- Anchor items -->
+                                    <li class="anchor delete" action="delete">
+                                        <span>
+                                            Remove Anchor
+                                        </span>
+                                    </li>
+                                    <!-- Area items -->
+                                    <li class="area delete" action="delete">
+                                        <span>
+                                            Remove Area
+                                        </span>
+                                    </li>
+                                    <!-- Drawing items -->
+                                    <li class="drawing delete" action="delete">
+                                        <span>
+                                            Remove Drawing
+                                        </span>
+                                    </li>
+                                    <li class="drawing black" action="color 0x000000">
+                                        <span>
+                                            Black
+                                        </span>
+                                    </li>
+                                    <li class="drawing red" action="color 0xDB0000">
+                                        <span>
+                                            Red
+                                        </span>
+                                    </li>
+                                    <li class="drawing blue" action="color 0x2650EA">
+                                        <span>
+                                            Blue
+                                        </span>
+                                    </li>
+                                    <li class="drawing green" action="color 0x00DB48">
+                                        <span>
+                                            Green
+                                        </span>
+                                    </li>
+                                    <!-- Textbox items -->
+                                    <li class="textbox delete" action="delete">
+                                        <span>
+                                            Remove Textbox
+                                        </span>
+                                    </li>
+                                    <li class="textbox black" action="color 0x000000">
+                                        <span>
+                                            Black
+                                        </span>
+                                    </li>
+                                    <li class="textbox red" action="color 0xFF0012">
+                                        <span>
+                                            Red
+                                        </span>
+                                    </li>
+                                    <li class="textbox blue" action="color 0x2650EA">
+                                        <span>
+                                            Blue
+                                        </span>
+                                    </li>
+                                    <li class="textbox green" action="color 0x00DB48">
+                                        <span>
+                                            Green
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="RightPane">
+                            <div id="TopPane">
+                                <style type="text/css">
+                                    .sidebar-close { background:url(./sidebar-close-btn.png)
+                                    transparent no-repeat center center; display:inline-block; height:20px;
+                                    width:20px; position:absolute; right:3px; top:6px; cursor:pointer; } .authors-header
+                                    { background:url(./sidebar-header.png) #e4e9f0 repeat-x;
+                                    border-bottom:1px solid #d1d1d1; font-size:14px; color:#777; padding:7px
+                                    10px; position:relative; } .authors-box { position:absolute; width:100%;
+                                    top:31px; bottom:0px; overflow:auto; } .author-top-box { padding: 5px 5px
+                                    0px 5px; } .author-checkbox { float:right; position:relative; top:-2px;
+                                    margin-bottom:2px; } input.author-name { color:#333; height:15px; line-height:15px;
+                                    width:125px; font-size:100%; font-weight:bold; border:none; background-color:transparent;
+                                    padding:1px 2px 0; position:relative; top:-2px; float:left; } input.author-name.disabled:hover
+                                    { border:2px solid transparent; } input.author-name.watermark { color:#AAA;
+                                    font-weight:normal; } input.author-name.idle-field { border:solid transparent
+                                    2px; outline:none; } input.author-name.focus-field, input.author-name:hover
+                                    { border:solid #FCDE69 2px; outline:none; } .notify-icon { display:inline-block;
+                                    float:right; height:14px; width:17px; padding:1px; vertical-align:bottom;
+                                    margin-left:2px; background:url(./disabled-bell.gif)
+                                    no-repeat center center; cursor:pointer; } .notify-icon.has-alert { background:url(./bell.gif)
+                                    no-repeat center center; } .author-list { } .additional-author { background-color:#transparent;
+                                    padding:1px 5px 1px 5px; } .additional-author .inner { cursor:pointer;
+                                    } .additional-author-name { padding-left:5px; cursor:pointer; float:left;
+                                    } .additional-author-name.empty { font-style:italic; } .additional-author-name.online
+                                    { font-weight:bold; } .author-settings-box { padding:8px 10px 10px; } .notification-settings-container
+                                    { padding:10px 5px 0 11px; } .container button { margin-bottom:0; background:url(./button-background.png)
+                                    #eee repeat-x; border:1px solid; border-color:#AAA #999 #999 #AAA; color:#333;
+                                    -moz-border-radius:3px; -webkit-border-radius:3px; font-weight:normal;
+                                    } .container button:hover { border-color:#CCC #AAA #AAA #CCC; color:#333;
+                                    } .container button:active { color:#333; } .sharetext {margin:12px; color:#777;
+                                    } .sharetext a{ text-decoration:underline; } .email-notification-dialog
+                                    { position:absolute; width:100%; top:29px; bottom:0px; background:#f8f8f8;
+                                    } .email-notification-dialog .close-x { position:absolute; width:16px;
+                                    height:16px; top:5px; right:5px; background:url(./plain-x.gif)
+                                    no-repeat 0 0; cursor:pointer; } .email-notification-dialog .author-email.watermark
+                                    { color:#AAA; } .qtip { font-size:13px; line-height:15px; } .authorTip
+                                    { width: 150px; height: 35px; padding: 4px 3px 5px 10px; opacity:0.90;
+                                    filter:alpha(opacity=90); -moz-opacity:0.90; background-color:#535353;
+                                    border:solid 1px #000; font-family: Arial; color: #FFF; font-size: 14px;
+                                    line-height: 17px; } .tipsyCustomArrow { position:absolute; top:-5px; right:-5px;
+                                    width:22px; height:20px; background:url(./discover-sidepanel-box-tip.png)
+                                    no-repeat 0 0; }
+                                </style>
+                                <div class="authors-header">
+                                    <span>
+                                        Collaborators
+                                    </span>
+                                    <span class="sidebar-close">
+                                    </span>
+                                </div>
+                                <div class="authors-box">
+                                    <style type="text/css">
+                                        #CollaboratorOnboardingPanel { position:absolute; top:0; left:0; width:100%;
+                                        height:100%; z-index:200; background-color:#fbf7b3; min-height:120px; }
+                                        .onboarding-panel { display:inline-block; margin:9px; width:177px; } .onboarding-panel
+                                        p { font-size:14px; margin:0; } .onboarding-panel table { width:100%; margin:0;
+                                        } .onboarding-panel table td { padding-top: 9px; } #OnboardingNameInput
+                                        { color:#999; border:solid 1px #DBDBDB; width:98%; margin:0; padding:2px
+                                        0 2px 2px; font-size:13px; } #OnboardingNameInput:focus { border-color:auto;
+                                        outline:auto; } #OnboardingNameInput.error:focus { outline:red; border:solid
+                                        2px red; margin:-1px; } #SetNameButton { width:80px; float:left; font-size:14px;
+                                        font-weight:normal; cursor:pointer; } #OnboardingLoginLink { display:inline-block;
+                                        padding:0 2px 3px 0; float:right; color:#296CCF; text-decoration:underline;
+                                        font-size:14px; } #OnboardingLoginLink:hover { cursor:pointer; } .onboarding-panel
+                                        .button-container { margin-top:12px; }
+                                    </style>
+                                    <div id="CollaboratorOnboardingPanel" style="display:none;">
+                                        <div id="WhoPanel" class="onboarding-panel">
+                                            <p>
+                                                Please add your name to mark your annotations:
+                                            </p>
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="field">
+                                                            <input type="text" id="OnboardingNameInput">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div id="SetNameButton" class="gray-button">
+                                                                Set Name
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div id="OnboardingLoginLink">
+                                                                Login
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- <table>
+                                            <tbody>
+                                            <tr><td class="label">Name:</td><td class="field"><input type="text" id="OnboardingNameInput" /></td></tr>
+                                            <tr><td class="label">Email:</td><td class="field"><input type="text" id="OnboardingEmailInput" /></td></tr>    
+                                            </tbody>
+                                            </table>
+                                            <p class="error-message" style="display:none;"></p>
+                                            <div class="button-container">
+                                            <button id="AddInfoBtn">Add Info</button><button class="later-btn">Later</button>
+                                            </div>
+                                            -->
+                                        </div>
+                                    </div>
+                                    <div class="author-top-box clearfix">
+                                        <!--<div class="author-header">Authors</div>-->
+                                        <!--<span class="author-icon"></span>-->
+                                        <input id="AuthorName" class="author-name idle-field" type="text" value=""
+                                        />
+                                        <input type="checkbox" class="author-checkbox" name="author-checkbox"
+                                        checked="checked" />
+                                    </div>
+                                    <div class="author-list clearfix" id="AdditionalAuthorTemplatePlaceholder">
+                                    </div>
+                                    <div class="author-settings-box">
+                                    </div>
+                                </div>
+                                <div class="additional-author author-template" style="display:none;">
+                                    <span class="inner clearfix">
+                                        <span class="additional-author-name">
+                                        </span>
+                                        <input type="checkbox" class="author-checkbox" name="author-checkbox"
+                                        checked="checked" />
+                                    </span>
+                                </div>
+                                <!-- <div class="email-notification-dialog" style="display:none;">
+                                <div class="email-input-panel panel" style="padding:15px 10px 0px; color:#333; font-weight:bolder; line-height:22px;">
+                                <div>Notify me when this document is edited.</div>
+                                <div style="font-weight:normal; padding-top:3px;">Email address:</div>
+                                <div><input class="author-email" type="input" style="width:160px;" autocomplete="off" /></div>
+                                <div style="margin-top:12px; text-align:right;">
+                                <button class="submit-email" style="float:none; border-color:#BBB;">Save Notification</button>
+                                <button class="close-button" style="float:none; border-color:#BBB;">Cancel</button>
+                                </div>
+                                </div>
+                                <div class="email-remove-panel panel" style="padding:15px 10px 0px; color:#333; font-weight:bolder; line-height:18px;">
+                                <div>Email notifications will be sent to <span class="author-email2"></span>.</div>
+                                <div style="margin-top:12px; text-align:right;">
+                                <button class="remove-notification" style="float:none; border-color:#BBB;">Remove Notification</button>
+                                <button class="close-button" style="float:none; border-color:#BBB;">Close</button>
+                                </div>
+                                </div>
+                                <div class="email-conf-panel panel" style="display:none; padding:15px 10px 0px; color:#333; font-weight:bolder; line-height:18px;">
+                                <div>You will be notified by email when someone edits this document.</div>
+                                <div style="margin-top:12px;"><button class="close-button" style="float:right; border-color:#BBB;">Close</button></div>
+                                </div>
+                                </div>
+                                -->
+                            </div>
+                            <div id="BottomPane">
+                                <style type="text/css">
+                                    .annotations-header { background:#eee; border-bottom:1px solid #d1d1d1;
+                                    font-size:14px; color:#777; padding:5px 10px 6px; position:relative; }
+                                    .groups-list { position:absolute; width:100%; top:31px; bottom:0; overflow:auto;
+                                    } /*group*/ .group { padding:8px 8px 0 8px; } .group:last-child { padding-bottom:8px;
+                                    } .group .group-header { color:#999; font-size:13px; border-bottom:1px
+                                    solid #CCC; padding-bottom:2px; margin-bottom:2px; } /*annotation*/ .annotation
+                                    { overflow:hidden; padding-right:2px; cursor:pointer; } .annotation:hover,
+                                    .annotation.hover { background-color:#ecf2f9; } /*icons*/ .annotation .icon
+                                    { float:left; height:16px; width:16px; vertical-align:text-bottom; margin:6px
+                                    8px 8px 0px; } .note-0 .icon { background:url(./note-icons.gif)
+                                    no-repeat 0 0; } .note-1 .icon { background:url(./note-icons.gif)
+                                    no-repeat 0 -20px; } .note-2 .icon { background:url(./note-icons.gif)
+                                    no-repeat 0 -40px; } .note-3 .icon { background:url(./note-icons.gif)
+                                    no-repeat 0 -60px; } .ap-textbox .icon { background:url(./textbox.gif)
+                                    no-repeat; } .drawing .icon { background:url(./pencil.png)
+                                    no-repeat; } .ap-comment .icon, .anchor .icon, .area .icon { background:url(./comment.png)
+                                    no-repeat; } .strikeout .icon { background:url(./strikeout.gif)
+                                    no-repeat; } .highlight-0 .icon { background:url(./highlight-icons.gif)
+                                    no-repeat 0 0; } .highlight-1 .icon { background:url(./highlight-icons.gif)
+                                    no-repeat 0 -20px; } .highlight-2 .icon { background:url(./highlight-icons.gif)
+                                    no-repeat 0 -40px; } .highlight-3 .icon { background:url(./highlight-icons.gif)
+                                    no-repeat 0 -60px; } /*content*/ .annotation .container { padding-left:24px;
+                                    } .annotation .content { white-space:nowrap; font-size:12px; line-height:16px;
+                                    padding-top:3px; overflow:hidden; text-overflow:ellipsis; } /*sub-content*/
+                                    .annotation .sub-content { white-space:nowrap; font-size:12px; line-height:16px;
+                                    padding:1px 0 2px; overflow:hidden; text-overflow:ellipsis; } .ap-comment
+                                    .sub-content { background:url(./comment-smaller.png)
+                                    no-repeat 0 3px; padding-left:20px; } /*meta*/ .annotation .meta { color:#666;
+                                    font-size:11px; line-height:13px; padding-bottom:3px; } /*group by*/ #GroupByButton
+                                    { color:#666; float:right; font-size:13px; font-weight:normal; padding-right:16px;
+                                    background:url(./down-arrow.png) no-repeat right
+                                    center; } #GroupByButton:hover { text-decoration:underline; cursor:pointer;
+                                    } #GroupByMenu { background-color:#F5F5F5; border:1px solid #888; border-top-color:#AAA;
+                                    border-left-color:#AAA; padding:2px; position:absolute; right:1px; top:25px;
+                                    z-index:2; } #GroupByMenu .item { padding:2px 4px; } #GroupByMenu .item:hover
+                                    { cursor:pointer; background-color:#e1ecf9; }
+                                </style>
+                                <div class="annotations-header" >
+                                    <span id="GroupByButton">
+                                        Group by page
+                                    </span>
+                                    <span>
+                                        Annotations
+                                    </span>
+                                </div>
+                                <div id="GroupByMenu" style="display:none;">
+                                    <div class="item" value="page">
+                                        Group by page
+                                    </div>
+                                    <div class="item" value="author">
+                                        Group by name
+                                    </div>
+                                </div>
+                                <div class="groups-list">
+                                    <!--groups go here-->
+                                </div>
+                                <!--templates-->
+                                <div class="group group-template" style="display:none;">
+                                    <div class="group-header">
+                                    </div>
+                                    <div class="annotations-list">
+                                        <!--annotations go here-->
+                                    </div>
+                                </div>
+                                <div class="annotation annotation-template" style="display:none;">
+                                    <div class="icon">
+                                    </div>
+                                    <div style="padding-left:24px;">
+                                        <div class="content">
+                                        </div>
+                                        <div class="sub-content" style="display:none;">
+                                            stuff goes here
+                                        </div>
+                                        <div class="meta">
+                                            <span class="name">
+                                            </span>
+                                            <span class="date">
+                                            </span>
+                                            <span class="page">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>       
+                    </div>
+                    <link rel="stylesheet" href="./jquery-ui-1.8.custom.css" type="text/css" />
+                    <script type="text/javascript" src="./jquery-ui.min.js"></script>
+                    <!--Libraries/Scripts-->
+                    <script src="./libraries.js?v=05271145" type="text/javascript"> </script>
+                    <script src="./scripts.js?v=05271145" type="text/javascript"></script>
+                    <!--Initialize layout-->
+                    <script type="text/javascript">
+                        //Vertical splitter. Set min/max/starting sizes for the left pane.
+                        $("#PageSplitter").show().splitter({
+                            splitVertical: true,
+                            sizeRight: true,
+                            anchorToWindow: true
+                        });
+
+                        //Horizontal splitter, nested in the right pane of the vertical splitter.
+                        $("#RightPane").splitter({
+                            splitHorizontal: true,
+                            sizeTop: true
+                        });
+
+                        //Set initial state to avoid flickering
+                        //NOTE: class must be set after splitter initialization to avoid IE8/9 layout bug
+                        $(document.body).addClass('hide-sidebar');
+
+                        //Sub-pixel rendering support?
+                        if ($.browser.mozilla && $.browser.version.split('.')[0] >= 6 && !/Windows NT 5/.test(navigator.userAgent)) {
+                            $('#Doc').addClass('subpx');
+                        } else {
+                            $('#Doc').addClass('no-subpx');
+                        }
+                    </script>
+
+                    <script type="text/javascript">
+                        MOBILE = false;
+                        DEBUG = false;
+                        VERSION = '05271429';
+                        EMBEDDED = false;
+                        IS_AUTHENTICATED = false;
+                        SHOW_OWNER_ONBOARDING = false;
+                        IS_DEMO = true;
+                        IS_IMAGE = false;
+                        INITIAL_PEN_COLOR = 1;
+
+                        DOCUMENT_GET = {
+                            "annos": "[]",
+                            "now": "2013-05-27 14:39:06",
+                            "comments": "[]",
+                            "authors": "[{\"pk\": \"f217aa3d-55e7-4f8f-ba1c-88abc3b38dbd\", \"model\": \"docsharer.author\", \"fields\": {\"lastNotified\": \"2012-02-13 20:41:20\", \"name\": \"rdamico\", \"lastModified\": \"2011-02-16 14:42:19\", \"createDate\": \"2011-02-16 14:41:53\", \"contributed\": false, \"authorId\": \"6a1fa982-9088-11df-a0b8-404020957097\", \"state\": 0, \"user\": 6, \"document\": \"8b8aa154-45e3-41f9-a465-628e1b2e955d\", \"external_id\": null, \"email\": \"rdamico@crocodoc.com\"}}, {\"pk\": \"25eda542-7464-4524-b795-4beba998e3b6\", \"model\": \"docsharer.author\", \"fields\": {\"lastNotified\": null, \"name\": null, \"lastModified\": \"2011-09-06 21:32:11\", \"createDate\": \"2011-09-06 21:32:06\", \"contributed\": false, \"authorId\": \"b72f71ff-d385-4040-bdba-efe5e930ca52\", \"state\": 0, \"user\": null, \"document\": \"8b8aa154-45e3-41f9-a465-628e1b2e955d\", \"external_id\": null, \"email\": null}}, {\"pk\": \"1c7c7eda-8995-44c7-aff5-52dafe852dfb\", \"model\": \"docsharer.author\", \"fields\": {\"lastNotified\": null, \"name\": null, \"lastModified\": \"2011-10-12 18:20:31\", \"createDate\": \"2011-10-12 18:19:57\", \"contributed\": true, \"authorId\": \"451277b4-f023-4458-9c06-74fa656c8f10\", \"state\": 0, \"user\": null, \"document\": \"8b8aa154-45e3-41f9-a465-628e1b2e955d\", \"external_id\": null, \"email\": null}}, {\"pk\": \"b203b104-cc23-4087-a44c-b4fa238e1400\", \"model\": \"docsharer.author\", \"fields\": {\"lastNotified\": null, \"name\": null, \"lastModified\": \"2011-11-24 19:05:24\", \"createDate\": \"2011-11-24 19:03:20\", \"contributed\": false, \"authorId\": \"c7756a5b-339d-422e-a3df-3b5ae5e1eee4\", \"state\": 0, \"user\": null, \"document\": \"8b8aa154-45e3-41f9-a465-628e1b2e955d\", \"external_id\": null, \"email\": null}}, {\"pk\": \"3c3f07c4-e96d-4c37-931f-a9c5aaf531ca\", \"model\": \"docsharer.author\", \"fields\": {\"lastNotified\": null, \"name\": null, \"lastModified\": \"2012-02-02 13:20:08\", \"createDate\": \"2012-02-02 12:46:44\", \"contributed\": false, \"authorId\": \"c79d4e18-5e20-47cf-aed7-86572e1c9a62\", \"state\": 0, \"user\": null, \"document\": \"8b8aa154-45e3-41f9-a465-628e1b2e955d\", \"external_id\": null, \"email\": null}}, {\"pk\": \"a3def274-33f4-461b-a1c0-069f4cbf1a78\", \"model\": \"docsharer.author\", \"fields\": {\"lastNotified\": null, \"name\": null, \"lastModified\": \"2012-02-13 20:42:27\", \"createDate\": \"2012-02-13 20:38:24\", \"contributed\": true, \"authorId\": \"cca9f426-3515-47af-b25f-b8aac169dd99\", \"state\": 0, \"user\": null, \"document\": \"8b8aa154-45e3-41f9-a465-628e1b2e955d\", \"external_id\": null, \"email\": null}}, {\"pk\": \"28c063cf-5341-4bb2-b186-330f118b48be\", \"model\": \"docsharer.author\", \"fields\": {\"lastNotified\": null, \"name\": null, \"lastModified\": \"2012-02-13 20:43:02\", \"createDate\": \"2012-02-13 20:41:28\", \"contributed\": false, \"authorId\": \"8a6f62ee-f260-4b26-b076-3cc91b0552d5\", \"state\": 0, \"user\": null, \"document\": \"8b8aa154-45e3-41f9-a465-628e1b2e955d\", \"external_id\": null, \"email\": null}}, {\"pk\": \"eba32ec7-bbae-422b-a054-3666aa38fb97\", \"model\": \"docsharer.author\", \"fields\": {\"lastNotified\": null, \"name\": null, \"lastModified\": \"2012-02-13 21:52:14\", \"createDate\": \"2012-02-13 21:50:53\", \"contributed\": false, \"authorId\": \"54fb8668-0560-4f08-a737-50af3b7e0b54\", \"state\": 0, \"user\": null, \"document\": \"8b8aa154-45e3-41f9-a465-628e1b2e955d\", \"external_id\": null, \"email\": null}}, {\"pk\": \"eedf0afc-e478-4e99-9ef0-9c00b10ccb25\", \"model\": \"docsharer.author\", \"fields\": {\"lastNotified\": null, \"name\": \"peterlai\", \"lastModified\": \"2012-04-27 08:09:24\", \"createDate\": \"2012-04-27 07:38:07\", \"contributed\": false, \"authorId\": \"13ee8a8e-871d-4d3c-bcdc-12eb3a0ab6cd\", \"state\": 0, \"user\": null, \"document\": \"8b8aa154-45e3-41f9-a465-628e1b2e955d\", \"external_id\": null, \"email\": null}}]"
+                        };
+                        INITIAL_AUTHOR_INFO = {
+                            "uuid": "6e3871aa-159a-4301-9d58-5702f9f22812",
+                            "lastNotified": null,
+                            "lastModified": "2013-05-27 14:39:06",
+                            "createDate": "2013-05-27 14:39:06",
+                            "contributed": false,
+                            "state": 0,
+                            "authorId": "e715a1dc-5b46-4eb9-8501-9e85bcc19aa3",
+                            "user": null,
+                            "document": "8b8aa154-45e3-41f9-a465-628e1b2e955d",
+                            "external_id": null,
+                            "email": null,
+                            "name": null
+                        };
+                        var data = [{
+                            "status": 3,
+                            "sharingParams": {
+                                "editId": "efwpa",
+                                "readId": "IaIgYI"
+                            },
+                            "uuid": "8b8aa154-45e3-41f9-a465-628e1b2e955d",
+                            "task_id": "foo",
+                            
+                            "pageCount": 1,
+                            "readonly": false,
+                            "protocolHostPath": null,
+                            "fileExt": "pdf",
+                            "shortId": "efwpa",
+                            "assetsLocation": "./",
+                            "type": 0,
+                            "pageInfo": {
+                                "1": {
+                                    "width": "1200px",
+                                    "height": "800px"
+                                }
+                            },
+                            "embeddedFontInfo": [77, 114, 69, 73, 106, 110, 117, 121, 125, 1519, 132, 102, 139, 181, 1254, 148, 161, 163, 184, 187, 194, 609, 611, 614, 616]
+                        }];
+				
+                        var doc = data[0];
+						
+						var doc_0_js = function(){	
+							var _h = [
+								'<div class="page" style="100%; height:100%;">',
+								'    <div class="layer text">',
+								'        <div class="tb">',
+								'            <span class="ln x">',
+								'                <span style="font-size:1.53em;color:#231f20;word-spacing:-0.134em;"',
+								'                class="f73 ba">',
+                                //'<div>',
+								'					NSDFASDFJSDLJFLASKDJLF',
+								'					NSDFASDFJSDLJFLASKDJLF',
+								'					NSDFASDFJSDLJFLASKDJLF',
+                                //'</div>',
+								 '               </span>',
+								 '               <em>',
+								 '               </em>',
+								 '           </span>',
+								 '       </div>',
+										
+								 '   </div>',
+								'</div>'].join('');
+							setTimeout(function(){
+								jsonp_PageLoaded(1,0,_h);
+							},10)
+						};
+						var jsonp_PageLoaded = function(converterVersion, pageNumber, pageHTML) {
+						    dm.pageLoaded(converterVersion, pageNumber, pageHTML);
+                        }
+						var dm = new DocumentManager(doc);
+						
+						$(document).ready(function() {
+                            try {
+                                var isSidebarOpen = false;
+                                var isSubToolbarOpen = false;
+                                var isAnnoAdmin = false;
+                                var dv = new DocViewer(doc, dm, isSidebarOpen, isSubToolbarOpen, isAnnoAdmin);
+                                dv.run();
+                            } catch(ex) {
+                                //catch exception to prevent warning in IE7
+                                if (typeof(console) != 'undefined') {
+                                    console.log(ex);
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+		
+      
+    </body>
+</html>
