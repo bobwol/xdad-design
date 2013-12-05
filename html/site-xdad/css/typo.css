@@ -1,6 +1,7 @@
 /* typo style */
 .typo { font:normal 14px/1.6 Lucida Grande, Verdana, Tahoma, Arial, Simsun, 'Microsoft Yahei', sans-serif; -webkit-font-smoothing: antialiased; letter-spacing:-0.5px; color:#666; }
-.typo h1, .typo h2, .typo h3, .typo h4, .typo h5, .typo h6, .typo small { margin:0 0 0.5em; line-height:1.5; color:#333; }
+.typo h1, .typo h2, .typo h3, .typo h4, .typo h5, .typo h6 { font-weight:bold; margin:0 0 0.5em; line-height:1.5; color:#333; }
+.typo small { margin:0 0 0.5em; line-height:1.5; color:#333; }
 .typo h1 { font-size:1.8em; }
 .typo h2 { font-size:1.6em; }
 .typo h3 { font-size:1.4em; }
