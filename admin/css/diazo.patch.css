@@ -1,0 +1,36 @@
+body{ overflow-x:auto; }
+body.template-newcbtview {overflow: hidden !important;}
+
+table.list.hascover td .thumb { display: block; width: 56px; height: 56px; position: relative;}
+
+.update-tip.info { background-image: url('../img/msg/icon_success.png');}
+
+.table-of-contents.level-1 { z-index: 90;}
+.table-of-contents.level-2 { z-index: 90;}
+.table-of-contents.level-3 { z-index: 90;}
+.table-of-contents.level-4 { z-index: 90;}
+.table-of-contents.level-5 { z-index: 90;}
+.table-of-contents.level-6 { z-index: 90;}
+.table-of-contents.level-7 { z-index: 90;}
+
+.navbar {
+	position: absolute;
+	width: 280px;
+	height: 39px;
+	top: 0;
+	left: 0;
+	background: transpanrent;
+	z-index: 99999999;
+}
+
+.navbar .return a {
+	position: absolute;
+	top: 4px;
+	left: 8px;
+	display: block;
+	width: 32px;
+	height: 32px;
+	background: url('../img/icon_return.png') no-repeat 0 -64px;
+	overflow: hidden;
+	text-indent: -9999px;
+}
