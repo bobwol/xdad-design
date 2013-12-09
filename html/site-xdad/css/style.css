@@ -406,7 +406,8 @@ header .slogan { background:url('../img/slogan@2x.png') no-repeat 0 0; backgroun
 
 
 
-/* PATCH.LAOZHAO */
+/* PATCH.LAOZHAO 20131206 */
+
 aside .menu ul li.unfold > .wraparea h4 a { color: #c72135 ;}
 aside .menu ul li > .wraparea h4 { background-color: #eee; }
 aside .menu ul li.active > .wraparea h4 { background: #c72135 url(site-xdad/img/icon_arrow_right.png) no-repeat 92% 50%; }
