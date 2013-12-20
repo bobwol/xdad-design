@@ -184,7 +184,7 @@ footer .copyright { width:auto; max-width:960px; margin:109px auto 0; height:20p
 
 /* contact */
 .contact .map-select { float:right; width:540px; padding:0 40px; }
-.contact .location-info { float:left; width:240px; border:1px solid #e3e3e3; margin:30px 0 0; padding:15px; }
+.contact .location-info { float:left; width:240px; border:1px solid #e3e3e3; margin:10px 0 0; padding:15px; }
 .contact .typo ul { margin:0; }
 .contact .typo li { background:none; margin:0; padding:0; line-height:26px; }
 

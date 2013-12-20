@@ -1,23 +1,4 @@
-aside .menu ul li.unfold > .wraparea h4 a { color: #c72135 ;}
-aside .menu ul li > .wraparea h4 { background-color: #eee; }
-aside .menu ul li.active > .wraparea h4 { background: #c72135 url(site-xdad/img/icon_arrow_right.png) no-repeat 92% 50%; }
-aside .menu ul li.active > .wraparea h4 a { color: white; }
-aside .menu ul li.unfold { margin-bottom: 0px; }
-
-
-.navi nav > li > .nav-bd { left: 0px; }
-.navi nav > li:hover { background-color: #eee; }
-.navi nav div.nav-bd ul { background-color: #eee; }
-.navi nav > li > .nav-bd > ul { padding-left: 0px; padding-right: 0px; width: 148px;}
-.navi nav > li > .nav-bd > ul  li { padding:0px 12px ;}
-.navi nav > li > .nav-bd > ul  li.active { background-color: #c72135 ;}
-.navi nav > li > .nav-bd > ul  li.active  a { color: white; }
-.navi nav > li > .nav-bd > ul  li:hover { background-color: #c72135 ;}
-.navi nav > li > .nav-bd > ul  li:hover  a { color: white;  }
-
-.categories-mod > .nav-bd > ul > li { padding-left: 12px;}
-.categories-mod > .nav-bd > ul { padding-left: 0px; }
-.categories-mod > .nav-bd > ul > li:hover { background-color: #c72135 ;}
-.categories-mod > .nav-bd > ul > li:hover  a { color: white; }
-
-header .language { display: block; bottom: 15px; }
+input.error { border: 1px red solid; }
+label.error { color: red; font-style: italic; font-size: 12px; font-weight: normal; display: inline; margin-left: 1em; }
+div.language.ipad {display: none}
+div.oversea-location-info { float: left; width: 240px; border: 1px solid #e3e3e3; margin: 30px 0 0; padding: 15px; }

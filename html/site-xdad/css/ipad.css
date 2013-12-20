@@ -3,3 +3,5 @@
 */
 
 .history .container { height:672px !important; }
+div.language.web {display: none}
+div.language.ipad {display: block;}
