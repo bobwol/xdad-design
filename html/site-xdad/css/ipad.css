@@ -3,4 +3,9 @@
 */
 
 .history .container { height:672px !important; }
+<<<<<<< HEAD
 .ipad-modal { display:block !important; }
+=======
+div.language.web {display: none}
+div.language.ipad {display: block;}
+>>>>>>> 4141f22bf6df133a9ff0b157fa506eced0a209d9

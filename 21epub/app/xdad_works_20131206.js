@@ -47,6 +47,7 @@ epub.app(function(){
 				destUrl:"./workslist.json"
 			}
 		});
+		$('div.categories-mod>h4').html('<a href="javascript:void(0)">'+$('nav div.nav-bd ul li.active a').html()+'<b>▼</b></a>');
 	})
 
 	$(function(){
@@ -133,6 +134,4 @@ epub.app(function(){
 	        }
 	    });
 	});
-
-
 })

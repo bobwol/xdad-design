@@ -184,7 +184,7 @@ footer .copyright { width:auto; max-width:960px; margin:109px auto 0; height:20p
 
 /* contact */
 .contact .map-select { float:right; width:540px; padding:0 40px; }
-.contact .location-info { float:left; width:240px; border:1px solid #e3e3e3; margin:30px 0 0; padding:15px; }
+.contact .location-info { float:left; width:240px; border:1px solid #e3e3e3; margin:10px 0 0; padding:15px; }
 .contact .typo ul { margin:0; }
 .contact .typo li { background:none; margin:0; padding:0; line-height:26px; }
 
@@ -406,7 +406,8 @@ header .slogan { background:url('../img/slogan@2x.png') no-repeat 0 0; backgroun
 
 
 
-/* PATCH.LAOZHAO */
+/* PATCH.LAOZHAO 20131206 */
+
 aside .menu ul li.unfold > .wraparea h4 a { color: #c72135 ;}
 aside .menu ul li > .wraparea h4 { background-color: #eee; }
 aside .menu ul li.active > .wraparea h4 { background: #c72135 url(site-xdad/img/icon_arrow_right.png) no-repeat 92% 50%; }

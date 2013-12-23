@@ -12,7 +12,8 @@
 .typo li ul, .typo li ol { margin-top:0; margin-bottom:0; margin-left:2em; }
 .typo li ul { list-style:circle; }
 .typo li li ul { list-style:square; }
-.typo em { font-weight:normal; font-style:italic; }
+.typo em { font-weight:normal; font-style:italic; font-size:12px;}
+.typo em p, .typo em span {font-size:12px;}
 .typo pre { margin-bottom:1em; }
 .typo p { margin:0 0 2em; text-align:justify; text-justify:distribute-all-lines; text-justify:inter-ideograph; }
 .typo p:last-child { margin:0; }

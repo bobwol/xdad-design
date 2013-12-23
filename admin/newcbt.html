@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../cbt/css/reveal-custom.css">
+		<link rel="stylesheet" href="../cbt/css/default-custom.css" id="theme">
+		<link rel="shortcut icon" href="favicon.ico">
+		<link type="text/css" href="css/bootstrap.min.css" rel="stylesheet" media="all">
+		<link type="text/css" href="css/bootstrap.min.patch.css" rel="stylesheet" media="all">
+		<!-- bootstrap end -->
+		<!-- nanoscroll start -->
+		<link type="text/css" href="css/nanoscroller.css" rel="stylesheet" media="all">
+		<!-- nanoscroll end -->
+		<!-- <link type="text/css" href="css/style.css" rel="stylesheet" media="all"> -->
+		<!-- <link type="text/css" href="css/theme.red.css" rel="stylesheet" media="all"> -->
+		<link type="text/css" href="css/typo.css" rel="stylesheet" media="all">
+		<link type="text/css" href="css/typo.patch.css" rel="stylesheet" media="all">
+		<link type="text/css" href="./css/diazo.patch.css" rel="stylesheet" media="all">
+		<!-- <link type="text/css" href="css/style_edit.css" rel="stylesheet" media="all"> -->
+		<style type="text/css">
+			.slides section {width:100%;height:100%; background-color: white;}
+			.reveal iframe { max-width: 100%; max-height: 100%; margin-top: 0px;}
+			.reveal .slides>section, .reveal .slides>section>section { padding: 0px !important; }
+			.slide-control { position:absolute; top:50%; margin-top:-20px; width:40px; height:40px; z-index: 10000;}
+			div.slide-control::selection {background-color: transparent;}
+			.slide-control a { display:block; width:40px; height:40px; text-align:center; line-height:.5 !important; background:#999; color:#fff; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			-webkit-font-smoothing:subpixel-antialiased; font-size:60px; font-weight:100; background:#222; opacity:.25; filter:alpha(opacity=25); text-decoration: none;}
+			.slide-control a:hover { opacity:.5; filter:alpha(opacity=50); }
+			.navigate-left.slide-control { left:25px; }
+			.navigate-right.slide-control { right:25px; }
+			aside.controls { display: none !important;}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="navbar">
+        	<div class="return"><a href="edit_fluid_doc.html">Return</a></div>
+      	</div>
+		<div class="navigate-left slide-control"><a href="javascript:void(0)">《</a></div>
+		<div class="navigate-right slide-control"><a href="javascript:void(0)">》</a></div>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>Reveal.js</h1>
+					<h3>HTML Presentations Made Easy</h3>
+					<p>
+						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Heads Up</h2>
+					<p>
+						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
+						support for CSS 3D transforms to see it in its full glory.
+					</p>
+
+					<aside class="notes">
+						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+					</aside>
+				</section>
+
+				<!-- Example of nested vertical slides -->
+				<section>
+					<section>
+						<h2>Vertical Slides</h2>
+						<p>
+							Slides can be nested inside of other slides,
+							try pressing <a href="#" class="navigate-down">down</a>.
+						</p>
+						<a href="#" class="image navigate-down">
+							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						</a>
+					</section>
+					<section>
+						<h2>Basement Level 1</h2>
+						<p>Press down or up to navigate.</p>
+					</section>
+					<section>
+						<h2>Basement Level 2</h2>
+						<p>Cornify</p>
+						<a class="test" href="http://cornify.com">
+							<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif" alt="Unicorn">
+						</a>
+					</section>
+					<section>
+						<h2>Basement Level 3</h2>
+						<p>That's it, time to go back up.</p>
+						<a href="#/2" class="image">
+							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
+						</a>
+					</section>
+				</section>
+
+				<section>
+					<h2>Point of View</h2>
+					<p>
+						Press <strong>ESC</strong> to enter the slide overview. Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
+					</p>
+				</section>
+
+				<section>
+					<h2>rvl.io</h2>
+					<p>
+						If you don't like writing slides in HTML you can use the online editor <a href="http://www.rvl.io" target="_blank">rvl.io</a>.
+					</p>
+				</section>
+
+				<section>
+					<h2>Works in Mobile Safari</h2>
+					<p>
+						Try it out! You can swipe through the slides and pinch your way to the overview.
+					</p>
+				</section>
+
+				<section>
+					<h2>Marvelous Unordered List</h2>
+					<ul>
+						<li>No order here</li>
+						<li>Or here</li>
+						<li>Or here</li>
+						<li>Or here</li>
+					</ul>
+				</section>
+
+			</div>
+
+		</div>
+
+	  <div id="js">
+	  </div>
+	</body>
+</html>

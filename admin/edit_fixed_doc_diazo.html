@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>编辑版式文档 - 城市动漫后台管理系统</title>
+<link rel="shortcut icon" href="favicon.ico">
+<script type="text/javascript" src="./js/jquery-1.8.1.min.js"></script>
+<!--[if lt ie 9]>
+<script type="text/javascript" src="./js/html5.js"></script>
+<script type="text/javascript" src="./js/selectivizr.js"></script>
+<![endif]-->
+<!-- bootstrap start -->
+<script type="text/javascript" src="./js/bootstrap.js"></script>
+<link type="text/css" href="./css/bootstrap.min.css" rel="stylesheet" media="all">
+<link type="text/css" href="./css/bootstrap.min.patch.css" rel="stylesheet" media="all">
+<!-- bootstrap end -->
+<!-- nanoscroll start -->
+<link type="text/css" href="./css/nanoscroller.css" rel="stylesheet" media="all">
+<!-- nanoscroll end -->
+<link type="text/css" href="./css/style.green.css" rel="stylesheet" media="all">
+<!--<link type="text/css" href="./css/theme.red.css" rel="stylesheet" media="all">-->
+<link type="text/css" href="./css/typo.css" rel="stylesheet" media="all">
+<link type="text/css" href="./css/typo.patch.css" rel="stylesheet" media="all">
+<link type="text/css" href="./css/style_edit.css" rel="stylesheet" media="all">
+</head>
+<body class="edit-fixed-doc screen1024x768 landscapge">
+<div class="doc-layout uncollapsed-nav">
+  <div class="doc-layout-top">
+    <div class="topbar">
+      <div class="return"><a href="list_fixed_doc.html">Return</a></div>
+      <div class="btn-group"> <a class="btn btn-small action-landscapge active" href="#"> 横板 </a> <a class="btn btn-small action-portait" href="#"> 竖版 </a> </div>
+      <div class="page-info">页面尺寸：1024x768</div>
+      <div class="interaction-action">
+        <ul>
+          <li class="type text" id="RichText"><a href="#material">Text</a></li>
+          <li class="type image" id="Image"><a href="#material">Image</a></li>
+          <li class="type video" id="Video"><a href="#material">Video</a></li>
+          <li class="type slide" id="Slide"><a href="#material">Slide</a></li>
+          <li class="type link" id="Link"> <a href="#material">Link</a></li>
+          <li class="type audio" id="Audio"><a href="#material">Audio</a></li>
+          <li class="type loop-animation" id="CycleImage"><a href="#material">Loop Animation</a></li>
+          <li class="type elements-group" id="ElementsGroup"><a href="#material">Elements Group</a></li>
+        </ul>
+      </div>
+      <button class="btn btn-small action-preview" type="button" data-target="#preview">PREVIEW</button>
+      <button class="btn btn-small btn-primary action-save" type="button">SAVE</button>
+    </div>
+  </div>
+  <!-- doc-layout-top end -->
+  <div class="doc-layout-center">
+  
+    <div class="doc-layout-center-hd"></div>
+    
+    <div class="doc-layout-center-bd"> 
+      <!--<div class="loading"></div>-->
+      <div class="canvas-area">
+        <div class="interaction-area typo tiny-editor">
+          <div class="element image" style="position:absolute; top:50px; left:72px; width:880px; height:660px; z-index:1;"><img src="../public/ca/book/007_02.jpg"></div>
+          <div class="element richtext" style="position:absolute; top:645px; left:60px; width:904px; height:auto; z-index:2;">
+            <p style="font-size:22px; color:#000; font-family:kaiti,STKaiti;">1. 井冈山，地处湘赣边界的罗霄山脉中段，苍茫林海，飞瀑流泉，有气势磅礴的云海，还有瑰丽灿烂的日出。井冈山森林覆盖率达86%，是一个名副其实的“绿色宝库”、“天然氧吧”。</p>
+          </div>
+          <div style="position:absolute; top:100px; left:200px; width:360px; height:270px; z-index:3;" class="element video"></div>
+          <div class="element showhide" style="position:absolute; top:140px; left:240px; width:360px; height:270px; z-index:4;"></div>
+          <div style="position:absolute; top:180px; left:280px; width:360px; height:270px; z-index:5;" class="element link"></div>
+          <div class="element audio" style="position:absolute; top:220px; left:320px; width:360px; height:270px; z-index:6;"></div>
+          <div style="position:absolute; top:260px; left:360px; width:360px; height:270px; z-index:7;" class="element elements-group"></div>
+          <div class="element loop-animation" style="position:absolute; top:300px; left:400px; width:360px; height:262px; z-index:8;"></div>
+          <div style="position:absolute; top:340px; left:440px; width:360px; height:270px; z-index:8;" class="element slide"></div>
+        </div>
+        <!-- interaction-area end --> 
+      </div>
+    </div>
+
+  </div>
+  <!-- doc-layout-center end -->
+  <div class="doc-layout-right">
+    <div class="mod settings-mod">
+      <div class="hd">
+        <h2>属性设置</h2>
+      </div>
+      <div class="bd">
+        <div class="tabbable">
+          <ul class="nav nav-tabs">
+            <li class="s1"><a href="#info_page" data-toggle="tab">1</a></li>
+            <li class="s2 active"><a href="#info_attributes" data-toggle="tab">2</a></li>
+            <li class="s3"><a href="#info_dom" data-toggle="tab">3</a></li>
+            <li class="s4"><a href="#info_conf" data-toggle="tab">4</a></li>
+            <li class="s5"><a href="#info_action" data-toggle="tab">5</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane" id="info_page">
+              <div class="setting-body">
+ 
+              </div>
+              <!-- setting-body end --> 
+            </div>
+            <div class="tab-pane active" id="info_attributes">
+              <div class="setting-body">
+
+              </div>
+              <!-- setting-body end -->
+            </div>
+            <div class="tab-pane" id="info_dom">
+              <div class="setting-body">
+                
+              </div>
+              <!-- setting-body end --> 
+            </div>
+            <div class="tab-pane" id="info_conf">
+              <div class="setting-body">
+
+              </div>
+              <!-- setting-body end --> 
+            </div>
+            <div class="tab-pane" id="info_action">
+              <div class="setting-body">
+
+              </div>
+              <!-- setting-body end --> 
+            </div>
+          </div>
+        </div>
+        <!-- tab end --> 
+        
+      </div>
+    </div>
+    <!-- mod end --> 
+    
+  </div>
+  <!-- doc-layout-right end -->
+  <div class="doc-layout-left">
+    <div class="navi">
+      <header>
+        <div class="pages">Pages</div>
+        <button class="btn btn-small action-del" type="button" style="position:absolute; left:80px; top:67px; padding:2px 4px;" data-target="#confirmModal"><i class="icon-minus"></i></button>
+			<div class="dropdown action-add">
+	          <button class="btn btn-small action-add" type="button" style="position:absolute; left:45px; top:67px; padding:2px 4px;" role="button" class="dropdown-toggle has-unread" data-toggle="dropdown">
+	          <i class="icon-plus"></i>
+	          </button>
+	          <div class="dropdown-menu template-mod" role="menu">
+	            <div class="template-bd" style="max-height: 751px; overflow-x: hidden; overflow-y: auto;">
+	              <div class="templates">
+	                <ul>
+	                </ul>
+	              </div>
+	              <!-- templates end --> 
+	            </div>
+	          </div>
+	        </div>
+      </header>
+      <section class="nanoscrollbar">
+        <div class="thumbs">
+          <ul>
+            <li><a href="#"><img src="./public/thumb/001.jpg"></a>
+              <div class="sn">1</div>
+            </li>
+            <li><a href="#"><img src="./public/thumb/002.jpg"></a>
+              <div class="sn">2</div>
+            </li>
+            <li><a href="#"><img src="./public/thumb/003.jpg"></a>
+              <div class="sn">3</div>
+            </li>
+            <li><a href="#"><img src="./public/thumb/004.jpg"></a>
+              <div class="sn">4</div>
+            </li>
+            <li><a href="#"><img src="./public/thumb/005.jpg"></a>
+              <div class="sn">5</div>
+            </li>
+            <li><a href="#"><img src="./public/thumb/006.jpg"></a>
+              <div class="sn">6</div>
+            </li>
+            <li class="active"><a href="#"><img src="./public/thumb/007.jpg"></a>
+              <div class="sn">7</div>
+            </li>
+            <li><a href="#"><img src="./public/thumb/008.jpg"></a>
+              <div class="sn">8</div>
+            </li>
+            <li><a href="#"><img src="./public/thumb/009.jpg"></a>
+              <div class="sn">9</div>
+            </li>
+            <li><a href="#"><img src="./public/thumb/010.jpg"></a>
+              <div class="sn">10</div>
+            </li>
+            <li><a href="#"><img src="./public/thumb/011.jpg"></a>
+              <div class="sn">11</div>
+            </li>
+            <li><a href="#"><img src="./public/thumb/012.jpg"></a>
+              <div class="sn">12</div>
+            </li>
+            <li><a href="#"><img src="./public/thumb/013.jpg"></a>
+              <div class="sn">13</div>
+            </li>
+            <li><a href="#"><img src="./public/thumb/014.jpg"></a>
+              <div class="sn">14</div>
+            </li>
+            <li><a href="#"><img src="./public/thumb/015.jpg"></a>
+              <div class="sn">15</div>
+            </li>
+            <li><a href="#"><img src="./public/thumb/016.jpg"></a>
+              <div class="sn">16</div>
+            </li>
+            <li><a href="#"><img src="./public/thumb/017.jpg"></a>
+              <div class="sn">17</div>
+            </li>
+            <li><a href="#"><img src="./public/thumb/018.jpg"></a>
+              <div class="sn">18</div>
+            </li>
+          </ul>
+        </div>
+        <!-- thumbs end --> 
+      </section>
+    </div>
+  </div>
+  <!-- doc-layout-left end --> 
+
+  <div id="js">
+  </div>
+  <script type="text/javascript" src="./js/bootstrap.js"></script>
+  <script type="text/javascript" src="./js/bootstrap-colorpicker.js"></script>
+  <script type="text/javascript" src="./js/jquery.nanoscroller.min.js"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>阅读流式文档 - 后台管理系统</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <script type="text/javascript" src="./js/jquery-1.8.1.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.cookie.js"></script>
+    <!--[if lt ie 9]>
+    <script type="text/javascript" src="./js/html5.js"></script>
+    <script type="text/javascript" src="./js/selectivizr.js"></script>
+    <![endif]-->
+    <!-- bootstrap start -->
+    <script type="text/javascript" src="./js/bootstrap.js"></script>
+    <link type="text/css" href="./css/bootstrap.min.css" rel="stylesheet" media="all">
+    <link type="text/css" href="./css/bootstrap.min.patch.css" rel="stylesheet" media="all">
+    <!-- bootstrap end -->
+    <!-- nanoscroll start -->
+    <script type="text/javascript" src="./js/jquery.nanoscroller.min.js"></script>
+    <link type="text/css" href="./css/nanoscroller.css" rel="stylesheet" media="all">
+    <!-- nanoscroll end -->
+    
+    <link type="text/css" href="./css/style.green.css" rel="stylesheet" media="all" id="theme">
+    <link type="text/css" href="./css/typo.css" rel="stylesheet" media="all">
+    <link type="text/css" href="./css/typo.patch.css" rel="stylesheet" media="all">
+    <link type="text/css" href="./css/style_edit.css" rel="stylesheet" media="all">
+    <script type="text/javascript">
+      $(document).ready(function(){
+
+        var cbt_url = $("#cbt").attr('src');
+
+        chapterNavi();
+
+        $('.navi > section.nanoscrollbar').wrapInner('<div class="nano"><div class="content"></div></div>');
+        $('.navi > section .nano').nanoScroller();
+        $('.navi > section .nano .pane').css({'visibility': 'hidden'});
+        $('.navi > section .nano').hover(function (){
+            $(this).children('.pane').css({'visibility': 'visible'});
+          },function (){
+            $(this).children('.pane').css({'visibility': 'hidden'});
+        });
+
+        $('.collapse-bar').click(function (){
+          $('.doc-layout').toggleClass('collapsed-nav');
+          $('.doc-layout').toggleClass('uncollapsed-nav');  
+        });
+
+        $('div.wraparea h4').live('click',function(){
+          // $('#cbt').attr('src', cbt_url + '#/' +$(this).parent().attr('id'));
+          $('li.selected').removeClass('selected');
+          $(this).parent().parent().addClass('selected');
+          var id=$(this).parents('.tree-item').first().attr('data-id');
+          document.getElementById('cbt').contentWindow.interaction_view.slideChange(id);
+        })
+	    $('.return a').live('click',function(){
+		   var url = location.search; //获取url中"?"符后的字串
+		
+		   var theRequest = new Object();
+		
+		   if (url.indexOf("?") != -1) {
+		
+		      var str = url.substr(1);
+		
+		      strs = str.split("&");
+		
+		      for(var i = 0; i < strs.length; i ++) {
+		
+		         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+		
+		      }
+		
+		   }
+		   if(theRequest['from']=='page') $(window.parent.document.getElementById('PreviewWindow')).remove();
+			return false;
+	     })
+      });    
+      // chapterNavi
+      function chapterNavi() {
+        $(' .navi li:has(ol) > .wraparea').append("<div class='hitarea'></div>");
+        $(' .navi li ol').hide();
+        $(' .navi li.unfold').children('ol').show();
+        $(' .navi li:has(ol)').addClass('hasmenu');
+        $(' .navi .wraparea .hitarea').click(function() {
+          $(this).parent('.wraparea').parent('li:has(ol)').toggleClass('unfold');
+          $(this).parent('.wraparea').parent('li:has(ol)').children('ol').slideToggle('fast');
+        });
+      }
+    </script>
+    <style >
+    .collapse-bar { background: transparent !important;}
+    .read-fluid-doc { overflow: hidden !important;}
+    .canvas-area { max-width:100% !important; max-height:100% !important; min-width:1025px !important; padding:0px !important;}
+    .content-area { margin-right: 0px !important; width:100% !important; height: 100%;}
+    </style>
+</head>
+<body class="fluid-doc read-fluid-doc">
+<div class="doc-layout collapsed-nav">
+  <div class="doc-layout-center">
+    <div class="canvas-area" >
+      <div class="content-area">
+        <iframe src="" width="100%" height="100%" id="cbt"></iframe>
+      </div>
+    </div>
+  </div>
+  <!-- doc-layout-center end -->
+  <div class="doc-layout-left">
+    <div class="navi">
+      <div class="navbar">
+        <div class="return"><a href="#">Return</a></div>
+        <div class="view-mode">
+          <ul>
+            <li class="all"><a href="javascript:void(0)" class="active">目录</a></li>
+            <li class="bookmark"><a href="javascript:void(0)">书签</a></li>
+            <!--<li class="fav"><a href="javascript:void(0)">收藏</a></li>-->
+          </ul>
+        </div>
+      </div>
+      <header>
+        <hgroup>
+          <h1>ARJ21-700飞机</h1>
+          <h2>飞行机组初始训练手册</h2>
+          <small>版本：4.0 （2012-05）</small> </hgroup>
+      </header>
+      <section class="nanoscrollbar"><!-- chapter --></section>
+    </div>
+    <div class="collapse-bar"></div>
+  </div>
+  <!-- doc-layout-left end --> 
+</div>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <!-- IDENTIFY THE THEME HTML TEMPLATE -->
+    <notheme if="$host = '127.0.0.1:8081'" />
+
+    <rules css:if-content="body.portaltype-interaction-book.template-chapter_edit">
+        <theme href="edit_fluid_doc_diazo.html" />
+        <replace theme="/html/head/title" content="/html/head/title"/>
+        <replace css:theme="div.doc-layout-left header" css:content="header"/>
+        <replace css:theme="div.doc-layout-left section" css:content="section"/>
+        <replace css:theme="div.doc-header" css:content="div.doc-header"/>
+        <replace css:theme="div.doc-body" css:content="div.doc-body"/>
+        <replace css:theme="div.doc-footer" css:content="div.doc-footer"/>
+        <replace css:theme="div#js" css:content-children="div#js" css:if-content="div#js"/>
+    </rules>
+    <rules css:if-content="body.portaltype-interaction-cbt.template-preview">
+        <theme href="cbt-preview.html" />
+        <replace theme="/html/head/title" content="/html/head/title"/>
+        <replace css:theme="div.doc-layout-left header" css:content="header"/>
+        <replace css:theme="div.doc-layout-left section" css:content="section"/>
+        <replace css:theme="div.doc-layout-center iframe" css:content="iframe"/>
+        <replace css:theme="div#js" css:content-children="div#js" css:if-content="div#js"/>
+    </rules>
+    <rules css:if-content="body.template-cbtview">
+        <theme href="cbt.html" />
+        <replace theme="/html/head/title" content="/html/head/title"/>
+        <replace css:theme="div.reveal" css:content="div.reveal"/>
+        <replace css:theme="div#js" css:content-children="div#js"/>
+    </rules>
+    <rules css:if-content="body.template-newcbtview">
+        <theme href="newcbt.html" />
+        <replace theme="/html/head/title" content="/html/head/title"/>
+        <replace css:theme="div.reveal" css:content="div.reveal"/>
+        <replace css:theme="div#js" css:content-children="div#js"/>
+        <merge attributes="class" css:theme="body" css:content="body"/>
+        <drop css:theme="div.navbar" css:if-content="body.portaltype-interaction-cbt"/>
+    </rules>
+    <rules css:if-content="body.template-interactionview">
+        <theme href="edit_fixed_preview_diazo.html" />
+
+        <replace theme="/html/head/title" content="/html/head/title"/>
+        <replace theme="/html/head/link[1]" content="/html/head/link[1]"/>
+
+        <drop theme="//script"/>         
+        <replace css:theme="div#js" css:content-children="div#js"/>
+        <drop css:theme-children="div.interaction-area"/>
+    </rules>
+    <rules css:if-content="body.template-pageview">
+        <theme href="cbt-page.html" />
+
+        <replace theme="/html/head/title" content="/html/head/title"/>
+        <replace theme="/html/head/link[1]" content="/html/head/link[1]"/>
+
+        <drop theme="//script"/>         
+        <replace css:theme="div#js" css:content-children="div#js"/>
+        <drop css:theme-children="div.interaction-area"/>
+    </rules>
+    <rules css:if-content="div.edit-fixed-doc">
+        <theme href="edit_fixed_doc_diazo.html" />
+
+        <replace theme="/html/head/title" content="/html/head/title"/>
+        <replace theme="/html/head/link[1]" content="/html/head/link[1]"/>
+         
+        <drop theme="//script"/>
+        <replace css:theme="div#js" css:content-children="div#js"/>
+        <replace css:theme="div.doc-layout-left div.thumbs"
+            css:content="div.thumbs"/>
+        <drop css:theme-children="div.interaction-area"/>
+        <drop css:theme="div.tab-panel div.setting-body"/>
+
+        <drop theme="//script" css:if-content="body.template-interactionview"/>
+        <drop css:theme="div.doc-layout-left" css:if-content="body.template-interactionview"/>
+        <drop css:theme="div.doc-layout-right" css:if-content="body.template-interactionview"/>
+        <drop css:theme="div.doc-layout-top" css:if-content="body.template-interactionview"/>
+    </rules>
+
+    <rules css:if-content="#admin-portal-wrapper form#login_form">
+        <theme href="@login.html" /> 
+
+        <replace theme="/html/head/title" content="/html/head/title"/>
+        <replace theme="/html/head/link[1]" content="/html/head/link[1]"/>
+
+        <after css:theme-children="body.login" css:if-content="body.template-login_failed">
+            <div class="msg"><div class="status error"><p>用户名或密码错误，请重试。</p><a href="#" class="close">Close</a></div></div>
+        </after>
+
+
+        <replace css:theme-children="div.row01-container"
+            css:content-children="div#system-info" css:if-content="div#system-info"/>
+        <replace css:theme="form.form-inline"
+            css:content="form#login_form" css:if-content="form#login_form"/>
+        <replace css:theme-children="div.copyright"
+            css:content-children="div#system-copyright" css:if-content="div#system-copyright"/>
+    </rules>
+  
+
+    <rules css:if-content="#admin-portal-wrapper">
+        <theme href="main.html"  /> 
+
+        <replace theme="/html/head/title" content="/html/head/title"/>
+        <replace theme="/html/head/link[1]" content="/html/head/link[1]"/>
+
+
+        <!-- plone template 
+        <replace css:theme-children="div.ui-layout-center.detail" css:content="div#portal-column-content div#content" css:if-content="body.plone-template"/>
+        -->
+        <replace css:theme-children="div.ui-layout-center.detail" css:content-children="div#content" css:if-content="body.template-insufficient_privileges"/>
+        <replace css:theme-children="div.ui-layout-center.detail" css:if-content="body.template-default_error_message">
+            <div style="width:980px; font-family:'microsoft yahei'; color:#7f7f7f;">
+                <div style="margin:20px 0; height:56px; line-height:56px; padding-left:40px; font-size:16px; border-bottom:2px solid #333; background:url('img/icon_404.png') no-repeat left center;">找不到页面</div>
+            </div>
+        </replace>
+        <after css:theme-children="div.ui-layout-center.detail" css:content="div#content-core" css:if-content="body.template-default_error_message"/>
+
+        <!-- COMMON -->
+        <replace css:theme="h1.page-title" css:content="h1.page-title" css:if-content="h1.page-title"/>
+        <replace css:theme="span.content-type-value" css:content="span.content-type-value"/>
+        <replace css:theme-children="div.tabview"
+                css:content="ul#content-views"/>
+        <replace css:content="ul#content-views li.selected">
+            <li class="active">
+                <xsl:apply-templates css:select="li.selected a" mode="raw"/>
+            </li>
+        </replace>
+        <replace css:theme-children="div.property" css:content-children="div.property"/>
+
+
+        <!-- SETTING LAYOUT -->
+        <replace css:theme="span.content-tip" css:content-children="div#content h1.documentFirstHeading" css:if-content="body.setting div#content h1.documentFirstHeading"/>
+        <replace css:theme="div.column-hd #content-actions" css:content-children="div#content-actions"  css:if-content="div#content-actions"/>
+        <replace css:theme-children="div.column-bd" css:content-children="div#content-core"  css:if-content="body.setting #content-core"/>
+
+        <!-- CONTENT EDIT FORM -->
+        <drop css:content="label.horizontal span"/>
+        <!-- <drop css:content="div.formControls"/> -->
+        <!-- <merge attributes="class" css:theme="div.control-group" css:content="div.field"/> -->
+        <copy attributes="action" css:theme="div.column-bd form" css:content="div#content-core form" />
+        <replace css:theme-children="div.column-bd form" css:content-children="div#content-core form"  css:if-content="div#content-core form"/>
+        <replace css:theme="div.column-bd form" css:content-children="div#operation" css:if-content="div#operation"/>
+        <replace css:content="div.field">
+            <div class="control-group">
+                <xsl:attribute name="class">control-group <xsl:value-of select="@class"/></xsl:attribute>
+                <label class="control-label">
+                    <xsl:apply-templates css:select="div.field label.horizontal"/>
+                    <xsl:apply-templates css:select="div.field label[for^='__ac']"/>
+                </label>
+                <div class="controls">
+                    <xsl:apply-templates css:select="div.field  [id^='form-widgets'][class*='widget']" mode="raw"/>
+                    <xsl:apply-templates css:select="div.field  input[id^='__ac']" mode="raw"/>
+                </div>
+            </div>
+        </replace>
+
+        <!-- workitem view -->
+        <replace css:theme="div.column-bd form" css:content="div#content-core" css:if-content="body.template-view"/>
+        <drop css:theme="form.search" css:if-content="body.template-view"/>
+        <drop css:theme="button.action-preview" css:if-content="body.template-view"/>
+        <replace css:theme="button.action-save" css:if-content="body.template-view a#iterate_checkout">
+            <button class="btn btn-small btn-primary action-save" id="btn-save" data-loading-text="编辑..." type="button">编辑</button>
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    set_click_event('body.template-view button.action-save',function(){
+                        window.location.href=context_url + '@@content-checkout'
+                        return false;
+                    });
+                });
+            </script>
+        </replace>
+        <replace css:theme="div#update-tip" css:content="div.update-tip" css:if-content="div.update-tip"/>
+        <replace css:theme="div#update-tip" css:if-content="dl.portalMessage">
+            <div class="update-tip">
+                <strong><xsl:value-of css:select="dl.portalMessage dt"/></strong>
+                <span><xsl:value-of css:select="dl.portalMessage dd"/></span>
+            </div>
+        </replace>
+        <replace css:theme="div.update-tip" css:if-content="body.template-edit div.cancel_allowed">
+            <div class="update-tip" style="width:290px;">变更提醒：当前内容为已发布版本的变更版本。<a href="#confirmModal" class="action-recover" rel="tooltip" data-original-title="复原">复原</a></div>
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    set_click_event('body.template-edit a.action-recover',function(){
+                        global.confirmModal(msg='确认恢复操作?', function(){
+                            global.json.post(context_url + "/@@content-cancel-checkout",{'form.button.Cancel':'1'},function(){});
+                        });
+                        return false;
+                    });
+                });
+            </script>
+        </replace>
+<!--    <merge attributes="class" css:theme="div.column-bd form div.control-group" css:content="div#content-core form div.field" />
+        <replace css:content="div.field input[id^='form-widgets']">
+            <div class="controls">
+                <xsl:apply-templates css:select="div.field  input[id^='form-widgets']" mode="raw"/>
+            </div>
+        </replace>
+         <replace css:content="div.field  span[id^='form-widgets']">
+            <div class="controls">
+                <xsl:apply-templates css:select="div.field  span[id^='form-widgets']" mode="raw"/>
+            </div>
+        </replace>
+        <replace css:content="div.field  textarea[id^='form-widgets']">
+            <div class="controls">
+                <xsl:apply-templates css:select="div.field  textarea[id^='form-widgets']" mode="raw"/>
+            </div>
+        </replace>
+        <rules css:if-content="body.main_diazo">
+    </rules> -->
+
+
+        <replace css:theme-children="div.main-column"
+                css:content-children="div.main-column#list" css:if-content="div.main-column#list"/>
+
+        <replace css:theme-children="div.adminbar" css:content-children="div#portal-top"/>
+        <replace css:theme="div.ui-layout-left nav"  css:content="div#portal-left nav"/>
+        <merge attributes="class" css:theme="body" css:content="body"/>
+        <replace css:theme-children="div#JS_list_detail"
+                css:content-children="div#portal-right" css:if-content="div#portal-right"/>
+
+        <drop css:theme="button.action-save" css:if-content="body.list"/>
+        <drop css:theme="button.action-preview" css:if-content="body.list"/>
+        <drop css:theme="button.action-preview" css:if-content="body.setting"/>
+        <drop css:theme="h3.content-type" css:if-content="body.list"/>
+        <drop css:theme="form.search" css:if-content="body.detail"/>
+        <drop css:theme="form.search" css:if-content="body.template-edit"/>
+        <drop css:theme="form.search" css:if-content="body.setting"/>
+        <drop css:theme="h3.content-type" css:if-content="body.content-organization"/>
+        <drop css:theme="h3.content-type" css:if-content="body.cat-management"/>
+        <drop css:theme="button.action-preview" css:if-content="body.cat-management"/>
+        <drop css:theme="button.action-preview" css:if-content="body.content-organization"/>
+
+        <replace css:theme="form.search" 
+            css:content-children="div.page-actions" css:if-content="body.user-management"/>
+
+
+        <replace css:theme-children="div#js" css:content-children="div#js"/>
+        <replace css:theme-children="div#external" css:content-children="div#external"/>
+
+        <replace css:content="body.template-edit div.formControls">
+            <input  name="form.buttons.save" value="Save" type="hidden"/>
+        </replace>
+
+        <replace css:content="li#contentview-folderContents" css:if-content="li#contentview-folderContents"/>
+        <replace css:content="li#contentview-contentrules" css:if-content="li#contentview-contentrules"/>
+        <replace css:content="li#contentview-local_roles" css:if-content="li#contentview-local_roles"/>
+
+        <replace css:theme="button.action-save" css:if-content="body.template-chapter_setting">
+            <div class="workflow"></div>
+        </replace>
+        <replace css:theme="form.search" css:if-content="body.project-management">
+            <button class="btn btn-small projectGroup" type="button" style="position:absolute; right:10px; top:2px;" data-target="#projectGroup"><i class="icon-user"></i> 项目组成员设置</button>
+        </replace>
+
+
+        <!-- <merge css:theme="script[src*='meta.js']" 
+            css:content="div#admin-portal-wrapper" attributes="data-main" css:if-content="body.content-management"/>
+        <drop css:theme="script[src*='meta.js']" css:if-content="body.content-organization"/>
+        <drop css:theme="script[src*='meta.js']" css:if-content="body.user-management"/>
+        <drop css:theme="script[src*='meta.js']" css:if-content="body.cat-management"/>
+        <drop css:theme="script[src*='meta.js']" css:if-content="body.publish-management"/> -->
+
+
+    </rules>
+
+</rules>
