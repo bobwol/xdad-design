@@ -2,3 +2,4 @@ input.error { border: 1px red solid; }
 label.error { color: red; font-style: italic; font-size: 12px; font-weight: normal; display: inline; margin-left: 1em; }
 div.language.ipad {display: none}
 div.oversea-location-info { float: left; width: 240px; border: 1px solid #e3e3e3; margin: 30px 0 0; padding: 15px; }
+div.ipad-modal {display: none}
