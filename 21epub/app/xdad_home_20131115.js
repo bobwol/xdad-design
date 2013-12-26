@@ -1,7 +1,7 @@
 epub.app(function(){
 
 	epub["import"]('epub.modules.bootstrap@1.0')
-	epub["import"]('epub.modules.base@3.0')
+	epub["import"]('epub.modules.base@4.0')
 
 	$(document).ready(function($) {
 
