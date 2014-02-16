@@ -8,7 +8,8 @@
     <notheme if="$host = '192.168.0.214:8082'" />
 
     <rules css:if-content="#web-portal-wrapper">
-            <theme href="site-xdad.html" />
+            <theme href="site-xdad.html" if-path="/zh"/>
+            <theme href="site-xdad-en.html"  if-path="/en"/>
 
             <!-- * METADATA * -->
             <!-- REPLACE THE TITLE -->
