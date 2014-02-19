@@ -91,13 +91,13 @@
             <!-- <replace theme-children="//ul[@class='links']"
                 content-children="//ul[@id='portal-siteactions']"/> -->
 
-            <!-- * CUSTOM LOGO * -->
+            <!-- * CUSTOM LOGO * 
             <replace css:theme-children="div.logo"
                  content="//*[@id='portal-logo']" />
             <replace content="//*[@id='portal-logo']/img" />
             <before css:theme-children="div.logo">
                 <div href="/" class="hometip">&lt; 返回首页</div>
-            </before>
+            </before>-->
 
             <!-- * BODY CLASS * -->
             <merge attributes="class" css:theme="body" css:content="body"/>

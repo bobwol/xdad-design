@@ -4,3 +4,16 @@ label.error { color: red; font-style: italic; font-size: 12px; font-weight: norm
 div.language.ipad {display: none}
 div.oversea-location-info { float: left; width: 240px; border: 1px solid #e3e3e3; margin: 30px 0 0; padding: 15px; }
 div.ipad-modal {display: none}
+
+body.en .typo {font-size: 15px;}
+body.en .typo hgroup h1 {font-size: 22px;}
+body.en .navi nav { font-size: 14px; }
+body.en .navi nav > li { width:112px;}
+body.en .navi nav > li > .nav-bd > ul li { overflow: hidden; text-overflow: ellipsis; }
+body.en .navi ul.links li { font-size: 14px; }
+
+body.en .location-bd li {overflow: hidden; text-overflow: ellipsis;}
+
+body.en .lightbox .slideshow dl dt { font-weight: bold; }
+body.en.homepage .royalSlider dl dt { font-weight: bold; }
+body.en.homepage .royalSlider dl dd { font-size: 14px; }

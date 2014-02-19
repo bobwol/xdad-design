@@ -1,7 +1,7 @@
 epub.app(function(){
 
 	epub["import"]('epub.modules.bootstrap@1.0')
-	epub["import"]('epub.modules.base@4.0')
+	epub["import"]('epub.modules.base@5.0')
 
 	$(document).ready(function($) {
 
@@ -10,6 +10,11 @@ epub.app(function(){
 		//	$('.info-mod .infoBlock dl').hide();
 		$('.info-mod .infoBlock a.more-info').live("click", function() {
 			$(this).parent().children('.info-mod .infoBlock dl').slideToggle('fast');
+			return false;
+		});
+
+		$('div.ipad-modal a#close').live("click", function(){
+			$('div.ipad-modal div').slideToggle('fast');
 			return false;
 		});
 	});
