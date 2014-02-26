@@ -5,4 +5,8 @@
 .history .container { height:672px !important; }
 div.ipad-modal { display:block !important; }
 div.language.web {display: none}
+<<<<<<< HEAD
 div.language.ipad {display: block;}
+=======
+div.language.ipad {display: block;}
+>>>>>>> FETCH_HEAD
