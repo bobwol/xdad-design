@@ -31,6 +31,7 @@ epub.def(function(){
 	}
 	var totalPages = 1;
 	function initPage($el){
+		return;
 		if($("#pagination")[0].style.display=='none'){
 			var el = $el[0];
 
@@ -67,7 +68,7 @@ epub.def(function(){
 			this._render();
 		},
 		_render:function(){
-			this.totalScreens = 1;
+			this.totalScreens = 10;
 			this.currentScreen = 1;
 			this._delegateEvents();
 			this._init();
@@ -88,11 +89,12 @@ epub.def(function(){
 					msgText: ' ',
 					finishedMsg: '木有了',
 					finished: function(){
-						
+						console.log('finished',self.currentScreen,self.totalScreens)
 						if(self.currentScreen>=self.totalScreens){ //到第10页结束事件
 							self.$el.find("#infscr-loading").hide();
 
 							$(window).unbind('.infscr');
+							console.log('finished end')
 							initPage(self.$el);
 							//$("#more").remove();
 							
@@ -100,6 +102,7 @@ epub.def(function(){
 					}		
 				},
 				errorCallback	:function(){ 
+					console.log('errorCallback')
 					self.$el.find("#infscr-loading").hide();
 					$(window).unbind('.infscr');
 					initPage(self.$el)
@@ -109,11 +112,14 @@ epub.def(function(){
 				appendCallback	:true,
 				dataType	 	: 'json',
 				path: function(index) {
+					 console.log("path",index)
 					self.currentScreen = index;
 
 					return getURL(self.options.page,self.currentScreen);//self.options.infinitescroll.destUrl+"?page="+self.options.page+"&screen="+self.currentScreen;
 				},
 				template:function(data){
+					 console.log("template")
+					 console.log(data)
 					  var data = data;
 					  var template = [
 					   '{{each(i, name) results}}',
@@ -129,11 +135,12 @@ epub.def(function(){
 					   ' </div> ',
 					   '{{/each}}'
 					   ].join('');
-
+					   console.log($.tmpl(template,data))
 					return $.tmpl(template,data)
 				}
 			}
 			,function(newElements){
+				console.log('callback')
 				var $newElems = $(newElements);
 
 				self.$el.masonry('appended', $newElems, false);
@@ -163,6 +170,7 @@ epub.def(function(){
 				opts = instance.options,
 				box = $(opts.contentSelector).is('table') ? $('<tbody/>') : $('<div/>');
 		    $(opts.navSelector).hide();
+		    console.log(opts)
             opts.loading.msg
 	            .appendTo(opts.loading.selector)
 	            .show(opts.loading.speed,function(){
@@ -170,6 +178,7 @@ epub.def(function(){
 	            });
 	            
 	        function beginAjax(){
+	        	console.log("beginAjax")
 	        	$.ajax({
 	                dataType: 'json',
 	                type: 'GET',
@@ -177,24 +186,26 @@ epub.def(function(){
 	                success: function (data, textStatus, jqXHR) {
 	                    var data = data.data;
 	                    condition = (typeof (jqXHR.isResolved) !== 'undefined') ? (jqXHR.isResolved()) : (textStatus === "success" || textStatus === "notmodified");
-	                    
+	                    console.log("beginAjax end")
 	                    if (opts.appendCallback) {
 	                        // if appendCallback is true, you must defined template in options.
 	                        // note that data passed into _loadcallback is already an html (after processed in opts.template(data)).
 	                        if (opts.template !== undefined) {
 
 	                            var theData = opts.template(data);
-	                           
+	                           	console.log(box)
 	                            box.append(theData);
 	                            if (condition) {
 	                            	self.totalScreens = data.totalScreens||1;
 	                            	if($("#pagination")[0].style.display=='none'){
 	                            		totalPages = data.numspage;
+	                            		
 	                            	}
 	                            	instance._loadcallback(box, theData);
 	                            } else {
 	                                instance._error('end');
 	                            }
+	                            console.log("self.totalScreens",self.totalScreens)
 	                        } else {
 	                            instance._debug("template must be defined.");
 	                            instance._error('end');

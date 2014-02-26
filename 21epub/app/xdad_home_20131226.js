@@ -12,6 +12,11 @@ epub.app(function(){
 			$(this).parent().children('.info-mod .infoBlock dl').slideToggle('fast');
 			return false;
 		});
+
+		$('div.ipad-modal a#close').live("click", function(){
+			$('div.ipad-modal div').slideToggle('fast');
+			return false;
+		});
 	});
 
 	epub["import"]('epub.modules.jquery-royalslider@1.0');

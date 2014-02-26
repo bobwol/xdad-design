@@ -332,7 +332,7 @@
                 this['_loadcallback_'+opts.behavior].call(this,box,data);
                 return;
             }
-           
+           console.log('_loadcallback ',result)
             switch (result) {
                 case 'done':
                     this._showdonemsg();
@@ -347,6 +347,7 @@
 
                 case 'append':
                     var children = box.children();
+                    console.log("children.length",children.length)
                     // if it didn't return anything
                     if (children.length === 0) {
                         return this._error('end');
@@ -580,6 +581,8 @@
                         type: 'GET',
                         url: desturl,//http://localhost/dev/appserv/21epub/project/site/template/works/2.json
                         success: function (data, textStatus, jqXHR) {
+                            var data = data.data;
+                            console.log('json success')
                           
                             condition = (typeof (jqXHR.isResolved) !== 'undefined') ? (jqXHR.isResolved()) : (textStatus === "success" || textStatus === "notmodified");
                             var data=data.data                            
@@ -587,7 +590,11 @@
                                 // if appendCallback is true, you must defined template in options.
                                 // note that data passed into _loadcallback is already an html (after processed in opts.template(data)).
                                 if (opts.template !== undefined) {
+                                     console.log("opts.template",opts.template)
+                                     console.log("data",data)
                                     var theData = opts.template(data);
+                                    console.log("box",box)
+                                     console.log("theData",theData)
                                     box.append(theData);
                                     if (condition) {
                                         instance._loadcallback(box, theData);

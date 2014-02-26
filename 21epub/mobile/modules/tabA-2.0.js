@@ -58,8 +58,8 @@ epub.def(function(){
 	                   
 	                }
 				})
-			}
-		},
+			};
+			},
 		getData:function (opt){
 			$.ajax({
                 dataType: 'json',
@@ -98,6 +98,7 @@ epub.def(function(){
 						if(self.$el.parents('.tab-mod').children('.bd').find('.pagination').length){
 							self.updateAjaxPage(data.data.numpages);
 						};
+						$.each($('.tab-mod div.action a'), function(){$(this).attr('href', $(this).attr('href').replace('ca-admin','ca-site'))});
 					});
 				};
 				

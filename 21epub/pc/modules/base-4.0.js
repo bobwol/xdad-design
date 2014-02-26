@@ -218,8 +218,8 @@ epub.def(function(){
 
 			$(".work-list").page({
 					url:{
-						contentstree:'/columnitems.json?id=60years',
-						unlitslist:'/60years/{id}/workslist.json?size=100'
+						contentstree:'/zh/columnitems.json?id=60years',
+						unlitslist:'/zh/60years/{id}/workslist.json?size=100'
 					},
 					templates:{
 						unlitslist:[

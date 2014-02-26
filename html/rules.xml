@@ -4,90 +4,111 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <!-- IDENTIFY THE THEME HTML TEMPLATE -->
-    <notheme if="$host = '127.0.0.1:8081'" />
+    <notheme if="$host = '127.0.0.1:8082'" />
+    <notheme if="$host = '192.168.0.214:8082'" />
 
+    <rules css:if-content="#web-portal-wrapper">
+            <theme href="site-xdad.html" if-path="/zh"/>
+            <theme href="site-xdad-en.html"  if-path="/en"/>
 
-    <rules css:if-content="#admin-portal-wrapper form#login_form">
-        <theme href="admin/template/@login.html" /> 
-        <replace css:theme="form.form-inline"
-            css:content="form#login_form" css:if-content="form#login_form"/>
-    </rules>
+            <!-- * METADATA * -->
+            <!-- REPLACE THE TITLE -->
+            <replace theme="/html/head/title" content="/html/head/title" /> 
 
-    <rules css:if-content="#admin-portal-wrapper">
-        <theme href="admin.html"  /> 
+            <!-- ADD STYLE, SCRIPT and META TAGS from CONTENT -->
+            <!-- <before theme-children="/html/head" 
+                content="/html/head/link | /html/head/style | /html/head/script | /html/head/meta" /> -->
 
-        <replace theme="/html/head/title" content="/html/head/title"/>
+            <!-- * MAIN CONTENT * -->
+            <!-- <replace css:theme-children="#main_content"
+             css:content-children="#content"/> -->
 
+            <!-- NAVIGATION -->
+            <replace css:theme-children="div.inner-navi nav"
+                css:content-children="#portal-globalnav" />
 
-        <!-- LOGIN FORM -->
-        <replace css:theme-children="div.ui-layout-center"
-                css:content="form#login_form" css:if-content="form#login_form"/>
+            <drop css:content="#portal-globalnav" attributes="id" />
+            <replace css:content="#portal-globalnav li.selected">
+                <li class="active">
+                    <xsl:apply-templates css:select="li.selected a" mode="raw"/>
+                </li>
+            </replace>
+            <replace css:content="li#99969875 a">
+                <a href="/home.html" title="">首页</a>
+            </replace>
 
-        <!-- CONTENT EDIT FORM -->
-        <replace css:theme="h1.page-title" css:content="h1.page-title"/>
-        <replace css:theme-children="div.tabview"
-                css:content="ul#content-views"/>
-        <replace css:content="ul#content-views li.selected">
-            <li class="active">
-                <xsl:apply-templates css:select="li.selected a" mode="raw"/>
+            <!-- NAV ASIDE -->
+            <replace css:theme-children="div.menu"
+                css:content="ul.navTree" />
+            <replace css:content="li.navTreeItem">
+            <li>
+                <h4>
+                    <xsl:apply-templates css:select="li.navTreeItem a" mode="raw"/>
+                </h4>
             </li>
-        </replace>
-        <replace css:theme-children="div.property"
-                css:content-children="div.property"/>
-
-        <drop css:content="label.horizontal span"/>
-        <!-- <drop css:content="div.formControls"/> -->
-        <!-- <merge attributes="class" css:theme="div.control-group" css:content="div.field"/> -->
-        <copy attributes="action" css:theme="div.column-bd form" css:content="div#content-core form" />
-        <replace css:theme-children="div.column-bd form" css:content-children="div#content-core form"  css:if-content="div#content-core form"/>
-        <replace css:theme="div.column-bd form" css:content-children="div#operation" css:if-content="div#operation"/>
-        <replace css:content="div.field">
-            <div class="control-group">
-                <label class="control-label">
-                    <xsl:apply-templates css:select="div.field label.horizontal"/>
-                    <xsl:apply-templates css:select="div.field label[for^='__ac']"/>
-                </label>
-                <div class="controls">
-                    <xsl:apply-templates css:select="div.field  [id^='form-widgets'][class*='widget']" mode="raw"/>
-                    <xsl:apply-templates css:select="div.field  input[id^='__ac']" mode="raw"/>
-                </div>
-            </div>
-        </replace>
-<!--    <merge attributes="class" css:theme="div.column-bd form div.control-group" css:content="div#content-core form div.field" />
-        <replace css:content="div.field input[id^='form-widgets']">
-            <div class="controls">
-                <xsl:apply-templates css:select="div.field  input[id^='form-widgets']" mode="raw"/>
-            </div>
-        </replace>
-         <replace css:content="div.field  span[id^='form-widgets']">
-            <div class="controls">
-                <xsl:apply-templates css:select="div.field  span[id^='form-widgets']" mode="raw"/>
-            </div>
-        </replace>
-        <replace css:content="div.field  textarea[id^='form-widgets']">
-            <div class="controls">
-                <xsl:apply-templates css:select="div.field  textarea[id^='form-widgets']" mode="raw"/>
-            </div>
-        </replace> -->
+            </replace>
+            <replace css:content="li.navTreeCurrentNode">
+            <li class="active">
+                <h4>
+                    <xsl:apply-templates css:select="li.navTreeItem a" mode="raw"/>
+                </h4>
+            </li>
+            </replace>
+            <replace content="//ul[@class='navTree navTreeLevel1']"/>
 
 
-        <replace css:theme-children="div.main-column"
-                css:content-children="div.main-column#list" css:if-content="div.main-column#list"/>
+            <!-- CONTENT -->
+            <replace css:theme="section hgroup h1"
+                css:content="h1.documentFirstHeading"/>
 
-        <replace css:theme-children="div.adminbar"
-                css:content-children="div#portal-top"/>
-        <replace css:theme-children="div.ui-layout-left nav" 
-                css:content-children="div#portal-left"/>
-        <replace css:theme-children="div#js"
-                css:content-children="div#js"/>
-        <merge attributes="class" css:theme="body" css:content="body"/>
-        <replace css:theme-children="div#JS_list_detail"
-                css:content-children="div#portal-right" css:if-content="div#portal-right"/>
+            <replace css:theme="div.main-column section"
+                css:content="section.typo" css:if-content="body.page section.typo div#detailview"/>
+            <replace css:theme="div.main-column section"
+                css:content="section.list" css:if-content="body.page section.list"/>
+            <replace css:theme="div.main-column section"
+                css:content="section.waterfallstream" css:if-content="body.works section.waterfallstream"/>
+            <replace css:theme="div.container section"
+                css:content="div#content section" css:if-content="body.homepage div#content section"/> 
+            <replace css:theme="div.container div.main-column"
+                css:content="body.page div#server_data" css:if-content="body.page div#server_data"/>
 
-        <drop css:theme="button.action-save" css:if-content="body.portaltype-plone-site"/>
-        <drop css:theme="button.action-preview" css:if-content="body.portaltype-plone-site"/>
-        <drop css:theme="div.content-type" css:if-content="body.portaltype-plone-site"/>
+            <replace css:theme="div.container" css:if-content="body.2col">
+                <div class="container" style="padding-bottom: 70px;"><div class="inner-container clearfix">
+                    <div class="right-column">
+                        <xsl:apply-templates css:select="body.2col section" mode="raw"/>
+                    </div>
+                    <div class="left-column">
+                        <aside>
+                            <div class="mod menu">
+                                <xsl:apply-templates css:select="body.2col ul#portal-sitemenus" mode="raw"/>
+                            </div>
+                        </aside>
+                    </div>
+                </div></div>
+            </replace>
 
+            <!-- LINKS -->
+            <!-- <replace theme-children="//ul[@class='links']"
+                content-children="//ul[@id='portal-siteactions']"/> -->
+
+            <!-- * CUSTOM LOGO * -->
+            <replace css:theme-children="div.logo"
+                 content="//*[@id='portal-logo']" />
+            <replace content="//*[@id='portal-logo']/img" />
+            <before css:theme-children="div.logo">
+                <div href="/" class="hometip">&lt; 返回首页</div>
+            </before>
+
+            <!-- * BODY CLASS * -->
+            <merge attributes="class" css:theme="body" css:content="body"/>
+
+            <!-- meta.js -->
+            <copy css:theme="script[src*='meta.js']" 
+                css:content="div#server_data" attributes="data-main" css:if-content="div#server_data"/> 
+            <!-- <merge css:theme="script[src*='meta.js']" 
+                css:content="div.inner-container" attributes="data-main" css:if-content="body.homepage"/>  -->
+            <drop css:content="li#join_us"/>
     </rules>
+
 
 </rules>

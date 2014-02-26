@@ -34,3 +34,6 @@ table.list.hascover td .thumb { display: block; width: 56px; height: 56px; posit
 	overflow: hidden;
 	text-indent: -9999px;
 }
+
+#language_selector label {float: left; top: 5px; font-size: 12px; margin-top: 3px;}
+#language_selector select {width: 70px; height: auto; white-space: nowrap;}

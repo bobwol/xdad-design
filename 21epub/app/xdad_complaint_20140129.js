@@ -4,7 +4,7 @@ epub.app(function(){
 	epub["import"]('epub.modules.bootstrap@1.0')
 	epub["import"]('epub.modules.supersized@2.0')
 	epub["import"]('epub.modules.page@3.0')
-	epub["import"]('epub.modules.base@3.0')
+	epub["import"]('epub.modules.base@4.0')
 	epub["import"]('epub.modules.jquery-validate@1.11.1')
 
 	$(document).ready(function(){
@@ -39,7 +39,7 @@ epub.app(function(){
 			rules: {
                 contractNo:{
                     required: true,
-                    contractNo: true,
+                    // contractNo: true,
                 }
             }
 		});
@@ -48,7 +48,7 @@ epub.app(function(){
 			rules: {
                 contractNo:{
                     required: true,
-                    contractNo: true,
+                    // contractNo: true,
                 }
             }
 		});
