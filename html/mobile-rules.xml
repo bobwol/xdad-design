@@ -1,0 +1,120 @@
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <!-- IDENTIFY THE THEME HTML TEMPLATE -->
+    <notheme if="$host = '127.0.0.1:8082'" />
+    <notheme if="$host = '192.168.0.214:8082'" />
+
+    <rules css:if-content="#web-portal-wrapper">
+            <theme href="mobile-xdad-index.html" if-path="/en/index.html /zh/index.html"/>
+           <!--  <theme href="mobile-xdad-works.html" if-path="works.html"/> -->
+            <theme href="mobile-xdad.html"/>
+
+            <!-- * METADATA * -->
+            <!-- REPLACE THE TITLE -->
+            <replace theme="/html/head/title" content="/html/head/title" /> 
+
+            <!-- ADD STYLE, SCRIPT and META TAGS from CONTENT -->
+            <!-- <before theme-children="/html/head" 
+                content="/html/head/link | /html/head/style | /html/head/script | /html/head/meta" /> -->
+
+            <!-- * MAIN CONTENT * -->
+            <!-- <replace css:theme-children="#main_content"
+             css:content-children="#content"/> -->
+
+            <!-- NAVIGATION -->
+            <replace css:theme-children="ul.nav"
+                css:content-children="#portal-globalnav" />
+
+            <drop css:content="#portal-globalnav" attributes="id" />
+            <replace css:content="#portal-globalnav li.selected">
+                <li class="active">
+                    <xsl:apply-templates css:select="li.selected a" mode="raw"/>
+                </li>
+            </replace>
+            <replace css:content="li#99969875 a">
+                <a href="/home.html" title="">首页</a>
+            </replace>
+
+            <!-- NAV ASIDE -->
+            <replace css:theme-children="div.menu"
+                css:content="ul.navTree" />
+            <replace css:content="li.navTreeItem">
+            <li>
+                <h4>
+                    <xsl:apply-templates css:select="li.navTreeItem a" mode="raw"/>
+                </h4>
+            </li>
+            </replace>
+            <replace css:content="li.navTreeCurrentNode">
+            <li class="active">
+                <h4>
+                    <xsl:apply-templates css:select="li.navTreeItem a" mode="raw"/>
+                </h4>
+            </li>
+            </replace>
+            <replace content="//ul[@class='navTree navTreeLevel1']"/>
+
+
+            <!-- CONTENT -->
+            <replace css:theme="section hgroup h1"
+                css:content="h1.documentFirstHeading"/>
+
+            <replace css:theme="div.main-column section"
+                css:content="section.typo" css:if-content="body.page section.typo div#detailview"/>
+            <replace css:theme="div.main-column section"
+                css:content="section.list" css:if-content="body.page section.list"/>
+            <replace css:theme="div.main-column section"
+                css:content="section.waterfallstream" css:if-content="body.works section.waterfallstream"/>
+            <replace css:theme="div.container section"
+                css:content="div#content section" css:if-content="body.homepage div#content section"/> 
+            <replace css:theme="div.container div.main-column"
+                css:content="body.page div#server_data" css:if-content="body.page div#server_data"/>
+
+<!--             <replace css:theme="div.container" css:if-content="body.2col">
+                <div class="container" style="padding-bottom: 70px;"><div class="inner-container clearfix">
+                    <div class="right-column">
+                        <xsl:apply-templates css:select="body.2col section" mode="raw"/>
+                    </div>
+                    <div class="left-column">
+                        <aside>
+                            <div class="mod menu">
+                                <xsl:apply-templates css:select="body.2col ul#portal-sitemenus" mode="raw"/>
+                            </div>
+                        </aside>
+                    </div>
+                </div></div>
+            </replace> -->
+
+            <!-- LINKS -->
+            <!-- <replace theme-children="//ul[@class='links']"
+                content-children="//ul[@id='portal-siteactions']"/> -->
+
+            <!-- * CUSTOM LOGO * 
+            <replace css:theme-children="div.logo"
+                 content="//*[@id='portal-logo']" />
+            <replace content="//*[@id='portal-logo']/img" />
+            <before css:theme-children="div.logo">
+                <div href="/" class="hometip">&lt; 返回首页</div>
+            </before>-->
+
+            <!-- * BODY CLASS * -->
+            <merge attributes="class" css:theme="body" css:content="body"/>
+
+            <!-- meta.js -->
+            <copy css:theme="script[src*='meta.js']" 
+                css:content="div#server_data" attributes="data-main" css:if-content="div#server_data"/> 
+            <!-- <merge css:theme="script[src*='meta.js']" 
+                css:content="div.inner-container" attributes="data-main" css:if-content="body.homepage"/>  -->
+            <drop css:content="li#join_us"/>
+            <drop css:content="div#server_data hgroup" if-path="works.html"/>
+
+            <after css:theme="body" if-path="works.html">
+                <script src="/module/meta.js?v=20131226" data-main="epub.app.xdad_works_mobile" ></script>
+            </after>
+    </rules>
+
+
+</rules>

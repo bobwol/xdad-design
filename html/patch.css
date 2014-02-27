@@ -6,9 +6,12 @@ div.oversea-location-info { float: left; width: 240px; border: 1px solid #e3e3e3
 div.ipad-modal {display: none}
 
 body.en {letter-spacing: 0px;}
-body.en header .slogan {background-image: url("site-xdad/img/slogan_en.png"); top:10px; width: 270px;}
+body.en header .logo a {background-image: url("site-xdad/img/logo_en.png")}
+body.en header .logo .hometip {top:65px;}
+body.en.fixed-top .logo a {background-image: url("site-xdad/img/logo_mini_en.png")}
+body.en header .slogan {background-image: url("site-xdad/img/slogan_en.png"); width: 270px;}
 body.en header .language {bottom:35px;}
-body.en.fixed-top header .slogan {background-image: url("site-xdad/img/slogan_en_mini.png"); top: 0px; width: 170px;}
+body.en.fixed-top header .slogan {background-image: url("site-xdad/img/slogan_mini_en.png"); top: 0px; width: 170px;}
 body.en.fixed-top header .language { top:9px; right: 170px;}
 body.en .typo {font-family: Helvetica, Tahoma; font-size: 12px; letter-spacing: normal !important;}
 body.en .typo h1, body.en .typo h2, body.en .typo h3, body.en .typo h4, body.en .typo h5, body.en .typo h6 { color:#c72135;  }
@@ -33,9 +36,17 @@ body.en .lightbox .slideshow dl dt { font-weight: bold; }
 body.en.homepage .royalSlider dl dt { font-family: Georgia,"Times New Roman",Times,serif; font-size: 15px; line-height: 18px; margin-bottom: 10px; padding: 0; font-weight: 500; color: #fff;}
 body.en.homepage .royalSlider dl dd { font-family: tahoma; font-size: 12px; line-height: 19px; color: #ccc; }
 
-body.en .categories-mod {font-family: Helvetica; font-style: oblique; font-size: 12px;}
-body.en .categories-mod > h4 { font-weight: bold; font-family: Helvetica;  }
+body.en .categories-mod {font-family: Georgia,"Times New Roman",Times,serif; font-size: 12px;}
 body.en .categories-mod { position: static; width: auto; left:50%;}
 body.en .categories-mod > .nav-bd > ul > li { font-size: 12px; }
 
 body.en .typo hgroup h1 { white-space: nowrap; overflow: hidden !important; width: 390px; text-overflow: ellipsis; }
+
+/* Retina Display */
+@media screen and (-webkit-min-device-pixel-ratio: 2), 
+screen and (max--moz-device-pixel-ratio: 2) {
+header .logo a { background:url('site-xdad/img/logo_en@2x.png') no-repeat 0 0; background-size: contain; }
+header .slogan { background:url('site-xdad/img/slogan_en@2x.png') no-repeat 100% 0; background-size: contain; }
+.fixed-top header .logo a { background:url('site-xdad/img/logo_mini_en@2x.png') no-repeat 0 0; background-size: contain; }
+.fixed-top header .slogan { background:url('site-xdad/img/slogan_mini_en@2x.png') no-repeat 100% 0; background-size: contain; }
+}
