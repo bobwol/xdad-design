@@ -4,7 +4,7 @@ epub.app(function(){
 	epub["import"]('epub.modules.bootstrap@1.0');
 	epub["import"]('epub.modules.hotMap@2.0');
 	epub["import"]('epub.modules.pageMap@1.0');
-	epub["import"]('epub.modules.base@4.0');
+	epub["import"]('epub.modules.base@6.0');
 
 	$(function(){
 
