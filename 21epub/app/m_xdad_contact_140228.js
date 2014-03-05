@@ -2,9 +2,9 @@
 epub.app(function(){
 
 	epub["import"]('epub.modules.bootstrap@1.0');
-	epub["import"]('epub.modules.hotMap@2.0');
+	epub["import"]('epub.modules.mHotMap@1.0');
 	epub["import"]('epub.modules.pageMap@1.0');
-	epub["import"]('epub.modules.base@6.0');
+	epub["import"]('epub.modules.mbase@2.0');
 
 	$(function(){
 
@@ -78,10 +78,10 @@ epub.app(function(){
 			},
 			show:function(a){
 				var data_title = $(a).attr('data-title');
-				$('article div.location-hd a').html(data_title+"<b>▼</b>");
+				$('article div#inner div.location-hd a').html(data_title+"<b>▼</b>");
 				for (var i = data.length - 1; i >= 0; i--) {
 					if(data[i].title==data_title){
-						$('article div.location-info>ul').html('');
+						$('article div#inner.location-info>ul').html('');
 						var html = [];
 						if(data[i].address){
 							html.push('<li>'+data[i].address+'</li>')
@@ -101,27 +101,28 @@ epub.app(function(){
 			            if(data[i].websit){
 			            	html.push('<li>'+data[i].websit+'</li>')
 			            };
-			          	$('article div.location-info>ul').html(html.join(''));
+			          	$('article div#inner.location-info>ul').html(html.join(''));
 			          	break;
 					}
 				};
 			}
 		});
-		ins_page = $('.location-mod').pageMap({
+		ins_page = $('#inner .location-mod').pageMap({
 			data:data,
 			totalPages:data.length,
 	    	num:35,
 			debug:false,
 			goto:function(no){
 				ins_map.show(no);
+				$('div.location-bd').hide();
 			}
-		})
+		});
+		$('.location-hd a').live("click", function() {
+			$(this).parent().parent().children('.location-bd').slideToggle('fast');
+			return false;
+		});
+
+		$('div.map-select').css('zoom','0.55');
 	});
 
-
-	$('li[id*="contentstree_149"] a').addClass('lightbox-history-works');
-	$('li[id*="contentstree_149"] a').live('click',function(){
-		$('.lightbox.history-works-modal').show();
-		return false;
-	});
 })

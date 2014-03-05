@@ -8,9 +8,8 @@
     <notheme if="$host = '192.168.0.214:8082'" />
 
     <rules css:if-content="#web-portal-wrapper">
-            <theme href="mobile-xdad-index.html" if-path="/en/index.html /zh/index.html"/>
-           <!--  <theme href="mobile-xdad-works.html" if-path="works.html"/> -->
-            <theme href="mobile-xdad.html"/>
+            <theme href="mobile-xdad.html" if-path="/zh"/>
+            <theme href="mobile-xdad-en.html" if-path="/en"/>
 
             <!-- * METADATA * -->
             <!-- REPLACE THE TITLE -->
@@ -101,19 +100,42 @@
             </before>-->
 
             <!-- * BODY CLASS * -->
+            <drop attributes="class" css:content="body"  if-path="contact.html" />
             <merge attributes="class" css:theme="body" css:content="body"/>
 
             <!-- meta.js -->
-            <copy css:theme="script[src*='meta.js']" 
-                css:content="div#server_data" attributes="data-main" css:if-content="div#server_data"/> 
             <!-- <merge css:theme="script[src*='meta.js']" 
                 css:content="div.inner-container" attributes="data-main" css:if-content="body.homepage"/>  -->
             <drop css:content="li#join_us"/>
             <drop css:content="div#server_data hgroup" if-path="works.html"/>
 
-            <after css:theme="body" if-path="works.html">
-                <script src="/module/meta.js?v=20131226" data-main="epub.app.xdad_works_mobile" ></script>
-            </after>
+            <replace css:theme-children="div.inner-container" if-path="list.html">
+                <div class="main-column">
+                  <section class="waterfallstream history-works" style="margin:0 auto;">
+                    <hgroup></hgroup>
+                    <div class="work-list">
+                      
+                      
+                    </div>
+                  </section>
+                </div>
+            </replace>
+
+            <replace css:theme="script[src*='meta.js']"  if-path="/en/ /zh/ index.html home.html">
+                <script src="/module/meta.js?v=20131226" data-main="epub.app.m_xdad_index_140303" ></script>
+            </replace>
+            <replace css:theme="script[src*='meta.js']"  if-path="/zh/contact.html">
+                <script src="/module/meta.js?v=20131226" data-main="epub.app.m_xdad_contact_140228" ></script>
+            </replace>
+            <replace css:theme="script[src*='meta.js']"  if-path="/en/contact.html">
+                <script src="/module/meta.js?v=20131226" data-main="epub.app.m_xdad_contact_en_140228" ></script>
+            </replace>
+            <replace css:theme="script[src*='meta.js']" if-path="works.html">
+                <script src="/module/meta.js?v=20131226" data-main="epub.app.m_xdad_works_140228" ></script>
+            </replace>
+            <replace css:theme="script[src*='meta.js']" if-path="list.html">
+                <script src="/module/meta.js?v=20131226" data-main="epub.app.m_xdad_history_140228" ></script>
+            </replace>
     </rules>
 
 

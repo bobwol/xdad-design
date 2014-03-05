@@ -5,12 +5,18 @@ div.language.ipad {display: none}
 div.oversea-location-info { float: left; width: 240px; border: 1px solid #e3e3e3; margin: 30px 0 0; padding: 15px; }
 div.ipad-modal {display: none}
 
+header .logo { left:110px;}
+header .logo a {width: 400px; background-image: url('images/logo/logo.png')}
+.fixed-top header .logo a {background-image: url("images/logo/logo_mini.png")}
+header .logo .hometip { top: 65px; }
+header .language { display: block; bottom: 15px;}
+
 body.en {letter-spacing: 0px;}
 body.en header .logo a {background-image: url("site-xdad/img/logo_en.png")}
-body.en header .logo .hometip {top:65px;}
+body.en header .logo .hometip {top:65px; right: 100px;}
 body.en.fixed-top .logo a {background-image: url("site-xdad/img/logo_mini_en.png")}
-body.en header .slogan {background-image: url("site-xdad/img/slogan_en.png"); width: 270px;}
-body.en header .language {bottom:35px;}
+body.en header .slogan {background-image: url("site-xdad/img/slogan_en.png"); width: 270px; right: -40px;}
+body.en header .language {bottom:10px; right:10px;}
 body.en.fixed-top header .slogan {background-image: url("site-xdad/img/slogan_mini_en.png"); top: 0px; width: 170px;}
 body.en.fixed-top header .language { top:9px; right: 170px;}
 body.en .typo {font-family: Helvetica, Tahoma; font-size: 12px; letter-spacing: normal !important;}
@@ -45,8 +51,10 @@ body.en .typo hgroup h1 { white-space: nowrap; overflow: hidden !important; widt
 /* Retina Display */
 @media screen and (-webkit-min-device-pixel-ratio: 2), 
 screen and (max--moz-device-pixel-ratio: 2) {
-header .logo a { background:url('site-xdad/img/logo_en@2x.png') no-repeat 0 0; background-size: contain; }
-header .slogan { background:url('site-xdad/img/slogan_en@2x.png') no-repeat 100% 0; background-size: contain; }
-.fixed-top header .logo a { background:url('site-xdad/img/logo_mini_en@2x.png') no-repeat 0 0; background-size: contain; }
-.fixed-top header .slogan { background:url('site-xdad/img/slogan_mini_en@2x.png') no-repeat 100% 0; background-size: contain; }
+header .logo a { background:url('images/logo/logo@2x.png') no-repeat 0 0; background-size: contain; }
+.fixed-top header .logo a { background:url('images/logo/logo_mini@2x.png') no-repeat 0 0; background-size: contain; }
+body.en header .logo a { background:url('site-xdad/img/logo_en@2x.png') no-repeat 0 0; background-size: contain; }
+body.en header .slogan { background:url('site-xdad/img/slogan_en@2x.png') no-repeat 100% 0; background-size: contain; }
+body.en.fixed-top header .logo a { background:url('site-xdad/img/logo_mini_en@2x.png') no-repeat 0 0; background-size: contain; }
+body.en.fixed-top header .slogan { background:url('site-xdad/img/slogan_mini_en@2x.png') no-repeat 100% 0; background-size: contain; }
 }

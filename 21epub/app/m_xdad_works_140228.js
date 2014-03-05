@@ -10,6 +10,7 @@ epub.app(function(){
 	epub["import"]('epub.modules.bootstrap@1.0')
 	epub["import"]('epub.modules.supersized@2.0')
 	epub["import"]('epub.modules.page@3.0')
+	epub["import"]('epub.modules.mbase@2.0');
 
 
 
@@ -41,6 +42,7 @@ epub.app(function(){
 		} else if ( $(window).width() >= 2025) {
 			$('.waterfallstream').css( {'width':2005} );
 		}
+		$('.waterfallstream').css( {'margin':'0px auto'} );
 	});
 	$(window).resize(function() {
 		if ( $(window).width() < 575) {
