@@ -181,7 +181,7 @@ epub.app(function(){
           },
           {
             "style": "margin:358px 0px 0px 360px;",
-            "title": "HK Subsidiary",
+            "title": "HK-Subsidiary",
             "address": "Address: 6/F Tien Chu Commercial Building, N.173-174 Gloucester Road Wan Chai, HK China",
             "zipcode": "",
             "tel": "Tel: 852-28916336",

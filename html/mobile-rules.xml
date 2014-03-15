@@ -128,7 +128,7 @@
                 <script src="/module/meta.js?v=20131226" data-main="epub.app.m_xdad_contact_140228" ></script>
             </replace>
             <replace css:theme="script[src*='meta.js']"  if-path="/en/contact.html">
-                <script src="/module/meta.js?v=20131226" data-main="epub.app.m_xdad_contact_en_140228" ></script>
+                <script src="/module/meta.js?v=20131226" data-main="epub.app.m_xdad_contact_en_140315" ></script>
             </replace>
             <replace css:theme="script[src*='meta.js']" if-path="works.html">
                 <script src="/module/meta.js?v=20131226" data-main="epub.app.m_xdad_works_140228" ></script>
